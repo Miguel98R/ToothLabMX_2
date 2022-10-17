@@ -2,8 +2,9 @@ const express = require('express')
 const router = express.Router()
 
 //ejemplo ruta:
-//router.use('/user', require('./user.routes'))
 
+router.use('/users/', require('./user.routes'))
+router.use('/ordenes/',require('./orden.routes'))
 
 
 

@@ -5,8 +5,12 @@ const router = express.Router()
 //Ejemplo rutas
 router.get("/", async (req, res) => {
     
-    res.render('index', {title: 'ToothLabMX'})
+    res.render('index', {
+        title: 'ToothLabMX'}
+        )
 })
+
+
 
 // router.get("/about", async (req, res) => {
 
