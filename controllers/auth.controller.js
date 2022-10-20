@@ -13,6 +13,15 @@ let login_user = async function (req,res){
 
         let user_data = await usersModel.findOne({ user })
 
+        if(!user_data){
+            return   res.status(400).json({
+                success:false,
+                message:"Usuario incorrecto"
+            })
+
+            
+        }
+
         
         console.log(user_data.password)
 
@@ -27,9 +36,18 @@ let login_user = async function (req,res){
                 
             })
 
+        }else{
+
+            return   res.status(400).json({
+                success:false,
+                message:"Contraseña incorrecta"
+            })
+
+            
+
+
         }
-        
-        
+    
     } catch (e) {
         console.log(e)
         res.status(500).json({
@@ -38,7 +56,6 @@ let login_user = async function (req,res){
         })
         
     }
-
 
 }
 

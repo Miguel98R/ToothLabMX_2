@@ -31,9 +31,11 @@ let api_conection = async function (method, url, data, f_, error_) {
 
         response = await response.json();
 
-        if (response.success) {
+        if (response.success == true) {
             if (f_) {
                 f_(response);
+            }else{
+                error_(response)
             }
 
         }
