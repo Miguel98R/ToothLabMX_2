@@ -1,10 +1,7 @@
-const json = require('body-parser/lib/types/json')
-const express = require('express')
-const router = express.Router()
-let orden = require('./../models/orden.model')
+let userModel = require('./../models/users.model')
 
 
-router.post('/newUser/', async function (req, res) {
+let new_user = async function (req, res) {
     
     let nuevo_usuario  = req.body
     console.log(req.body)
@@ -40,6 +37,6 @@ router.post('/newUser/', async function (req, res) {
     }
     
     
-})
+}
 
-module.exports = router
+module.exports = { new_user }

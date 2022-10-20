@@ -1,3 +1,7 @@
+var notyf = new Notyf();
+
+
+
 let api_conection = async function (method, url, data, f_, error_) {
     try {
         let response

@@ -3,8 +3,10 @@ const router = express.Router()
 
 //ejemplo ruta:
 
+
+router.use('/auth/',require('./auth.routes.js'))
 router.use('/users/', require('./user.routes'))
-router.use('/ordenes/',require('./orden.routes'))
+
 
 
 
