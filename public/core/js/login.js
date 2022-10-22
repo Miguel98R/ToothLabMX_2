@@ -1,3 +1,5 @@
+
+
 $(document).ready(function () {
 
     $('#entrar').click(function () {
@@ -14,21 +16,78 @@ $(document).ready(function () {
             return 0
         }
 
-        console.log('user>>', user)
-        console.log('password>>', password)
         let data_user
+        let count = 0
        
         api_conection('POST', 'api/auth/login', { user, password }, function (data) {
-            console.log(data.data)
-
+            console.log("SI paso",data.data)
             data_user = data.data
-        },function(message){
-            console.log(message)
-        }
-        
-        )
+
+            notyf.success("Inicio correcto")
+
+            setTimeout(() => {
+                location.href = '/panel'
+            }, 1000);
+
+            
+
+           
+
+        },function(data){
+            console.log("error",data.data)
+            notyf.error(data.data)
+
+            $('#entrar').click(function(){
+                $('.reset_password').html('')
+                count++
+              
+                console.log(count)
+                if(count >= 2 && data.data == 'Contraseña incorrecta'){
+                   
+                    $('.reset_password').show()
+                    $('.reset_password').append('<button class="btn btn-default reset_contra">¿ Olvidaste tu contraseña ?</button>')
+                }
+
+                if(count >= 2 && data.data == 'Usuario incorrecto'){
+                   
+                    $('.reset_password').show()
+                    $('.reset_password').append('<button class="btn btn-default reset_user">Crear nuevo usuario</button>')
+                }
+            })
+
+            return 0
+        })
+
+        $(document.body).on('click','.reset_contra',function(){
+            alert('recuperacion de contrseña')
+        })
+
+        $(document.body).on('click','.reset_user',function(){
+            alert('recuperacion de contrseña')
+        })
 
 
     })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 })

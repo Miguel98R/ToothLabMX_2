@@ -15,8 +15,9 @@ let login_user = async function (req,res){
 
         if(!user_data){
             return   res.status(400).json({
+                code:400,
                 success:false,
-                message:"Usuario incorrecto"
+                data:"Usuario incorrecto"
             })
 
             
@@ -31,6 +32,7 @@ let login_user = async function (req,res){
         if(checkPassword){
 
             res.status(200).json({
+                code:200,
                 success:true,
                 data:user_data
                 
@@ -39,8 +41,9 @@ let login_user = async function (req,res){
         }else{
 
             return   res.status(400).json({
+                code:400,
                 success:false,
-                message:"Contraseña incorrecta"
+                data:"Contraseña incorrecta"
             })
 
             

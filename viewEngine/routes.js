@@ -10,6 +10,13 @@ router.get("/", async (req, res) => {
         )
 })
 
+router.get("/panel", async (req, res) => {
+    
+    res.render('panel', {
+        title: 'ToothLabMX|Panel'}
+        )
+})
+
 
 
 // router.get("/about", async (req, res) => {

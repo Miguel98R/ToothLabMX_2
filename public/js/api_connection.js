@@ -2,6 +2,7 @@ var notyf = new Notyf();
 
 
 
+
 let api_conection = async function (method, url, data, f_, error_) {
     try {
         let response
@@ -30,15 +31,10 @@ let api_conection = async function (method, url, data, f_, error_) {
         }
 
         response = await response.json();
+        console.log("response>",response)
 
-        if (response.success == true) {
-            if (f_) {
-                f_(response);
-            }else{
-                error_(response)
-            }
-
-        }
+        response.code == 200 ? f_(response) : error_(response)
+       
     } catch (e) {
         console.error(e);
         notify_error('Ocurrio un error verifique sus datos e intentelo nuevamente', e)
