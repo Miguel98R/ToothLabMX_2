@@ -1,44 +1,63 @@
 .container
   section.vh-100
     .container-fluid.h-custom
-      .row.d-flex.justify-content-center.align-items-center.h-100
-        .col-md-9.col-lg-6.col-xl-5
-          img.img-fluid.mx-2.my-2( style='width:80%;'  src='/public/img/logo.jpg' alt='Sample image')
-        .col-md-8.col-lg-6.col-xl-4
+      .card.border-secondary.mb-3
+        .card-header
+          
+          h3 
+            i.fa-solid.fa-door-open
+            |   Bienvenido de nuevo
 
-            .card
-              .card-header.text-center
-                h4 Inicio de sesión
-              .card-body
-                .form-outline.my-2
-                  label.form-label(for='user') 
-                    b|Usuario:
-                  input#user.form-control(type='text')
-                  
-            
-                .form-outline.my-2
-                  label.form-label(for='password') 
-                    b|Contraseña :
-                  input#password.form-control(type='password')
-                 
+        .card-body 
+          .row.d-flex.justify-content-center.align-items-center.h-100
+            .col-md-9.col-lg-6.col-xl-5.text-center
+              img.img-fluid.mx-2.my-2( style='width:65%;'  src='/public/img/logo.jpg' alt='Sample image')
+            .col-md-8.col-lg-6.col-xl-4
 
-              .card-footer.text-center
+                .card
+                  .card-header.text-center
+                      
+                      h4 
+                        |   Inicio de sesión
+                  .card-body.text-secondary
+                    .form-outline.my-2
+                      label.form-label(for='user')
+                        i.fa-solid.fa-user-tie  
+                        b|  Usuario:
+                      input#user.form-control(type='text')
+                      
                 
-                  #reset_password(style="display:none;")
-                      button.btn.btn-link.reset_constra|¿ Olvidaste tu contraseña ?
-                  #reset_user(style="display:none;")
-                      button.btn.btn-link.reset_user|Crear nuevo usuario
-                  br
-                  button.btn.btn-primary(style='padding-left: 2.5rem; padding-right: 2.5rem;')#entrar Entrar
+                    .form-outline.my-2
+                      label.form-label(for='password')
+                        i.fa-solid.fa-key 
+                        b|  Contraseña :
+                      input#password.form-control(type='password')
+                    
+
+                  .card-footer.text-center
+                    
+                      #reset_password(style="display:none;")
+                          button.btn.btn-link.reset_constra|¿ Olvidaste tu contraseña ?
+                      #reset_user(style="display:none;")
+                          button.btn.btn-link.reset_user|Crear nuevo usuario
+                      br
+                      button.btn.btn-primary(style='padding-left: 2.5rem; padding-right: 2.5rem;')#entrar 
+                        i.fas.fa-sign-in-alt
+                        |  Entrar
+
+
+        .card-footer
+           .d-flex.flex-column.flex-md-row.text-center.text-md-start.justify-content-center.py-4.px-4.px-xl-5.my-2
+            // Copyright
+            .text-dark.mb-3.mb-md-0.text-center
+              | Copyright &copy; 2022. - ToothLabMX V2.1.2  - Desarrollado por Jose Miguel Rosas Jimenez
+          
+
+      
           
       
     br
-    .d-flex.flex-column.flex-md-row.text-center.text-md-start.justify-content-center.py-4.px-4.px-xl-5.my-2
-      // Copyright
-      .text-dark.mb-3.mb-md-0.text-center
-        | Copyright &copy; 2022. - ToothLabMX V2.1.2  - Desarrollado por Jose Miguel Rosas Jimenez
-    
-
+   
       //- div
       //-   a.text-white.me-4(href='#!')
       //-     i.fab.fa-facebook-f

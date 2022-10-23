@@ -41,8 +41,10 @@ $(document).ready(function () {
 
                 notyf.success("Inicio correcto")
 
-               
-                    location.href = '/panel'
+               setTimeout(() => {
+                 location.href = '/panel'
+               }, 1003);
+                    
                
 
             }

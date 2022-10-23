@@ -44,3 +44,28 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  font-family: 'Rajdhani', sans-serif;
+}
+
+#panelContainer {
+	display: flex;
+	flex-direction: row;
+	background-color: transparent;
+	flex: 1;
+	overflow: hidden;
+}
+.panel {
+	position: relative;
+
+}
+.one {
+	position: relative;
+	width: 15%;
+
+}
+.two {
+	position: relative;
+	width: 85%;
+}

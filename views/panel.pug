@@ -6,9 +6,19 @@ html(lang="es")
       title #{title}
 
       body
-         .container.my-5
-      
-               h2 Welcome to panel
+            .loading.show
+                  p Cargando..
+                  .spin
+            
+            #panelContainer 
+
+                  .panel.one
+                        .content.card
+                              .card-body(style="max-height:800px; overflow-y:auto;")
+                                    include template/menu
+                  .panel.two
+                        .content.p-0(style="max-height:800px; overflow-y:auto;")
+                              p Hola
                
          
           

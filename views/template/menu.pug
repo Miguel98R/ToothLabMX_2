@@ -1,0 +1,16 @@
+
+if menu
+    each val , index in menu
+        
+        .bg-dark.py-2
+            h5.text-white.mx-2 !{val.title}
+        
+        ul.nav.flex-column
+             if(val.elements)
+                each val2, index2 in val.elements
+                    li.nav-item
+                         a.text-dark.border-bottom.btn.btn-link.btn-outline-light(href=val2.ref style="text-decoration:none;"  )
+                            i(class=val2.icon )
+                            |  !{val2.title}
+        br
+        
