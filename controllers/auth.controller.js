@@ -14,13 +14,13 @@ let login_user = async function (req,res){
         let user_data = await usersModel.findOne({ user })
 
         if(!user_data){
-            return   res.status(400).json({
-                code:400,
+            res.json({
+                code:403,
                 success:false,
                 data:"Usuario incorrecto"
             })
 
-            
+            return 0
         }
 
         
@@ -40,13 +40,13 @@ let login_user = async function (req,res){
 
         }else{
 
-            return   res.status(400).json({
-                code:400,
+            res.json({
+                code:404,
                 success:false,
                 data:"Contraseña incorrecta"
             })
 
-            
+            return 0
 
 
         }
@@ -57,7 +57,7 @@ let login_user = async function (req,res){
             success:false,
             error:e
         })
-        
+        return 0
     }
 
 }

@@ -5,6 +5,6 @@ const router = express.Router()
 let {new_user} = require('../controllers/user.controller')
 
 
-router.post('/newUser/',new_user )
+router.post('/newUser',new_user )
 
 module.exports = router

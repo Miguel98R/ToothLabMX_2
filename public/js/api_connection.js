@@ -31,12 +31,21 @@ let api_conection = async function (method, url, data, f_, error_) {
         }
 
         response = await response.json();
-        console.log("response>",response)
+        console.log("response>>",response)
 
-        response.code == 200 ? f_(response) : error_(response)
-       
+        if (response.success == 200) {
+            if (f_) {
+                f_(response);
+            }
+
+        }else{
+            if (f_) {
+                f_(response);
+            }
+
+        }
     } catch (e) {
         console.error(e);
-        notify_error('Ocurrio un error verifique sus datos e intentelo nuevamente', e)
+        notyf.error('Ocurrio un error verifique sus datos e intentelo nuevamente', e)
     }
 }

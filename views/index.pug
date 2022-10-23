@@ -9,11 +9,15 @@ html(lang="es")
          .container.my-5
       
                include template/login
-               .loading.show
-                  p Cargando..
-                  .spin
+               
          
           
-          
+      include modals/resetContra_Model
+      include modals/resetUser_Model   
 
+      script( src='./public/core/js/login.js')
       include template/scripts
+
+  
+      
+      

@@ -3,7 +3,7 @@ const router = express.Router()
 
 
 //Ejemplo rutas
-router.get("/", async (req, res) => {
+router.get("/login", async (req, res) => {
     
     res.render('index', {
         title: 'ToothLabMX'}
@@ -16,6 +16,7 @@ router.get("/panel", async (req, res) => {
         title: 'ToothLabMX|Panel'}
         )
 })
+
 
 
 
