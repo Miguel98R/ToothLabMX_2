@@ -8,7 +8,7 @@ $(document).ready(function () {
     $('#entrar').click(function () {
        
     
-        
+
         let user = $('#user').val()
         let password = $('#password').val()
 
@@ -24,9 +24,7 @@ $(document).ready(function () {
             return 0
         }
 
-        let data_user
-        
-       
+    
         api_conection('POST', 'api/auth/login', { user, password }, function (response) {
             
             console.log("data>>>>",response)

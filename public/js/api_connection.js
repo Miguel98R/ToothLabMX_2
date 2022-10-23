@@ -1,8 +1,6 @@
 var notyf = new Notyf();
 
 
-
-
 let api_conection = async function (method, url, data, f_, error_) {
     try {
         let response
@@ -33,7 +31,7 @@ let api_conection = async function (method, url, data, f_, error_) {
         response = await response.json();
         console.log("response>>",response)
 
-        if (response.success == 200) {
+        if (response.success) {
             if (f_) {
                 f_(response);
             }
