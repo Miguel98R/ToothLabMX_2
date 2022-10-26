@@ -57,7 +57,7 @@ $(document).ready(function () {
                    
                             location.href = '/panel'
                         } else {
-                            notify_error('Ocurrio un error verifique sus datos e intentelo nuevamente')
+                            notyf('Ocurrio un error verifique sus datos e intentelo nuevamente')
                         }
                 
                     notyf.success("Inicio correcto")
@@ -70,41 +70,46 @@ $(document).ready(function () {
 
             }
 
-            if(codigo==404){
-                contra_++
-                notyf.error(respuesta)
 
-                
-                if(contra_>2){
-                    $('#reset_password').show()
-                }else{
-                    $('#reset_password').css( "display", "none" );
-                }
+    },function(response){
 
+        codigo = response.code 
+
+         
+        if(codigo==403){
+            contra_++
+           
+            notyf.error(response.message)
             
-
+            if(contra_>2){
+                $('#reset_password').show()
+            }else{
+                $('#reset_password').css( "display", "none" );
             }
 
-            if(codigo==403){
-                user_++
+        
 
-                notyf.error(respuesta)
+        }
 
+        if(codigo==404){
+            user_++
+
+            notyf.error(response.message)
+
+            $('#reset_user').show()
+
+             
+            if(user_>2){
                 $('#reset_user').show()
-
-                 
-                if(user_>2){
-                    $('#reset_user').show()
-                }else{
-                    $('#reset_user').css( "display", "none" );
-                }
-                  
-
-               
-
+            }else{
+                $('#reset_user').css( "display", "none" );
             }
+              
+
            
 
+        }
+       
     })
 
 

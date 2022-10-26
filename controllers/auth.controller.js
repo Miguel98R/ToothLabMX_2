@@ -16,13 +16,12 @@ let login_user = async function (req,res){
 
         let user_data = await usersModel.findOne({ user })
 
-        if(!user_data){
-            res.json({
-                code:403,
-                success:false,
-                data:"Usuario incorrecto"
+        if (!user_data) {
+            res.status(404).json({
+                code:404,
+                success: false,
+                message:  'Usuario incorrecto'
             })
-
             return 0
         }
 
@@ -42,16 +41,20 @@ let login_user = async function (req,res){
                 tokenSession
                 
             })
+            
+            
+
 
         }else{
 
-            res.json({
-                code:404,
-                success:false,
-                data:"Contraseña incorrecta"
+            res.status(403).json({
+                code:403,
+                success: false,
+                message:  'Contraseña incorrecta'
             })
-
             return 0
+
+      
 
 
         }
@@ -102,6 +105,8 @@ let registrer_user = async function (req, res) {
             success: false,
             error: e
         })
+
+        return 0
 
     }
 

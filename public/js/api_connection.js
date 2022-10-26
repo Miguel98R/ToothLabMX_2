@@ -33,19 +33,18 @@ let api_conection = async function (method, url, data, f_, error_) {
         response = await response.json();
         console.log("response>>",response)
 
-        if (response.success) {
+        if (response.success == true) {
             if (f_) {
                 f_(response);
             }
-
         }else{
-            if (f_) {
-                f_(response);
+            if(error_){
+                error_(response)
             }
-
         }
     } catch (e) {
         console.error(e);
         notyf.error('Ocurrio un error verifique sus datos e intentelo nuevamente', e)
+        return 0
     }
 }
