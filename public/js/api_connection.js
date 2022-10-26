@@ -10,6 +10,7 @@ let api_conection = async function (method, url, data, f_, error_) {
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json',
+                        'authorization': 'Bearer ' + localStorage.getItem('TOKEN') || false
                   
                     },
                     method: method,
@@ -21,6 +22,7 @@ let api_conection = async function (method, url, data, f_, error_) {
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json',
+                        'authorization': 'Bearer ' + localStorage.getItem('TOKEN') || false
        
                     },
                     method: method,

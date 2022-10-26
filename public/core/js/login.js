@@ -27,25 +27,46 @@ $(document).ready(function () {
     
         api_conection('POST', 'api/auth/login', { user, password }, function (response) {
             
-            console.log("data>>>>",response)
+           
             
             respuesta = response.data
             codigo = response.code
+            token = response.tokenSession
 
-            console.log(respuesta)
-            console.log(codigo)
-
+            localStorage.setItem('TOKEN',token)
 
 
             if(codigo==200){
 
-                notyf.success("Inicio correcto")
-
-               setTimeout(() => {
-                 location.href = '/panel'
-               }, 1003);
-                    
                
+          async function validate (){
+
+           let  response  =  fetch('/panel',
+                        {
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json',
+                                'authorization': 'Bearer ' + localStorage.getItem('TOKEN') || false
+                        
+                            },
+                            method: 'GET',
+                        
+                        })
+                        
+                        if (response) {
+                   
+                            location.href = '/panel'
+                        } else {
+                            notify_error('Ocurrio un error verifique sus datos e intentelo nuevamente')
+                        }
+                
+                    notyf.success("Inicio correcto")
+
+
+
+               } 
+             
+               validate()
 
             }
 

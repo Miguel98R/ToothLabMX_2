@@ -1,4 +1,7 @@
 const express = require('express')
+const checkout = require('../middleware/auth')
+const checkRoleAuth = require('../middleware/roleAuth')
+
 const router = express.Router()
 
 let menu = [
@@ -10,20 +13,22 @@ let menu = [
                 title: 'Dashboard',
                 ref: '/panel'
             }, {
-                icon: 'fas fa-cog',
+               
+                icon: 'far fa-plus-square',
                 title: 'Ordenes',
-                ref: '/new_order'
+                ref: '/orders'
             }, {
-                icon: 'fas fa-folder-plus',
+              
+                icon: 'fas fa-teeth',
                 title: 'Productos',
                 ref: '/products'
             }, {
-                icon: 'fab fa-dhl',
+                icon: 'fas fa-tooth',
                 title: 'Dentistas',
-                ref: '/pago_guias'
+                ref: '/dentistas'
             },
             {
-                icon: 'fas fa-book-open',
+                icon: 'fas fa-laptop-medical',
                 title: 'Historial',
                 ref: '/history'
             },
@@ -34,7 +39,7 @@ let menu = [
 ]
 
 
-//Ejemplo rutas
+// rutas para visualizar
 router.get("/", async (req, res) => {
     
     res.render('index', {
@@ -42,20 +47,44 @@ router.get("/", async (req, res) => {
         )
 })
 
-router.get("/panel", async (req, res) => {
+router.get("/panel",checkout,checkRoleAuth(['admin']), async (req, res) => {
     
     res.render('panel', {
-        title: 'ToothLabMX|Panel',
+        title: 'ToothLabMX| Panel',
         menu:menu}
         )
 })
 
-router.get("/new_order", async (req, res) => {
+router.get("/orders",checkout,checkRoleAuth(['admin']), async (req, res) => {
     
-    res.render('panel', {
-        title: 'ToothLabMX|Ordenes',
-        menu:menu}
-        )
+    res.render('ordenes', {
+        title: 'ToothLabMX| Ordenes',
+        menu:menu
+    })
+})
+
+router.get("/products", checkout,checkRoleAuth(['admin']), async (req, res) => {
+
+    res.render('productos', {
+        title: 'ToothLabMX| Productos',
+        menu:menu
+    })
+})
+
+router.get("/dentistas",checkout,checkRoleAuth(['admin']), async (req, res) => {
+    
+    res.render('dentistas', {
+        title: 'ToothLabMX| Dentistas',
+        menu:menu
+    })
+})
+
+router.get("/history",checkout,checkRoleAuth(['admin']), async (req, res) => {
+
+    res.render('historial', {
+        title: 'ToothLabMX| Historial',
+        menu:menu
+    })
 })
 
 

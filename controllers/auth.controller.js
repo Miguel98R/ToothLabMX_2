@@ -1,10 +1,13 @@
 
 let usersModel = require('../models/users.model')
 const { encrypt, compare } = require('../helpers/handleBcrypt')
+const { tokenSign } = require('../helpers/generateToken')
+
 
 let login_user = async function (req,res){
 
     let {user,password} = req.body
+
 
         console.log(user)
         console.log(password)
@@ -27,14 +30,16 @@ let login_user = async function (req,res){
         console.log(user_data.password)
 
         let checkPassword = await compare(password , user_data.password)
- 
+        let tokenSession = await tokenSign(user_data)
 
+        
         if(checkPassword){
 
             res.status(200).json({
                 code:200,
                 success:true,
-                data:user_data
+                data:user_data,
+                tokenSession
                 
             })
 
@@ -64,7 +69,7 @@ let login_user = async function (req,res){
 
 let registrer_user = async function (req, res) {
 
-    let { user, password } = req.body
+    let { user, password, rol } = req.body
 
     try {
 
@@ -74,7 +79,8 @@ let registrer_user = async function (req, res) {
         let new_user = new usersModel({
 
             user: user,
-            password: passwordHash
+            password: passwordHash,
+            rol:rol
 
         })
 
@@ -89,7 +95,7 @@ let registrer_user = async function (req, res) {
             data: new_user
         })
 
-    } catch (error) {
+    } catch (e) {
 
         console.log(e)
         res.status(500).json({

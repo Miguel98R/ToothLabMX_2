@@ -1,7 +1,10 @@
+require('dotenv').config()
+
 const express = require ('express')
 const morgan = require('morgan')
 const path = require('path')
-let bodyParser = require('body-parser')
+const bodyParser = require('body-parser')
+
 
 const db = require('./db')
 
@@ -9,9 +12,8 @@ const app = express()
 
 //configuraciones 
 
-app.set('port',3006)
-app.set('appName','ToothLabMX_2')
-
+app.set('port',process.env.PORT || 3006 )
+app.set('appName',process.env.APP_NAME)
 
 app.set('views', path.join(__dirname, 'views'))
 
