@@ -1,30 +1,32 @@
 doctype html
 html(lang="es")
-      head
-      include template/headSRC
-        
-      title #{title}
+    head
+    include template/headSRC
 
-      body
-            .loading.show
-                  p Cargando...
-                  .spin
+    title #{title}
 
-            include template/nav
-            #panelContainer 
+    body
+        .loading.show
+            p Cargando...
+            .spin
 
-                  .panel.one
-                        .content.card
-                              .card-body(style="max-height:800px; overflow-y:auto;")
-                                    include template/menu
-                  .panel.two
-                        .content.p-0(style="max-height:800px; overflow-y:auto;")
-                              h3.my-3.mx-3 Dashboard 
-                              hr
+        include template/nav
+        #panelContainer
 
-                              
-               
-         
-          
-        
-      include template/scripts
+            .panel.one
+                .content.card
+                    .card-body(style="max-height:800px; overflow-y:auto;")
+                        include template/menu
+            .panel.two
+                .content.p-0(style="max-height:800px; overflow-y:auto;")
+                    h3.my-3.mx-3 Dashboard
+                    hr
+
+
+
+
+
+
+    include template/scripts
+    script( src='./public/core/js/common.js')
+    script( src='./public/core/js/panel.js')

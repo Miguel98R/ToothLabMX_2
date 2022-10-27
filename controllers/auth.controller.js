@@ -1,69 +1,61 @@
-
 let usersModel = require('../models/users.model')
-const { encrypt, compare } = require('../helpers/handleBcrypt')
-const { tokenSign } = require('../helpers/generateToken')
+const {encrypt, compare} = require('../helpers/handleBcrypt')
+const {tokenSign} = require('../helpers/generateToken')
 
 
-let login_user = async function (req,res){
+let login_user = async function (req, res) {
 
-    let {user,password} = req.body
+    let {user, password} = req.body
 
-
-        console.log(user)
-        console.log(password)
 
     try {
 
-        let user_data = await usersModel.findOne({ user })
+        let user_data = await usersModel.findOne({user}).lean()
 
         if (!user_data) {
             res.status(404).json({
-                code:404,
+                code: 404,
                 success: false,
-                message:  'Usuario incorrecto'
+                message: 'Usuario incorrecto'
             })
             return 0
         }
 
-        
+
         console.log(user_data.password)
 
-        let checkPassword = await compare(password , user_data.password)
+        let checkPassword = await compare(password, user_data.password)
         let tokenSession = await tokenSign(user_data)
 
-        
-        if(checkPassword){
+
+        if (checkPassword) {
 
             res.status(200).json({
-                code:200,
-                success:true,
-                data:user_data,
+                code: 200,
+                success: true,
+                data: user_data,
                 tokenSession
-                
+
             })
-            
-            
 
 
-        }else{
+        } else {
 
             res.status(403).json({
-                code:403,
+                code: 403,
                 success: false,
-                message:  'Contraseña incorrecta'
+                message: 'Contraseña incorrecta'
             })
             return 0
 
-      
-
 
         }
-    
+
     } catch (e) {
         console.log(e)
         res.status(500).json({
-            success:false,
-            error:e
+            success: false,
+            error: e
         })
         return 0
     }
@@ -72,7 +64,7 @@ let login_user = async function (req,res){
 
 let registrer_user = async function (req, res) {
 
-    let { user, password, rol } = req.body
+    let {user, password, rol} = req.body
 
     try {
 
@@ -83,14 +75,13 @@ let registrer_user = async function (req, res) {
 
             user: user,
             password: passwordHash,
-            rol:rol
+            rol: rol
 
         })
 
         console.log(" new_user>>", new_user)
 
         new_user = await new_user.save()
-
 
 
         res.status(200).json({
@@ -113,4 +104,25 @@ let registrer_user = async function (req, res) {
 
 }
 
-module.exports = { registrer_user , login_user}
+let verify = async function (req, res) {
+    try {
+        console.log('DESDE VERIFY ', req.user)
+      
+        res.status(200).json({
+            status: 200,
+            success: true,
+            data: req.user
+        })
+
+    } catch (e) {
+
+        console.error(e)
+        res.status(500).json({
+            error: e,
+            message:e
+        })
+    }
+
+}
+
+module.exports = {registrer_user, login_user, verify}

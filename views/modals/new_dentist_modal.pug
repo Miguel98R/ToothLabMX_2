@@ -1,0 +1,59 @@
+#new_dentista_modal.modal.fade(tabindex='-1')
+  .modal-dialog
+    .modal-content
+      .modal-header.bg-dark.text-white
+        h5.modal-title 
+            b Registrar nuevo dentista
+        button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+      .modal-body
+        .card
+            .card-body 
+                div
+                    .row
+                        .col-12
+                            .form-group
+                                label(for='name_dentist')
+                                    i.fas.fa-user-nurse 
+                                    |  Nombre completo :
+                                input.form-control#name_dentist(type="text")
+                            .form-group
+                                label(for='direccion_dentist') 
+                                    i.fas.fa-map-marked-alt
+                                    |  Dirección :
+                                input.form-control#direccion_dentist(type="text")
+                    
+                    .row
+                        .col-6
+                            .form-group
+                                label(for='email_dentist') 
+                                    i.far.fa-envelope
+                                    |  Email :
+                                input.form-control#email_dentist(type="email")
+                            .form-group
+                                label(for='tel_dentista')
+                                    i.fas.fa-mobile-alt
+                                    |  Cel/Tel Dentista :
+                                input.form-control#tel_dentista(type="text")
+
+                        .col-6
+                            .form-group
+                                label(for='tel_consultorio')
+                                    i.fas.fa-phone 
+                                    |  Cel/Tel Consultorio :
+                                input.form-control#tel_consultorio(type="text")
+                            .form-group   
+                                label(for='distintivo_dentista') 
+                                    i.fas.fa-palette
+                                    |  Distintivo :
+                                input.form-control#distintivo_dentista(type="color")
+
+                            
+                    
+                    
+
+
+
+            .card-footer
+      .modal-footer
+        button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Cerrar
+        button.btn.btn-success.new_dentist Guardar
