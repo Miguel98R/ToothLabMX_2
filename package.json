@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/Miguel98R/ToothLabMX_2#readme",
   "dependencies": {
+    "apiato": "^1.1.8",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.1",
     "dotenv": "^16.0.3",

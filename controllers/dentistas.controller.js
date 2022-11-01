@@ -1,5 +1,10 @@
 let dentistaModel = require('../models/dentisas.model')
 
+let apiato = require('apiato')
+
+let ms = new apiato()
+
+
 
 let new_dentist = async function (req, res) {
     
@@ -20,7 +25,7 @@ let new_dentist = async function (req, res) {
         })
 
 
-        console.log(dentista)
+   
 
         dentista.save()
     
@@ -42,4 +47,31 @@ let new_dentist = async function (req, res) {
     
 }
 
-module.exports = { new_dentist }
+
+
+
+//RECIBE (MODELO PRINCIPAL , AGREGACION , CAMPOS DE BUSQUEDA , )
+
+//let data_table = ms.datatable_aggregate(dentistaModel)
+
+let data_table = async function (req,res){
+    try {
+
+        let data_dentista = await dentistaModel.find()
+
+        res.status(200).json({
+            success:true,
+            data:data_dentista
+        })
+        
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            success:false,
+            error:error
+        })
+        
+    }
+}
+
+module.exports = { new_dentist , data_table }
