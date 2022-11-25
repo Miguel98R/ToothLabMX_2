@@ -1,0 +1,29 @@
+#new_product_modal.modal.fade(tabindex='-1')
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header.bg-dark.text-white
+        h5.modal-title 
+            b Registrar nuevo producto
+        button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+      .modal-body
+        .card
+            .card-body 
+                div
+                    .row
+                        .col-12
+                            .form-group
+                                label(for='name_product')
+                                    i.fas.fa-file-signature
+                                    |  Nombre del producto :
+                                input.form-control#name_product(type="text")
+                            .form-group
+                                label(for='precio_producto')
+                                    i.fas.fa-dollar-sign
+                                    |  Precio :
+                                input.form-control#precio_producto(type="text")
+                    
+
+            .card-footer
+      .modal-footer
+        button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Cerrar
+        button.btn.btn-success.new_product Guardar

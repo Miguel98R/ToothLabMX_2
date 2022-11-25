@@ -37,7 +37,7 @@ let dentistaSchema = new Schema ({
     status:{
         type:Boolean,
         required:true,
-        default:1 //activo 1 , inactivo 0
+        default:true 
     }
 },{timestamps: true})
 

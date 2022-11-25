@@ -106,7 +106,7 @@ let registrer_user = async function (req, res) {
 
 let verify = async function (req, res) {
     try {
-        console.log('DESDE VERIFY ', req.user)
+        //console.log('DESDE VERIFY ', req.user)
       
         res.status(200).json({
             status: 200,

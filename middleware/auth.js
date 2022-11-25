@@ -1,10 +1,7 @@
 const {verifyToken} = require('../helpers/generateToken')
 
 const checkout = async (req, res, next) => {
-    console.log("entro primero")
-
-    console.log(req.headers)
-
+    
     try {
 
         const token = req.headers.authorization.split(' ').pop()

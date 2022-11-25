@@ -21,12 +21,32 @@ html(lang="es")
                         .content.p-0(style="max-height:800px; overflow-y:auto;")
                               h3.my-3.mx-3 Productos 
                               hr
+                              .card
+                                    .card-header 
+                                          button.btn.btn-dark.open_modal_new_producto
+                                                i.fas.fa-teeth
+                                                |   Nuevo Producto  
+                                    .card-body
+                                        
+                                                table#tbl_productos.display.table.table-hover(width='100%')
+                                                      thead.thead-dark
+                                                            tr
 
+                                                                  
+                                                                  th Nombre
+                                                                  th Precio
+                                                                  th Status
+                                                                  th No.Usado
+                                                                  th Acciones  
+
+                                    .card-footer
                               
                
          
           
-        
+      include modals/new_producto_modal
+     
+
       include template/scripts
       script( src='./public/core/js/common.js')
-      script( src='./public/core/js/panel.js')
+      script( src='./public/core/js/productos.js')

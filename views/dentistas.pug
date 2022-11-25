@@ -23,19 +23,18 @@ html(lang="es")
                               hr
                               .card
                                     .card-header 
-                                          button.btn.btn-dark.open_modal() 
+                                          button.btn.btn-dark.open_modal_new_dentist 
                                                 i.fas.fa-tooth
                                                 |  Nuevo dentista  
                                     .card-body
-                                        .container(style="overflow:auto")
-                                                table#tbl_dentistas.text-center.display.table.table-hover(width='100%')
+                                        
+                                                table#tbl_dentistas.display.table.table-hover(width='100%')
                                                       thead.thead-dark
                                                             tr
 
-                                                                  th ID
+                                                                  
                                                                   th Nombre
-                                                                  th Domicilio
-                                                                  th Contacto
+                                                                  th Celular
                                                                   th Distintivo
                                                                   th Status
                                                                   th Acciones  
@@ -46,6 +45,8 @@ html(lang="es")
          
           
       include modals/new_dentist_modal
+      include modals/details_dentist_modal
+
       include template/scripts
       script( src='./public/core/js/common.js')
       script( src='./public/core/js/dentistas.js')

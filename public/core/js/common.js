@@ -1,7 +1,32 @@
 let TOKEN_ = false
 let DATA_ = false
 
-var notyf = new Notyf();
+const notyf = new Notyf({
+    duration: 1000,
+    position: {
+      x: 'right',
+      y: 'top',
+    },
+    types: [
+      {
+        type: 'warning',
+        background: 'orange',
+        icon: '<i class="fas fa-exclamation"></i>'
+      },
+      {
+        type: 'error',
+        background: 'indianred',
+        duration: 2000,
+        dismissible: true
+      },
+      {
+        type: 'success',
+        background: 'green',
+        duration: 2000,
+        dismissible: true
+      }
+    ]
+  });
 
 
 var draw_datatable_rs = function (datatable) {
@@ -13,6 +38,7 @@ let verificador =  function () {
     if (localStorage.getItem('TOKEN')) {
         TOKEN_ = localStorage.getItem('TOKEN')
     }
+    
     api_conection('POST', 'api/auth/verify', undefined, function (response) {
         if (response.success) {
             DATA_ = response.data
@@ -42,7 +68,6 @@ let api_conection = async function (method, url, data, f_, error_) {
                   
                     },
                     method: method,
-                    //body: data ? JSON.stringify(data):""
                 })
         } else {
             response = await fetch(url,

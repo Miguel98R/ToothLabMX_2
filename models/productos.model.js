@@ -15,13 +15,14 @@ let productoSchema = new Schema ({
     },
     cuenta_uso:{
         type:Number,
-        required:false
+        required:false,
+        default:0
     },
     
     status:{
         type:Boolean,
         required:true,
-        default:1 //activo 1 , inactivo 0
+        default:true
     }
 },{timestamps: true})
 
