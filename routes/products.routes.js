@@ -7,6 +7,8 @@ let {
   data_table,
   precios_product,
   change_Status,
+  search_product,
+  script_insertColors
   
 } = require("../controllers/products.controller");
 
@@ -20,7 +22,14 @@ router.get("/data_dataTables/", data_table);
 //ACTUALIZAR PRECIOS
 router.put("/precios_product/:_id", precios_product);
 
+//BUSCADOR DE PRODUCTOS
+router.post("/search_product/", search_product);
+
 //INABILITAR PRODUCTO
 router.put("/change_Status/:_id", change_Status);
+
+//SCRIPT CREACION DE COLORES
+router.post("/script_insertColors/", script_insertColors);
+
 
 module.exports = router;

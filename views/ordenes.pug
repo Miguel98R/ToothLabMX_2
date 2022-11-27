@@ -34,7 +34,7 @@ html(lang="es")
                                                                 
                                                             .text-start
                                                                   label.fw-bold Dentista:
-                                                                  input.dentistas_name.rounded-pill.border.border-dark(style="width:95%;" list='dentista_option' name='dentista_option')
+                                                                  input.dentistas_name.rounded-pill.border.border-dark(style="width:95%;" list='dentista_option')
                                                                   datalist#dentista_option
                                                             .text-start.my-2
                                                                   label.fw-bold Paciente:
@@ -70,12 +70,18 @@ html(lang="es")
                                           .card-body
                                                 div
                                                       .row
-                                                            .col-3
+                                                            .col-2
                                                                   button.btn.btn-warning(type="button")
                                                                         i.fa-solid.fa-tooth.text-white
                                                                         span.badge.badge-light.text-dark.mx-2  4
-                                                            .col-5 
-                                                            .col-4  
+                                                            .col-7 
+                                                                  label.fw-bold Producto:
+                                                                  input.producto_name.rounded-pill.border.border-dark(style="width:95%;" list='producto_option')
+                                                                  datalist#producto_option
+                                                            .col-3 
+                                                                  label.fw-bold Color:
+                                                                  input.color_name.rounded-pill.border.border-dark(style="width:95%;" list='color_option')
+                                                                  datalist#color_option
                                                 hr
                                                 div
                                           .card-footer
