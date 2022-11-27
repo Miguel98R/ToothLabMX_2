@@ -21,6 +21,68 @@ html(lang="es")
                         .content.p-0(style="max-height:800px; overflow-y:auto;")
                               h3.my-3.mx-3 Ordenes 
                               hr
+                        .row.mx-2
+                              .col-6.col-sm-6.col-md-6.col-lg-6
+                                    .card 
+                                          .card-header.p-0.m-0.bg-dark
+                                                .py-2.m-0
+                                                      h5.text-white.mx-2 Datos para nueva orden:
+                                          .card-body      
+                                                .row.my-2
+                                                
+                                                      .col-6.col-sm-6.col-md-6
+                                                                
+                                                            .text-start
+                                                                  label.fw-bold Dentista:
+                                                                  input.dentistas_name.rounded-pill.border.border-dark(style="width:95%;" list='dentista_option' name='dentista_option')
+                                                                  datalist#dentista_option
+                                                            .text-start.my-2
+                                                                  label.fw-bold Paciente:
+                                                                  input.paciente_name.rounded-pill.border.border-dark( style="width:95%;" type="text")
+                                                                 
+                                                      .col-6.col-sm-6.col-md-6
+                                                                                                   
+                                                            .text-start
+
+                                                                  label.fw-bold Entrada:
+                                                                  br
+                                                                  input.date_entrada.rounded-pill.border.border-dark(style="width:80%;" type="text")
+                                                                  datalist#dentista_option
+                                                            .text-start.my-2
+
+                                                                  label.fw-bold Salida:
+                                                                  br
+                                                                  input.date_salida.rounded-pill.border.border-dark(style="width:80%;" type="text")
+                                                                  datalist#dentista_option
+                                                .card-footer
+                                                      .text-center.my-2
+                                                                  label.fw-bold Comentario:
+                                                                  textarea.comntario_order.border.border-dark(style="width:95%;" name="", cols="5", rows="2")
+                                                            
+                                                       
+                  
+                              .col-6.col-sm-6.col-md-6.col-lg-6 
+                                    .card
+                                          .card-header.p-0.m-0.bg-dark
+                                                .py-2.m-0
+                                                      h5.text-white.mx-2 Producto:
+
+                                          .card-body
+                                                div
+                                                      .row
+                                                            .col-3
+                                                                  button.btn.btn-warning(type="button")
+                                                                        i.fa-solid.fa-tooth.text-white
+                                                                        span.badge.badge-light.text-dark.mx-2  4
+                                                            .col-5 
+                                                            .col-4  
+                                                hr
+                                                div
+                                          .card-footer
+
+
+
+
 
                               
                
@@ -29,4 +91,4 @@ html(lang="es")
         
       include template/scripts
       script( src='./public/core/js/common.js')
-      script( src='./public/core/js/panel.js')
+      script( src='./public/core/js/ordenes.js')

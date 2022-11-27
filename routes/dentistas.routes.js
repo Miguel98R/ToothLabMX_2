@@ -8,6 +8,7 @@ let {
   details_dentist,
   change_Status,
   update_dentista,
+  search_dentist
 } = require("../controllers/dentistas.controller");
 
 //NUEVO DENTISTA
@@ -24,5 +25,8 @@ router.put("/update_dentista/:_id", update_dentista);
 
 //DATA PARA PINTAR EN DATATABLES
 router.get("/data_dataTables/", data_table);
+
+//BUSCADOR DE DENTISTAS
+router.post("/search_dentist/", search_dentist);
 
 module.exports = router;

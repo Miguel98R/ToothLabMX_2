@@ -47,10 +47,81 @@ let data_table = async function (req, res) {
     }
   };
   
+//ACTUALIZAR PRECIOS
+
+let precios_product = async function (req, res) {
+
+  let id = req.params
+  let {precio} = req.body
+
+
+
+  try {
+
+    let product = await productsModel.findById(id)
+
+    product.precio = precio
+
+    product = product.save()
+
+    res.status(200).json({
+      success:true,
+      data:product
+    })
+    
+  } catch (e) {
+    console.log(e)
+    res.status(500).json({
+      success:false,
+      error:e
+    })
+    
+  }
+  
+}
+
+//INABILITAR PRODUCTO
+
+let change_Status = async function (req, res) {
+
+  let id = req.params
+  let {status} = req.body
+
+  console.log(id)
+  console.log(status)
+
+
+  try {
+
+    let product = await productsModel.findById(id)
+    
+    if (status == "true") {
+      product.status = false;
+      product = product.save();
+    } else {
+      product.status = true;
+      product = product.save();
+    }
+
+    res.status(200).json({
+      success:true,
+      data:product
+    })
+    
+  } catch (e) {
+    console.log(e)
+    res.status(500).json({
+      success:false,
+      error:e
+    })
+    
+  }
+  
+}
 
 
 
 
 
 
-module.exports = {new_product , data_table}
+module.exports = {new_product , data_table ,precios_product ,change_Status}

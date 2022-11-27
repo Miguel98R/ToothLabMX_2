@@ -136,6 +136,27 @@ let data_table = async function (req, res) {
   }
 };
 
+
+//BUSCADOR DE DENTISTAS
+let search_dentist = async function (req, res) {
+  let {search} = req.body
+
+  try {
+    let dentistas = await dentistaModel.find({name_dentista:new RegExp(search,'i')})
+
+    res.status(200).json({
+      success: true,
+      data: dentistas,
+    });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({
+      succes: false,
+      error: e,
+    });
+  }
+};
+
 //RECIBE (MODELO PRINCIPAL , AGREGACION , CAMPOS DE BUSQUEDA , )
 
 //let data_table = ms.datatable_aggregate(dentistaModel)
@@ -146,4 +167,5 @@ module.exports = {
   details_dentist,
   change_Status,
   update_dentista,
+  search_dentist
 };

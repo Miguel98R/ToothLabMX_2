@@ -7,14 +7,14 @@ $(document).ready(function () {
       data: "name_producto",
     },
     {
-      width: "10%",
+      width: "15%",
       data: "precio",
       render:function(data,v,row){
-        return "$ " + data + ".00"
+        return '<span>$ </span><input style="width:70%;" id_producto="'+row._id+'" class="change_precio precio_product_'+row._id+' m-0 p-0" value="'+data+'"></input>'
       }
     },
     {
-        width: "8%",
+        width: "5%",
         data: "status",
         render: function (data, v, row) {
           if (data == true) {
@@ -30,8 +30,20 @@ $(document).ready(function () {
     },
    
     {
-      width: "20%",
+      width: "15%",
       data: "_id",
+      render: function (data, v, row) {
+        if (row.status) {
+          return '<button status="true" id_product="' +
+            data +
+            '" class="btn btn-danger btn-sm change_status my-2 mx-2 ">Inabilitar</button>'
+          
+        } else {
+          return '<button  status="false" id_product="' +data +
+            '" class="btn btn-success btn-sm change_status my-2 mx-2 ">Habilitar</button>'
+          
+        }
+      },
     },
   ];
 
@@ -69,7 +81,7 @@ $(document).ready(function () {
 
     order: [[1, "asc"]],
 
-    pageLength: 5,
+    pageLength: 10,
 
     columns: columns,
 
@@ -139,13 +151,42 @@ $('.new_product').click(function () {
   );
 });
 
+//Actualizar precio del producto
+$(document.body).on("change",".change_precio",function(){
+
+  let id_producto = $(this).attr("id_producto")
+  let precio = $('.precio_product_'+id_producto).val()
+
+  api_conection("PUT","api/products/precios_product/"+id_producto,{precio},function(){
+
+    notyf.success("Precio actualizado !");
+
+    dt_draw();
+
+  })
+
+})
 
 
 
 
+    // CAMBIAR STATUS 
 
-
-
+    $(document.body).on("click", ".change_status", function () {
+      let _id = $(this).attr("id_product");
+      let status = $(this).attr("status");
+  
+      api_conection(
+        "PUT",
+        "api/products/change_Status/" + _id,
+        { status },
+        function () {
+          notyf.success("Status actualizado !");
+  
+          dt_draw();
+        }
+      );
+    });
 
 
 
