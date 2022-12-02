@@ -2,14 +2,15 @@
 if menu
     each val , index in menu
         
-        .bg-dark.py-2
-            h5.text-white.mx-3.my-2 !{val.title}
+        .text-start
+            h4.fw-bold.text-dark.my-2.py-2.border-bottom.border-dark !{val.title}
+            
         
-        ul.nav.flex-column
+        ul.nav.flex-column(style="width:100%;")
              if(val.elements)
                 each val2, index2 in val.elements
-                    li.nav-item
-                         a.text-dark.border-bottom.btn.btn-link.btn-outline-light(href=val2.ref style="text-decoration:none;"  )
+                    li.nav-item.my-3
+                         a.text-dark.border-bottom.btn.btn-link.btn-outline-light(href=val2.ref style="text-decoration:none;width:100%;"  )
                             i(class=val2.icon )
                             |  !{val2.title}
         br

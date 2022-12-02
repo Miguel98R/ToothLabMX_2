@@ -213,7 +213,9 @@ let search_product = async function (req, res) {
   let {search} = req.body
 
   try {
-    let products = await productsModel.find({name_producto:new RegExp(search,'i')})
+    let products = await productsModel.find({
+      $and:[{status:true},{name_producto:new RegExp(search,'i')}]
+    })
 
     res.status(200).json({
       success: true,
@@ -228,7 +230,7 @@ let search_product = async function (req, res) {
   }
 };
 
-//BUSCADOR DE PRODUCTOS
+//BUSCADOR DE COLORES
 let search_color = async function (req, res) {
   let {search} = req.body
 

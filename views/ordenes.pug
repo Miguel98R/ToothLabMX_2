@@ -14,15 +14,16 @@ html(lang="es")
             #panelContainer 
 
                   .panel.one
-                        .content.card
-                              .card-body(style="max-height:800px; overflow-y:auto;")
-                                    include template/menu
+                        .content
+                              .card
+                                    .card-body(style="max-height:800px; overflow-y:auto; ")
+                                          include template/menu
                   .panel.two
                         .content.p-0(style="max-height:800px; overflow-y:auto;")
                               h3.my-3.mx-3 Ordenes 
                               hr
                         .row.mx-2
-                              .col-6.col-sm-6.col-md-6.col-lg-6
+                              .col-4.col-sm-4.col-md-4.col-lg-4
                                     .card 
                                           .card-header.p-0.m-0.bg-dark
                                                 .py-2.m-0
@@ -30,38 +31,43 @@ html(lang="es")
                                           .card-body      
                                                 .row.my-2
                                                 
-                                                      .col-6.col-sm-6.col-md-6
+                                                      .col-12
                                                                 
                                                             .text-start
                                                                   label.fw-bold Dentista:
-                                                                  input.dentistas_name.rounded-pill.border.border-dark(style="width:95%;" list='dentista_option')
+                                                                  input.dentistas_name.rounded-pill.border.border-dark(style="width:95%;" list='dentista_option' autocomplete="off")
                                                                   datalist#dentista_option
+                                                      .col-12
                                                             .text-start.my-2
                                                                   label.fw-bold Paciente:
-                                                                  input.paciente_name.rounded-pill.border.border-dark( style="width:95%;" type="text")
-                                                                 
-                                                      .col-6.col-sm-6.col-md-6
+                                                                  input.paciente_name.rounded-pill.border.border-dark( style="width:95%;" type="text" autocomplete="off")
+
+                                                .row.my-2                 
+                                                      .col-6
                                                                                                    
                                                             .text-start
 
                                                                   label.fw-bold Entrada:
                                                                   br
-                                                                  input.date_entrada.rounded-pill.border.border-dark(style="width:80%;" type="text")
+                                                                  input.date_entrada.rounded-pill.border.border-dark(style="width:80%;" type="text" autocomplete="off")
                                                                   datalist#dentista_option
-                                                            .text-start.my-2
+                                                      .col-6
+
+
+                                                            .text-start
 
                                                                   label.fw-bold Salida:
                                                                   br
-                                                                  input.date_salida.rounded-pill.border.border-dark(style="width:80%;" type="text")
+                                                                  input.date_salida.rounded-pill.border.border-dark(style="width:80%;" type="text" autocomplete="off")
                                                                   datalist#dentista_option
                                                 .card-footer
                                                       .text-center.my-2
                                                                   label.fw-bold Comentario:
-                                                                  textarea.comntario_order.border.border-dark(style="width:95%;" name="", cols="5", rows="2")
+                                                                  textarea.comntario_order.border.border-dark(style="width:95%;" name="", cols="5", rows="2" autocomplete="off")
                                                             
                                                        
                   
-                              .col-6.col-sm-6.col-md-6.col-lg-6 
+                              .col-8.col-sm-8.col-md-8.col-lg-8 
                                     .card
                                           .card-header.p-0.m-0.bg-dark
                                                 .py-2.m-0
@@ -70,21 +76,194 @@ html(lang="es")
                                           .card-body
                                                 div
                                                       .row
-                                                            .col-2
-                                                                  button.btn.btn-warning(type="button")
+                                                            .col-3
+                                                                  button.btn.btn-warning(type="button").my-3.mx-3
                                                                         i.fa-solid.fa-tooth.text-white
-                                                                        span.badge.badge-light.text-dark.mx-2  4
-                                                            .col-7 
+                                                                        span.count_tooths.badge.badge-light.text-dark.mx-2  0
+                                                            .col-6 
                                                                   label.fw-bold Producto:
-                                                                  input.producto_name.rounded-pill.border.border-dark(style="width:95%;" list='producto_option')
+                                                                  input.producto_name.rounded-pill.border.border-dark(style="width:95%;" list='producto_option' autocomplete="off")
                                                                   datalist#producto_option
                                                             .col-3 
                                                                   label.fw-bold Color:
-                                                                  input.color_name.rounded-pill.border.border-dark(style="width:95%;" list='color_option')
+                                                                  input.color_name.rounded-pill.border.border-dark(style="width:95%;" list='color_option' autocomplete="off")
                                                                   datalist#color_option
                                                 hr
-                                                div
-                                          .card-footer
+                                                .text-center
+                                                      .row.my-5
+                                                            .col-6.text-end
+                                                                  
+                                                                        input#tooth_18.btn-check(value="18" type='checkbox' autocomplete='off')
+                                                                        label.btn.btn-outline-info.btn-sm(for='tooth_18') 
+                                                                              
+                                                                               |  18
+                                                                  
+                                                                        input#tooth_17.btn-check(value="17"    type='checkbox' autocomplete='off')
+                                                                        label.btn.btn-outline-info.btn-sm(for='tooth_17') 
+                                                                               
+                                                                               |  17
+                                                                        
+                                                                        input#tooth_16.btn-check(value="16"    type='checkbox' autocomplete='off')
+                                                                        label.btn.btn-outline-info.btn-sm(for='tooth_16') 
+                                                                               
+                                                                               |  16
+                                                                  
+                                                                        input#tooth_15.btn-check(value="15"    type='checkbox' autocomplete='off')
+                                                                        label.btn.btn-outline-info.btn-sm(for='tooth_15') 
+                                                                               
+                                                                               |  15
+                                                                        
+                                                                        input#tooth_14.btn-check(value="14"    type='checkbox' autocomplete='off')
+                                                                        label.btn.btn-outline-info.btn-sm(for='tooth_14') 
+                                                                               
+                                                                               |  14
+                                                                        
+                                                                        input#tooth_13.btn-check(valuw="13"    type='checkbox' autocomplete='off')
+                                                                        label.btn.btn-outline-info.btn-sm(for='tooth_13') 
+                                                                               
+                                                                               |  13
+                                                                        
+                                                                        input#tooth_12.btn-check(value="12"    type='checkbox' autocomplete='off')
+                                                                        label.btn.btn-outline-info.btn-sm(for='tooth_12') 
+                                                                               
+                                                                               |  12
+
+                                                                        input#tooth_11.btn-check(value="11"    type='checkbox' autocomplete='off')
+                                                                        label.btn.btn-outline-info.btn-sm(for='tooth_11') 
+                                                                               
+                                                                               |  11
+                                                            
+                                                            .col-6.text-start
+                                                                  
+                                                                        input#tooth_21.btn-check(value="21"    type='checkbox' autocomplete='off')
+                                                                        label.btn.btn-outline-danger.btn-sm(for='tooth_21') 
+                                                                               
+                                                                               |  21
+                                                                  
+                                                                        input#tooth_22.btn-check(value="22"    type='checkbox' autocomplete='off')
+                                                                        label.btn.btn-outline-danger.btn-sm(for='tooth_22') 
+                                                                               
+                                                                               |  22
+                                                                        
+                                                                        input#tooth_23.btn-check(value="23"    type='checkbox' autocomplete='off')
+                                                                        label.btn.btn-outline-danger.btn-sm(for='tooth_23') 
+                                                                               
+                                                                               |  23
+                                                                  
+                                                                        input#tooth_24.btn-check(value="24"    type='checkbox' autocomplete='off')
+                                                                        label.btn.btn-outline-danger.btn-sm(for='tooth_24') 
+                                                                               
+                                                                               |  24
+                                                                        
+                                                                        input#tooth_25.btn-check(value="25"    type='checkbox' autocomplete='off')
+                                                                        label.btn.btn-outline-danger.btn-sm(for='tooth_25') 
+                                                                               
+                                                                               |  25
+                                                                        
+                                                                        input#tooth_26.btn-check(value="26"    type='checkbox' autocomplete='off')
+                                                                        label.btn.btn-outline-danger.btn-sm(for='tooth_26') 
+                                                                               
+                                                                               |  26
+                                                                        
+                                                                        input#tooth_27.btn-check(value="27"    type='checkbox' autocomplete='off')
+                                                                        label.btn.btn-outline-danger.btn-sm(for='tooth_27') 
+                                                                               
+                                                                               |  27
+
+                                                                        input#tooth_28.btn-check(value="28"    type='checkbox' autocomplete='off')
+                                                                        label.btn.btn-outline-danger.btn-sm(for='tooth_28') 
+                                                                               
+                                                                               |  28
+
+                                                      .row.my-4
+                                                            .col-6.text-end
+                                                                  
+                                                                        input#tooth_48.btn-check(value="48"    type='checkbox' autocomplete='off')
+                                                                        label.btn.btn-outline-success.btn-sm(for='tooth_48') 
+                                                                               
+                                                                               |  48
+                                                                  
+                                                                        input#tooth_47.btn-check(value="47"    type='checkbox' autocomplete='off')
+                                                                        label.btn.btn-outline-success.btn-sm(for='tooth_47') 
+                                                                               
+                                                                               |  47
+                                                                        
+                                                                        input#tooth_46.btn-check(value="46"    type='checkbox' autocomplete='off')
+                                                                        label.btn.btn-outline-success.btn-sm(for='tooth_46') 
+                                                                               
+                                                                               |  46
+                                                                  
+                                                                        input#tooth_45.btn-check(value="45"    type='checkbox' autocomplete='off')
+                                                                        label.btn.btn-outline-success.btn-sm(for='tooth_45') 
+                                                                               
+                                                                               |  45
+                                                                        
+                                                                        input#tooth_44.btn-check(value="44"    type='checkbox' autocomplete='off')
+                                                                        label.btn.btn-outline-success.btn-sm(for='tooth_44') 
+                                                                               
+                                                                               |  44
+                                                                        
+                                                                        input#tooth_43.btn-check(value="43"    type='checkbox' autocomplete='off')
+                                                                        label.btn.btn-outline-success.btn-sm(for='tooth_43') 
+                                                                               
+                                                                               |  43
+                                                                        
+                                                                        input#tooth_42.btn-check(value="42"    type='checkbox' autocomplete='off')
+                                                                        label.btn.btn-outline-success.btn-sm(for='tooth_42') 
+                                                                               
+                                                                               |  42
+
+                                                                        input#tooth_41.btn-check(value="41"    type='checkbox' autocomplete='off')
+                                                                        label.btn.btn-outline-success.btn-sm(for='tooth_41') 
+                                                                               
+                                                                               |  41
+                                                            
+                                                            .col-6.text-start
+                                                                  
+                                                                        input#tooth_31.btn-check(value="31" type='checkbox' autocomplete='off')
+                                                                        label.btn.btn-outline-warning.btn-sm(for='tooth_31') 
+                                                                               
+                                                                               |  31
+                                                                  
+                                                                        input#tooth_32.btn-check(value="32" type='checkbox' autocomplete='off')
+                                                                        label.btn.btn-outline-warning.btn-sm(for='tooth_32') 
+                                                                               
+                                                                               |  32
+                                                                        
+                                                                        input#tooth_33.btn-check(value="33" type='checkbox' autocomplete='off')
+                                                                        label.btn.btn-outline-warning.btn-sm(for='tooth_33') 
+                                                                               
+                                                                               |  33
+                                                                  
+                                                                        input#tooth_34.btn-check(value="34" type='checkbox' autocomplete='off')
+                                                                        label.btn.btn-outline-warning.btn-sm(for='tooth_34') 
+                                                                               
+                                                                               |  34
+                                                                        
+                                                                        input#tooth_35.btn-check(value="35" type='checkbox' autocomplete='off')
+                                                                        label.btn.btn-outline-warning.btn-sm(for='tooth_35') 
+                                                                               
+                                                                               |  35
+                                                                        
+                                                                        input#tooth_36.btn-check(value="36" type='checkbox' autocomplete='off')
+                                                                        label.btn.btn-outline-warning.btn-sm(for='tooth_36') 
+                                                                               
+                                                                               |  36
+                                                                        
+                                                                        input#tooth_37.btn-check(value="37" type='checkbox' autocomplete='off')
+                                                                        label.btn.btn-outline-warning.btn-sm(for='tooth_37') 
+                                                                               
+                                                                               |  37
+
+                                                                        input#tooth_38.btn-check( value="38" type='checkbox' autocomplete='off')
+                                                                        label.btn.btn-outline-warning.btn-sm(for='tooth_38') 
+                                                                               
+                                                                               |  38     
+
+                                          .card-footer.text-center
+                                                button.saved_order.btn.btn-success 
+                                                      i.fas.fa-paper-plane
+                                                      |     Crear orden
 
 
 

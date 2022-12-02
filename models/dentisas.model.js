@@ -34,6 +34,11 @@ let dentistaSchema = new Schema ({
        
 
     },
+    cont_ordenes:{
+        type:Number,
+        required:false,
+        default:0 
+    },
     status:{
         type:Boolean,
         required:true,

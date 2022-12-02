@@ -142,7 +142,9 @@ let search_dentist = async function (req, res) {
   let {search} = req.body
 
   try {
-    let dentistas = await dentistaModel.find({name_dentista:new RegExp(search,'i')})
+    let dentistas = await dentistaModel.find({
+      $and:[{status:true},{name_dentista:new RegExp(search,'i')}]  
+    })
 
     res.status(200).json({
       success: true,

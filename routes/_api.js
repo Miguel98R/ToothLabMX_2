@@ -7,6 +7,8 @@ const router = express.Router()
 router.use('/auth/',require('./auth.routes.js'))
 router.use('/dentist/', require('./dentistas.routes'))
 router.use('/products/', require('./products.routes'))
+router.use('/orders/', require('./orders.routes'))
+
 
 
 

@@ -8,6 +8,7 @@ let {
   precios_product,
   change_Status,
   search_product,
+  search_color,
   script_insertColors
   
 } = require("../controllers/products.controller");
@@ -24,6 +25,9 @@ router.put("/precios_product/:_id", precios_product);
 
 //BUSCADOR DE PRODUCTOS
 router.post("/search_product/", search_product);
+
+//BUSCADOR DE COLORES
+router.post("/search_color/", search_color);
 
 //INABILITAR PRODUCTO
 router.put("/change_Status/:_id", change_Status);

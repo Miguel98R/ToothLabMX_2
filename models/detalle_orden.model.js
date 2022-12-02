@@ -15,11 +15,11 @@ let detalleSchema = new Schema ({
         type:String,
         required:false
     },
-    od:{
+    tooths:[{
         type: String,
         required: true,
        
-    },
+    }],
     producto:{
         type:Schema.Types.ObjectId,
         required:false,
