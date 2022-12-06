@@ -2,4 +2,3 @@
 node_modules
 
 #Ignora variables de entorno
-.env

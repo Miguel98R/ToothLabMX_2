@@ -79,7 +79,7 @@ $(document).ready(function () {
       ["5 rows", "10 rows", "25 rows", "50 rows", "100 rows", "1000 rows"],
     ],
 
-    order: [[1, "asc"]],
+    order: [[3, "desc"]],
 
     pageLength: 10,
 

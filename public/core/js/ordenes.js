@@ -1,5 +1,6 @@
 
 
+
 verificador();
 
 $(document).ready(function () {
@@ -72,10 +73,19 @@ console.log(new_order_details)
 
 
 
-   api_conection('POST','api/orders/new_order',{new_order,new_order_details},function() {
-    notyf.success("Orden creada con exito")
+   api_conection('POST','api/orders/new_order',{new_order,new_order_details},function(data) {
+
+    let data_order = data.data
+    notyf.success('Orden  '+data_order.id_order+'  creada con exito')
+    clean_input()
     
    })
+
+   let clean_input = function(){
+
+    $('.btn-check').prop('checked',false)
+
+   }
 
 
 
@@ -83,23 +93,6 @@ console.log(new_order_details)
 
     
   })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 $('.btn-check').click(function () {

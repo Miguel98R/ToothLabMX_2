@@ -6,8 +6,8 @@ let moment = require("moment");
 
 let generate_id = function () {
   let today = moment().format("DDMMMYY");
-  let result1 = Math.random().toString(36).substring(2, 6);
-  let string_id = "ID-" + result1 + "-" + today;
+  let result1 = Math.random().toString(36).substring(2, 4);
+  let string_id = result1 + "-" + today;
 
   return string_id;
 };
@@ -36,7 +36,7 @@ let new_order = async function (req, res) {
     id_detalle = details._id;
 
     product.cuenta_uso = product.cuenta_uso + 1;
-    product = product.save();
+    product = await product.save();
 
     //SE INCREMENTA EL NUMERO DE ORDENES QUE SE A REALIZADO PARA EL DENTISTA
     let dentist = await dentistModel.findOne({
@@ -45,7 +45,7 @@ let new_order = async function (req, res) {
     let id_dentista = dentist._id;
 
     dentist.cont_ordenes = dentist.cont_ordenes + 1;
-    dentist = dentist.save();
+    dentist = await dentist.save();
 
     let id = generate_id();
 

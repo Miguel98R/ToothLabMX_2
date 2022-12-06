@@ -29,6 +29,16 @@ $(document).ready(function () {
         );
       },
     },
+   
+    {
+      width: "8%",
+      data: "cont_ordenes",
+      render: function (data, v, row) {
+        return '<p class="fw-bold">'+data+'</p>';
+
+        
+      },
+    },
     {
       width: "8%",
       data: "status",
