@@ -22,6 +22,23 @@ html(lang="es")
                               h3.my-3.mx-3 Historial 
                               hr
 
+                        .card.mx-2
+                              .card-header
+                              .card-body 
+                                    table#tbl-historial.display.table.table-hover(width='100%')
+                                          thead.thead-dark
+                                                tr
+                                                      th ID Orden
+                                                      th Fecha entrada
+                                                      th Fecha actualización
+                                                      th Dentista
+                                                      th Paciente
+                                                      th Status
+                                                      th Acciónes
+
+                              .card-footer
+                              
+
                               
                
          
@@ -29,4 +46,4 @@ html(lang="es")
         
       include template/scripts
       script( src='./public/core/js/common.js')
-      script( src='./public/core/js/panel.js')
+      script( src='./public/core/js/historial.js')

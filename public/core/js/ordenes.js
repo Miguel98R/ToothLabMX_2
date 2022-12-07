@@ -87,11 +87,6 @@ console.log(new_order_details)
 
    }
 
-
-
-
-
-    
   })
 
 

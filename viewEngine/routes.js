@@ -51,7 +51,7 @@ router.get("/", async (req, res) => {
 router.get("/panel", async (req, res) => {
 
     res.render('panel', {
-            title: 'ToothLabMX| Panel',
+            title: 'ToothLabMX | Panel',
             menu: menu
         }
     )
@@ -60,7 +60,7 @@ router.get("/panel", async (req, res) => {
 router.get("/orders", async (req, res) => {
 
     res.render('ordenes', {
-        title: 'ToothLabMX| Ordenes',
+        title: 'ToothLabMX | Ordenes',
         menu: menu
     })
 })
@@ -68,7 +68,7 @@ router.get("/orders", async (req, res) => {
 router.get("/products", async (req, res) => {
 
     res.render('productos', {
-        title: 'ToothLabMX| Productos',
+        title: 'ToothLabMX | Productos',
         menu: menu
     })
 })
@@ -76,7 +76,7 @@ router.get("/products", async (req, res) => {
 router.get("/dentistas", async (req, res) => {
 
     res.render('dentistas', {
-        title: 'ToothLabMX| Dentistas',
+        title: 'ToothLabMX | Dentistas',
         menu: menu
     })
 })
@@ -84,7 +84,7 @@ router.get("/dentistas", async (req, res) => {
 router.get("/history", async (req, res) => {
 
     res.render('historial', {
-        title: 'ToothLabMX| Historial',
+        title: 'ToothLabMX | Historial',
         menu: menu
     })
 })

@@ -8,6 +8,8 @@ router.use('/auth/',require('./auth.routes.js'))
 router.use('/dentist/', require('./dentistas.routes'))
 router.use('/products/', require('./products.routes'))
 router.use('/orders/', require('./orders.routes'))
+router.use('/historial/', require('./historial.routes'))
+
 
 
 
