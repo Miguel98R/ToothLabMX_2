@@ -1,3 +1,5 @@
+
+
 verificador();
 
 
@@ -5,21 +7,35 @@ $(document).ready(function () {
     
   let columns = [
     {
+        width:"8%",
         data:"id_order",
 
     },
     {
+        width:"15%",
         data:"fecha_entrada",
-     
+        render:function(data,v,row) {
+          return moment(data,'DD-MM-YYYY').format('dddd DD MMMM YYYY')
+          
+        }
+
+    },
+    {
+      width:"15%",
+      data:"fecha_actualizacion",
+      render:function(data,v,row) {
+        return moment(data,'DD-MM-YYYY').format('dddd DD MMMM YYYY')
         
-    },{
-        data:"fecha_actualizacion",
-        
-    },{
+      }
+  
+    },
+    {
         data:"dentista"
-    },{
+    },
+    {
         data:"paciente"
-    },{
+    },
+    {
         data:"status",
         render:function(data,row){
             if(data == 1){
@@ -27,8 +43,9 @@ $(document).ready(function () {
 
             }
         }
-    },{
-        data:"id_order",
+    },
+    {
+        data:"_id",
         render:function(data,row){
             return '<button id_order="'+data+'" class="btn-sm text-white btn btn-info see_details">Ver detalles</button>'+
             '<button id_order="'+data+'"  class="btn-sm text-white btn btn-secondary mx-2 imprimir_order">Imprimir</button>'
@@ -96,5 +113,23 @@ $(document).ready(function () {
   };
 
   dt_draw()
+
+  //DETALLES DE LA ORDEN
+
+  $(document.body).on('click','.see_details',function(){
+
+    let id_orden = $(this).attr('id_order')
+
+    api_conection("POST", "api/orders/details_order/"+id_orden, {}, function (data) {
+      let data_order = data.data;
+      console.log("data_order>", data_order);
+
+      
+    });
+
+   
+  })
+
+
 });
 

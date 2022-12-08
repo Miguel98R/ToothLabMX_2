@@ -43,6 +43,7 @@ let data_table = async function (req, res) {
       {
         $replaceRoot:{
             newRoot:{
+                _id:"$_id",
                 id_order:"$id_order",
                 fecha_entrada:"$fecha_entrante",
                 fecha_actualizacion:"$fecha_saliente",

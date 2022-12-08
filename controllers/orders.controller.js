@@ -3,6 +3,7 @@ let detailsOrderModel = require("../models/detalle_orden.model");
 let dentistModel = require("../models/dentisas.model");
 let productModel = require("../models/productos.model");
 let moment = require("moment");
+let mongoose = require('mongoose')
 
 let generate_id = function () {
   let today = moment().format("DDMMMYY");
@@ -77,4 +78,71 @@ let new_order = async function (req, res) {
   }
 };
 
-module.exports = { new_order };
+let details_order = async function (req,res){
+
+  let {_id} = req.params
+
+  try {
+
+    let details_order = await ordersModel.aggregate([
+      {
+        $match: {
+          _id: mongoose.Types.ObjectId(_id),
+        },
+      },
+      {
+        $lookup:{
+          from:dentistModel.collection.name,
+          localField:'dentista',
+          foreignField:'_id',
+          as:'dentista'
+
+        }
+    },
+    {
+      $unwind: "$dentista"
+    },
+      {
+          $lookup:{
+            from:detailsOrderModel.collection.name,
+            localField:'detalle',
+            foreignField:'_id',
+            as:'detalle'
+
+          }
+      },
+      {
+        $unwind: "$detalle"
+      },
+      {
+        $lookup:{
+          from:productModel.collection.name,
+          localField:'detalle.producto',
+          foreignField:'_id',
+          as:'producto'
+
+        }
+    },
+    {
+      $unwind: "$producto"
+    },
+      
+    ])
+
+    res.status(200).json({
+      success:true,
+      data:details_order
+    })
+    
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({
+      success:false,
+      error:error
+    })
+    
+  }
+
+}
+
+module.exports = { new_order,details_order };
