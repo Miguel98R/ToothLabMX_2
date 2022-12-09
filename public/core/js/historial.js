@@ -82,10 +82,10 @@ $(document).ready(function () {
 
     lengthMenu: [
       [5, 10, 25, 50, 100, 1000],
-      ["5 rows", "10 rows", "25 rows", "50 rows", "100 rows", "1000 rows"],
+      ["5", "10", "25", "50", "100", "1000"],
     ],
 
-    order: [[1,'desc'],[3, "desc"]],
+    order: [[1,'asc']],
 
     pageLength: 10,
 
@@ -126,6 +126,8 @@ $(document).ready(function () {
 
       
     });
+
+    
 
    
   })
