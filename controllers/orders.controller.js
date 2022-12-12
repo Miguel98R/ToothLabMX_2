@@ -5,10 +5,20 @@ let productModel = require("../models/productos.model");
 let moment = require("moment");
 let mongoose = require('mongoose')
 
+
+
+
 let generate_id = function () {
   let today = moment().format("DDMMMYY");
-  let result1 = Math.random().toString(36).substring(2, 4);
-  let string_id = result1 + "-" + today;
+
+  var letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+  
+  let numeroAleatorio = Math.floor(Math.random() * 100);
+
+  let letraAleatoria = letras.charAt(Math.floor(Math.random() * letras.length));
+
+  let string_id = letraAleatoria + numeroAleatorio + "-" + today;
 
   return string_id;
 };
@@ -126,6 +136,28 @@ let details_order = async function (req,res){
     {
       $unwind: "$producto"
     },
+    {
+      $replaceRoot:{
+        newRoot:{
+
+            id_order :"$id_order",
+            fecha_entrante :"$fecha_entrante",
+            fecha_saliente :"$fecha_saliente",
+            name_dentista :"$dentista.name_dentista",
+            name_paciente :"$name_paciente",
+            comentario :"$comentario",
+
+
+            color :"$detalle.color",
+            cantidad :"$detalle.cantidad",
+            tooths :"$detalle.tooths",
+            name_producto :"$producto.name_producto",
+            status :"$status",
+
+            
+        }
+      }
+    }
       
     ])
 
@@ -145,4 +177,31 @@ let details_order = async function (req,res){
 
 }
 
-module.exports = { new_order,details_order };
+let pdf_generate = async function (req,res) {
+
+  let id = req.params
+  try {
+
+    let html = '<h1>hola</h1>'
+
+   
+
+    
+    res.status(200).json({
+      success:true,
+      message:'pdf crado',
+      
+    })
+    
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({
+      success:false,
+      error:error
+    })
+  }
+  
+
+  
+}
+module.exports = { new_order,details_order,pdf_generate };

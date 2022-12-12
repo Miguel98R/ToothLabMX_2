@@ -51,6 +51,43 @@ const notyf = new Notyf({
     ]
   });
 
+let asignament_status = function(status_order){
+    
+    let status = ''
+
+    switch (status_order) {
+        case 1:
+            status = '<span class="text-primary fw-bold">Entrante</span>'
+            break;
+        case 2:
+            status = '<span class="text-warning fw-bold">Prueba</span>'
+            break;
+        case 3:
+            status =  '<span class="text-secondary fw-bold">Regresado</span>' 
+            break;
+        case 4:
+            status = '<span class="text-success fw-bold">Terminado</span>' 
+            break;
+        case 5:
+            status =  '<span class="text-info fw-bold">Cambios</span>'
+            break;
+        case 6:
+            status = '<span class="text-danger fw-bold">Cancelado</span>'
+            break;
+        case 7:
+            status = '<span class="text-danger fw-bold">Cancelado con costo</span>'
+            break;
+
+    default:
+         status = '<span class="text-danger">Error al cargar el status<span>'
+         break;
+  }
+
+
+
+    return status
+}
+
 
 
 

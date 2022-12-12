@@ -8,7 +8,8 @@ let {
   details_dentist,
   change_Status,
   update_dentista,
-  search_dentist
+  search_dentist,
+  top_5_dentist
 } = require("../controllers/dentistas.controller");
 
 //NUEVO DENTISTA
@@ -28,5 +29,9 @@ router.get("/data_dataTables/", data_table);
 
 //BUSCADOR DE DENTISTAS
 router.post("/search_dentist/", search_dentist);
+
+//TOP 5 DENTISTAS
+router.get("/top_5_dentist/", top_5_dentist);
+
 
 module.exports = router;

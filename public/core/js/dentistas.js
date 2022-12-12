@@ -189,6 +189,9 @@ $(document).ready(function () {
       function (data) {
         notyf.success("Dentista creado !");
         dt_draw();
+      },
+      function (message) {
+        
       }
     );
   });

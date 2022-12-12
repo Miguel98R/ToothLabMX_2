@@ -18,9 +18,27 @@ html(lang="es")
                     .card-body(style="max-height:800px; overflow-y:auto;")
                         include template/menu
             .panel.two
-                .content.p-0(style="max-height:800px; overflow-y:auto;")
+                
                     h3.my-3.mx-3 Dashboard
                     hr
+                    .text-center.my-2.mx-3 
+                        .row
+                            .col-3
+                                .card
+                                    .card-header.bg-dark.text-white
+                                        | Top 5 dentistas
+                                    .card-body
+                                        .row.top_5_dentistas
+                            .col-3
+                                .card
+                                    .card-header.bg-dark.text-white
+                                        | Top 5 productos
+                                    .card-body
+                                        .row.top_5_productos
+                                
+                            .col-6 
+                                button.btn.btn-info.see_last_order Ver ultima orden 
+
                     
 
 

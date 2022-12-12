@@ -251,6 +251,32 @@ let search_color = async function (req, res) {
 };
 
 
+let top_5_products = async function (req,res) {
+
+  try {
+    let top_five = await productsModel.find({status:true}).limit(5).sort({cuenta_uso:-1})
+
+  
+    res.status(200).json({
+      success:true,
+      data:top_five
+    })
+    
+  } catch (error) {
+    console.log(error)
+
+    res.status(500).json({
+      success:false,
+      error:error
+    })
+  }
+  
+}
+
+
+
+
+
 //SCRIPT_CRACION DE COLORES
 let script_insertColors = async function (req, res) {
  
@@ -287,4 +313,4 @@ let script_insertColors = async function (req, res) {
 
 
 
-module.exports = {new_product , data_table ,precios_product ,change_Status,search_product,search_color,script_insertColors}
+module.exports = {new_product , data_table ,precios_product ,change_Status,search_product,search_color,script_insertColors,top_5_products}

@@ -1,17 +1,24 @@
-
+h5 Menu
 if menu
     each val , index in menu
-        
-        .text-start
-            h4.fw-bold.text-dark.my-2.py-2.border-bottom.border-dark.text-center !{val.title}
-            
-        
-        ul.nav.flex-column(style="width:100%;")
-             if(val.elements)
-                each val2, index2 in val.elements
-                    li.nav-item.my-3
-                         a.text-dark.border-bottom.btn.btn-link.btn-outline-light(href=val2.ref style="text-decoration:none;width:100%;"  )
-                            i(class=val2.icon )
-                            |  !{val2.title}
-        br
-        
+        .accordion.accordion-flush
+            .accordion-item
+                h2.accordion-header(id="heading_menu_" + index, )
+                    button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#collapse_menu_' + index, aria-expanded='true' aria-controls='collapse_menu_' + index)
+                        | !{val.title}
+                .accordion-collapse.collapse(aria-labelledby='heading_menu_' + index, data-bs-parent='#accordionMenu', id="collapse_menu_" + index)
+                    .accordion-body
+                        if(val.elements)
+                            each val2, index2 in val.elements
+                                a(href=val2.ref)
+                                    i(class=val2.icon )
+                                | &nbsp;
+                                | &nbsp;
+                                a(href=val2.ref)
+                                    | !{val2.title}
+                                | &nbsp;
+                                | &nbsp;
+                                span.badge.bg-danger(id="in_"+val2.title.replace(/ /g,'_').trim())
+                                br
+                                hr
+    

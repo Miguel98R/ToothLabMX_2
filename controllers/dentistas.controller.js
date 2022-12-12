@@ -28,7 +28,18 @@ let details_dentist = async function (req, res) {
 //CREAR NUEVO DENTISTA
 let new_dentist = async function (req, res) {
   let nuevo_dentista = req.body;
-  console.log("nuevo_dentista>>>", nuevo_dentista);
+ 
+
+  let dentisas = await dentistaModel.findOne({email_dentista:nuevo_dentista.email_dentista})
+
+  if(dentisas){
+    res.status(408).json({
+      success: false,
+      message: 'Este dentista ya existe , revise los datos',
+    });
+
+    return
+  }
 
   try {
     let dentista = new dentistaModel({
@@ -136,6 +147,28 @@ let data_table = async function (req, res) {
   }
 };
 
+let top_5_dentist = async function (req,res) {
+
+  try {
+    let top_five = await dentistaModel.find({status:true}).limit(5).sort({cont_ordenes:-1})
+
+  
+    res.status(200).json({
+      success:true,
+      data:top_five
+    })
+    
+  } catch (error) {
+    console.log(error)
+
+    res.status(500).json({
+      success:false,
+      error:error
+    })
+  }
+  
+}
+
 
 //BUSCADOR DE DENTISTAS
 let search_dentist = async function (req, res) {
@@ -169,5 +202,6 @@ module.exports = {
   details_dentist,
   change_Status,
   update_dentista,
-  search_dentist
+  search_dentist,
+  top_5_dentist
 };

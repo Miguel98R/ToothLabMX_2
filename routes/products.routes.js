@@ -9,7 +9,9 @@ let {
   change_Status,
   search_product,
   search_color,
-  script_insertColors
+  script_insertColors,
+  top_5_products
+
   
 } = require("../controllers/products.controller");
 
@@ -32,8 +34,15 @@ router.post("/search_color/", search_color);
 //INABILITAR PRODUCTO
 router.put("/change_Status/:_id", change_Status);
 
+//TOP 5 MAS USADOS 
+router.get("/top_5_products/", top_5_products);
+
+
+
+
 //SCRIPT CREACION DE COLORES
 router.post("/script_insertColors/", script_insertColors);
+
 
 
 module.exports = router;

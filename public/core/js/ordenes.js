@@ -3,11 +3,11 @@ verificador();
 $(document).ready(function () {
   let today = moment().format("DD-MM-YYYY");
 
-  $(".date_entrada").datepicker({ language: "es",format: "dd-mm-yyyy"  , startDate: 'd'}).val(today);
+  $(".date_entrada").datepicker({ language: "es", format: "dd-mm-yyyy", startDate: 'd' }).val(today);
 
-  $(".date_entrada").datepicker( 'setDate', today );
+  $(".date_entrada").datepicker('setDate', today);
 
-  $(".date_salida").datepicker({ language: "es", format: "dd-mm-yyyy" ,startDate: 'd'});
+  $(".date_salida").datepicker({ language: "es", format: "dd-mm-yyyy", startDate: 'd' });
 
   let search = "";
 
@@ -75,6 +75,14 @@ $(document).ready(function () {
 
     let clean_input = function () {
       $(".btn-check").prop("checked", false);
+      $(".dentistas_name").val('');
+      $(".paciente_name").val('');
+      $(".date_salida").val('');
+      $(".count_tooths").text(0);
+      $(".producto_name").val('');
+      $(".color_name").val('');
+      $(".comntario_order").val('');
+
     };
   });
 
@@ -102,12 +110,12 @@ $(document).ready(function () {
         for (let item of dentist_list) {
           $("#dentista_option").append(
             '<option id_dentista="' +
-              item._id +
-              '" value="' +
-              item.name_dentista +
-              '">' +
-              item.name_dentista +
-              "</option>"
+            item._id +
+            '" value="' +
+            item.name_dentista +
+            '">' +
+            item.name_dentista +
+            "</option>"
           );
         }
       }
@@ -124,12 +132,12 @@ $(document).ready(function () {
         for (let item of products_list) {
           $("#producto_option").append(
             '<option id_product="' +
-              item._id +
-              '" value="' +
-              item.name_producto +
-              '">' +
-              item.name_producto +
-              "</option>"
+            item._id +
+            '" value="' +
+            item.name_producto +
+            '">' +
+            item.name_producto +
+            "</option>"
           );
         }
       }
@@ -146,12 +154,12 @@ $(document).ready(function () {
         for (let item of colors_list) {
           $("#color_option").append(
             '<option id_product="' +
-              item._id +
-              '" value="' +
-              item.name_color +
-              '">' +
-              item.name_color +
-              "</option>"
+            item._id +
+            '" value="' +
+            item.name_color +
+            '">' +
+            item.name_color +
+            "</option>"
           );
         }
       }
