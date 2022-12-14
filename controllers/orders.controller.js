@@ -144,6 +144,7 @@ let details_order = async function (req,res){
             fecha_entrante :"$fecha_entrante",
             fecha_saliente :"$fecha_saliente",
             name_dentista :"$dentista.name_dentista",
+            dentista_color :"$dentista.distintivo_color",
             name_paciente :"$name_paciente",
             comentario :"$comentario",
 

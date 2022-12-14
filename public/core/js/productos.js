@@ -81,7 +81,7 @@ $(document).ready(function () {
 
     order: [[3, "desc"]],
 
-    pageLength: 10,
+    pageLength: 5,
 
     columns: columns,
 
