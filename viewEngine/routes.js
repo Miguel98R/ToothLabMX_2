@@ -22,13 +22,7 @@ let menu = [
                 icon: 'fas fa-tooth',
                 title: 'Dentistas',
                 ref: '/dentistas'
-            }
-        
-        ]
-    },
-    {
-        title: 'Ordenes',
-        elements: [
+            },
             {
                 icon: 'far fa-plus-square',
                 title: 'Generar orden',
@@ -40,6 +34,45 @@ let menu = [
                 title: 'Historial',
                 ref: '/history'
             },
+        
+        ]
+    },
+    {
+        title: 'Ordenes',
+        elements: [
+
+            {
+                icon: 'fas fa-arrow-right',
+                title: 'Entrantes',
+                ref: '/orders',
+            },
+            {
+                icon: 'fas fa-business-time',
+                title: 'A Prueba',
+                ref: '/orders',
+            },
+            {
+                icon: 'fas fa-undo-alt',
+                title: 'Regresadas',
+                ref: '/orders',
+            },
+            {
+                icon: 'fas fa-check-circle',
+                title: 'Terminadas',
+                ref: '/orders',
+            },
+            {
+                icon: 'fas fa-exchange-alt',
+                title: 'Con Cambios',
+                ref: '/orders',
+            },
+            {
+                icon: 'fas fa-ban',
+                title: 'Canceladas',
+                ref: '/orders',
+            },
+
+
            
         ]
     }]
