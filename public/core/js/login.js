@@ -74,6 +74,19 @@ $(document).ready(function () {
         $('#reset_user').css("display", "none");
     })
 
+    $(".new_user").click(function () {
+        let user = $('.user_name').val()
+        let password = $('.user_password').val()
+        let rol = 'admin'
+
+        api_conection('POST','/api/auth/registrer/',{user,password,rol},function (response) {
+            notyf.success(response.message)
+
+        })
+
+    })
+
+
 
 })
 

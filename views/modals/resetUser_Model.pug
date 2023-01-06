@@ -1,11 +1,23 @@
 #reset_user_modal.modal.fade(tabindex='-1')
-  .modal-dialog
-    .modal-content
-      .modal-header
-        h5.modal-title Modal title
-        button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
-      .modal-body
-        p User
-      .modal-footer
-        button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Close
-        button.btn.btn-primary(type='button') Save changes
+    .modal-dialog
+        .modal-content
+            .modal-header
+                h5.modal-title Crear nuevo usuario
+                button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+            .modal-body.text-center
+              .row
+                .col-2
+                .col-8
+                    div
+                      i.fas.fa-user.mx-2.rounded-left.p-2.bg-black.text-white
+                      input.user_name.my-2(type= "text" placeholder="Nombre usuario")
+                    div
+                      i.fas.fa-key.mx-2.rounded-left.p-2.bg-black.text-white
+                      input.user_password.my-2(type= "password" placeholder="Contraseña")
+                .col-2
+
+
+
+            .modal-footer
+                button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Cancelar
+                button.btn.btn-black.new_user(type='button' data-bs-dismiss='modal') Guardar Nuevo Usuario

@@ -1,8 +1,99 @@
 let dentistaModel = require("../models/dentisas.model");
+const colorModel = require("../models/colores.model");
 
-// let apiato = require("apiato");
+let dentistas = [
+  {
+    name_dentista: "MELY",
+    distintivo_color:"#ff0000",
+    status:true,
 
-// let ms = new apiato();
+  },
+  {
+    name_dentista: "ANEEL",
+    distintivo_color:"#276c12",
+    status:true,
+  },
+  {
+    name_dentista: "DULCE",
+    distintivo_color:"#9a8d8d",
+    status:true,
+  },
+  {
+    name_dentista: "ISABEL",
+    distintivo_color:"#62ecf1",
+    status:true,
+  },
+  {
+    name_dentista: "MIRYAM",
+    distintivo_color:"#e5fb3c",
+    status:true,
+  },
+  {
+    name_dentista: "BRISA",
+    distintivo_color:"#14616c",
+    status:true,
+  },
+  {
+    name_dentista: "KARLA",
+    distintivo_color:"#804000",
+    status:true,
+  },
+  {
+    name_dentista: "SERVANDO",
+    distintivo_color:"#14616c",
+    status:true,
+  },
+  {
+    name_dentista: "PATRICIA",
+    distintivo_color:"#e18c47",
+    status:true,
+  },
+  {
+    name_dentista: "LAURA",
+    distintivo_color:"#ffe747",
+    status:true,
+  },
+  {
+    name_dentista: "ROCIO",
+    distintivo_color:"#ff9ffb",
+    status:true,
+  },
+  {
+    name_dentista: "LUIS",
+    distintivo_color:"#800040",
+    status:true,
+  },
+  {
+    name_dentista: "MARISA",
+    distintivo_color:"#000000",
+    status:true,
+  },
+  {
+    name_dentista: "MARYSOL",
+    distintivo_color:"#fb4e04",
+    status:true,
+  },
+  {
+    name_dentista: "TERESA",
+    distintivo_color:"#630b9d",
+    status:true,
+  },
+  {
+    name_dentista: "IRASEMA",
+    distintivo_color:"#000000",
+    status:true,
+  },
+  {
+    name_dentista: "DELTA",
+    distintivo_color:"#000000",
+    status:true,
+  },
+  {
+    name_dentista: "ENRIQUE",
+    distintivo_color:"#a5fb3c",
+    status:true,
+  }
+];
 
 //DETALLES DEL DENTISTA
 let details_dentist = async function (req, res) {
@@ -192,9 +283,39 @@ let search_dentist = async function (req, res) {
   }
 };
 
-//RECIBE (MODELO PRINCIPAL , AGREGACION , CAMPOS DE BUSQUEDA , )
+let script_insertDentistas = async function (req, res) {
 
-//let data_table = ms.datatable_aggregate(dentistaModel)
+  try {
+    for(let item of dentistas){
+      console.log(item)
+
+      let dentista = new dentistaModel({
+        name_dentista:item.name_dentista,
+        distintivo_color:item.distintivo_color,
+        status:item.status,
+        domicilio_dentista:"S/R",
+        email_dentista:"S/R",
+        tel_dentista:"S/R",
+        tel_consultorio:"S/R",
+   
+
+
+      })
+      dentista = dentista.save()
+    }
+
+    res.status(200).json({
+      success: true,
+      data: []
+    });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({
+      succes: false,
+      error: e,
+    });
+  }
+};
 
 module.exports = {
   new_dentist,
@@ -203,5 +324,6 @@ module.exports = {
   change_Status,
   update_dentista,
   search_dentist,
-  top_5_dentist
+  top_5_dentist,
+  script_insertDentistas
 };

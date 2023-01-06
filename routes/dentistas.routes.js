@@ -9,7 +9,8 @@ let {
   change_Status,
   update_dentista,
   search_dentist,
-  top_5_dentist
+  top_5_dentist,
+  script_insertDentistas
 } = require("../controllers/dentistas.controller");
 
 //NUEVO DENTISTA
@@ -32,6 +33,9 @@ router.post("/search_dentist/", search_dentist);
 
 //TOP 5 DENTISTAS
 router.get("/top_5_dentist/", top_5_dentist);
+
+//SCRIPT DE CREACION DE DENTISTAS
+router.post("/script_insertDentistas/", script_insertDentistas);
 
 
 module.exports = router;

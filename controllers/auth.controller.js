@@ -86,7 +86,8 @@ let registrer_user = async function (req, res) {
 
         res.status(200).json({
             success: true,
-            data: new_user
+            data: new_user,
+            message:'Usuario creado'
         })
 
     } catch (e) {

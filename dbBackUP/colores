@@ -1,0 +1,406 @@
+[{
+  "_id": {
+    "$oid": "63b75d385c78e49c25423b0c"
+  },
+  "name_color": "A1",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672961336850"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672961336850"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63b75d385c78e49c25423b0d"
+  },
+  "name_color": "A2",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672961336851"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672961336851"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63b75d385c78e49c25423b0e"
+  },
+  "name_color": "A3",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672961336851"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672961336851"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63b75d385c78e49c25423b0f"
+  },
+  "name_color": "A3.5",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672961336851"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672961336851"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63b75d385c78e49c25423b12"
+  },
+  "name_color": "B2",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672961336852"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672961336852"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63b75d385c78e49c25423b13"
+  },
+  "name_color": "B3",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672961336853"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672961336853"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63b75d385c78e49c25423b14"
+  },
+  "name_color": "B4",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672961336853"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672961336853"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63b75d385c78e49c25423b15"
+  },
+  "name_color": "C1",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672961336853"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672961336853"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63b75d385c78e49c25423b16"
+  },
+  "name_color": "C2",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672961336853"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672961336853"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63b75d385c78e49c25423b17"
+  },
+  "name_color": "C3",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672961336854"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672961336854"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63b75d385c78e49c25423b18"
+  },
+  "name_color": "C4",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672961336854"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672961336854"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63b75d385c78e49c25423b19"
+  },
+  "name_color": "D2",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672961336854"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672961336854"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63b75d385c78e49c25423b10"
+  },
+  "name_color": "A4",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672961336852"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672961336852"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63b75d385c78e49c25423b11"
+  },
+  "name_color": "B1",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672961336852"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672961336852"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63b75d385c78e49c25423b1c"
+  },
+  "name_color": "62",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672961336854"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672961336854"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63b75d385c78e49c25423b1d"
+  },
+  "name_color": "65",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672961336854"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672961336854"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63b75d385c78e49c25423b1e"
+  },
+  "name_color": "66",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672961336854"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672961336854"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63b75d385c78e49c25423b1f"
+  },
+  "name_color": "81",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672961336854"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672961336854"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63b75d385c78e49c25423b20"
+  },
+  "name_color": "Rosa Translucido",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672961336854"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672961336854"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63b75d385c78e49c25423b21"
+  },
+  "name_color": "Rosa Original",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672961336855"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672961336855"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63b75d385c78e49c25423b22"
+  },
+  "name_color": "R1 Nicotine",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672961336855"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672961336855"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63b75d385c78e49c25423b23"
+  },
+  "name_color": "R2 Nicotine",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672961336855"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672961336855"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63b75d385c78e49c25423b24"
+  },
+  "name_color": "Acrilico R2V Kemdent",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672961336855"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672961336855"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63b75d385c78e49c25423b25"
+  },
+  "name_color": "Acrilico 26 Pink Vein",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672961336855"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672961336855"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63b75d385c78e49c25423b26"
+  },
+  "name_color": "Acrilico Transparente",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672961336855"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672961336855"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63b75d385c78e49c25423b1a"
+  },
+  "name_color": "D3",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672961336854"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672961336854"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "63b75d385c78e49c25423b1b"
+  },
+  "name_color": "D4",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672961336854"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672961336854"
+    }
+  }
+}]
