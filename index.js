@@ -5,7 +5,6 @@ const path = require('path')
 const bodyParser = require('body-parser')
 
 const db = require('./db')
-
 const app = express()
 
 //configuraciones 

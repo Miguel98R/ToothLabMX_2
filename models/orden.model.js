@@ -41,7 +41,7 @@ let ordenSchema = new Schema ({
     status:{
         type:Number,
         required:true,
-        default:1 //1 entrante 2 prueba 3 regresado 4 terminado 5 cambios 6 cancelado 7 cancelado con costo
+        default:1 //1 entrante 2 prueba 3 regresado 4 terminado 5 cambios 6 cancelado con costo 7 cancelado
     }
 },{timestamps: true})
 

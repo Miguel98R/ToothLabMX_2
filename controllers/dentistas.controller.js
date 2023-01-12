@@ -297,7 +297,7 @@ let script_insertDentistas = async function (req, res) {
         email_dentista:"S/R",
         tel_dentista:"S/R",
         tel_consultorio:"S/R",
-   
+
 
 
       })

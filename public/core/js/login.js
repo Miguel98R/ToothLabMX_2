@@ -59,7 +59,6 @@ $(document).ready(function () {
         })
     })
 
-
     $(document.body).on('click', '.reset_constra', function () {
         $('#reset_contra_modal').modal('show')
         contra_ = 0

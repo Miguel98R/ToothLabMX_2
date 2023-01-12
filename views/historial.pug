@@ -48,4 +48,8 @@ html(lang="es")
       include modals/details_orden_modal
 
       script( src='./public/core/js/common.js')
-      script( src='./public/core/js/historial.js')
+      script.
+            let STATUS_BUSQUEDA = "!{status}";
+            let dt_name = "tbl-historial";
+
+      script( src='./public/core/js/status_core.js?v=' + Math.random())
