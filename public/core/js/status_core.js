@@ -15,8 +15,8 @@ $(document).ready(function () {
             width: "15%",
             data: "fecha_entrada",
             render: function (data, v, row) {
-                return '<p>'+moment(data, 'DD-MM-YYYY').format('dddd DD-MMMM-YYYY')+'</p>' +
-                    '<small>Ultima actualizacion de la order: '+moment(row.fecha_actualizacion, 'DD-MM-YYYY').format('dddd DD-MMMM-YYYY')+'</small>'
+                return '<p>' + moment(data, 'DD-MM-YYYY').format('dddd DD-MMMM-YYYY') + '</p>' +
+                    '<small>Ultima actualizacion de la order: ' + moment(row.fecha_actualizacion, 'DD-MM-YYYY').format('dddd DD-MMMM-YYYY') + '</small>'
 
             }
 
@@ -31,10 +31,10 @@ $(document).ready(function () {
 
         },
         {
-            width: "10%",
+            width: "5%",
             data: "dentista",
-            render:function (data,v,row) {
-                return '<p class="fw-bolder" style="color:'+row.distintivo_color+' ;">'+data+'</p>'
+            render: function (data, v, row) {
+                return '<p class="fw-bolder" style="color:' + row.distintivo_color + ' ;">' + data + '</p>'
 
             }
         },
@@ -45,10 +45,10 @@ $(document).ready(function () {
         {
             width: "15%",
             data: "status",
-            render: function (data,v,row) {
+            render: function (data, v, row) {
                 let status_text = asignament_status(data)
                 return '<h5>' + status_text + '</h5>' + '<div><label>Cambiar status:</label>  ' +
-                    '<select status_actual="'+data+'" id_orden="'+row._id+'" class="custom-select change_status">' +
+                    '<select status_actual="' + data + '" id_orden="' + row._id + '" class="custom-select change_status">' +
                     '<option class="text-primary" value="0">Selecciona un status</option>' +
                     '<option class="text-primary" value="1">Entrante</option>' +
                     '<option class="text-warning"  value="2">A Prueba</option>' +
@@ -56,25 +56,31 @@ $(document).ready(function () {
                     '<option class="text-success"  value="4">Terminada</option>' +
                     '<option class="text-info"  value="5">Con cambios</option>' +
                     '<option class="text-danger"  value="6">Cancelada con costos</option>' +
-                    '<option class="text-danger"  value="7">Cancelada</option>'+
+                    '<option class="text-danger"  value="7">Cancelada</option>' +
 
 
                     '</select></div>  '
             }
         },
         {
-            width: "5%",
+            width: "10%",
             data: "_id",
-            render: function (data, row) {
+            render: function (data, v,row) {
+                if (row.status == 6 || row.status == 7 ||  row.status == 4) {
+                    return '<button id_order="' + data + '" class="btn-sm btn-block text-white btn btn-info see_details">Ver detalles</button>' +
+                      '  <button id_order="' + data + '" class="btn-sm btn-block text-white btn btn-secondary my-2  imprimir_order">Imprimir</button>'
+
+                }
                 return '<button id_order="' + data + '" class="btn-sm btn-block text-white btn btn-info see_details">Ver detalles</button>' +
-                    '<button id_order="' + data + '"  class="btn-sm btn-block text-white btn btn-warning my-2  edit_order">Editar orden</button>'+
-                 '<button id_order="' + data + '"  class="btn-sm btn-block text-white btn btn-secondary my-2  imprimir_order">Imprimir</button>'
+                    //'<button id_order="' + data + '"  class="btn-sm btn-block text-white btn btn-warning my-2  edit_order">Editar datos </button>' +
+                    '<button id_order="' + data + '"  style="background:coral ;" class="btn-sm btn-block text-white btn  my-2  add_products">Agregar producto </button>' +
+                    '<button id_order="' + data + '"  class="btn-sm btn-block text-white btn btn-secondary my-2  imprimir_order">Imprimir</button>'
             }
         },
     ];
 
     //CONFIGURACION DE LA DATATABLE
-    let dt = $("#"+dt_name).DataTable({
+    let dt = $("#" + dt_name).DataTable({
         language: {
             lengthMenu: "Mostrar _MENU_ registros",
             zeroRecords: "No se encontraron resultados",
@@ -106,7 +112,7 @@ $(document).ready(function () {
             ["5", "10", "25", "50", "100", "1000"],
         ],
 
-        order: [[1, 'desc'], [2, 'desc']],
+        order: [[1, 'desc'], [2, 'asc']],
 
         pageLength: 5,
 
@@ -124,49 +130,49 @@ $(document).ready(function () {
     dt_draw(dt)
 
     //CAMBIAR DE STATUS
-        $(document.body).on('change','.change_status',function () {
-            let status = $(this).val()
-            let id_orden = $(this).attr('id_orden')
-            let status_actual = $(this).attr('status_actual')
+    $(document.body).on('change', '.change_status', function () {
+        let status = $(this).val()
+        let id_orden = $(this).attr('id_orden')
+        let status_actual = $(this).attr('status_actual')
 
-            console.log(status)
-            console.log(id_orden)
-            console.log(status_actual)
+        console.log(status)
+        console.log(id_orden)
+        console.log(status_actual)
 
-            if(status_actual == status){
-                notyf.open({type: "warning", message: "Esta orden ya se encuentra en el status seleccionado"});
+        if (status_actual == status) {
+            notyf.open({type: "warning", message: "Esta orden ya se encuentra en el status seleccionado"});
 
-                return
+            return
+        }
+
+
+        Swal.fire({
+            title: "Cambio de status  ",
+            text: "Se actualizara el status de esta orden",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#006f2c",
+            cancelButtonColor: "#e80303",
+            confirmButtonText: "Si Adelante!",
+            cancelButtonText: "Cancelar",
+        }).then((confirmacionTrue) => {
+
+            if (confirmacionTrue.value) {
+
+                api_conection("PUT", "api/orders/change_status/" + id_orden, {status}, function (response) {
+                    notyf.success(response.message)
+                    dt_draw(dt)
+
+                }, function (response) {
+                    notyf.error(response.message)
+                    dt_draw(dt)
+                })
+
+
             }
 
-
-            Swal.fire({
-                title: "Cambio de status  ",
-                text: "Se actualizara el status de esta orden",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#006f2c",
-                cancelButtonColor: "#e80303",
-                confirmButtonText: "Si Adelante!",
-                cancelButtonText: "Cancelar",
-            }).then((confirmacionTrue) => {
-
-                if (confirmacionTrue.value) {
-
-                    api_conection("PUT", "api/orders/change_status/" + id_orden, {status}, function (response) {
-                        notyf.success(response.message)
-                        dt_draw(dt)
-
-                    },function (response) {
-                        notyf.error(response.message)
-                        dt_draw(dt)
-                    })
-
-
-                }
-
-            });
-        })
+        });
+    })
 
     //DETALLES DE LA ORDEN
     $(document.body).on('click', '.see_details', function () {
@@ -185,12 +191,30 @@ $(document).ready(function () {
 
     //EDITAR ORDEN
 
-        $(document.body).on('click','.edit_order',function () {
-            let id_orden = $(this).attr('id_order')
-            clean_input()
-            $('#edit_orderModal').modal('show')
+    $(document.body).on('click', '.edit_order', function () {
+        let id_orden = $(this).attr('id_order')
+        clean_input()
+        $('#edit_orderModal').modal('show')
 
-        })
+    })
+
+
+    //AGREGAR NUEVO PRODUCTO
+
+    $(document.body).on('click', '.add_products', function () {
+        let id_orden = $(this).attr('id_order')
+        clean_input()
+        $('#agregar_productModal').modal('show')
+
+        $('.save_newProduct').attr('id_orden', id_orden)
+
+    })
+
+    $('.save_newProduct').click(function () {
+        let id_orden = $(this).attr('id_orden')
+        add_product(id_orden)
+
+    })
 
 
     //IMPRIMIR ORDEN
@@ -204,7 +228,7 @@ $(document).ready(function () {
 
             let data_order = data.data
 
-            console.log(data_order)
+            console.log("data_imprimir ---------->>>>>",data_order)
 
             let detalle = ''
 

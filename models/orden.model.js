@@ -15,12 +15,12 @@ let ordenSchema = new Schema ({
         type:String,
         required:true
     },
-    detalle:{
+    detalle:[{
         type:Schema.Types.ObjectId,
         required:false,
         ref:detalle
 
-    },
+    }],
     dentista:{
         type:Schema.Types.ObjectId,
         required:false,

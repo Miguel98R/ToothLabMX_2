@@ -5,7 +5,7 @@ let productModel = require("../models/productos.model");
 let moment = require("moment");
 let mongoose = require('mongoose')
 
-
+//GENEAR ID PARA ORDENES
 let generate_id = function () {
     let today = moment().format("DDMMMYY");
 
@@ -20,13 +20,13 @@ let generate_id = function () {
 
     return string_id;
 };
-
+//CREAR NUEVA ORDEN
 let new_order = async function (req, res) {
     let {new_order, new_order_details} = req.body;
 
     try {
-        let id_detalle;
 
+        let productsArray = []
         //BUSCAR PRODUCTO PARA OBTENER ID Y ACTUALIZAR SU USO
         let product = await productModel.findOne({
             name_producto: new RegExp(new_order_details.producto_name, "i"),
@@ -42,7 +42,7 @@ let new_order = async function (req, res) {
 
         details = await details.save();
 
-        id_detalle = details._id;
+        productsArray.push(details._id)
 
         product.cuenta_uso = product.cuenta_uso + 1;
         product = await product.save();
@@ -62,7 +62,7 @@ let new_order = async function (req, res) {
         let order = new ordersModel({
             id_order: id,
             name_paciente: new_order.name_paciente,
-            detalle: id_detalle,
+            detalle: productsArray,
             dentista: id_dentista,
             fecha_entrante: new_order.fecha_entrante,
             fecha_actualizacion: new_order.fecha_entrante,
@@ -86,97 +86,161 @@ let new_order = async function (req, res) {
         });
     }
 };
-
+//DETALLE DE LA ORDEN
 let details_order = async function (req, res) {
 
-    let {_id} = req.params
+        let {_id} = req.params
 
-    try {
+        try {
 
-        let details_order = await ordersModel.aggregate([
-            {
-                $match: {
-                    _id: mongoose.Types.ObjectId(_id),
+            let details_order = await ordersModel.aggregate([
+                {
+                    $match: {
+                        _id: mongoose.Types.ObjectId(_id),
+                    },
                 },
-            },
-            {
-                $lookup: {
-                    from: dentistModel.collection.name,
-                    localField: 'dentista',
-                    foreignField: '_id',
-                    as: 'dentista'
-
-                }
-            },
-            {
-                $unwind: "$dentista"
-            },
-            {
-                $lookup: {
-                    from: detailsOrderModel.collection.name,
-                    localField: 'detalle',
-                    foreignField: '_id',
-                    as: 'detalle'
-
-                }
-            },
-            {
-                $unwind: "$detalle"
-            },
-            {
-                $lookup: {
-                    from: productModel.collection.name,
-                    localField: 'detalle.producto',
-                    foreignField: '_id',
-                    as: 'producto'
-
-                }
-            },
-            {
-                $unwind: "$producto"
-            },
-            {
-                $replaceRoot: {
-                    newRoot: {
-
-                        id_order: "$id_order",
-                        fecha_entrante: "$fecha_entrante",
-                        fecha_saliente: "$fecha_saliente",
-                        name_dentista: "$dentista.name_dentista",
-                        dentista_color: "$dentista.distintivo_color",
-                        name_paciente: "$name_paciente",
-                        comentario: "$comentario",
-
-
-                        color: "$detalle.color",
-                        cantidad: "$detalle.cantidad",
-                        tooths: "$detalle.tooths",
-                        name_producto: "$producto.name_producto",
-                        status: "$status",
-
+                {
+                    $lookup: {
+                        from: dentistModel.collection.name,
+                        localField: 'dentista',
+                        foreignField: '_id',
+                        as: 'dentista'
 
                     }
+                },
+                {
+                    $unwind: "$dentista"
+                },
+                {
+                    $replaceRoot: {
+                        newRoot: {
+                            _id: "$_id",
+                            id_order: "$id_order",
+                            fecha_entrante: "$fecha_entrante",
+                            fecha_saliente: "$fecha_saliente",
+                            name_dentista: "$dentista.name_dentista",
+                            dentista_color: "$dentista.distintivo_color",
+                            name_paciente: "$name_paciente",
+                            comentario: "$comentario",
+                            status: "$status"
+
+                        }
+                    }
+                },
+            ])
+
+            let order_products = await ordersModel.aggregate([
+                {
+                    $match: {
+                        _id: mongoose.Types.ObjectId(_id),
+                    },
+                },
+                {
+                    $lookup: {
+                        from: detailsOrderModel.collection.name,
+                        localField: 'detalle',
+                        foreignField: '_id',
+                        as: 'detalle'
+                    },
+                },
+                {
+                    $unwind: "$detalle"
+                },
+                {
+                    $lookup: {
+                        from: productModel.collection.name,
+                        localField: 'detalle.producto',
+                        foreignField: '_id',
+                        as: 'producto'
+
+                    }
+                },
+                {
+                    $unwind: "$producto"
+                },
+                {
+                    $replaceRoot: {
+                        newRoot: {
+                            _id: "$_id",
+                            id_detalle:"$detalle._id",
+                            color: "$detalle.color",
+                            cantidad: "$detalle.cantidad",
+                            tooths: "$detalle.tooths",
+                            name_producto: "$producto.name_producto",
+
+
+                        }
+                    }
+                },
+                {
+                    $group: {
+                        _id: "$_id",
+                        products: {
+                            $push: {
+                                id_detalle:"$id_detalle",
+                                color: "$color",
+                                cantidad: "$cantidad",
+                                tooths: "$tooths",
+                                name_producto: "$name_producto",
+
+                            }
+                        }
+
+                    }
+                },
+                {
+                    $replaceRoot: {
+                        newRoot: {
+
+                            products: "$products"
+
+                        }
+                    }
                 }
+            ])
+
+        let data_details = {}
+            for (let item of details_order) {
+                data_details._id=item._id
+                data_details.id_order=item.id_order
+                data_details.fecha_entrante=item.fecha_entrante
+
+                data_details.fecha_entrada=item.fecha_entrada
+                data_details.fecha_saliente=item.fecha_saliente
+                data_details.name_dentista=item.name_dentista
+                data_details.dentista_color=item.dentista_color
+                data_details.name_paciente=item.name_paciente
+                data_details.comentario=item.comentario
+                data_details.status=item.status
+
+
             }
+            for (let item of order_products) {
+                data_details.products=item.products
 
-        ])
 
-        res.status(200).json({
-            success: true,
-            data: details_order
-        })
+            }
+            console.log(data_details)
 
-    } catch (error) {
-        console.log(error)
-        res.status(500).json({
-            success: false,
-            error: error
-        })
 
-    }
+res.status(200).json({
+    success: true,
+    data: data_details
+})
+
+} catch
+(error)
+{
+    console.log(error)
+    res.status(500).json({
+        success: false,
+        error: error
+    })
 
 }
 
+}
+//GENERAR PDF
 let pdf_generate = async function (req, res) {
 
     let id = req.params
@@ -201,7 +265,7 @@ let pdf_generate = async function (req, res) {
 
 
 }
-
+//INFORMACION PARA MOSTRAR EN LA DATATABLE
 let data_table = async function (req, res) {
     let {status_buscar} = req.params
 
@@ -253,12 +317,24 @@ let data_table = async function (req, res) {
                         id_order: "$id_order",
                         fecha_entrada: "$fecha_entrante",
                         fecha_saliente: "$fecha_saliente",
-                        fecha_actualizacion:"$fecha_actualizacion",
+                        fecha_actualizacion: "$fecha_actualizacion",
                         dentista: "$dentista_detalle.name_dentista",
-                        distintivo_color :"$dentista_detalle.distintivo_color",
+                        distintivo_color: "$dentista_detalle.distintivo_color",
                         paciente: "$name_paciente",
                         status: "$status",
                     }
+                }
+            },
+            {
+                $group: {
+                    _id: '$_id',
+                    items: {
+                        $last: '$$ROOT'
+                    }
+                }
+            }, {
+                $replaceRoot: {
+                    newRoot: "$items"
                 }
             }
         ]);
@@ -277,7 +353,7 @@ let data_table = async function (req, res) {
         });
     }
 };
-
+//ACTUALIZAR STATUS DE LA ORDEN
 let change_status = async function (req, res) {
     let {id} = req.params
     let {status} = req.body
@@ -303,5 +379,65 @@ let change_status = async function (req, res) {
         })
     }
 }
+//AGREGAR NUEVO PRODUCTO A LA ORDEN
+let add_product = async function (req, res) {
+    let {id} = req.params
+    let {new_product} = req.body
 
-module.exports = {new_order, details_order, pdf_generate, data_table, change_status};
+    console.log(id)
+    console.log(new_product)
+
+    try {
+
+        let id_detalle;
+
+        //BUSCAR PRODUCTO PARA OBTENER ID Y ACTUALIZAR SU USO
+        let product = await productModel.findOne({
+            name_producto: new RegExp(new_product.producto_name, "i"),
+        });
+
+        //CREACION DEL DETALLE
+        let details = new detailsOrderModel({
+            cantidad: new_product.cantidad,
+            color: new_product.color,
+            producto: product._id,
+            tooths: new_product.tooths,
+        });
+
+        console.log(details)
+
+        details = await details.save();
+
+        id_detalle = details._id;
+
+        product.cuenta_uso = product.cuenta_uso + 1;
+        product = await product.save();
+
+        //BUSCAR ORDEN PARA AGREGAR EL NUEVO PRODUCTO
+        let order_data = await ordersModel.findById(id)
+
+        let products_actuales = order_data.detalle
+        products_actuales.push(id_detalle)
+        order_data.detalle = products_actuales
+
+        order_data.fecha_actualizacion = moment().format('DD-MM-YYYY')
+
+        order_data = order_data.save()
+
+        res.status(200).json({
+            success: true,
+            message: 'Producto agregado'
+        })
+
+    } catch (e) {
+        console.log(e)
+        res.status(500).json({
+            success: false,
+            message: 'Error al agregar producto',
+            error: e
+        })
+    }
+}
+
+
+module.exports = {new_order, details_order, pdf_generate, data_table, change_status, add_product};

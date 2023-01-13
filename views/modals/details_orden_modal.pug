@@ -1,5 +1,5 @@
 #detailsOrder_modal.modal.fade(tabindex='-1')
-  .modal-dialog.modal-lg
+  .modal-dialog.modal-xl
     .modal-content
       .modal-header.bg-dark.text-white
         h5.modal-title 
@@ -10,9 +10,11 @@
             .card-header 
               .details_general_order 
 
-            .card-body 
-              .details_product_order
-                
+            .card-body
+                h5.fw-bold.text-center.py-2 Productos
+                div(style="overflow-y: auto;  height: 400px;")
+                    .row.details_product_order
+
             .card-footer
               p.fw-bold
                 | Comentario: 

@@ -1,63 +1,63 @@
 let TOKEN_ = false
 let DATA_ = false
 
-moment.locale('es');  
+moment.locale('es');
 /**
  * Spanish translation for bootstrap-datepicker
  * Bruno Bonamin <bruno.bonamin@gmail.com>
  */
- ;(function($){
-	$.fn.datepicker.dates['es'] = {
-		days: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
-		daysShort: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
-		daysMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
-		months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
-		monthsShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
-		today: "Hoy",
-		monthsTitle: "Meses",
-		clear: "Borrar",
-		weekStart: 0,
-		format: "dd/mm/yyyy"
-	};
+;(function ($) {
+    $.fn.datepicker.dates['es'] = {
+        days: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+        daysShort: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
+        daysMin: ["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+        months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+        monthsShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+        today: "Hoy",
+        monthsTitle: "Meses",
+        clear: "Borrar",
+        weekStart: 0,
+        format: "dd/mm/yyyy"
+    };
 }(jQuery));
 
 
 const notyf = new Notyf({
     duration: 1000,
     position: {
-      x: 'right',
-      y: 'top',
+        x: 'right',
+        y: 'top',
     },
     types: [
-      {
-        type: 'warning',
-        background: 'orange',
-        icon: '<i class="fas fa-exclamation"></i>',
-        duration: 2000,
-        dismissible: true
-      },
-      {
-        type: 'error',
-        background: 'indianred',
-        duration: 2000,
-        dismissible: true
-      },
-      {
-        type: 'success',
-        background: 'green',
-        duration: 2000,
-        dismissible: true
-      }
+        {
+            type: 'warning',
+            background: 'orange',
+            icon: '<i class="fas fa-exclamation"></i>',
+            duration: 2000,
+            dismissible: true
+        },
+        {
+            type: 'error',
+            background: 'indianred',
+            duration: 2000,
+            dismissible: true
+        },
+        {
+            type: 'success',
+            background: 'green',
+            duration: 2000,
+            dismissible: true
+        }
     ]
-  });
+});
 
 
-let verificador =  function () {
+let verificador = function () {
 
     if (localStorage.getItem('TOKEN')) {
         TOKEN_ = localStorage.getItem('TOKEN')
     }
-    
+
     api_conection('POST', 'api/auth/verify', undefined, function (response) {
         if (response.success) {
             DATA_ = response.data
@@ -82,7 +82,7 @@ let api_conection = async function (method, url, data, f_, error_) {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json',
                         'authorization': 'Bearer ' + localStorage.getItem('TOKEN') || false
-                  
+
                     },
                     method: method,
                 })
@@ -93,7 +93,7 @@ let api_conection = async function (method, url, data, f_, error_) {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json',
                         'authorization': 'Bearer ' + localStorage.getItem('TOKEN') || false
-       
+
                     },
                     method: method,
                     body: data ? JSON.stringify(data) : ""
@@ -101,16 +101,16 @@ let api_conection = async function (method, url, data, f_, error_) {
         }
 
         response = await response.json();
-     
+
 
         if (response.success == true) {
             if (f_) {
                 f_(response);
             }
-        }else{
-            if(error_){
+        } else {
+            if (error_) {
                 notyf.error(response.message)
-    
+
                 error_(response)
             }
         }
@@ -132,7 +132,7 @@ let dt_draw = function (data_table) {
     });
 };
 
-let asignament_status = function(status_order){
+let asignament_status = function (status_order) {
 
     let status = ''
 
@@ -144,13 +144,13 @@ let asignament_status = function(status_order){
             status = '<span class="text-warning fw-bold">Prueba</span>'
             break;
         case 3:
-            status =  '<span class="text-secondary fw-bold">Regresado</span>'
+            status = '<span class="text-secondary fw-bold">Regresado</span>'
             break;
         case 4:
             status = '<span class="text-success fw-bold">Terminado</span>'
             break;
         case 5:
-            status =  '<span class="text-info fw-bold">Cambios</span>'
+            status = '<span class="text-info fw-bold">Cambios</span>'
             break;
         case 6:
             status = '<span class="text-danger fw-bold">Cancelado con costo</span>'
@@ -165,7 +165,6 @@ let asignament_status = function(status_order){
     }
 
 
-
     return status
 }
 
@@ -174,38 +173,55 @@ let draw_modal_details = function (id) {
     api_conection("POST", "api/orders/details_order/" + id, {}, function (data) {
         let data_order = data.data;
 
-        console.log(data_order)
+        console.log("data_order-------->", data_order)
+        let button_delete = ''
 
-        for (let data_general of data_order) {
-            let status = asignament_status(data_general.status)
-
-
-            $('.details_general_order').append('<div>'
-
-                + '<div class="row">'
-
-                + '<div class="col-6">'
-                + '<p class="fw-bold">Folio: <span class="fw-normal"> ' + data_general.id_order + '</span></p>'
-                + '<p class="fw-bold">  Fecha de entrada: <span class="fw-normal">' + moment(data_general.fecha_entrante, 'DD-MM-YYYY').format('dddd DD-MMMM-YYYY') + '</span></p>'
-                + '<p class="fw-bold"> Fecha salida: <span class="fw-normal">' + moment(data_general.fecha_saliente, 'DD-MM-YYYY').format('dddd DD-MMMM-YYYY') + '</span></p>'
+        console.log("data_order.status -----",data_order.status )
 
 
-                + '</div>'
-                + '<div class="col-6">'
-                + '<p class="fw-bold">  Dentista: <span class="fw-normal">' + data_general.name_dentista + '</span></p>'
-                + '<p class="fw-bold">  Paciente: <span class="fw-normal">' + data_general.name_paciente + '</span></p>'
-                + '<p class="fw-bold">  Status: <span class="fw-normal">' + status + '</span></p>'
-                + '</div>'
 
-                + '</div>'
+        let status = asignament_status(data_order.status)
+        $('.details_general_order').append('<div>'
 
-                + '</div>')
+            + '<div class="row">'
+
+            + '<div class="col-6">'
+            + '<p class="fw-bold">Folio: <span class="fw-normal"> ' + data_order.id_order + '</span></p>'
+            + '<p class="fw-bold">  Fecha de entrada: <span class="fw-normal">' + moment(data_order.fecha_entrante, 'DD-MM-YYYY').format('dddd DD-MMMM-YYYY') + '</span></p>'
+            + '<p class="fw-bold"> Fecha salida: <span class="fw-normal">' + moment(data_order.fecha_saliente, 'DD-MM-YYYY').format('dddd DD-MMMM-YYYY') + '</span></p>'
+
+
+            + '</div>'
+            + '<div class="col-6">'
+            + '<p class="fw-bold">  Dentista: <span class="fw-normal">' + data_order.name_dentista + '</span></p>'
+            + '<p class="fw-bold">  Paciente: <span class="fw-normal">' + data_order.name_paciente + '</span></p>'
+            + '<p class="fw-bold">  Status: <span class="fw-normal">' + status + '</span></p>'
+            + '</div>'
+
+            + '</div>'
+
+            + '</div>')
+
+        $('.comentario').text(data_order.comentario)
+
+        for (let item of data_order.products) {
+
+            if(data_order.status == 6 || data_order.status == 7 || data_order.status == 4  ) {
+                console.log("entooooooooo")
+                button_delete = ''
+            }else{
+                button_delete = '<button class="btn btn-danger  delete_product btn_delete_'+item.id_detalle+'"><i class="fas fa-trash-alt"></i></button>'
+            }
+
+            if(button_delete != ''){
+                $('.btn_delete_').attr('id_detalle',item.id_detalle)
+            }
 
             let tooths_10_20 = ''
             let tooths_30_40 = ''
 
 
-            for (let od of data_general.tooths) {
+            for (let od of item.tooths) {
 
                 let parrafo_od_10_20 = ''
                 let parrafo_od_30_40 = ''
@@ -237,38 +253,43 @@ let draw_modal_details = function (id) {
             }
 
 
-            $('.details_product_order').append('<div class=""text-center>'
-                + '<div class="row text-center">'
-                + '<div class="col-3">'
-                + '<p class="fw-bold">CANTIDAD</p>'
-
-                + '<p class="fw-normal">' + data_general.cantidad + '</p>'
+            $('.details_product_order').append('<div class="col-4 my-2">'
+                + '<div class="card">'
+                + '<div class="card-header"> '
+                + '<div class="row ">'
+                + '<div class="col-8">'
+                + '<p class="fw-bold m-0 p-0 ">' + item.name_producto + '</p>'
                 + '</div>'
-                + '<div class="col-6">'
-                + '<p class="fw-bold">PRODUCTO</p>'
-
-
-                + '<p class="fw-normal">' + data_general.name_producto + '</p>'
-                + '</div>'
-                + '<div class="col-3">'
-                + '<p class="fw-bold">COLOR</p>'
-
-
-                + '<p class="fw-normal">' + data_general.color + '</p>'
+                + '<div class="col-4 text-end">'
+                + button_delete
                 + '</div>'
                 + '</div>'
-
-                + '<div class="col-12 text-center">'
-                + '<p class="fw-bold">OD</p>'
+                + '</div>'
+                + '<div class="card-body text-center"> '
+                + '<small class="fw-bold">OD</small>'
+                + '<p>--------------------------</p>'
                 + tooths_10_20
                 + '<br>'
                 + tooths_30_40
+                + '<p>--------------------------</p>'
+                + '</div>'
+                + '<div class="card-footer"> '
+
+                + '<div class="row text-center">'
+                + '<div class="col-6">'
+                + '<small class="fw-bold">CANTIDAD</small>'
+                + '<p class="fw-normal">' + item.cantidad + '</p>'
+                + '</div>'
+                + '<div class="col-6">'
+                + '<small class="fw-bold">COLOR</small>'
+                + '<p class="fw-normal">' + item.color + '</p>'
+                + '</div>'
+                + '</div>'
+                + '</div>'
                 + '</div>'
 
                 + '</div>')
 
-
-            $('.comentario').text(data_general.comentario)
 
         }
 
@@ -306,7 +327,7 @@ let clean_input = function () {
 
 };
 
-let count_tooth = function(){
+let count_tooth = function () {
     let tooths = $(".btn-check");
 
     let contador_tooths = 0;
@@ -387,13 +408,61 @@ let drawOptionsColor = function (search) {
     );
 };
 
+let add_product = function (id_orden) {
+
+    let tooths = $(".btn-check");
+    let producto_name = $(".producto_name").val();
+    let color_name = $(".color_name").val();
+    let cantidad = $(".count_tooths").text();
+    let tooths_array = [];
+    let new_product = {};
+
+    if (producto_name == "" || producto_name == undefined) {
+        notyf.open({type: "warning", message: "Seleccione el producto"});
+        return;
+    }
+
+    if (color_name == "" || color_name == undefined) {
+        notyf.open({type: "warning", message: "Seleccione el color"});
+        return;
+    }
+
+    tooths.each((i, element) => {
+        if ($(element).prop("checked") == true) {
+            let value = $(element).val();
+            tooths_array.push(value);
+        }
+
+
+    });
+
+    new_product.cantidad = cantidad;
+    new_product.color = color_name;
+    new_product.tooths = tooths_array;
+    new_product.producto_name = producto_name;
+
+    /*  console.log(new_product);
+      console.log(id_orden)*/
+
+    api_conection(
+        "POST",
+        "api/orders/add_product/" + id_orden,
+        {new_product},
+        function (response) {
+            notyf.success(response.message);
+            clean_input();
+            $('#close_modal').click()
+        }
+    );
+}
+
 $(document).ready(function () {
 
-$(document.body).on('click', '.out_session', function () {
+    $(document.body).on('click', '.out_session', function () {
 
-    location.href = '/'
-    localStorage.removeItem('TOKEN');
-    
-})
+        location.href = '/'
+        localStorage.removeItem('TOKEN');
+
+    })
 
 })
