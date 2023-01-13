@@ -1,0 +1,25 @@
+#edit_orderModal.modal.fade(tabindex='-1')
+    .modal-dialog.modal-xl
+        .modal-content
+            .modal-header.bg-dark.text-white
+                h5.modal-title
+                    b Editar orden
+                button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+            .modal-body
+                div.my-2
+                    label.fw-bold Editar fecha de salida:
+                        input.date_salida.rounded-pill.border.border-dark(style="width:80%;" type="text" autocomplete="off")
+                    label.fw-bold Editar Paciente:
+                        input.paciente_name.rounded-pill.border.border-dark( style="width:95%;" type="text" autocomplete="off")
+
+
+
+
+                include ../template/select_productToothEdit
+
+                label.fw-bold Nuevo comentario:
+                textarea.comntario_order.border.border-dark(style="width:95%;" name="", cols="5", rows="2" autocomplete="off")
+
+            .modal-footer
+                button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Cerrar
+                button.btn.btn-success.save_edit(type='button' data-bs-dismiss='modal') Guardar

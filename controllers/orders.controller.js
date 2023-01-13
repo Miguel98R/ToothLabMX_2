@@ -65,6 +65,7 @@ let new_order = async function (req, res) {
             detalle: id_detalle,
             dentista: id_dentista,
             fecha_entrante: new_order.fecha_entrante,
+            fecha_actualizacion: new_order.fecha_entrante,
             fecha_saliente: new_order.fecha_saliente,
             comentario: new_order.comentario,
         });
@@ -251,8 +252,10 @@ let data_table = async function (req, res) {
                         _id: "$_id",
                         id_order: "$id_order",
                         fecha_entrada: "$fecha_entrante",
-                        fecha_actualizacion: "$fecha_saliente",
+                        fecha_saliente: "$fecha_saliente",
+                        fecha_actualizacion:"$fecha_actualizacion",
                         dentista: "$dentista_detalle.name_dentista",
+                        distintivo_color :"$dentista_detalle.distintivo_color",
                         paciente: "$name_paciente",
                         status: "$status",
                     }
@@ -275,4 +278,30 @@ let data_table = async function (req, res) {
     }
 };
 
-module.exports = {new_order, details_order, pdf_generate, data_table};
+let change_status = async function (req, res) {
+    let {id} = req.params
+    let {status} = req.body
+    try {
+
+        let order_data = await ordersModel.findById(id)
+        order_data.status = status
+        order_data.fecha_actualizacion = moment().format('DD-MM-YYYY')
+
+        order_data = order_data.save()
+
+        res.status(200).json({
+            success: true,
+            message: 'Status actualizado'
+        })
+
+    } catch (e) {
+        console.log(e)
+        res.status(500).json({
+            success: false,
+            message: 'Error al actualizar status',
+            error: e
+        })
+    }
+}
+
+module.exports = {new_order, details_order, pdf_generate, data_table, change_status};

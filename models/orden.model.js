@@ -34,6 +34,10 @@ let ordenSchema = new Schema ({
         type:String,
         required: false,
     },
+    fecha_actualizacion:{
+        type:String,
+        required: false,
+    },
     comentario:{
         type:String,
         required:false

@@ -52,7 +52,6 @@ const notyf = new Notyf({
   });
 
 
-
 let verificador =  function () {
 
     if (localStorage.getItem('TOKEN')) {
@@ -133,7 +132,6 @@ let dt_draw = function (data_table) {
     });
 };
 
-
 let asignament_status = function(status_order){
 
     let status = ''
@@ -170,6 +168,7 @@ let asignament_status = function(status_order){
 
     return status
 }
+
 let draw_modal_details = function (id) {
 
     api_conection("POST", "api/orders/details_order/" + id, {}, function (data) {
@@ -277,6 +276,7 @@ let draw_modal_details = function (id) {
     });
 
 }
+
 let ImprimirTicket = function (headerHTML, htmlCreado, footerHTML) {
 
 
@@ -293,6 +293,99 @@ let ImprimirTicket = function (headerHTML, htmlCreado, footerHTML) {
 
 
 }
+
+let clean_input = function () {
+    $(".btn-check").prop("checked", false);
+    $(".dentistas_name").val('');
+    $(".paciente_name").val('');
+    $(".date_salida").val('');
+    $(".count_tooths").text(0);
+    $(".producto_name").val('');
+    $(".color_name").val('');
+    $(".comntario_order").val('');
+
+};
+
+let count_tooth = function(){
+    let tooths = $(".btn-check");
+
+    let contador_tooths = 0;
+
+    tooths.each((i, element) => {
+        if ($(element).prop("checked") == true) {
+            contador_tooths++;
+        }
+    });
+
+    $(".count_tooths").text(contador_tooths);
+
+}
+
+let drawOptionsDentist = function (search) {
+    api_conection(
+        "POST",
+        "api/dentist/search_dentist",
+        {search},
+        function (data) {
+            let dentist_list = data.data;
+            for (let item of dentist_list) {
+                $("#dentista_option").append(
+                    '<option id_dentista="' +
+                    item._id +
+                    '" value="' +
+                    item.name_dentista +
+                    '">' +
+                    item.name_dentista +
+                    "</option>"
+                );
+            }
+        }
+    );
+};
+
+let drawOptionsProducto = function (search) {
+    api_conection(
+        "POST",
+        "api/products/search_product",
+        {search},
+        function (data) {
+            let products_list = data.data;
+            for (let item of products_list) {
+                $("#producto_option").append(
+                    '<option id_product="' +
+                    item._id +
+                    '" value="' +
+                    item.name_producto +
+                    '">' +
+                    item.name_producto +
+                    "</option>"
+                );
+            }
+        }
+    );
+};
+
+let drawOptionsColor = function (search) {
+    api_conection(
+        "POST",
+        "api/products/search_color",
+        {search},
+        function (data) {
+            let colors_list = data.data;
+            for (let item of colors_list) {
+                $("#color_option").append(
+                    '<option id_product="' +
+                    item._id +
+                    '" value="' +
+                    item.name_color +
+                    '">' +
+                    item.name_color +
+                    "</option>"
+                );
+            }
+        }
+    );
+};
 
 $(document).ready(function () {
 
