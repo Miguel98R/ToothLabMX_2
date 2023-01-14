@@ -169,6 +169,10 @@ let asignament_status = function (status_order) {
 }
 
 let draw_modal_details = function (id) {
+    $('.details_general_order').html('')
+
+    $('.details_product_order').html('')
+
 
     api_conection("POST", "api/orders/details_order/" + id, {}, function (data) {
         let data_order = data.data;
@@ -207,15 +211,11 @@ let draw_modal_details = function (id) {
         for (let item of data_order.products) {
 
             if(data_order.status == 6 || data_order.status == 7 || data_order.status == 4  ) {
-                console.log("entooooooooo")
                 button_delete = ''
             }else{
-                button_delete = '<button class="btn btn-danger  delete_product btn_delete_'+item.id_detalle+'"><i class="fas fa-trash-alt"></i></button>'
+                button_delete = '<button id_orden="'+data_order._id+'" id_detalle="'+item.id_detalle+'" class="btn btn-danger  delete_product btn_delete_'+item.id_detalle+'"><i class="fas fa-trash-alt"></i></buttonid_orden>'
             }
 
-            if(button_delete != ''){
-                $('.btn_delete_').attr('id_detalle',item.id_detalle)
-            }
 
             let tooths_10_20 = ''
             let tooths_30_40 = ''

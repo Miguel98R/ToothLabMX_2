@@ -65,10 +65,10 @@ $(document).ready(function () {
         {
             width: "10%",
             data: "_id",
-            render: function (data, v,row) {
-                if (row.status == 6 || row.status == 7 ||  row.status == 4) {
+            render: function (data, v, row) {
+                if (row.status == 6 || row.status == 7 || row.status == 4) {
                     return '<button id_order="' + data + '" class="btn-sm btn-block text-white btn btn-info see_details">Ver detalles</button>' +
-                      '  <button id_order="' + data + '" class="btn-sm btn-block text-white btn btn-secondary my-2  imprimir_order">Imprimir</button>'
+                        '  <button id_order="' + data + '" class="btn-sm btn-block text-white btn btn-secondary my-2  imprimir_order">Imprimir</button>'
 
                 }
                 return '<button id_order="' + data + '" class="btn-sm btn-block text-white btn btn-info see_details">Ver detalles</button>' +
@@ -198,6 +198,41 @@ $(document).ready(function () {
 
     })
 
+    //ELIMINAR PRODUCTOS
+    $(document.body).on('click', '.delete_product', function () {
+        let id_detalle = $(this).attr('id_detalle')
+        let id_orden = $(this).attr('id_orden')
+
+        Swal.fire({
+            title: "¿Seguro que desea eliminar este producto? ",
+            text: "Esta acción no tiene regreso",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#006f2c",
+            cancelButtonColor: "#e80303",
+            confirmButtonText: "Si Adelante!",
+            cancelButtonText: "Cancelar",
+        }).then((confirmacionTrue) => {
+
+            if (confirmacionTrue.value) {
+
+                api_conection('POST','/api/orders/delete_detailsProduct/'+id_detalle +'/'+id_orden,{},function (response) {
+                    notyf.success(response.message)
+                    draw_modal_details(id_orden)
+
+                },function (response) {
+                    notyf.error(response.message)
+                    draw_modal_details(id_orden)
+                })
+
+
+            }
+
+        })
+
+
+    })
+
 
     //AGREGAR NUEVO PRODUCTO
 
@@ -228,11 +263,73 @@ $(document).ready(function () {
 
             let data_order = data.data
 
-            console.log("data_imprimir ---------->>>>>",data_order)
+            console.log("data_imprimir ---------->>>>>", data_order)
 
-            let detalle = ''
+            let status = asignament_status(data_order.status)
 
-            for (let item of data_order) {
+            let datos_generales = '<div class=" card-body text-start ">'
+
+
+                + '<div class="row ">'
+
+                + '<div class="col-7">'
+
+                + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold my-2 ">Entrada:  <span class="fw-bold text-dark">' + moment(data_order.fecha_entrante, 'DD-MM-YYYY').format('dddd DD-MMMM-YYYY') + '</span></h5>'
+                + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold ">Salida:  <span class="fw-bold text-dark">' + moment(data_order.fecha_saliente, 'DD-MM-YYYY').format('dddd DD-MMMM-YYYY') + '</span></h5>'
+
+                + '</div>'
+
+                + '<div class="col-5 ">'
+
+                + '<h5 style="color:' + data_order.dentista_color + ';" class="text-start my-2  fw-bold ">Folio:  <mark class="fw-boldtext-dark">' + data_order.id_order + '</mark></h5>'
+                + '<h5 style="color:' + data_order.dentista_color + ';" class="text-start fw-bold ">Status:  <mark class="fw-bold text-dark">' + status + '</mark></h5>'
+
+                + '</div>'
+
+
+                + '</div>'
+
+                + '<div class="row my-2">'
+
+                + '<div class="col-7">'
+
+                + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold ">Dentista:   <span class="fw-bold text-dark">' + data_order.name_dentista + '</span></h5>'
+
+
+                + '</div>'
+
+                + '<div class="col-5 ">'
+                + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold ">Paciente:   <span class="fw-bold text-dark">' + data_order.name_paciente + '</span></h5>'
+
+                + '</div>'
+
+                + '</div>'
+
+                + '<div class="row my-2">'
+
+                + '<div class="col-6">'
+
+                + '<br><h5 style="color:' + data_order.dentista_color + ';" class="text-start  fw-bold ">Regreso: </h5><input type="text"></input>'
+
+
+                + '</div>'
+
+                + '<div class="col-6">'
+
+                + '<br><h5 style="color:' + data_order.dentista_color + ';" class="text-start fw-bold ">Entrega: </h5><input type="text"></input>'
+
+
+                + '</div>'
+
+
+                + '</div>'
+
+                + '<h3 class="text-center my-3 fw-bold"  >Detalle orden:</h3>'
+
+
+            let productos = ''
+
+            for (let item of data_order.products) {
 
                 let tooths_10_20 = ''
                 let tooths_30_40 = ''
@@ -269,67 +366,8 @@ $(document).ready(function () {
 
                 }
 
-                let status = asignament_status(item.status)
 
-                detalle = '<div class=" card-body text-start ">'
-
-
-                    + '<div class="row ">'
-
-                    + '<div class="col-7">'
-
-                    + '<h5 style="color:' + item.dentista_color + ';" class=" fw-bold my-2 ">Entrada:  <span class="fw-bold text-dark">' + moment(item.fecha_entrante, 'DD-MM-YYYY').format('dddd DD-MMMM-YYYY') + '</span></h5>'
-                    + '<h5 style="color:' + item.dentista_color + ';" class=" fw-bold ">Salida:  <span class="fw-bold text-dark">' + moment(item.fecha_saliente, 'DD-MM-YYYY').format('dddd DD-MMMM-YYYY') + '</span></h5>'
-
-                    + '</div>'
-
-                    + '<div class="col-5 ">'
-
-                    + '<h5 style="color:' + item.dentista_color + ';" class="text-start my-2  fw-bold ">Folio:  <mark class="fw-boldtext-dark">' + item.id_order + '</mark></h5>'
-                    + '<h5 style="color:' + item.dentista_color + ';" class="text-start fw-bold ">Status:  <mark class="fw-bold text-dark">' + status + '</mark></h5>'
-
-                    + '</div>'
-
-
-                    + '</div>'
-
-                    + '<div class="row my-2">'
-
-                    + '<div class="col-7">'
-
-                    + '<h5 style="color:' + item.dentista_color + ';" class=" fw-bold ">Dentista:   <span class="fw-bold text-dark">' + item.name_dentista + '</span></h5>'
-
-
-                    + '</div>'
-
-                    + '<div class="col-5 ">'
-                    + '<h5 style="color:' + item.dentista_color + ';" class=" fw-bold ">Paciente:   <span class="fw-bold text-dark">' + item.name_paciente + '</span></h5>'
-
-                    + '</div>'
-
-                    + '</div>'
-
-                    + '<div class="row my-2">'
-
-                    + '<div class="col-6">'
-
-                    + '<br><h5 style="color:' + item.dentista_color + ';" class="text-start  fw-bold ">Regreso: </h5><input type="text"></input>'
-
-
-                    + '</div>'
-
-                    + '<div class="col-6">'
-
-                    + '<br><h5 style="color:' + item.dentista_color + ';" class="text-start fw-bold ">Entrega: </h5><input type="text"></input>'
-
-
-                    + '</div>'
-
-
-                    + '</div>'
-
-                    + '<h3 class="text-center my-3 fw-bold"  >Detalle orden:</h3>'
-                    + '<div  class="text-center">'
+                productos = productos + '<div  class="text-center">'
                     + '<div class="row">'
                     + '<div class="col-3">'
                     + '<h5 class="fw-bold">Cantidad</h5>'
@@ -362,19 +400,14 @@ $(document).ready(function () {
                     + '</div>'
 
 
-                    + '</div>'
-
-
-                    + '<h3 class="text-center my-3 fw-bold" >Comentarios:</h3>'
-                    + '<div style="border:solid;border-color:' + item.dentista_color + ';" class="text-center p-5">'
-                    + '<h5 class="p-0 m-0"style="color:' + item.dentista_color + ';">' + item.comentario + '</h5>'
-                    + '</div>'
-
-
-                    + '</div>'
-
-
             }
+
+            let comentarios = '<h3 class="text-center my-3 fw-bold" >Comentarios:</h3>'
+                + '<div style="border:solid;border-color:' + data_order.dentista_color + ';" class="text-center p-5">'
+                + '<h5 class="p-0 m-0"style="color:' + data_order.dentista_color + ';">' + data_order.comentario + '</h5>'
+                + '</div>'
+                + '</div>'
+                + '</div>'
 
             var ticketHTML = '<div class="card">'
 
@@ -388,8 +421,9 @@ $(document).ready(function () {
                 + '</div>'
                 + '</div>'
 
-
-                + detalle
+                + datos_generales
+                + productos
+                + comentarios
 
 
                 + '</div>'

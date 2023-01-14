@@ -5,6 +5,7 @@ let productModel = require("../models/productos.model");
 let moment = require("moment");
 let mongoose = require('mongoose')
 
+
 //GENEAR ID PARA ORDENES
 let generate_id = function () {
     let today = moment().format("DDMMMYY");
@@ -89,155 +90,154 @@ let new_order = async function (req, res) {
 //DETALLE DE LA ORDEN
 let details_order = async function (req, res) {
 
-        let {_id} = req.params
+    let {_id} = req.params
 
-        try {
+    try {
 
-            let details_order = await ordersModel.aggregate([
-                {
-                    $match: {
-                        _id: mongoose.Types.ObjectId(_id),
-                    },
+        let details_order = await ordersModel.aggregate([
+            {
+                $match: {
+                    _id: mongoose.Types.ObjectId(_id),
                 },
-                {
-                    $lookup: {
-                        from: dentistModel.collection.name,
-                        localField: 'dentista',
-                        foreignField: '_id',
-                        as: 'dentista'
+            },
+            {
+                $lookup: {
+                    from: dentistModel.collection.name,
+                    localField: 'dentista',
+                    foreignField: '_id',
+                    as: 'dentista'
 
-                    }
-                },
-                {
-                    $unwind: "$dentista"
-                },
-                {
-                    $replaceRoot: {
-                        newRoot: {
-                            _id: "$_id",
-                            id_order: "$id_order",
-                            fecha_entrante: "$fecha_entrante",
-                            fecha_saliente: "$fecha_saliente",
-                            name_dentista: "$dentista.name_dentista",
-                            dentista_color: "$dentista.distintivo_color",
-                            name_paciente: "$name_paciente",
-                            comentario: "$comentario",
-                            status: "$status"
-
-                        }
-                    }
-                },
-            ])
-
-            let order_products = await ordersModel.aggregate([
-                {
-                    $match: {
-                        _id: mongoose.Types.ObjectId(_id),
-                    },
-                },
-                {
-                    $lookup: {
-                        from: detailsOrderModel.collection.name,
-                        localField: 'detalle',
-                        foreignField: '_id',
-                        as: 'detalle'
-                    },
-                },
-                {
-                    $unwind: "$detalle"
-                },
-                {
-                    $lookup: {
-                        from: productModel.collection.name,
-                        localField: 'detalle.producto',
-                        foreignField: '_id',
-                        as: 'producto'
-
-                    }
-                },
-                {
-                    $unwind: "$producto"
-                },
-                {
-                    $replaceRoot: {
-                        newRoot: {
-                            _id: "$_id",
-                            id_detalle:"$detalle._id",
-                            color: "$detalle.color",
-                            cantidad: "$detalle.cantidad",
-                            tooths: "$detalle.tooths",
-                            name_producto: "$producto.name_producto",
-
-
-                        }
-                    }
-                },
-                {
-                    $group: {
+                }
+            },
+            {
+                $unwind: "$dentista"
+            },
+            {
+                $replaceRoot: {
+                    newRoot: {
                         _id: "$_id",
-                        products: {
-                            $push: {
-                                id_detalle:"$id_detalle",
-                                color: "$color",
-                                cantidad: "$cantidad",
-                                tooths: "$tooths",
-                                name_producto: "$name_producto",
+                        id_order: "$id_order",
+                        fecha_entrante: "$fecha_entrante",
+                        fecha_saliente: "$fecha_saliente",
+                        name_dentista: "$dentista.name_dentista",
+                        dentista_color: "$dentista.distintivo_color",
+                        name_paciente: "$name_paciente",
+                        comentario: "$comentario",
+                        status: "$status"
 
-                            }
-                        }
-
-                    }
-                },
-                {
-                    $replaceRoot: {
-                        newRoot: {
-
-                            products: "$products"
-
-                        }
                     }
                 }
-            ])
+            },
+        ])
+
+        let order_products = await ordersModel.aggregate([
+            {
+                $match: {
+                    _id: mongoose.Types.ObjectId(_id),
+                },
+            },
+            {
+                $lookup: {
+                    from: detailsOrderModel.collection.name,
+                    localField: 'detalle',
+                    foreignField: '_id',
+                    as: 'detalle'
+                },
+            },
+            {
+                $unwind: "$detalle"
+            },
+            {
+                $lookup: {
+                    from: productModel.collection.name,
+                    localField: 'detalle.producto',
+                    foreignField: '_id',
+                    as: 'producto'
+
+                }
+            },
+            {
+                $unwind: "$producto"
+            },
+            {
+                $replaceRoot: {
+                    newRoot: {
+                        _id: "$_id",
+                        id_detalle: "$detalle._id",
+                        color: "$detalle.color",
+                        cantidad: "$detalle.cantidad",
+                        tooths: "$detalle.tooths",
+                        name_producto: "$producto.name_producto",
+
+
+                    }
+                }
+            },
+            {
+                $group: {
+                    _id: "$_id",
+                    products: {
+                        $push: {
+                            id_detalle: "$id_detalle",
+                            color: "$color",
+                            cantidad: "$cantidad",
+                            tooths: "$tooths",
+                            name_producto: "$name_producto",
+
+                        }
+                    }
+
+                }
+            },
+            {
+                $replaceRoot: {
+                    newRoot: {
+
+                        products: "$products"
+
+                    }
+                }
+            }
+        ])
 
         let data_details = {}
-            for (let item of details_order) {
-                data_details._id=item._id
-                data_details.id_order=item.id_order
-                data_details.fecha_entrante=item.fecha_entrante
+        for (let item of details_order) {
+            data_details._id = item._id
+            data_details.id_order = item.id_order
+            data_details.fecha_entrante = item.fecha_entrante
 
-                data_details.fecha_entrada=item.fecha_entrada
-                data_details.fecha_saliente=item.fecha_saliente
-                data_details.name_dentista=item.name_dentista
-                data_details.dentista_color=item.dentista_color
-                data_details.name_paciente=item.name_paciente
-                data_details.comentario=item.comentario
-                data_details.status=item.status
-
-
-            }
-            for (let item of order_products) {
-                data_details.products=item.products
+            data_details.fecha_entrada = item.fecha_entrada
+            data_details.fecha_saliente = item.fecha_saliente
+            data_details.name_dentista = item.name_dentista
+            data_details.dentista_color = item.dentista_color
+            data_details.name_paciente = item.name_paciente
+            data_details.comentario = item.comentario
+            data_details.status = item.status
 
 
-            }
-            console.log(data_details)
+        }
+        for (let item of order_products) {
+            data_details.products = item.products
 
 
-res.status(200).json({
-    success: true,
-    data: data_details
-})
+        }
+        console.log(data_details)
 
-} catch
-(error)
-{
-    console.log(error)
-    res.status(500).json({
-        success: false,
-        error: error
-    })
 
-}
+        res.status(200).json({
+            success: true,
+            data: data_details
+        })
+
+    } catch
+        (error) {
+        console.log(error)
+        res.status(500).json({
+            success: false,
+            error: error
+        })
+
+    }
 
 }
 //GENERAR PDF
@@ -438,6 +438,42 @@ let add_product = async function (req, res) {
         })
     }
 }
+//ELIMINAR DETALE
+let delete_detail = async function (req, res) {
 
+    let {id_detalle} = req.params
+    let {id_orden} = req.params
 
-module.exports = {new_order, details_order, pdf_generate, data_table, change_status, add_product};
+    console.log(id_detalle)
+    console.log(id_orden)
+
+    try {
+        let array_ordenDetails
+
+        let order = await ordersModel.findById(id_orden)
+        array_ordenDetails = order.detalle
+
+        array_ordenDetails = array_ordenDetails.filter((item) => item != id_detalle)
+
+        order.detalle = array_ordenDetails
+
+        order = await order.save()
+
+        let detalle = await detailsOrderModel.findByIdAndDelete(id_detalle)
+
+        res.status(200).json({
+            success: true,
+            message:"Producto eliminado correctamente"
+        })
+
+    } catch (e) {
+        console.log(e)
+        res.status(500).json({
+            message:"Error al eliminar el producto",
+            success: false,
+            error: e
+        })
+    }
+}
+
+module.exports = {new_order, details_order, pdf_generate, data_table, change_status, add_product, delete_detail};
