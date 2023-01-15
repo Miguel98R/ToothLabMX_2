@@ -189,12 +189,23 @@ $(document).ready(function () {
 
     })
 
-    //EDITAR ORDEN
+    //AGREGAR MAS COMENTARIOS
 
-    $(document.body).on('click', '.edit_order', function () {
-        let id_orden = $(this).attr('id_order')
-        clean_input()
-        $('#edit_orderModal').modal('show')
+    $(document.body).on('change', '.comentarios_details', function () {
+        let id_orden = $(this).attr('id_orden')
+        let comentarios = $(this).val()
+
+        console.log(comentarios)
+
+        api_conection('PUT','/api/orders/edit_data_order/'+id_orden,{comentarios},function (response) {
+            notyf.success(response.message)
+            //draw_modal_details(id_orden)
+
+        },function (response) {
+            notyf.error(response.message)
+            //draw_modal_details(id_orden)
+        })
+
 
     })
 

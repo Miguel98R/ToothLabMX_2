@@ -463,17 +463,82 @@ let delete_detail = async function (req, res) {
 
         res.status(200).json({
             success: true,
-            message:"Producto eliminado correctamente"
+            message: "Producto eliminado correctamente"
         })
 
     } catch (e) {
         console.log(e)
         res.status(500).json({
-            message:"Error al eliminar el producto",
+            message: "Error al eliminar el producto",
             success: false,
             error: e
         })
     }
 }
 
-module.exports = {new_order, details_order, pdf_generate, data_table, change_status, add_product, delete_detail};
+//TODO: ACTUALIZAR ESTE ENDPOINT PARA QUE ACTUALICE TODOS LOS DATOS //
+//EDITAR DATOS
+let edit_data_order = async function (req, res) {
+//    let {new_data_order} = req.body
+
+    let {comentarios} = req.body
+    let {id_orden} = req.params
+
+    try {
+
+
+        let order = await ordersModel.findById(id_orden)
+        order.comentario = comentarios
+        order = order.save()
+
+
+        res.status(200).json({
+            success: true,
+            message: "Comentarios actualizados"
+        })
+
+    } catch (e) {
+        console.log(e)
+        res.status(500).json({
+            message: "Error al actualizar ",
+            success: false,
+            error: e
+        })
+    }
+}
+
+//OBTENER ULTIMA ORDEN CREADA
+let last_order = async function (req, res) {
+
+    try {
+
+
+        let order = await ordersModel.findOne().sort({createdAt:-1}).limit(1)
+        console.log(order)
+
+
+        res.status(200).json({
+            success: true,
+            data:order
+        })
+
+    } catch (e) {
+        console.log(e)
+        res.status(500).json({
+            message: "Error al consultar ultima orden ",
+            success: false,
+            error: e
+        })
+    }
+}
+module.exports = {
+    new_order,
+    details_order,
+    pdf_generate,
+    data_table,
+    change_status,
+    add_product,
+    delete_detail,
+    edit_data_order,
+    last_order
+};

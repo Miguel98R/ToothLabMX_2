@@ -59,8 +59,32 @@ $(document).ready(function() {
         })
 
     }
+
+    let drawLastOrder  = function (){
+
+        api_conection('GET','api/orders/last_order/',{},function (data) {
+
+
+            let order_data = data.data
+
+            for(let item of dentisas_top ){
+
+                $('.see_last_order').append('<div class="card">'
+
+                    +'<div class="card_header"></div>'
+
+                    +'</div>')
+
+            }
+
+
+
+        })
+
+    }
     
 top_5_dentistas()
 top_5_prducts()
+drawLastOrder()
 
 })

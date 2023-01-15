@@ -26,11 +26,7 @@ let menu = [
                 ref: '/orders',
             },
 
-            {
-                icon: 'fas fa-laptop-medical',
-                title: 'Historial',
-                ref: '/history'
-            },
+
 
         ]
     },
@@ -121,14 +117,6 @@ router.get("/dentistas", async (req, res) => {
     })
 })
 
-router.get("/history", async (req, res) => {
-
-    res.render('historial', {
-        title: 'ToothLabMX | Historial',
-        menu: menu,
-        status : 1
-    })
-})
 
 //RUTAS DE LAS VISTAS PARA LA SECCION DE ORDENES
 

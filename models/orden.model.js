@@ -3,7 +3,7 @@ let Schema = mongoose.Schema
 
 let dentista = require('./dentisas.model')
 let detalle = require('./detalle_orden.model')
-
+let moment = require("moment");
 
 let ordenSchema = new Schema ({
 
@@ -40,7 +40,7 @@ let ordenSchema = new Schema ({
     },
     comentario:{
         type:String,
-        required:false
+        required:false,
     },   
     status:{
         type:Number,

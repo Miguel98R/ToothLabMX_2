@@ -189,24 +189,31 @@ let draw_modal_details = function (id) {
 
             + '<div class="row">'
 
-            + '<div class="col-6">'
+            + '<div class="col-4">'
             + '<p class="fw-bold">Folio: <span class="fw-normal"> ' + data_order.id_order + '</span></p>'
             + '<p class="fw-bold">  Fecha de entrada: <span class="fw-normal">' + moment(data_order.fecha_entrante, 'DD-MM-YYYY').format('dddd DD-MMMM-YYYY') + '</span></p>'
             + '<p class="fw-bold"> Fecha salida: <span class="fw-normal">' + moment(data_order.fecha_saliente, 'DD-MM-YYYY').format('dddd DD-MMMM-YYYY') + '</span></p>'
 
 
             + '</div>'
-            + '<div class="col-6">'
+            + '<div class="col-4">'
             + '<p class="fw-bold">  Dentista: <span class="fw-normal">' + data_order.name_dentista + '</span></p>'
             + '<p class="fw-bold">  Paciente: <span class="fw-normal">' + data_order.name_paciente + '</span></p>'
             + '<p class="fw-bold">  Status: <span class="fw-normal">' + status + '</span></p>'
+            + '</div>'
+
+            + '<div class="col-4">'
+            + '<p class="fw-bold">  Comentarios: </p>'
+
+            + '<textarea id_orden="'+data_order._id+'" class="fw-bold comentarios_details"> ' + data_order.comentario + '</textarea>'
+
             + '</div>'
 
             + '</div>'
 
             + '</div>')
 
-        $('.comentario').text(data_order.comentario)
+
 
         for (let item of data_order.products) {
 
@@ -255,7 +262,7 @@ let draw_modal_details = function (id) {
 
             $('.details_product_order').append('<div class="col-4 my-2">'
                 + '<div class="card">'
-                + '<div class="card-header"> '
+                + '<div class="card-header bg-dark text-white"> '
                 + '<div class="row ">'
                 + '<div class="col-8">'
                 + '<p class="fw-bold m-0 p-0 ">' + item.name_producto + '</p>'
