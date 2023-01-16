@@ -10,7 +10,6 @@ $(document).ready(function () {
     $(".date_salida").datepicker({language: "es", format: "dd-mm-yyyy", startDate: 'd'});
 
 
-
     $(".saved_order").click(function () {
         let tooths = $(".btn-check");
         let dentist = $(".dentistas_name").val();
@@ -59,9 +58,6 @@ $(document).ready(function () {
         new_order_details.tooths = tooths_array;
         new_order_details.producto_name = producto_name;
 
-        console.log(new_order);
-        console.log(new_order_details);
-
         api_conection(
             "POST",
             "api/orders/new_order",
@@ -73,7 +69,6 @@ $(document).ready(function () {
             }
         );
     });
-
 
 
     $(".btn-check").click(function () {

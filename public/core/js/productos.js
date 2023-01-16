@@ -99,7 +99,6 @@ $(document).ready(function () {
   let dt_draw = function () {
     api_conection("GET", "api/products/data_dataTables", {}, function (data) {
       data_producto = data.data;
-      console.log("data_dataTables>>>>>>>>", data_producto);
 
       dt.clear();
       dt.rows.add(data_producto).draw();

@@ -86,9 +86,6 @@ let change_Status = async function (req, res) {
   let id = req.params
   let {status} = req.body
 
-  console.log(id)
-  console.log(status)
-
 
   try {
 
@@ -197,7 +194,7 @@ let script_insertColors = async function (req, res) {
 
   try {
     for(let item of colores){
-      console.log(item)
+
 
       let colores = new colorModel({
         name_color:item.name_color

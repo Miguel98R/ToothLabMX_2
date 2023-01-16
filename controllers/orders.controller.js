@@ -73,7 +73,6 @@ let new_order = async function (req, res) {
 
         order = await order.save();
 
-        console.log("id order", order._id);
 
         res.status(200).json({
             success: true,
@@ -221,7 +220,6 @@ let details_order = async function (req, res) {
 
 
         }
-        console.log(data_details)
 
 
         res.status(200).json({
@@ -339,7 +337,6 @@ let data_table = async function (req, res) {
             }
         ]);
 
-        console.log(data_ordenes);
 
         res.status(200).json({
             success: true,
@@ -384,8 +381,6 @@ let add_product = async function (req, res) {
     let {id} = req.params
     let {new_product} = req.body
 
-    console.log(id)
-    console.log(new_product)
 
     try {
 
@@ -404,7 +399,6 @@ let add_product = async function (req, res) {
             tooths: new_product.tooths,
         });
 
-        console.log(details)
 
         details = await details.save();
 
@@ -444,8 +438,6 @@ let delete_detail = async function (req, res) {
     let {id_detalle} = req.params
     let {id_orden} = req.params
 
-    console.log(id_detalle)
-    console.log(id_orden)
 
     try {
         let array_ordenDetails
@@ -513,13 +505,12 @@ let last_order = async function (req, res) {
     try {
 
 
-        let order = await ordersModel.findOne().sort({createdAt:-1}).limit(1)
-        console.log(order)
+        let order = await ordersModel.findOne().sort({createdAt: -1}).limit(1).populate('dentista')
 
 
         res.status(200).json({
             success: true,
-            data:order
+            data: order
         })
 
     } catch (e) {

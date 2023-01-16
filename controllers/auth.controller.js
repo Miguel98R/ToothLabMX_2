@@ -21,9 +21,6 @@ let login_user = async function (req, res) {
             return 0
         }
 
-
-        console.log(user_data.password)
-
         let checkPassword = await compare(password, user_data.password)
         let tokenSession = await tokenSign(user_data)
 
@@ -79,7 +76,7 @@ let registrer_user = async function (req, res) {
 
         })
 
-        console.log(" new_user>>", new_user)
+
 
         new_user = await new_user.save()
 

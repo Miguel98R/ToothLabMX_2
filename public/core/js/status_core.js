@@ -135,9 +135,6 @@ $(document).ready(function () {
         let id_orden = $(this).attr('id_orden')
         let status_actual = $(this).attr('status_actual')
 
-        console.log(status)
-        console.log(id_orden)
-        console.log(status_actual)
 
         if (status_actual == status) {
             notyf.open({type: "warning", message: "Esta orden ya se encuentra en el status seleccionado"});
@@ -194,8 +191,6 @@ $(document).ready(function () {
     $(document.body).on('change', '.comentarios_details', function () {
         let id_orden = $(this).attr('id_orden')
         let comentarios = $(this).val()
-
-        console.log(comentarios)
 
         api_conection('PUT','/api/orders/edit_data_order/'+id_orden,{comentarios},function (response) {
             notyf.success(response.message)
@@ -273,8 +268,6 @@ $(document).ready(function () {
 
 
             let data_order = data.data
-
-            console.log("data_imprimir ---------->>>>>", data_order)
 
             let status = asignament_status(data_order.status)
 

@@ -125,7 +125,7 @@ let dt_draw = function (data_table) {
 
     api_conection("GET", "api/orders/data_dataTables/" + STATUS_BUSQUEDA, {}, function (data) {
         data_query = data.data;
-        console.log("data_dataTables>>>>>>>>", data_query);
+
 
         data_table.clear();
         data_table.rows.add(data_query).draw();
@@ -177,12 +177,8 @@ let draw_modal_details = function (id) {
     api_conection("POST", "api/orders/details_order/" + id, {}, function (data) {
         let data_order = data.data;
 
-        console.log("data_order-------->", data_order)
+
         let button_delete = ''
-
-        console.log("data_order.status -----",data_order.status )
-
-
 
         let status = asignament_status(data_order.status)
         $('.details_general_order').append('<div>'
@@ -191,8 +187,8 @@ let draw_modal_details = function (id) {
 
             + '<div class="col-4">'
             + '<p class="fw-bold">Folio: <span class="fw-normal"> ' + data_order.id_order + '</span></p>'
-            + '<p class="fw-bold">  Fecha de entrada: <span class="fw-normal">' + moment(data_order.fecha_entrante, 'DD-MM-YYYY').format('dddd DD-MMMM-YYYY') + '</span></p>'
-            + '<p class="fw-bold"> Fecha salida: <span class="fw-normal">' + moment(data_order.fecha_saliente, 'DD-MM-YYYY').format('dddd DD-MMMM-YYYY') + '</span></p>'
+            + '<p class="fw-bold">  Fecha de entrada:  <span class="fw-normal">' + moment(data_order.fecha_entrante, 'DD-MM-YYYY').format('dddd DD-MMMM-YYYY') + '</span></p>'
+            + '<p class="fw-bold"> Fecha salida:  <span class="fw-normal">' + moment(data_order.fecha_saliente, 'DD-MM-YYYY').format('dddd DD-MMMM-YYYY') + '</span></p>'
 
 
             + '</div>'
@@ -265,7 +261,7 @@ let draw_modal_details = function (id) {
                 + '<div class="card-header bg-dark text-white"> '
                 + '<div class="row ">'
                 + '<div class="col-8">'
-                + '<p class="fw-bold m-0 p-0 ">' + item.name_producto + '</p>'
+                + '<h6 class="fw-bold m-0 p-0 ">' + item.name_producto + '</h6>'
                 + '</div>'
                 + '<div class="col-4 text-end">'
                 + button_delete
@@ -447,9 +443,6 @@ let add_product = function (id_orden) {
     new_product.color = color_name;
     new_product.tooths = tooths_array;
     new_product.producto_name = producto_name;
-
-    /*  console.log(new_product);
-      console.log(id_orden)*/
 
     api_conection(
         "POST",
