@@ -13,7 +13,7 @@ let ordenSchema = new Schema ({
     },
     name_paciente:{
         type:String,
-        required:true
+        required:false
     },
     detalle:[{
         type:Schema.Types.ObjectId,
