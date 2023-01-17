@@ -40,6 +40,11 @@ $(document).ready(function () {
             return;
         }
 
+        if(name_paciente == "" || name_paciente== undefined){
+            notyf.open({type: "warning", message: "Ingresa el paciente"});
+            return;
+        }
+
         tooths.each((i, element) => {
             if ($(element).prop("checked") == true) {
                 let value = $(element).val();
