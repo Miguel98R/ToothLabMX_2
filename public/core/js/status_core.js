@@ -416,10 +416,9 @@ $(document).ready(function () {
             var ticketHTML = '<div class="card">'
 
                 + '<div class="card-header">'
-                + '<div class="row text-end">'
+                + '<div class="row text-center">'
                 + '<div class="col-12 ">'
-                + '<img class="img-fluid p-0 mx-3" style="max-height:90px;" src="' + logo + '"></img>'
-                + '<h2 class="text-dark mx-2 my-2">Orden de trabajo</h2>'
+                + '<img class="img-fluid p-0 mx-3" style="max-height:80px;" src="' + logo + '"></img>'
                 + '</div>'
 
                 + '</div>'
@@ -433,7 +432,7 @@ $(document).ready(function () {
                 + '</div>'
 
 
-            let headerHTML = "<!doctype html><html lang='es'><head><link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC\" crossorigin=\"anonymous\"></head><body>"
+            let headerHTML = '<!doctype html><html lang="es"><head><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous"></head><body>'
             let footerHTML = "<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js' integrity='sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz' crossorigin='anonymous'></script></body></html>"
 
 

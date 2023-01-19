@@ -1,22 +1,20 @@
 doctype html
 html(lang="es")
-      head
-      include template/headSRC
-        
-      title #{title}
+    head
+        include template/headSRC
+        title #{title}
+    body
+        .container.my-5
 
-      body
-         .container.my-5
-      
-               include template/login
-               
-         
-          
-      include modals/resetContra_Model
-      include modals/resetUser_Model   
-      include template/scripts
-      script( src='./public/core/js/common.js')
-      script( src='./public/core/js/login.js')
+            include template/login
+
+
+
+    include modals/resetContra_Model
+    include modals/resetUser_Model
+    include template/scripts
+    script( src='./public/core/js/common.js')
+    script( src='./public/core/js/login.js')
       
 
   
