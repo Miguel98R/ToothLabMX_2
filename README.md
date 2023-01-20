@@ -17,5 +17,5 @@ ToothLabMX Software para administracion de laboratorios dentales
 
 -Edición de ordenes(Agregar mas productos , elimiar productos . Editar comentarios de orden)
 
-Copyright &copy; 2022. - ToothLabMX v2.1.0  - Desarrollado por: Jose Miguel Rosas Jimenez
+Mike Rosas Copyright &copy; 2020-2022. - ToothLabMX v2.1.0  - Desarrollado por: Jose Miguel Rosas Jimenez
 
