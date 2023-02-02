@@ -65,6 +65,7 @@ $(document).ready(function () {
 
             let order_data = data.data
 
+
             let status = asignament_status(order_data.status)
 
             $('.see_last_order').append('<div class="card text-start">'
@@ -93,6 +94,10 @@ $(document).ready(function () {
                 + '<button status="' + order_data.status + '" id_order="' + order_data._id + '" class="mx-2 btn btn-secondary search_order "> Encontrar Orden</button>'
                 + '</div>'
                 + '</div>')
+
+
+        },function (response) {
+
 
 
         })

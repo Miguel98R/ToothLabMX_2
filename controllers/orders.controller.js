@@ -507,6 +507,13 @@ let last_order = async function (req, res) {
 
         let order = await ordersModel.findOne().sort({createdAt: -1}).limit(1).populate('dentista')
 
+        if(order == null){
+            res.status(404).json({
+                success: false,
+                message:'No has registrado ordenes'
+            })
+            return
+        }
 
         res.status(200).json({
             success: true,
