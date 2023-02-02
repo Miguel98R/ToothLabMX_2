@@ -7,9 +7,9 @@ const bodyParser = require('body-parser')
 const db = require('./db')
 const app = express()
 
-//configuraciones 
+//configuraciones
 
-app.set('port',process.env.PORT || 3006 )
+app.set('port',process.env.PORT || 3005 )
 app.set('appName',process.env.APP_NAME)
 
 app.set('views', path.join(__dirname, 'views'))
@@ -35,3 +35,4 @@ app.listen(app.get('port'), () => {
     console.log("Server corriendo en el puerto:", app.get('port'))
 
 })
+
