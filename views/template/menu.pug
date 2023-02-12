@@ -1,20 +1,15 @@
-h5 Menu
-if menu
-    each val , index in menu
-        .accordion.accordion-flush
-            .accordion-item
-                h2.accordion-header(id="heading_menu_" + index, )
-                    button.accordion-button.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#collapse_menu_' + index, aria-expanded='true' aria-controls='collapse_menu_' + index)
-                        | !{val.title}
-                .accordion-collapse.collapse(aria-labelledby='heading_menu_' + index, data-bs-parent='#accordionMenu', id="collapse_menu_" + index)
-                    .accordion-body
+.panel.one(style="width:95px;").bg-dark
+    .card.bg-dark
+        .card-header(style="border-bottom: 5px solid #999999")
+            h5.text-white.fw-bold Menu
+        .card-body(style="max-height:550px; overflow-y:auto;")
+                if menu
+                    each val , index in menu
                         if(val.elements)
                             each val2, index2 in val.elements
-                                a(href=val2.ref style="width:100%;")
-                                    i(class=val2.icon )
-                                | &nbsp;
-                                | &nbsp;
-                                a(href=val2.ref)
-                                    | !{val2.title}
-                                br
-    
+                                div.p-0(style="width:100%;border-bottom: 3px solid #999")
+                                    a(href=val2.ref style="width:100%;")
+                                        img.my-3(src=val2.img style="max-height:55px;" title=val2.title)
+
+
+
