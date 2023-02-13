@@ -1,13 +1,10 @@
 const express = require('express')
-const checkout = require('../middleware/auth')
-const checkRoleAuth = require('../middleware/roleAuth')
 const router = express.Router()
 
 let logo = "./public/img/logo2.png"
 
 let menu = [
     {
-        title: 'Inicio',
 
         elements: [
             {
@@ -32,13 +29,6 @@ let menu = [
                 title: 'Generar orden',
                 ref: '/orders',
             },
-
-
-        ]
-    },
-    {
-        title: 'Ordenes',
-        elements: [
 
             {
                 icon: 'fas fa-arrow-right',
@@ -82,7 +72,6 @@ let menu = [
                 title: 'Canceladas',
                 ref: '/status_canceladas',
             },
-
 
         ]
     }]

@@ -29,21 +29,16 @@ $(document).ready(function () {
             notyf.open({type: "warning", message: "Seleccione el dentista"});
             return;
         }
+        if(name_paciente == "" || name_paciente== undefined){
+            notyf.open({type: "warning", message: "Ingresa el paciente"});
+            return;
+        }
 
         if (producto_name == "" || producto_name == undefined) {
             notyf.open({type: "warning", message: "Seleccione el producto"});
             return;
         }
 
-        if (color_name == "" || color_name == undefined) {
-            notyf.open({type: "warning", message: "Seleccione el color"});
-            return;
-        }
-
-        if(name_paciente == "" || name_paciente== undefined){
-            notyf.open({type: "warning", message: "Ingresa el paciente"});
-            return;
-        }
 
         tooths.each((i, element) => {
             if ($(element).prop("checked") == true) {
@@ -79,6 +74,8 @@ $(document).ready(function () {
     $(".btn-check").click(function () {
         count_tooth()
     });
+
+
 
     let search = "";
     drawOptionsDentist(search);

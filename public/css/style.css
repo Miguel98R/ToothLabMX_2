@@ -62,12 +62,12 @@ body {
 }
 .one {
 	position: relative;
-	width: 15%;
+
 
 }
 .two {
 	position: relative;
-	width: 85%;
+	width: 100%;
 }
 .menu_img {
     position: relative;

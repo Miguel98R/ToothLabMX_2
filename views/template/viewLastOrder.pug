@@ -1,0 +1,46 @@
+div
+    .card
+        .card-header.p-0.m-0.bg-dark
+            .py-2.m-0
+                .row
+                    .col-6
+                        h5.text-white.mx-2 Ultima orden creada
+                    .col-6
+                        h5.text-white.mx-2.text-end Folio:
+                            span#Folio 23-24-2444
+
+
+        .card-body
+            .row
+                .col-2
+                    div
+
+                        p
+                            span#dentistaOrder MELY
+                            span
+                                button.btn.btn-sm.btn-default(title='Editar')
+                                    i.far.fa-edit
+                .col-2
+                    div
+
+                        p
+                            span#pacienteOrder MELY
+                            span
+                                button.btn.btn-sm.btn-default(title='Editar')
+                                    i.far.fa-edit
+                .col-4
+
+                    div
+                        label
+                            | Fecha entrante:
+                        span#fechaSalienteEntrante MELY
+                .col-4
+                    div
+                        label
+                            | Fecha Saliente
+                        span
+                            button.btn.btn-sm.btn-default(title='Editar')
+                                i.far.fa-edit
+                        input.rounded-pill.border.border-dark( type="text" style="width:95%;"  autocomplete="off")#fechaSalienteOrder
+
+        .card-footer
