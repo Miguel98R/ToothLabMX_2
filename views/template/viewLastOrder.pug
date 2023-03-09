@@ -8,39 +8,57 @@ div
                     .col-6
                         h5.text-white.mx-2.text-end Folio:
                             span#Folio 23-24-2444
-
-
         .card-body
-            .row
-                .col-2
-                    div
+            div.my-3
+                .row
+                    .col-2
+                        div
 
-                        p
-                            span#dentistaOrder MELY
-                            span
-                                button.btn.btn-sm.btn-default(title='Editar')
-                                    i.far.fa-edit
-                .col-2
-                    div
+                            label.fw-bolder DR:
+                            input#dentistaOrder.rounded-pill.border.border-dark(style="width:100%" value="MELY")
 
-                        p
-                            span#pacienteOrder MELY
-                            span
-                                button.btn.btn-sm.btn-default(title='Editar')
-                                    i.far.fa-edit
-                .col-4
+                    .col-2
+                        div
 
-                    div
-                        label
-                            | Fecha entrante:
-                        span#fechaSalienteEntrante MELY
-                .col-4
-                    div
-                        label
-                            | Fecha Saliente
-                        span
-                            button.btn.btn-sm.btn-default(title='Editar')
-                                i.far.fa-edit
-                        input.rounded-pill.border.border-dark( type="text" style="width:95%;"  autocomplete="off")#fechaSalienteOrder
+                            label.fw-bolder PX:
+                            input#pacienteOrder.rounded-pill.border.border-dark(style="width:100%" value="MELY")
+
+                    .col-4
+
+                        div
+                            label.fw-bolder Entrada:
+                            input#fechaSalienteEntrante.rounded-pill.border.border-dark(style="width:100%" )
+
+                    .col-4
+                        div
+                            label.fw-bolder Fecha Saliente:
+                            input.rounded-pill.border.border-dark( type="text" style="width:95%;"  autocomplete="off")#fechaSalienteOrder
+
+
+            div.my-3
+                .row
+                    .col-8
+                        div
+
+                            label.fw-bolder Producto:
+                            input#productoLast.rounded-pill.border.border-dark(style="width:100%" value="MELY")
+
+                    .col-4
+                        div
+
+                            label.fw-bolder Color
+                            input#colorLast.rounded-pill.border.border-dark(style="width:100%" value="MELY")
+
+            div.my-3
+                .row.text-center
+                    .col-12
+                    label PZ
+                    div#gridProductos
+            div.my-3
+                .row.text-center
+                    .col-12
+                        label Comentarios
+                        textarea#comentLast.border.border-dark(style="width:95%;" name="", cols="5", rows="2" autocomplete="off")
+
 
         .card-footer

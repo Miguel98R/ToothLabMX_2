@@ -75,10 +75,57 @@ $(document).ready(function () {
         count_tooth()
     });
 
+    let drawLastOrder = function () {
+
+        api_conection('GET', 'api/orders/last_order/', {}, function (data) {
+
+
+            let order_data = data.data
+
+
+            let status = asignament_status(order_data.status)
+
+            $('.see_last_order').append('<div class="card text-start">'
+
+                + '<div class="card_header bg-dark text-white text-center py-2">'
+                + '<h5>Ultima orden creada</h5>'
+                + '</div>'
+                + '<div class="card_body p-2">'
+                + '<div class="row">'
+                + '<div class="col-6">'
+                + '<p class="fw-bold">Folio: <mark class="fw-normal"> ' + order_data.id_order + '</mark></p>'
+                + '<p class="fw-bold">Fecha Entrada: <mark class="fw-normal"> ' + moment(order_data.fecha_entrante, 'DD-MM-YYYY').format('dddd DD-MMMM-YYYY') + '</mark></p>'
+                + '<p class="fw-bold">Fecha Salida: <mark class="fw-normal"> ' + moment(order_data.fecha_saliente, 'DD-MM-YYYY').format('dddd DD-MMMM-YYYY') + '</mark></p>'
+                + '</div>'
+                + '<div class="col-6">'
+                + '<p class="fw-bold">Dentista: <mark class="fw-normal" style="color:' + order_data.dentista.distintivo_color + ';"> ' + order_data.dentista.name_dentista + '</mark></p>'
+                + '<p class="fw-bold">Paciente: <mark class="fw-normal"> ' + order_data.name_paciente + '</mark></p>'
+                + '<p class="fw-bold">Status: <mark class="fw-normal"> ' + status + '</mark></p>'
+
+                + '</div>'
+                + '</div>'
+
+                + '</div>'
+                + '<div class="card_footer text-center py-2">'
+                + '<button id_order="' + order_data._id + '" class="btn btn-info see_details mx-2 "> Ver Orden</button>'
+                + '<button status="' + order_data.status + '" id_order="' + order_data._id + '" class="mx-2 btn btn-secondary search_order "> Encontrar Orden</button>'
+                + '</div>'
+                + '</div>')
+
+
+        },function (response) {
+
+
+
+        })
+
+    }
+
 
 
     let search = "";
     drawOptionsDentist(search);
     drawOptionsProducto(search);
     drawOptionsColor(search);
+    drawLastOrder()
 });

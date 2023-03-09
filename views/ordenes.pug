@@ -4,9 +4,7 @@ html(lang="es")
     include template/headSRC
     title #{title}
     body
-        .loading.show
-            p Cargando...
-            .spin
+
 
         include template/nav
         #panelContainer
@@ -18,7 +16,7 @@ html(lang="es")
 
 
                 .row.my-2.mx-1
-                    .col-7.p-0.m-0
+                    .col-6.p-0.m-0
                         .card
                             .card-header.p-0.m-0.bg-dark
                                 .py-2.m-0
@@ -63,7 +61,7 @@ html(lang="es")
                                 button.saved_order.btn.btn-success
                                     i.fas.fa-paper-plane
                                     |     Crear orden
-                    .col-5.p-0.m-0
+                    .col-6.p-0.m-0
                         include template/viewLastOrder
 
 

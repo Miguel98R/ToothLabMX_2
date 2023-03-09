@@ -1,12 +1,10 @@
-.panel.one(style="width:90px;").bg-dark
+.panel.one(style="width:95px;").bg-dark
     .card.bg-dark
         .card-header.bg-dark.text-start
             h6.text-white.fw-bold Menu
-        .card-body(style="max-height:750px; overflow-y:auto;")
+        .card-body(style="max-height:660px; overflow-y:auto;")
                 if menu
-                    each val , index in menu
-                        if(val.elements)
-                            each val2, index2 in val.elements
+                            each val2, index2 in menu
                                 div.p-0.menu_img(style="width:100%;border-bottom: 3px solid #999")
                                     a(href=val2.ref style="width:100%;")
                                         img.my-3(src=val2.img style="max-height:50px;" title=val2.title)

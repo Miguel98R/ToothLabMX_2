@@ -29,7 +29,7 @@ $(document).ready(function () {
 
                 localStorage.setItem('TOKEN', token)
                 
-                    location.href = '/panel'
+                    location.href = '/orders'
             }
 
         }, function (response) {

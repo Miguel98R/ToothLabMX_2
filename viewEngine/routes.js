@@ -3,16 +3,14 @@ const router = express.Router()
 
 let logo = "./public/img/logo2.png"
 
-let menu = [
-    {
-
-        elements: [
+let menu =  [
             {
-                icon: 'fas fa-tachometer-alt',
+                icon: 'far fa-plus-square',
                 img: './public/img/iconsMenu/ordenes.png',
-                title: 'Dashboard',
-                ref: '/panel'
-            }, {
+                title: 'Generar orden',
+                ref: '/orders',
+            },
+            {
                 icon: 'fas fa-teeth',
                 img: './public/img/iconsMenu/products.png',
                 title: 'Productos',
@@ -23,12 +21,7 @@ let menu = [
                 title: 'Dentistas',
                 ref: '/dentistas'
             },
-            {
-                icon: 'far fa-plus-square',
-                img: './public/img/iconsMenu/ordenes.png',
-                title: 'Generar orden',
-                ref: '/orders',
-            },
+
 
             {
                 icon: 'fas fa-arrow-right',
@@ -73,8 +66,8 @@ let menu = [
                 ref: '/status_canceladas',
             },
 
-        ]
-    }]
+
+    ]
 
 
 // rutas para visualizar
