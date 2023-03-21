@@ -190,9 +190,10 @@ $(document).ready(function () {
 
     $(document.body).on('change', '.comentarios_details', function () {
         let id_orden = $(this).attr('id_orden')
-        let comentarios = $(this).val()
+        let body = {}
+            body.comentario = $(this).val()
 
-        api_conection('PUT','/api/orders/edit_data_order/'+id_orden,{comentarios},function (response) {
+        api_conection('PUT','/api/orders/edit_data_order/'+id_orden,{body},function (response) {
             notyf.success(response.message)
             //draw_modal_details(id_orden)
 

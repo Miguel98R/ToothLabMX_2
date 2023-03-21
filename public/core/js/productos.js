@@ -36,11 +36,11 @@ $(document).ready(function () {
         if (row.status) {
           return '<button status="true" id_product="' +
             data +
-            '" class="btn btn-danger btn-sm change_status my-2 mx-2 ">Inabilitar</button>'
+            '" class="btn btn-danger btn-block change_status my-2 mx-2 ">Inabilitar</button>'
           
         } else {
           return '<button  status="false" id_product="' +data +
-            '" class="btn btn-success btn-sm change_status my-2 mx-2 ">Habilitar</button>'
+            '" class="btn btn-block btn-success btn-sm change_status my-2 mx-2 ">Habilitar</button>'
           
         }
       },

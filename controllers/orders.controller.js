@@ -468,25 +468,93 @@ let delete_detail = async function (req, res) {
     }
 }
 
-//TODO: ACTUALIZAR ESTE ENDPOINT PARA QUE ACTUALICE TODOS LOS DATOS //
+//EDITAR PRODUCTO
+let editProductDetail = async function (req, res) {
+
+    let {id_detalle} = req.params
+    let {body} = req.body
+
+
+    try {
+
+        let product = await productModel.findOne({
+            name_producto: new RegExp(body.producto_name, "i"),
+        });
+
+        product.cuenta_uso = product.cuenta_uso + 1;
+        product = await product.save();
+
+
+        let id_producto = product._id;
+
+        let detalle = await detailsOrderModel.findById(id_detalle)
+
+        detalle.producto = id_producto
+        detalle.color = body.color
+        detalle.tooths = body.tooths
+        detalle.cantidad = body.cantidad
+
+        await detalle.save()
+
+        res.status(200).json({
+            success: true,
+            message: "Producto editado "
+        })
+
+    } catch (e) {
+        console.log(e)
+        res.status(500).json({
+            message: "Error al editar el producto",
+            success: false,
+            error: e
+        })
+    }
+}
+
+
 //EDITAR DATOS
 let edit_data_order = async function (req, res) {
-//    let {new_data_order} = req.body
 
-    let {comentarios} = req.body
+    let {body} = req.body
+
     let {id_orden} = req.params
 
     try {
 
 
         let order = await ordersModel.findById(id_orden)
-        order.comentario = comentarios
-        order = order.save()
+        let id_dentista
+
+        if (!body.name_paciente) {
+            order.dentista = order.dentista
+
+        } else {
+            let dentist = await dentistModel.findOne({
+                name_dentista: new RegExp(body.dentista, "i"),
+            });
+
+            dentist.cont_ordenes = dentist.cont_ordenes + 1;
+            dentist = await dentist.save();
+
+            order.dentista = dentist._id;
+
+
+
+        }
+
+
+        body.name_paciente != undefined ? order.name_paciente = body.name_paciente : order.name_paciente = order.name_paciente
+        body.fecha_entrante != undefined ? order.fecha_entrante = body.fecha_entrante : order.fecha_entrante = order.fecha_entrante
+        body.fecha_saliente != undefined ? order.fecha_saliente = body.fecha_saliente : order.fecha_saliente = order.fecha_saliente
+        body.comentario != undefined ? order.comentario = body.comentario : order.comentario = order.comentario
+
+
+        await order.save()
 
 
         res.status(200).json({
             success: true,
-            message: "Comentarios actualizados"
+            message: "Datos actualizados"
         })
 
     } catch (e) {
@@ -505,12 +573,92 @@ let last_order = async function (req, res) {
     try {
 
 
-        let order = await ordersModel.findOne().sort({createdAt: -1}).limit(1).populate('dentista')
+        let order = await ordersModel.aggregate([
+            {
+                $lookup: {
+                    from: dentistModel.collection.name,
+                    localField: 'dentista',
+                    foreignField: '_id',
+                    as: 'dentista'
+                }
+            },
+            {
+                $unwind: '$dentista'
+            },
+            {
+                $lookup: {
+                    from: detailsOrderModel.collection.name,
+                    localField: 'detalle',
+                    foreignField: '_id',
+                    as: 'detalle'
+                }
+            },
+            {
+                $unwind: '$detalle'
+            },
+            {
+                $lookup: {
+                    from: productModel.collection.name,
+                    localField: 'detalle.producto',
+                    foreignField: '_id',
+                    as: 'detalle.producto'
+                }
+            },
+            {
+                $unwind: '$detalle.producto'
+            },
+            {
+                $group: {
+                    _id: {
+                        paciente: '$name_paciente',
+                        dentista: '$dentista.name_dentista',
+                        fecha_entrante: '$fecha_entrante',
+                        fecha_saliente: '$fecha_saliente',
+                        folio: '$id_order',
+                        comentario: '$comentario',
+                        _id: '$_id',
+                        status: '$status',
+                        createdAt: '$createdAt'
+                    },
+                    items: {
+                        $push: {
+                            detalle: '$detalle',
+                        }
+                    }
+                }
+            },
+            {
+                $replaceRoot: {
+                    newRoot: {
+                        paciente: '$_id.paciente',
+                        dentista: '$_id.dentista',
+                        fecha_entrante: '$_id.fecha_entrante',
+                        fecha_saliente: '$_id.fecha_saliente',
+                        folio: '$_id.folio',
+                        comentario: '$_id.comentario',
+                        _id: '$_id._id',
+                        status: '$_id.status',
+                        createdAt: '$_id.createdAt',
+                        detalle: '$items'
+                    }
+                }
 
-        if(order == null){
+            },
+
+            {
+                $sort: {
+                    'createdAt': -1
+                }
+            },
+
+
+        ]).limit(1)
+
+        if (order == null) {
             res.status(404).json({
                 success: false,
-                message:'No has registrado ordenes'
+                data: order,
+                message: 'No has registrado ordenes'
             })
             return
         }
@@ -529,6 +677,7 @@ let last_order = async function (req, res) {
         })
     }
 }
+
 module.exports = {
     new_order,
     details_order,
@@ -538,5 +687,6 @@ module.exports = {
     add_product,
     delete_detail,
     edit_data_order,
-    last_order
+    last_order,
+    editProductDetail
 };

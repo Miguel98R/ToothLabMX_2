@@ -216,7 +216,7 @@ let draw_modal_details = function (id) {
             if(data_order.status == 6 || data_order.status == 7 || data_order.status == 4  ) {
                 button_delete = ''
             }else{
-                button_delete = '<button id_orden="'+data_order._id+'" id_detalle="'+item.id_detalle+'" class="btn btn-danger  delete_product btn_delete_'+item.id_detalle+'"><i class="fas fa-trash-alt"></i></buttonid_orden>'
+                button_delete = '<button id_orden="'+data_order._id+'" id_detalle="'+item.id_detalle+'" class="btn btn-danger  delete_product btn_delete_'+item.id_detalle+'"><i class="fas fa-trash-alt"></i></button>'
             }
 
 
@@ -323,14 +323,17 @@ let clean_input = function () {
     $(".dentistas_name").val('');
     $(".paciente_name").val('');
     $(".date_salida").val('');
-    $(".count_tooths").text(0);
+    $("#count_tooths").text(0);
     $(".producto_name").val('');
     $(".color_name").val('');
     $(".comntario_order").val('');
+    $("#producto_nameEdit").val('');
+    $("#color_nameEdit").val('');
 
 };
 
-let count_tooth = function () {
+let count_tooth = function (typeBtn) {
+
     let tooths = $(".btn-check");
 
     let contador_tooths = 0;
@@ -341,7 +344,15 @@ let count_tooth = function () {
         }
     });
 
-    $(".count_tooths").text(contador_tooths);
+    if(typeBtn == "edit"){
+        $("#countEdit").text(contador_tooths);
+
+    }else{
+
+        $(".count_tooths").text(contador_tooths);
+
+    }
+
 
 }
 
@@ -425,10 +436,6 @@ let add_product = function (id_orden) {
         return;
     }
 
-    if (color_name == "" || color_name == undefined) {
-        notyf.open({type: "warning", message: "Seleccione el color"});
-        return;
-    }
 
     tooths.each((i, element) => {
         if ($(element).prop("checked") == true) {

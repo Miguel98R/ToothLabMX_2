@@ -58,19 +58,19 @@ $(document).ready(function () {
                     return (
                         '<button id_dentista="' +
                         data +
-                        '" class="btn btn-primary btn-sm see_details my-2 mx-2 ">Ver datos</button>' +
+                        '" class="btn btn-primary btn-block see_details my-2 mx-2 ">Ver datos</button>' +
                         '<button status="true" id_dentista="' +
                         data +
-                        '" class="btn btn-danger btn-sm change_status my-2 mx-2 ">Inabilitar</button>'
+                        '" class="btn btn-danger btn-block change_status my-2 mx-2 ">Inabilitar</button>'
                     );
                 } else {
                     return (
                         '<button id_dentista="' +
                         data +
-                        '" class="btn btn-primary btn-sm see_details my-2 mx-2 ">Ver datos</button>' +
+                        '" class="btn btn-primary btn-block see_details my-2 mx-2 ">Ver datos</button>' +
                         '<button  status="false" id_dentista="' +
                         data +
-                        '" class="btn btn-success btn-sm change_status my-2 mx-2 ">Habilitar</button>'
+                        '" class="btn btn-success btn-block change_status my-2 mx-2 ">Habilitar</button>'
                     );
                 }
             },

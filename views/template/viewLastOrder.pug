@@ -6,59 +6,61 @@ div
                     .col-6
                         h5.text-white.mx-2 Ultima orden creada
                     .col-6
-                        h5.text-white.mx-2.text-end Folio:
-                            span#Folio 23-24-2444
-        .card-body
-            div.my-3
+                        h6.text-white.mx-2.text-end Folio :
+                            span.mx-1#Folio
+        .card-body#inputsLastOrder
+            div.my-2
                 .row
-                    .col-2
+                    .col-3
                         div
 
                             label.fw-bolder DR:
-                            input#dentistaOrder.rounded-pill.border.border-dark(style="width:100%" value="MELY")
-
-                    .col-2
+                            input#dentistaOrder.rounded-pill.form-control.border.border-dark.editDataOrder(list='dentista_option'  value="MELY")
+                            datalist#dentista_option
+                    .col-3
                         div
 
                             label.fw-bolder PX:
-                            input#pacienteOrder.rounded-pill.border.border-dark(style="width:100%" value="MELY")
+                            input#pacienteOrder.rounded-pill.form-control.border.border-dark.editDataOrder( )
 
-                    .col-4
+                    .col-3
 
                         div
                             label.fw-bolder Entrada:
-                            input#fechaSalienteEntrante.rounded-pill.border.border-dark(style="width:100%" )
+                            input#fechaEntranteLast.rounded-pill.form-control.border.border-dark( disabled )
 
-                    .col-4
+                    .col-3
                         div
                             label.fw-bolder Fecha Saliente:
-                            input.rounded-pill.border.border-dark( type="text" style="width:95%;"  autocomplete="off")#fechaSalienteOrder
+                            input#fechaSalienteLast.rounded-pill.form-control.border.border-dark.editDataOrder( type="text" autocomplete="off")
 
 
-            div.my-3
-                .row
-                    .col-8
-                        div
 
-                            label.fw-bolder Producto:
-                            input#productoLast.rounded-pill.border.border-dark(style="width:100%" value="MELY")
-
-                    .col-4
-                        div
-
-                            label.fw-bolder Color
-                            input#colorLast.rounded-pill.border.border-dark(style="width:100%" value="MELY")
-
-            div.my-3
-                .row.text-center
-                    .col-12
-                    label PZ
-                    div#gridProductos
-            div.my-3
-                .row.text-center
+            div.my-3(style="overflow-y:scroll;max-height: 335px;")
+                .row#gridProductos
+            div.my-3.text-center
+                button#addProduct.my-1.btn.btn-secondary.btn-block Agregar producto
+                .row.text-center.my-1
                     .col-12
                         label Comentarios
-                        textarea#comentLast.border.border-dark(style="width:95%;" name="", cols="5", rows="2" autocomplete="off")
+                        textarea#comentLast.form-control.border.border-dark.editDataOrder( name="", cols="5", rows="2" autocomplete="off")
+                .row.my-4
+                    .col-12
+                        h6 Cambiar status
+                        div
+                            .form-group
+                                label Status actual:
+                                select#statusLast.change_status.custom-select.rounded-pill.form-control.border.border-dark
+                                    option.text-primary(value=0) Selecciona un status
+                                    option.text-primary(value=1) Entrante
+                                    option.text-warning(value=2) A prueba
+                                    option.text-secondary(value=3) Regresada
+                                    option.text-success(value=4) Terminada
+                                    option.text-info(value=5) Con cambios
+
+                                    option.text-danger(value=6) Cnacelada con costos
+                                    option.text-danger(value=7) Cancelada
+
 
 
         .card-footer
