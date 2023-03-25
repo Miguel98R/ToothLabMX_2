@@ -35,17 +35,24 @@ div
                             input#fechaSalienteLast.rounded-pill.form-control.border.border-dark.editDataOrder( type="text" autocomplete="off")
 
 
+            div.my-4
+                h6 Productos
+            div#productos.my-3(style="overflow-y:scroll;max-height: 190px;")
 
-            div.my-3(style="overflow-y:scroll;max-height: 335px;")
+
+
                 .row#gridProductos
             div.my-3.text-center
-                button#addProduct.my-1.btn.btn-secondary.btn-block Agregar producto
+
                 .row.text-center.my-1
                     .col-12
                         label Comentarios
                         textarea#comentLast.form-control.border.border-dark.editDataOrder( name="", cols="5", rows="2" autocomplete="off")
                 .row.my-4
-                    .col-12
+                    .col-6
+                         button.add_products#addProduct.my-1.btn.btn-secondary.btn-block Agregar producto
+
+                    .col-6
                         h6 Cambiar status
                         div
                             .form-group
@@ -63,4 +70,4 @@ div
 
 
 
-        .card-footer
+

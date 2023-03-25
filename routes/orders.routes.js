@@ -44,6 +44,6 @@ router.put("/edit_data_order/:id_orden", edit_data_order);
 router.put("/editProductDetail/:id_detalle", editProductDetail);
 
 //ULTIMA ORDER
-router.get("/last_order/", last_order);
+router.post("/last_order/", last_order);
 
 module.exports = router;

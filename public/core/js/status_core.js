@@ -252,6 +252,8 @@ $(document).ready(function () {
 
     })
 
+
+
     $('.save_newProduct').click(function () {
         let id_orden = $(this).attr('id_orden')
         add_product(id_orden)

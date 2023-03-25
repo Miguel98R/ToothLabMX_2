@@ -570,89 +570,183 @@ let edit_data_order = async function (req, res) {
 //OBTENER ULTIMA ORDEN CREADA
 let last_order = async function (req, res) {
 
+    let {search} = req.body
+
+
     try {
-
-
-        let order = await ordersModel.aggregate([
-            {
-                $lookup: {
-                    from: dentistModel.collection.name,
-                    localField: 'dentista',
-                    foreignField: '_id',
-                    as: 'dentista'
-                }
-            },
-            {
-                $unwind: '$dentista'
-            },
-            {
-                $lookup: {
-                    from: detailsOrderModel.collection.name,
-                    localField: 'detalle',
-                    foreignField: '_id',
-                    as: 'detalle'
-                }
-            },
-            {
-                $unwind: '$detalle'
-            },
-            {
-                $lookup: {
-                    from: productModel.collection.name,
-                    localField: 'detalle.producto',
-                    foreignField: '_id',
-                    as: 'detalle.producto'
-                }
-            },
-            {
-                $unwind: '$detalle.producto'
-            },
-            {
-                $group: {
-                    _id: {
-                        paciente: '$name_paciente',
-                        dentista: '$dentista.name_dentista',
-                        fecha_entrante: '$fecha_entrante',
-                        fecha_saliente: '$fecha_saliente',
-                        folio: '$id_order',
-                        comentario: '$comentario',
-                        _id: '$_id',
-                        status: '$status',
-                        createdAt: '$createdAt'
-                    },
-                    items: {
-                        $push: {
-                            detalle: '$detalle',
+        let order
+        if(search == undefined || search == ''){
+            order = await ordersModel.aggregate([
+                {
+                    $lookup: {
+                        from: dentistModel.collection.name,
+                        localField: 'dentista',
+                        foreignField: '_id',
+                        as: 'dentista'
+                    }
+                },
+                {
+                    $unwind: '$dentista'
+                },
+                {
+                    $lookup: {
+                        from: detailsOrderModel.collection.name,
+                        localField: 'detalle',
+                        foreignField: '_id',
+                        as: 'detalle'
+                    }
+                },
+                {
+                    $unwind: '$detalle'
+                },
+                {
+                    $lookup: {
+                        from: productModel.collection.name,
+                        localField: 'detalle.producto',
+                        foreignField: '_id',
+                        as: 'detalle.producto'
+                    }
+                },
+                {
+                    $unwind: '$detalle.producto'
+                },
+                {
+                    $group: {
+                        _id: {
+                            paciente: '$name_paciente',
+                            dentista: '$dentista.name_dentista',
+                            fecha_entrante: '$fecha_entrante',
+                            fecha_saliente: '$fecha_saliente',
+                            folio: '$id_order',
+                            comentario: '$comentario',
+                            _id: '$_id',
+                            status: '$status',
+                            createdAt: '$createdAt'
+                        },
+                        items: {
+                            $push: {
+                                detalle: '$detalle',
+                            }
                         }
                     }
-                }
-            },
-            {
-                $replaceRoot: {
-                    newRoot: {
-                        paciente: '$_id.paciente',
-                        dentista: '$_id.dentista',
-                        fecha_entrante: '$_id.fecha_entrante',
-                        fecha_saliente: '$_id.fecha_saliente',
-                        folio: '$_id.folio',
-                        comentario: '$_id.comentario',
-                        _id: '$_id._id',
-                        status: '$_id.status',
-                        createdAt: '$_id.createdAt',
-                        detalle: '$items'
+                },
+                {
+                    $replaceRoot: {
+                        newRoot: {
+                            paciente: '$_id.paciente',
+                            dentista: '$_id.dentista',
+                            fecha_entrante: '$_id.fecha_entrante',
+                            fecha_saliente: '$_id.fecha_saliente',
+                            folio: '$_id.folio',
+                            comentario: '$_id.comentario',
+                            _id: '$_id._id',
+                            status: '$_id.status',
+                            createdAt: '$_id.createdAt',
+                            detalle: '$items'
+                        }
                     }
-                }
 
-            },
+                },
 
-            {
-                $sort: {
-                    'createdAt': -1
-                }
-            },
+                {
+                    $sort: {
+                        'createdAt': -1
+                    }
+                },
 
 
-        ]).limit(1)
+            ]).limit(1)
+        }else{
+            order = await ordersModel.aggregate([
+                {
+                    $match:{
+                        id_order:search
+                    }
+                },
+                {
+                    $lookup: {
+                        from: dentistModel.collection.name,
+                        localField: 'dentista',
+                        foreignField: '_id',
+                        as: 'dentista'
+                    }
+                },
+                {
+                    $unwind: '$dentista'
+                },
+                {
+                    $lookup: {
+                        from: detailsOrderModel.collection.name,
+                        localField: 'detalle',
+                        foreignField: '_id',
+                        as: 'detalle'
+                    }
+                },
+                {
+                    $unwind: '$detalle'
+                },
+                {
+                    $lookup: {
+                        from: productModel.collection.name,
+                        localField: 'detalle.producto',
+                        foreignField: '_id',
+                        as: 'detalle.producto'
+                    }
+                },
+                {
+                    $unwind: '$detalle.producto'
+                },
+                {
+                    $group: {
+                        _id: {
+                            paciente: '$name_paciente',
+                            dentista: '$dentista.name_dentista',
+                            fecha_entrante: '$fecha_entrante',
+                            fecha_saliente: '$fecha_saliente',
+                            folio: '$id_order',
+                            comentario: '$comentario',
+                            _id: '$_id',
+                            status: '$status',
+                            createdAt: '$createdAt'
+                        },
+                        items: {
+                            $push: {
+                                detalle: '$detalle',
+                            }
+                        }
+                    }
+                },
+                {
+                    $replaceRoot: {
+                        newRoot: {
+                            paciente: '$_id.paciente',
+                            dentista: '$_id.dentista',
+                            fecha_entrante: '$_id.fecha_entrante',
+                            fecha_saliente: '$_id.fecha_saliente',
+                            folio: '$_id.folio',
+                            comentario: '$_id.comentario',
+                            _id: '$_id._id',
+                            status: '$_id.status',
+                            createdAt: '$_id.createdAt',
+                            detalle: '$items'
+                        }
+                    }
+
+                },
+
+                {
+                    $sort: {
+                        'createdAt': -1
+                    }
+                },
+
+
+            ]).limit(1)
+
+        }
+
+
+
 
         if (order == null) {
             res.status(404).json({

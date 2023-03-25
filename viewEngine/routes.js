@@ -81,7 +81,6 @@ router.get("/", async (req, res) => {
 
 router.get("/panel", async (req, res) => {
 
-    console.log("----------------------------", menu)
     res.render('panel', {
             title: 'ToothLabMX | Panel',
             menu,

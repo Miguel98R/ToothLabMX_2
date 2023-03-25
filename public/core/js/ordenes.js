@@ -18,7 +18,8 @@ $(document).ready(function () {
         let name_paciente = $(".paciente_name").val();
         let fecha_entrada = $(".date_entrada").val();
         let fecha_salida = $(".date_salida").val();
-        let cantidad = $(".count_tooths").text();
+        let cantidad = $("#ToothsOrder").text();
+
         let producto_name = $(".producto_name").val();
         let color_name = $(".color_name").val();
         let comentario = $(".comntario_order").val();
@@ -68,7 +69,7 @@ $(document).ready(function () {
                 let data_order = data.data;
                 notyf.success("Orden  " + data_order.id_order + "  creada con exito");
                 clean_input();
-                drawLastOrder()
+                drawLastOrder(data_order.id_order)
             }
         );
     });
@@ -80,149 +81,11 @@ $(document).ready(function () {
 
     //---------------------- EDITAR ULTIMA ORDER ---------------------------------//
 
-    let drawLastOrder = function () {
 
-        api_conection('GET', 'api/orders/last_order/', {}, function (data) {
-
-
-            let order_data = data.data
-            console.log(order_data)
-            for (let item of order_data) {
-
-                $('#dentistaOrder').val(item.dentista)
-                $('#Folio').text(item.folio)
-                $('#pacienteOrder').val(item.paciente)
-                $('#fechaEntranteLast').val(item.fecha_entrante)
-
-
-                $('#fechaSalienteLast').val(item.fecha_saliente)
-
-
-
-                $('#comentLast').val(item.comentario)
-                $('#statusLast').val(item.status)
-
-                $('#statusLast').attr('id_orden', item._id)
-                $('#statusLast').attr('status_actual', item.status)
-
-                $('#gridProductos').html('')
-
-                $('.editDataOrder').attr('id_orden', item._id)
-
-
-
-                for (let jtem of item.detalle) {
-
-                    let button_delete
-                    let button_edit
-
-                    if (item.status == 6 || item.status == 7 || item.status == 4) {
-                        button_delete = ''
-                        button_edit = ''
-
-
-                    } else {
-                        button_delete = '<button id_orden="' + item._id + '" id_detalle="' + jtem.detalle._id + '" class=" my-1 btn btn-block btn-danger  delete_product btn_delete_' + jtem.detalle._id + '"><i class="fas fa-trash-alt"></i></button>'
-                        button_edit = '<button colorEdit="' + jtem.detalle.color + '" productoEdit="' + jtem.detalle.producto.name_producto + '" dientesEdit="' + jtem.detalle.tooths + '" id_orden="' + item._id + '" id_detalle="' + jtem.detalle._id + '" class=" my-1 btn btn-warning  btn-block  edit_product btn_edit_' + jtem.detalle._id + '"><i class="fas fa-edit fa-rotate-270 fa-sm"></i></button>'
-                    }
-
-                    let tooths_10_20 = ''
-                    let tooths_30_40 = ''
-
-                    for (let od of jtem.detalle.tooths) {
-
-                        let parrafo_od_10_20 = ''
-                        let parrafo_od_30_40 = ''
-
-                        od = Number(od)
-
-                        if (od >= 11 && od <= 18) {
-                            parrafo_od_10_20 = '<span class="text-primary fs-5">' + od + '&nbsp;  </span>'
-
-                        }
-                        if (od >= 21 && od <= 28) {
-                            parrafo_od_10_20 = '<span class="text-danger fs-5">' + od + '&nbsp;    </span>'
-
-                        }
-                        if (od >= 31 && od <= 38) {
-                            parrafo_od_30_40 = '<span class="text-warning fs-5">' + od + '&nbsp;   </span>'
-
-                        }
-                        if (od >= 41 && od <= 48) {
-                            parrafo_od_30_40 = '<span class="text-success fs-5">' + od + '&nbsp;   </span>'
-
-                        }
-
-                        tooths_10_20 = tooths_10_20 + parrafo_od_10_20
-                        tooths_30_40 = tooths_30_40 + parrafo_od_30_40
-
-                    }
-
-
-                    $('#gridProductos').append('<div class="col-6 my-2">'
-                        + '<div class="card">'
-                        + '<div class="card-header bg-dark text-white"> '
-                        + '<div class="row ">'
-                        + '<div class="col-8">'
-                        + '<h6 class="fw-bold m-0 p-0 ">' + jtem.detalle.producto.name_producto + '</h6>'
-                        + '</div>'
-                        + '<div class="col-4 text-end">'
-                        + button_delete
-                        + button_edit
-                        + '</div>'
-                        + '</div>'
-                        + '</div>'
-                        + '<div class="card-body text-center"> '
-                        + '<small class="fw-bold">OD</small>'
-                        + '<p>--------------------------</p>'
-                        + tooths_10_20
-                        + '<br>'
-                        + tooths_30_40
-                        + '<p>--------------------------</p>'
-                        + '</div>'
-                        + '<div class="card-footer"> '
-
-                        + '<div class="row text-center">'
-                        + '<div class="col-6">'
-                        + '<small class="fw-bold">CANTIDAD</small>'
-                        + '<p class="fw-normal">' + jtem.detalle.cantidad + '</p>'
-                        + '</div>'
-                        + '<div class="col-6">'
-                        + '<small class="fw-bold">COLOR</small>'
-                        + '<p class="fw-normal">' + jtem.detalle.color + '</p>'
-                        + '</div>'
-                        + '</div>'
-                        + '</div>'
-                        + '</div>'
-
-                        + '</div>')
-
-
-                }
-
-
-            }
-
-
-        }, function (response) {
-
-            let order_data = response.data.data
-            console.log(order_data)
-
-            if (order_data == undefined) {
-                $('#inputsLastOrder').html('')
-                $('#inputsLastOrder').append('<div class="alert alert-warning" role="alert">' +
-                    'Aun no realizas ordenes ' +
-                    '</div>')
-
-            }
-
-        })
-
-    }
 
     $('.editDataOrder').change(function () {
         let id_orden = $(this).attr('id_orden')
+        let folio = $(this).attr('folio')
         let body = {}
 
 
@@ -234,13 +97,13 @@ $(document).ready(function () {
 
         api_conection('PUT', '/api/orders/edit_data_order/' + id_orden, {body}, function (response) {
             notyf.success(response.message)
-            drawLastOrder(id_orden)
+            drawLastOrder(folio)
 
 
 
         }, function (response) {
             notyf.error(response.message)
-            drawLastOrder(id_orden)
+            drawLastOrder(folio)
         })
 
     })
@@ -261,9 +124,6 @@ $(document).ready(function () {
 
         dientes = dientes.split(",");
 
-        console.log(dientes)
-        console.log(color)
-        console.log(producto)
 
 
         $('#producto_nameEdit').val(producto)
@@ -273,7 +133,7 @@ $(document).ready(function () {
         $('#saveEditProduct').attr('id_detalle', id_detalle)
 
         for (let item of dientes) {
-            console.log("item editar----", item)
+
             $('#toothEdit_' + item).prop('checked', true)
         }
 
@@ -286,6 +146,8 @@ $(document).ready(function () {
 
         let id_detalle = $(this).attr('id_detalle')
         let id_orden = $(this).attr('id_orden')
+        let folio = $(this).attr('folio')
+
         let body = {}
         let tooths_array = [];
 
@@ -314,19 +176,21 @@ $(document).ready(function () {
 
         api_conection('PUT', '/api/orders/editProductDetail/' + id_detalle, {body}, function (response) {
             notyf.success(response.message)
-            drawLastOrder(id_orden)
+            drawLastOrder(folio)
             $('#editProductModal').modal('hide')
 
 
         }, function (response) {
             notyf.error(response.message)
-            drawLastOrder(id_orden)
+            drawLastOrder(folio)
         })
     })
 
     $(document.body).on('click', '.delete_product', function () {
         let id_detalle = $(this).attr('id_detalle')
         let id_orden = $(this).attr('id_orden')
+        let folio = $(this).attr('folio')
+
 
         Swal.fire({
             title: "¿Seguro que desea eliminar este producto? ",
@@ -343,11 +207,11 @@ $(document).ready(function () {
 
                 api_conection('POST', '/api/orders/delete_detailsProduct/' + id_detalle + '/' + id_orden, {}, function (response) {
                     notyf.success(response.message)
-                    drawLastOrder(id_orden)
+                    drawLastOrder(folio)
 
                 }, function (response) {
                     notyf.error(response.message)
-                    drawLastOrder(id_orden)
+                    drawLastOrder(folio)
                 })
 
 
@@ -362,6 +226,8 @@ $(document).ready(function () {
         let status = $(this).val()
         let id_orden = $(this).attr('id_orden')
         let status_actual = $(this).attr('status_actual')
+        let folio = $(this).attr('folio')
+
 
 
         if (status_actual == status) {
@@ -386,11 +252,11 @@ $(document).ready(function () {
 
                 api_conection("PUT", "api/orders/change_status/" + id_orden, {status}, function (response) {
                     notyf.success(response.message)
-                    drawLastOrder(id_orden)
+                    drawLastOrder(folio)
 
                 }, function (response) {
                     notyf.error(response.message)
-                    drawLastOrder(id_orden)
+                    drawLastOrder(folio)
 
                 })
 
@@ -402,6 +268,8 @@ $(document).ready(function () {
 
         });
     })
+
+
 
 
     let drawOptionsProductoEdit = function (search) {
@@ -448,8 +316,34 @@ $(document).ready(function () {
         );
     };
 
+    $('.add_products').click( function () {
+        let id_orden = $(this).attr('id_order')
+        clean_input()
+        $('#agregar_productModal').modal('show')
 
-    let search = "";
+        $('.save_newProduct').attr('id_orden', id_orden)
+
+    })
+
+    $('.save_newProduct').click(function () {
+        let folio = $(this).attr('folio')
+        let id_orden = $(this).attr('id_orden')
+        add_product(folio)
+
+
+
+    })
+
+    $('#searchOrders').keyup(function(){
+        let value = $(this).val()
+
+        drawLastOrder(value)
+
+
+    })
+
+
+    let search = '';
 
     drawOptionsDentist(search);
 
@@ -458,6 +352,6 @@ $(document).ready(function () {
 
     drawOptionsProductoEdit(search)
     drawOptionsColorEdit(search)
+    drawLastOrder(search)
 
-    drawLastOrder()
 });

@@ -12,9 +12,12 @@ html(lang="es")
             include template/menu
             .panel.two
                 div(style="width:100%;border-bottom: 1px solid #343A40 ")
-                    h3.m-3 Generar orden
-
-
+                        .row
+                            .col-3.text-start
+                                h3.m-3 Generar orden
+                            .col-6.my-3
+                                input#searchOrders.mx-2.rounded-pill.border.border-dark.form-control(type='text' style="max-width:100%;" placeholder='BUSCAR UNA ORDEN ')
+                            .col-3
                 .row.my-2.mx-1
                     .col-6.p-0.m-0
                         .card
@@ -69,8 +72,8 @@ html(lang="es")
 
 
 
-
     include modals/editProduct
+    include modals/agregar_producto_Modal
     include template/scripts
     script( src='./public/core/js/common.js')
     script( src='./public/core/js/ordenes.js')

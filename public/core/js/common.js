@@ -201,7 +201,7 @@ let draw_modal_details = function (id) {
             + '<div class="col-4">'
             + '<p class="fw-bold">  Comentarios: </p>'
 
-            + '<textarea id_orden="'+data_order._id+'" class="fw-bold comentarios_details"> ' + data_order.comentario + '</textarea>'
+            + '<textarea id_orden="' + data_order._id + '" class="fw-bold comentarios_details"> ' + data_order.comentario + '</textarea>'
 
             + '</div>'
 
@@ -210,13 +210,12 @@ let draw_modal_details = function (id) {
             + '</div>')
 
 
-
         for (let item of data_order.products) {
 
-            if(data_order.status == 6 || data_order.status == 7 || data_order.status == 4  ) {
+            if (data_order.status == 6 || data_order.status == 7 || data_order.status == 4) {
                 button_delete = ''
-            }else{
-                button_delete = '<button id_orden="'+data_order._id+'" id_detalle="'+item.id_detalle+'" class="btn btn-danger  delete_product btn_delete_'+item.id_detalle+'"><i class="fas fa-trash-alt"></i></button>'
+            } else {
+                button_delete = '<button id_orden="' + data_order._id + '" id_detalle="' + item.id_detalle + '" class="btn btn-danger  delete_product btn_delete_' + item.id_detalle + '"><i class="fas fa-trash-alt"></i></button>'
             }
 
 
@@ -329,6 +328,8 @@ let clean_input = function () {
     $(".comntario_order").val('');
     $("#producto_nameEdit").val('');
     $("#color_nameEdit").val('');
+    $("#addToothsModal").text(0);
+
 
 };
 
@@ -344,12 +345,19 @@ let count_tooth = function (typeBtn) {
         }
     });
 
-    if(typeBtn == "edit"){
+    if (typeBtn == "edit") {
         $("#countEdit").text(contador_tooths);
 
-    }else{
+    }
 
-        $(".count_tooths").text(contador_tooths);
+    if (typeBtn == "order") {
+        $("#ToothsOrder").text(contador_tooths);
+
+    }
+
+    if (typeBtn == "add") {
+
+        $("#addToothsModal").text(contador_tooths);
 
     }
 
@@ -422,12 +430,143 @@ let drawOptionsColor = function (search) {
     );
 };
 
+let drawLastOrder = function (search) {
+
+
+    api_conection('POST', 'api/orders/last_order/', {search}, function (data) {
+
+        $('#productos').html('')
+
+
+        let order_data = data.data
+
+        if (order_data.length < 1) {
+            $('#inputsLastOrder').html('')
+            $('#inputsLastOrder').append('<div class="alert alert-warning" role="alert">' +
+                'Aun no realizas ordenes ' +
+                '</div>')
+
+            return
+        }
+
+
+
+        for (let item of order_data) {
+
+            $('#dentistaOrder').val(item.dentista)
+            $('#Folio').text(item.folio)
+            $('#pacienteOrder').val(item.paciente)
+            $('#fechaEntranteLast').val(item.fecha_entrante)
+
+
+            $('#fechaSalienteLast').val(item.fecha_saliente)
+
+
+            $('#comentLast').val(item.comentario)
+            $('#statusLast').val(item.status)
+
+            $('#statusLast').attr('id_orden', item._id)
+            $('#statusLast').attr('status_actual', item.status)
+
+            $('#gridProductos').html('')
+
+            $('.editDataOrder').attr('id_orden', item._id)
+            $('.add_products').attr('id_order', item._id)
+
+            $('#statusLast').attr('folio', item.folio)
+
+            $('.editDataOrder').attr('folio', item.folio)
+            $('.add_products').attr('folio', item.folio)
+
+
+            for (let jtem of item.detalle) {
+
+                let button_delete
+                let button_edit
+
+                if (item.status == 6 || item.status == 7 || item.status == 4) {
+                    button_delete = ''
+                    button_edit = ''
+
+
+                } else {
+                    button_delete = '<button id_orden="' + item._id + '" id_detalle="' + jtem.detalle._id + '" class=" my-1 btn btn-block btn-danger  delete_product btn_delete_' + jtem.detalle._id + '"><i class="fas fa-trash-alt"></i></button>'
+                    button_edit = '<button colorEdit="' + jtem.detalle.color + '" productoEdit="' + jtem.detalle.producto.name_producto + '" dientesEdit="' + jtem.detalle.tooths + '" id_orden="' + item._id + '" id_detalle="' + jtem.detalle._id + '" class=" my-1 btn btn-warning  btn-block  edit_product btn_edit_' + jtem.detalle._id + '"><i class="fas fa-edit fa-rotate-270 fa-sm"></i></button>'
+                }
+
+                let tooths_10_20 = ''
+                let tooths_30_40 = ''
+
+                for (let od of jtem.detalle.tooths) {
+
+                    let parrafo_od_10_20 = ''
+                    let parrafo_od_30_40 = ''
+
+                    od = Number(od)
+
+                    if (od >= 11 && od <= 18) {
+                        parrafo_od_10_20 = '<span class="text-primary fs-5">' + od + '&nbsp;  </span>'
+
+                    }
+                    if (od >= 21 && od <= 28) {
+                        parrafo_od_10_20 = '<span class="text-danger fs-5">' + od + '&nbsp;    </span>'
+
+                    }
+                    if (od >= 31 && od <= 38) {
+                        parrafo_od_30_40 = '<span class="text-warning fs-5">' + od + '&nbsp;   </span>'
+
+                    }
+                    if (od >= 41 && od <= 48) {
+                        parrafo_od_30_40 = '<span class="text-success fs-5">' + od + '&nbsp;   </span>'
+
+                    }
+
+                    tooths_10_20 = tooths_10_20 + parrafo_od_10_20
+                    tooths_30_40 = tooths_30_40 + parrafo_od_30_40
+
+                }
+
+
+                var row = '<table class="display text-center table table-hover"><tr>' +
+                    '<td>' + jtem.detalle.producto.name_producto + '</td>' +
+                    '<td>' + jtem.detalle.cantidad + '</td>' +
+                    '<td>' + jtem.detalle.color + '</td>' +
+                    '<td>' + button_delete + button_edit + '</td></tr></table>'
+
+
+               var ods = '<h6>ODS:</h6><div class="text-center my-2">'+tooths_10_20 +' <br> '+tooths_30_40+'</div>'
+
+                $('#productos').append(row + ods +'<div class="bg-dark py-1"></div>')
+
+
+            }
+
+
+        }
+
+
+    }, function (response) {
+
+        let order_data = response.data.data
+
+        if (order_data == undefined) {
+            $('#inputsLastOrder').html('')
+            $('#inputsLastOrder').append('<div class="alert alert-warning" role="alert">' +
+                'Aun no realizas ordenes ' +
+                '</div>')
+
+        }
+
+    })
+
+}
+
 let add_product = function (id_orden) {
 
     let tooths = $(".btn-check");
-    let producto_name = $(".producto_name").val();
-    let color_name = $(".color_name").val();
-    let cantidad = $(".count_tooths").text();
+    let producto_name = $("#addProductModal").val();
+    let color_name = $("#addColorModal").val();
+    let cantidad = $("#addToothsModal").text();
     let tooths_array = [];
     let new_product = {};
 
@@ -458,7 +597,8 @@ let add_product = function (id_orden) {
         function (response) {
             notyf.success(response.message);
             clean_input();
-            $('#close_modal').click()
+            $('#agregar_productModal').modal('hide')
+            drawLastOrder(id_orden)
         }
     );
 }
