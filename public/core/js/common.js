@@ -472,6 +472,7 @@ let drawLastOrder = function (search) {
 
             $('.editDataOrder').attr('id_orden', item._id)
             $('.add_products').attr('id_order', item._id)
+            $('#imprimirOrder').attr('id_order', item._id)
 
             $('#statusLast').attr('folio', item.folio)
 
@@ -530,13 +531,12 @@ let drawLastOrder = function (search) {
                 var row = '<table class="display text-center table table-hover"><tr>' +
                     '<td>' + jtem.detalle.producto.name_producto + '</td>' +
                     '<td>' + jtem.detalle.cantidad + '</td>' +
+                    '<td><p>'+ tooths_10_20 + '</p><p>'+ tooths_30_40+ '</p></td>' +
                     '<td>' + jtem.detalle.color + '</td>' +
                     '<td>' + button_delete + button_edit + '</td></tr></table>'
 
 
-               var ods = '<h6>ODS:</h6><div class="text-center my-2">'+tooths_10_20 +' <br> '+tooths_30_40+'</div>'
-
-                $('#productos').append(row + ods +'<div class="bg-dark py-1"></div>')
+                $('#productos').append(row  +'<div class="bg-dark py-1"></div>')
 
 
             }
@@ -561,7 +561,7 @@ let drawLastOrder = function (search) {
 
 }
 
-let add_product = function (id_orden) {
+let add_product = function (id_orden,folio) {
 
     let tooths = $(".btn-check");
     let producto_name = $("#addProductModal").val();
@@ -598,7 +598,7 @@ let add_product = function (id_orden) {
             notyf.success(response.message);
             clean_input();
             $('#agregar_productModal').modal('hide')
-            drawLastOrder(id_orden)
+            drawLastOrder(folio)
         }
     );
 }

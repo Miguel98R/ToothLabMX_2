@@ -109,6 +109,7 @@ $(document).ready(function () {
         location.href = '/orders'
 
     })
+
     //DIRECCIONAR : DENTISTAS
     $('.goDentistas').click(function () {
         location.href = '/dentistas'

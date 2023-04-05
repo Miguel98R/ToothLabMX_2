@@ -82,7 +82,6 @@ $(document).ready(function () {
     //---------------------- EDITAR ULTIMA ORDER ---------------------------------//
 
 
-
     $('.editDataOrder').change(function () {
         let id_orden = $(this).attr('id_orden')
         let folio = $(this).attr('folio')
@@ -107,9 +106,6 @@ $(document).ready(function () {
         })
 
     })
-
-
-
 
 
 
@@ -271,7 +267,6 @@ $(document).ready(function () {
 
 
 
-
     let drawOptionsProductoEdit = function (search) {
         api_conection(
             "POST",
@@ -328,7 +323,7 @@ $(document).ready(function () {
     $('.save_newProduct').click(function () {
         let folio = $(this).attr('folio')
         let id_orden = $(this).attr('id_orden')
-        add_product(folio)
+        add_product(id_orden,folio)
 
 
 
@@ -338,6 +333,191 @@ $(document).ready(function () {
         let value = $(this).val()
 
         drawLastOrder(value)
+
+
+    })
+
+    //IMPRIMIR ORDEN
+    $("#imprimirOrder").click(function () {
+        let id_orden = $(this).attr('id_order')
+
+        let logo = '../public/img/logo.jpg'
+
+        api_conection("POST", "api/orders/details_order/" + id_orden, {}, function (data) {
+
+
+            let data_order = data.data
+
+            let status = asignament_status(data_order.status)
+
+            let datos_generales = '<div class=" card-body text-start ">'
+
+
+                + '<div class="row ">'
+
+                + '<div class="col-7">'
+
+                + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold my-2 ">Entrada:  <span class="fw-bold text-dark">' + moment(data_order.fecha_entrante, 'DD-MM-YYYY').format('dddd DD-MMMM-YYYY') + '</span></h5>'
+                + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold ">Salida:  <span class="fw-bold text-dark">' + moment(data_order.fecha_saliente, 'DD-MM-YYYY').format('dddd DD-MMMM-YYYY') + '</span></h5>'
+
+                + '</div>'
+
+                + '<div class="col-5 ">'
+
+                + '<h5 style="color:' + data_order.dentista_color + ';" class="text-start my-2  fw-bold ">Folio:  <mark class="fw-boldtext-dark">' + data_order.id_order + '</mark></h5>'
+                + '<h5 style="color:' + data_order.dentista_color + ';" class="text-start fw-bold ">Status:  <mark class="fw-bold text-dark">' + status + '</mark></h5>'
+
+                + '</div>'
+
+
+                + '</div>'
+
+                + '<div class="row my-2">'
+
+                + '<div class="col-7">'
+
+                + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold ">Dentista:   <span class="fw-bold text-dark">' + data_order.name_dentista + '</span></h5>'
+
+
+                + '</div>'
+
+                + '<div class="col-5 ">'
+                + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold ">Paciente:   <span class="fw-bold text-dark">' + data_order.name_paciente + '</span></h5>'
+
+                + '</div>'
+
+                + '</div>'
+
+                + '<div class="row my-2">'
+
+                + '<div class="col-6">'
+
+                + '<br><h5 style="color:' + data_order.dentista_color + ';" class="text-start  fw-bold ">Regreso: </h5><input type="text"></input>'
+
+
+                + '</div>'
+
+                + '<div class="col-6">'
+
+                + '<br><h5 style="color:' + data_order.dentista_color + ';" class="text-start fw-bold ">Entrega: </h5><input type="text"></input>'
+
+
+                + '</div>'
+
+
+                + '</div>'
+
+                + '<h3 class="text-center my-3 fw-bold"  >Detalle orden:</h3>'
+
+
+            let productos = ''
+
+            for (let item of data_order.products) {
+
+                let tooths_10_20 = ''
+                let tooths_30_40 = ''
+
+
+                for (let od of item.tooths) {
+
+                    let parrafo_od_10_20 = ''
+                    let parrafo_od_30_40 = ''
+
+
+                    od = Number(od)
+
+                    if (od >= 11 && od <= 18) {
+                        parrafo_od_10_20 = '<span class="text-primary fs-5">' + od + '&nbsp;  </span>'
+
+
+                    }
+                    if (od >= 21 && od <= 28) {
+                        parrafo_od_10_20 = '<span class="text-danger fs-5">' + od + '&nbsp;    </span>'
+
+                    }
+                    if (od >= 31 && od <= 38) {
+                        parrafo_od_30_40 = '<span class="text-warning fs-5">' + od + '&nbsp;   </span>'
+
+                    }
+                    if (od >= 41 && od <= 48) {
+                        parrafo_od_30_40 = '<span class="text-success fs-5">' + od + '&nbsp;   </span>'
+
+                    }
+
+                    tooths_10_20 = tooths_10_20 + parrafo_od_10_20
+                    tooths_30_40 = tooths_30_40 + parrafo_od_30_40
+
+                }
+
+
+                productos = productos + '<div  class="text-center">'
+                    + '<div class="row">'
+                    + '<div class="col-3">'
+                    + '<h5 class="fw-bold">Cantidad</h5>'
+                    + '<h5>' + item.cantidad + '</h5>'
+
+                    + '</div>'
+                    + '<div class="col-2">'
+                    + '<h5 class="fw-bold" >Color</h5>'
+                    + '<h5>' + item.color + '</h5>'
+
+
+                    + '</div>'
+                    + '<div class="col-7">'
+                    + '<h5 class="fw-bold" >Producto</h5>'
+                    + '<h5 style="color:' + item.dentista_color + ';">' + item.name_producto + '</h5>'
+
+
+                    + '</div>'
+
+                    + '</div>'
+                    + '</div>'
+
+                    + '<h5 class="text-center my-3 fw-bold"  >OD:</h5>'
+
+                    + '<div  class="text-center">'
+
+                    + tooths_10_20
+                    + '<br>'
+                    + tooths_30_40
+                    + '</div>'
+
+
+            }
+
+            let comentarios = '<h3 class="text-center my-3 fw-bold" >Comentarios:</h3>'
+                + '<div style="border:solid;border-color:' + data_order.dentista_color + ';" class="text-center p-5">'
+                + '<h5 class="p-0 m-0"style="color:' + data_order.dentista_color + ';">' + data_order.comentario + '</h5>'
+                + '</div>'
+                + '</div>'
+                + '</div>'
+
+            var ticketHTML = '<div class="card">'
+
+                + '<div class="card-header">'
+                + '<div class="row text-center">'
+                + '<div class="col-12 ">'
+                + '<img class="img-fluid p-0 mx-3" style="max-height:80px;" src="' + logo + '"></img>'
+                + '</div>'
+
+                + '</div>'
+                + '</div>'
+
+                + datos_generales
+                + productos
+                + comentarios
+
+
+                + '</div>'
+
+
+            let headerHTML = '<!doctype html><html lang="es"><head><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous"></head><body>'
+            let footerHTML = "<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js' integrity='sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz' crossorigin='anonymous'></script></body></html>"
+
+
+            ImprimirTicket(headerHTML, ticketHTML, footerHTML)
+
+        })
 
 
     })
