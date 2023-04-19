@@ -13,6 +13,39 @@
     }
   }
 
+/* Estilo de scrollbar delgado */
+/* Ancho y color del scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    background-color: #f5f5f5;
+}
+
+/* Estilo del thumb y track */
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #f5f5f5;
+}
+
+/* Estilo del scrollbar en hover */
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0,0,0,0.4);
+}
+
+/* Estilo del scrollbar en active */
+::-webkit-scrollbar-thumb:active {
+    background-color: rgba(0,0,0,0.6);
+}
+
+/* Estilo del scrollbar corner (esquina del scrollbar) */
+::-webkit-scrollbar-corner {
+    background-color: #f5f5f5;
+}
+
+
 
   .loading {
     position: fixed;

@@ -5,29 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d734133c-cf01-40a3-82bf-51cd7156af9f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ToothLabMX_2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ToothLabMX_2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/d/1dd405868388fe17d91ebc85eeaa2c04f006d952" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/d/2d7e7d226a51f7ffaa258960c11247506e7ad869" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/1/419d743c97bd6a8e69c80a024c1b8f22079c7249" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/4/54cc59ecb6c8de97d1ec2dc820fb7a1be159cdeb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/2/625b3b42298962bd591f67166a9a2750f1b8161c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/0/7030d0b2f71b999ff89a343de08c414af32fc93a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/d/7daae707e668157221fa2c1b00a9037df81ae238" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/5/95b329cdd8c88047fae1271d3cb951056a6c66a0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/c/9cb6eec1cc4f13861bc969de14e8fdaed2b1f189" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/4/e465e003ac3202407b8d16efb96736719f4cb6ad" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/a/eaa195ff865ddd8270912315b2d9c10659e0ee81" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/0/f01b82386acbffdb7ffff516442532c33dab197c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/9/f96f0d64d9b6f61908593decc6e4a547665e464d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/db.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/core/js/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/core/js/common.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/core/js/ordenes.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/core/js/ordenes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/core/js/panel.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/core/js/panel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/template/login.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/template/login.pug" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/template/viewLastOrder.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/template/viewLastOrder.pug" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +65,16 @@
       <workItem from="1680300287857" duration="8000" />
       <workItem from="1680300313953" duration="1495000" />
       <workItem from="1680531650097" duration="52000" />
-      <workItem from="1680657241905" duration="2618000" />
+      <workItem from="1680657241905" duration="3277000" />
+      <workItem from="1681500549056" duration="1538000" />
+      <workItem from="1681606766130" duration="835000" />
+      <workItem from="1681752063371" duration="15000" />
+      <workItem from="1681752331091" duration="442000" />
+      <workItem from="1681754730996" duration="42000" />
+      <workItem from="1681843909565" duration="18000" />
+      <workItem from="1681852588558" duration="90000" />
+      <workItem from="1681858658294" duration="1512000" />
+      <workItem from="1681914111686" duration="1496000" />
     </task>
     <servers />
   </component>

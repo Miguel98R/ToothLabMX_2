@@ -431,14 +431,18 @@ let drawOptionsColor = function (search) {
 };
 
 let drawLastOrder = function (search) {
+    $('#productos').html('')
 
-
+    console.log(search,"<<<<<<<<<<<-----busqueda")
     api_conection('POST', 'api/orders/last_order/', {search}, function (data) {
 
-        $('#productos').html('')
+
 
 
         let order_data = data.data
+
+        console.log(order_data,"<------data")
+        console.log(order_data.length,"<------data length")
 
         if (order_data.length < 1) {
             $('#inputsLastOrder').html('')
@@ -448,8 +452,6 @@ let drawLastOrder = function (search) {
 
             return
         }
-
-
 
         for (let item of order_data) {
 
@@ -545,19 +547,7 @@ let drawLastOrder = function (search) {
         }
 
 
-    }, function (response) {
-
-        let order_data = response.data.data
-
-        if (order_data == undefined) {
-            $('#inputsLastOrder').html('')
-            $('#inputsLastOrder').append('<div class="alert alert-warning" role="alert">' +
-                'Aun no realizas ordenes ' +
-                '</div>')
-
-        }
-
-    })
+    }, )
 
 }
 

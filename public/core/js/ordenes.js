@@ -329,7 +329,7 @@ $(document).ready(function () {
 
     })
 
-    $('#searchOrders').keyup(function(){
+    $('#searchOrders').change(function(){
         let value = $(this).val()
 
         drawLastOrder(value)
