@@ -1,22 +1,8 @@
-.rounded-t-5 {
-    border-top-left-radius: 0.5rem;
-    border-top-right-radius: 0.5rem;
-  }
-
-  @media (min-width: 992px) {
-    .rounded-tr-lg-0 {
-      border-top-right-radius: 0;
-    }
-
-    .rounded-bl-lg-5 {
-      border-bottom-left-radius: 0.5rem;
-    }
-  }
 
 /* Estilo de scrollbar delgado */
 /* Ancho y color del scrollbar */
 ::-webkit-scrollbar {
-    width: 6px;
+    width: 3px;
     background-color: #f5f5f5;
 }
 
@@ -43,6 +29,21 @@
 /* Estilo del scrollbar corner (esquina del scrollbar) */
 ::-webkit-scrollbar-corner {
     background-color: #f5f5f5;
+}
+
+.rounded-t-5 {
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+}
+
+@media (min-width: 992px) {
+    .rounded-tr-lg-0 {
+        border-top-right-radius: 0;
+    }
+
+    .rounded-bl-lg-5 {
+        border-bottom-left-radius: 0.5rem;
+    }
 }
 
 

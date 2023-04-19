@@ -433,7 +433,6 @@ let drawOptionsColor = function (search) {
 let drawLastOrder = function (search) {
     $('#productos').html('')
 
-    console.log(search,"<<<<<<<<<<<-----busqueda")
     api_conection('POST', 'api/orders/last_order/', {search}, function (data) {
 
 
@@ -444,107 +443,109 @@ let drawLastOrder = function (search) {
         console.log(order_data,"<------data")
         console.log(order_data.length,"<------data length")
 
+
         if (order_data.length < 1) {
-            $('#inputsLastOrder').html('')
-            $('#inputsLastOrder').append('<div class="alert alert-warning" role="alert">' +
-                'Aun no realizas ordenes ' +
-                '</div>')
+            $('#dataLastOrder').hide()
+            $('#NoDataLastOrder').show()
 
-            return
-        }
+        }else{
+            $('#dataLastOrder').show()
+            $('#NoDataLastOrder').hide()
+            for (let item of order_data) {
 
-        for (let item of order_data) {
-
-            $('#dentistaOrder').val(item.dentista)
-            $('#Folio').text(item.folio)
-            $('#pacienteOrder').val(item.paciente)
-            $('#fechaEntranteLast').val(item.fecha_entrante)
+                $('#dentistaOrder').val(item.dentista)
+                $('#Folio').text(item.folio)
+                $('#pacienteOrder').val(item.paciente)
+                $('#fechaEntranteLast').val(item.fecha_entrante)
 
 
-            $('#fechaSalienteLast').val(item.fecha_saliente)
+                $('#fechaSalienteLast').val(item.fecha_saliente)
 
 
-            $('#comentLast').val(item.comentario)
-            $('#statusLast').val(item.status)
+                $('#comentLast').val(item.comentario)
+                $('#statusLast').val(item.status)
 
-            $('#statusLast').attr('id_orden', item._id)
-            $('#statusLast').attr('status_actual', item.status)
+                $('#statusLast').attr('id_orden', item._id)
+                $('#statusLast').attr('status_actual', item.status)
 
-            $('#gridProductos').html('')
+                $('#gridProductos').html('')
 
-            $('.editDataOrder').attr('id_orden', item._id)
-            $('.add_products').attr('id_order', item._id)
-            $('#imprimirOrder').attr('id_order', item._id)
+                $('.editDataOrder').attr('id_orden', item._id)
+                $('.add_products').attr('id_order', item._id)
+                $('#imprimirOrder').attr('id_order', item._id)
 
-            $('#statusLast').attr('folio', item.folio)
+                $('#statusLast').attr('folio', item.folio)
 
-            $('.editDataOrder').attr('folio', item.folio)
-            $('.add_products').attr('folio', item.folio)
-
-
-            for (let jtem of item.detalle) {
-
-                let button_delete
-                let button_edit
-
-                if (item.status == 6 || item.status == 7 || item.status == 4) {
-                    button_delete = ''
-                    button_edit = ''
+                $('.editDataOrder').attr('folio', item.folio)
+                $('.add_products').attr('folio', item.folio)
 
 
-                } else {
-                    button_delete = '<button id_orden="' + item._id + '" id_detalle="' + jtem.detalle._id + '" class=" my-1 btn btn-block btn-danger  delete_product btn_delete_' + jtem.detalle._id + '"><i class="fas fa-trash-alt"></i></button>'
-                    button_edit = '<button colorEdit="' + jtem.detalle.color + '" productoEdit="' + jtem.detalle.producto.name_producto + '" dientesEdit="' + jtem.detalle.tooths + '" id_orden="' + item._id + '" id_detalle="' + jtem.detalle._id + '" class=" my-1 btn btn-warning  btn-block  edit_product btn_edit_' + jtem.detalle._id + '"><i class="fas fa-edit fa-rotate-270 fa-sm"></i></button>'
+                for (let jtem of item.detalle) {
+
+                    let button_delete
+                    let button_edit
+
+                    if (item.status == 6 || item.status == 7 || item.status == 4) {
+                        button_delete = ''
+                        button_edit = ''
+
+
+                    } else {
+                        button_delete = '<button id_orden="' + item._id + '" id_detalle="' + jtem.detalle._id + '" class=" my-1 btn btn-block btn-danger  delete_product btn_delete_' + jtem.detalle._id + '"><i class="fas fa-trash-alt"></i></button>'
+                        button_edit = '<button colorEdit="' + jtem.detalle.color + '" productoEdit="' + jtem.detalle.producto.name_producto + '" dientesEdit="' + jtem.detalle.tooths + '" id_orden="' + item._id + '" id_detalle="' + jtem.detalle._id + '" class=" my-1 btn btn-warning  btn-block  edit_product btn_edit_' + jtem.detalle._id + '"><i class="fas fa-edit fa-rotate-270 fa-sm"></i></button>'
+                    }
+
+                    let tooths_10_20 = ''
+                    let tooths_30_40 = ''
+
+                    for (let od of jtem.detalle.tooths) {
+
+                        let parrafo_od_10_20 = ''
+                        let parrafo_od_30_40 = ''
+
+                        od = Number(od)
+
+                        if (od >= 11 && od <= 18) {
+                            parrafo_od_10_20 = '<span class="text-primary fs-5">' + od + '&nbsp;  </span>'
+
+                        }
+                        if (od >= 21 && od <= 28) {
+                            parrafo_od_10_20 = '<span class="text-danger fs-5">' + od + '&nbsp;    </span>'
+
+                        }
+                        if (od >= 31 && od <= 38) {
+                            parrafo_od_30_40 = '<span class="text-warning fs-5">' + od + '&nbsp;   </span>'
+
+                        }
+                        if (od >= 41 && od <= 48) {
+                            parrafo_od_30_40 = '<span class="text-success fs-5">' + od + '&nbsp;   </span>'
+
+                        }
+
+                        tooths_10_20 = tooths_10_20 + parrafo_od_10_20
+                        tooths_30_40 = tooths_30_40 + parrafo_od_30_40
+
+                    }
+
+
+                    var row = '<table class="display text-center table table-hover"><tr>' +
+                        '<td>' + jtem.detalle.producto.name_producto + '</td>' +
+                        '<td>' + jtem.detalle.cantidad + '</td>' +
+                        '<td><p>'+ tooths_10_20 + '</p><p>'+ tooths_30_40+ '</p></td>' +
+                        '<td>' + jtem.detalle.color + '</td>' +
+                        '<td>' + button_delete + button_edit + '</td></tr></table>'
+
+
+                    $('#productos').append(row  +'<div class="bg-dark py-1"></div>')
+
+
                 }
-
-                let tooths_10_20 = ''
-                let tooths_30_40 = ''
-
-                for (let od of jtem.detalle.tooths) {
-
-                    let parrafo_od_10_20 = ''
-                    let parrafo_od_30_40 = ''
-
-                    od = Number(od)
-
-                    if (od >= 11 && od <= 18) {
-                        parrafo_od_10_20 = '<span class="text-primary fs-5">' + od + '&nbsp;  </span>'
-
-                    }
-                    if (od >= 21 && od <= 28) {
-                        parrafo_od_10_20 = '<span class="text-danger fs-5">' + od + '&nbsp;    </span>'
-
-                    }
-                    if (od >= 31 && od <= 38) {
-                        parrafo_od_30_40 = '<span class="text-warning fs-5">' + od + '&nbsp;   </span>'
-
-                    }
-                    if (od >= 41 && od <= 48) {
-                        parrafo_od_30_40 = '<span class="text-success fs-5">' + od + '&nbsp;   </span>'
-
-                    }
-
-                    tooths_10_20 = tooths_10_20 + parrafo_od_10_20
-                    tooths_30_40 = tooths_30_40 + parrafo_od_30_40
-
-                }
-
-
-                var row = '<table class="display text-center table table-hover"><tr>' +
-                    '<td>' + jtem.detalle.producto.name_producto + '</td>' +
-                    '<td>' + jtem.detalle.cantidad + '</td>' +
-                    '<td><p>'+ tooths_10_20 + '</p><p>'+ tooths_30_40+ '</p></td>' +
-                    '<td>' + jtem.detalle.color + '</td>' +
-                    '<td>' + button_delete + button_edit + '</td></tr></table>'
-
-
-                $('#productos').append(row  +'<div class="bg-dark py-1"></div>')
 
 
             }
-
-
         }
+
+
 
 
     }, )

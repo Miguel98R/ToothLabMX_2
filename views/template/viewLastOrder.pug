@@ -9,7 +9,10 @@ div
                         h6.text-white.mx-2.text-end Folio :
                             span.mx-1#Folio
         .card-body#inputsLastOrder
-            div.my-2
+            div.my-2#NoDataLastOrder(style="display:none;")
+                div.alert.alert-warning(role="alert")
+                    | Orden no encontrada
+            div.my-2#dataLastOrder(style="display:none;")
                 .row
                     .col-3
                         div
@@ -35,39 +38,39 @@ div
                             input#fechaSalienteLast.rounded-pill.form-control.border.border-dark.editDataOrder( type="text" autocomplete="off")
 
 
-            div.my-4
-                h6 Productos
-            div#productos.my-3(style="overflow-y:scroll;max-height: 190px;")
+                div.my-4
+                    h6 Productos
+                div#productos.my-3(style="overflow-y:scroll;max-height: 190px;")
 
 
 
-                .row#gridProductos
-            div.my-3.text-center
+                    .row#gridProductos
+                div.my-3.text-center
 
-                .row.text-center.my-1
-                    .col-12
-                        label Comentarios
-                        textarea#comentLast.form-control.border.border-dark.editDataOrder( name="", cols="5", rows="2" autocomplete="off")
-                .row.my-4
-                    .col-6
-                         button.add_products#addProduct.my-1.btn.btn-secondary.btn-block Agregar producto
-                         button#imprimirOrder.my-1.btn.btn-primary.btn-block Imprimir
+                    .row.text-center.my-1
+                        .col-12
+                            label Comentarios
+                            textarea#comentLast.form-control.border.border-dark.editDataOrder( name="", cols="5", rows="2" autocomplete="off")
+                    .row.my-4
+                        .col-6
+                            button.add_products#addProduct.my-1.btn.btn-secondary.btn-block Agregar producto
+                            button#imprimirOrder.my-1.btn.btn-primary.btn-block Imprimir
 
-                    .col-6
+                        .col-6
 
-                        div
-                            .form-group
-                                label Status actual:
-                                select#statusLast.change_status.custom-select.rounded-pill.form-control.border.border-dark
-                                    option.text-primary(value=0) Selecciona un status
-                                    option.text-primary(value=1) Entrante
-                                    option.text-warning(value=2) A prueba
-                                    option.text-secondary(value=3) Regresada
-                                    option.text-success(value=4) Terminada
-                                    option.text-info(value=5) Con cambios
+                            div
+                                .form-group
+                                    label Status actual:
+                                    select#statusLast.change_status.custom-select.rounded-pill.form-control.border.border-dark
+                                        option.text-primary(value=0) Selecciona un status
+                                        option.text-primary(value=1) Entrante
+                                        option.text-warning(value=2) A prueba
+                                        option.text-secondary(value=3) Regresada
+                                        option.text-success(value=4) Terminada
+                                        option.text-info(value=5) Con cambios
 
-                                    option.text-danger(value=6) Cnacelada con costos
-                                    option.text-danger(value=7) Cancelada
+                                        option.text-danger(value=6) Cnacelada con costos
+                                        option.text-danger(value=7) Cancelada
 
 
 
