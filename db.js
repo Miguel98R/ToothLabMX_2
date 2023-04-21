@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.URL_SERVER + '/' + process.env.DB_NAME).then(() => {
+let dbname = process.env.DB_NAME || 'ToothLabMX2'
+let dbProd = process.env.URL_SERVER || 'mongodb+srv://admin:admin%401998@toothlabmx2.bvx3g5s.mongodb.net'
+
+
+mongoose.connect(dbProd + '/' + dbname).then(() => {
 
     if (process.env.URL_SERVER.includes('admin')) {
 
