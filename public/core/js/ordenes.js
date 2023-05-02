@@ -13,6 +13,10 @@ $(document).ready(function () {
 
 
     $(".saved_order").click(function () {
+
+
+
+
         let tooths = $(".btn-check");
         let dentist = $(".dentistas_name").val();
         let name_paciente = $(".paciente_name").val();
@@ -23,6 +27,7 @@ $(document).ready(function () {
         let producto_name = $(".producto_name").val();
         let color_name = $(".color_name").val();
         let comentario = $(".comntario_order").val();
+
 
         let tooths_array = [];
         let new_order = {};
@@ -50,11 +55,17 @@ $(document).ready(function () {
             }
         });
 
+
+        let regMor = $('#regMor').prop('checked');
+        let antagon = $('#antagon').prop('checked');
+
         new_order.name_paciente = name_paciente;
         new_order.dentista = dentist;
         new_order.fecha_entrante = fecha_entrada;
         new_order.fecha_saliente = fecha_salida;
         new_order.comentario = comentario;
+        new_order.regMor = regMor;
+        new_order.antagon = antagon;
 
         new_order_details.cantidad = cantidad;
         new_order_details.color = color_name;
@@ -357,8 +368,8 @@ $(document).ready(function () {
 
                 + '<div class="col-7">'
 
-                + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold my-2 ">Entrada:  <span class="fw-bold text-dark">' + moment(data_order.fecha_entrante, 'DD-MM-YYYY').format('dddd DD-MMMM-YYYY') + '</span></h5>'
-                + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold ">Salida:  <span class="fw-bold text-dark">' + moment(data_order.fecha_saliente, 'DD-MM-YYYY').format('dddd DD-MMMM-YYYY') + '</span></h5>'
+                + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold my-2 ">Entrada: <br> <span class="fw-bold text-dark">' + moment(data_order.fecha_entrante, 'DD-MM-YYYY').format('dddd DD-MMMM-YYYY') + '</span></h5>'
+                + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold ">Salida: <br>  <span class="fw-bold text-dark">' + moment(data_order.fecha_saliente, 'DD-MM-YYYY').format('dddd DD-MMMM-YYYY') + '</span></h5>'
 
                 + '</div>'
 
@@ -372,7 +383,7 @@ $(document).ready(function () {
 
                 + '</div>'
 
-                + '<div class="row my-2">'
+                + '<div class="row my-1">'
 
                 + '<div class="col-7">'
 
@@ -388,7 +399,7 @@ $(document).ready(function () {
 
                 + '</div>'
 
-                + '<div class="row my-2">'
+                + '<div class="row my-1">'
 
                 + '<div class="col-6">'
 
@@ -496,9 +507,7 @@ $(document).ready(function () {
 
                 + '<div class="card-header">'
                 + '<div class="row text-center">'
-                + '<div class="col-12 ">'
-                + '<img class="img-fluid p-0 mx-3" style="max-height:80px;" src="' + logo + '"></img>'
-                + '</div>'
+
 
                 + '</div>'
                 + '</div>'
@@ -507,7 +516,14 @@ $(document).ready(function () {
                 + productos
                 + comentarios
 
+                + '<div class="col-12 text-end my-5 fixed-bottom">' +
+                '<br>'+
+                '<br>'+
+                '<br>'+
+                '<br>'
 
+                + '<img class="img-fluid p-0 mx-4" style="max-height:90px;" src="' + logo + '"></img>'
+                + '</div>'
                 + '</div>'
 
 

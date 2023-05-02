@@ -1,16 +1,13 @@
 const mongoose = require('mongoose');
 
-let dbname = process.env.DB_NAME || 'ToothLabMX2'
-let dbProd = process.env.URL_SERVER || "mongodb+srv://admin:admin%401998@toothlabmx2.bvx3g5s.mongodb.net"
+mongoose.connect(process.env.URL_SERVER + '/' + process.env.DB_NAME).then(() => {
 
-mongoose.connect(dbProd + '/' + dbname).then(() => {
+    if (process.env.URL_SERVER.includes('admin')) {
 
-    if (dbProd.includes('admin')) {
-
-        console.log('Se conecto a la DB PRODUCION', dbname)
+        console.log('Se conecto a la DB PRODUCION', process.env.DB_NAME)
 
     } else {
-        console.log('Se conecto a la DB Local', dbname)
+        console.log('Se conecto a la DB Local', process.env.DB_NAME)
 
     }
 
@@ -21,7 +18,3 @@ mongoose.connect(dbProd + '/' + dbname).then(() => {
 
 
 module.exports = mongoose
-
-
-
-

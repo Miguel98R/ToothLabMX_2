@@ -7,19 +7,14 @@ let mongoose = require('mongoose')
 
 
 //GENEAR ID PARA ORDENES
-let generate_id = function () {
-    let today = moment().format("DDMMMYY");
+let generate_id = function (lastid) {
 
-    var letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    console.log(lastid)
+    let newId = Number(lastid) + 1
+    console.log("newId------------>",newId)
 
 
-    let numeroAleatorio = Math.floor(Math.random() * 100);
-
-    let letraAleatoria = letras.charAt(Math.floor(Math.random() * letras.length));
-
-    let string_id = letraAleatoria + numeroAleatorio + "-" + today;
-
-    return string_id;
+    return newId;
 };
 //CREAR NUEVA ORDEN
 let new_order = async function (req, res) {
@@ -57,7 +52,21 @@ let new_order = async function (req, res) {
         dentist.cont_ordenes = dentist.cont_ordenes + 1;
         dentist = await dentist.save();
 
-        let id = generate_id();
+        let lastOrder = await ordersModel.find().sort({_id: -1}).limit(1)
+        let lastid
+
+        console.log("lastOrder---------------------->", lastOrder)
+        let tamanolastOrder = lastOrder.length
+        if (tamanolastOrder == 1) {
+            for(let item of lastOrder){
+                lastid = Number(item.id_order)
+            }
+        } else {
+
+            lastid = 2000
+        }
+
+        let id = generate_id(lastid);
 
         //CREACION DE ORDER
         let order = new ordersModel({
@@ -69,6 +78,8 @@ let new_order = async function (req, res) {
             fecha_actualizacion: new_order.fecha_entrante,
             fecha_saliente: new_order.fecha_saliente,
             comentario: new_order.comentario,
+            regMor: new_order.regMor,
+            antagon: new_order.antagon,
         });
 
         order = await order.save();
@@ -118,6 +129,8 @@ let details_order = async function (req, res) {
                         id_order: "$id_order",
                         fecha_entrante: "$fecha_entrante",
                         fecha_saliente: "$fecha_saliente",
+                        regMor: "$regMor",
+                        antagon: "$antagon",
                         name_dentista: "$dentista.name_dentista",
                         dentista_color: "$dentista.distintivo_color",
                         name_paciente: "$name_paciente",
@@ -212,6 +225,9 @@ let details_order = async function (req, res) {
             data_details.name_paciente = item.name_paciente
             data_details.comentario = item.comentario
             data_details.status = item.status
+            data_details.regMor = item.regMor
+            data_details.antagon = item.antagon
+
 
 
         }
@@ -319,6 +335,8 @@ let data_table = async function (req, res) {
                         dentista: "$dentista_detalle.name_dentista",
                         distintivo_color: "$dentista_detalle.distintivo_color",
                         paciente: "$name_paciente",
+                        regMor: "$regMor",
+                        antagon: "$antagon",
                         status: "$status",
                     }
                 }
@@ -539,7 +557,6 @@ let edit_data_order = async function (req, res) {
             order.dentista = dentist._id;
 
 
-
         }
 
 
@@ -547,6 +564,8 @@ let edit_data_order = async function (req, res) {
         body.fecha_entrante != undefined ? order.fecha_entrante = body.fecha_entrante : order.fecha_entrante = order.fecha_entrante
         body.fecha_saliente != undefined ? order.fecha_saliente = body.fecha_saliente : order.fecha_saliente = order.fecha_saliente
         body.comentario != undefined ? order.comentario = body.comentario : order.comentario = order.comentario
+        body.antagon != undefined ? order.antagon = body.antagon : order.antagon = order.antagon
+        body.regMor != undefined ? order.regMor = body.regMor : order.regMor = order.regMor
 
 
         await order.save()
@@ -572,10 +591,12 @@ let last_order = async function (req, res) {
 
     let {search} = req.body
 
+    console.log("search----->",search)
+
 
     try {
         let order
-        if(search == undefined || search == ''){
+        if (search == undefined || search == '') {
             order = await ordersModel.aggregate([
                 {
                     $lookup: {
@@ -621,6 +642,8 @@ let last_order = async function (req, res) {
                             comentario: '$comentario',
                             _id: '$_id',
                             status: '$status',
+                            regMor: '$regMor',
+                            antagon: '$antagon',
                             createdAt: '$createdAt'
                         },
                         items: {
@@ -641,6 +664,8 @@ let last_order = async function (req, res) {
                             comentario: '$_id.comentario',
                             _id: '$_id._id',
                             status: '$_id.status',
+                            regMor: '$_id.regMor',
+                            antagon: '$_id.antagon',
                             createdAt: '$_id.createdAt',
                             detalle: '$items'
                         }
@@ -656,11 +681,11 @@ let last_order = async function (req, res) {
 
 
             ]).limit(1)
-        }else{
+        } else {
             order = await ordersModel.aggregate([
                 {
-                    $match:{
-                        id_order:search
+                    $match: {
+                        id_order: Number(search)
                     }
                 },
                 {
@@ -707,6 +732,8 @@ let last_order = async function (req, res) {
                             comentario: '$comentario',
                             _id: '$_id',
                             status: '$status',
+                            regMor: '$regMor',
+                            antagon: '$antagon',
                             createdAt: '$createdAt'
                         },
                         items: {
@@ -727,6 +754,8 @@ let last_order = async function (req, res) {
                             comentario: '$_id.comentario',
                             _id: '$_id._id',
                             status: '$_id.status',
+                            regMor: '$_id.regMor',
+                            antagon: '$_id.antagon',
                             createdAt: '$_id.createdAt',
                             detalle: '$items'
                         }
@@ -741,12 +770,11 @@ let last_order = async function (req, res) {
                 },
 
 
-            ]).limit(1)
+            ])
 
         }
 
-
-
+        console.log("order------------------>",order)
 
         if (order == null) {
             res.status(404).json({
@@ -784,3 +812,18 @@ module.exports = {
     last_order,
     editProductDetail
 };
+
+
+/* let today = moment().format("DDMMMYY");
+
+    var letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+
+    let numeroAleatorio = Math.floor(Math.random() * 100);
+
+    let letraAleatoria = letras.charAt(Math.floor(Math.random() * letras.length));
+
+    let string_id = letraAleatoria + numeroAleatorio + "-"  + today; */
+
+
+//let newId = lastid + 1

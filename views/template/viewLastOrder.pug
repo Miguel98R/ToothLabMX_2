@@ -1,9 +1,9 @@
 div
-    .card
+    .card.border-right
         .card-header.p-0.m-0.bg-dark
             .py-2.m-0
                 .row
-                    .col-6
+                    .col-6.text-center
                         h5.text-white.mx-2 Ultima orden creada
                     .col-6
                         h6.text-white.mx-2.text-end Folio :
@@ -37,7 +37,20 @@ div
                             label.fw-bolder Fecha Saliente:
                             input#fechaSalienteLast.rounded-pill.form-control.border.border-dark.editDataOrder( type="text" autocomplete="off")
 
+                div.my-4.text-center
+                    .row
+                        .col-6
+                            .form-check.fw-bold
+                                input#regMorLast.form-check-input(type='checkbox' value='')
+                                label.form-check-label(for='regMorLast')
+                                    | Reg. Mor.
 
+
+                        .col-6
+                            .form-check.fw-bold
+                                input#antagonLast.form-check-input(type='checkbox' value='')
+                                label.form-check-label(for='antagonLast')
+                                    | Antagon
                 div.my-4
                     h6 Productos
                 div#productos.my-3(style="overflow-y:scroll;max-height: 190px;")

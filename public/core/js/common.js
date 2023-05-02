@@ -452,6 +452,23 @@ let drawLastOrder = function (search) {
             $('#dataLastOrder').show()
             $('#NoDataLastOrder').hide()
             for (let item of order_data) {
+                console.log("itme 2---------z",item)
+
+                if(item.regMor){
+                    $('#regMorLast').prop("checked",true)
+                }else{
+                    $('#regMorLast').prop("checked",false)
+
+                }
+
+                if(item.antagon){
+                    $('#antagonLast').prop("checked",true)
+                }else{
+                    $('#antagonLast').prop("checked",false)
+
+                }
+
+
 
                 $('#dentistaOrder').val(item.dentista)
                 $('#Folio').text(item.folio)

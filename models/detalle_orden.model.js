@@ -15,6 +15,7 @@ let detalleSchema = new Schema ({
         type:String,
         required:false
     },
+
     tooths:[{
         type: String,
         required: true,

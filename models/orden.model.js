@@ -8,7 +8,7 @@ let moment = require("moment");
 let ordenSchema = new Schema ({
 
     id_order:{
-        type:String,
+        type:Number,
         required:true
     },
     name_paciente:{
@@ -41,7 +41,15 @@ let ordenSchema = new Schema ({
     comentario:{
         type:String,
         required:false,
-    },   
+    },
+    regMor:{
+        type:Boolean,
+        required:false
+    },
+    antagon:{
+        type:Boolean,
+        required:false
+    },
     status:{
         type:Number,
         required:true,

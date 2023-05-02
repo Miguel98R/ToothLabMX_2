@@ -6,9 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="d734133c-cf01-40a3-82bf-51cd7156af9f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/orders.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/orders.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/db.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/detalle_orden.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/detalle_orden.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/orden.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/orden.model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/core/js/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/core/js/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/template/menu.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/template/menu.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/core/js/ordenes.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/core/js/ordenes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/ordenes.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/ordenes.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/template/products_selectionTooth.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/template/products_selectionTooth.pug" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/template/viewLastOrder.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/template/viewLastOrder.pug" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -76,6 +81,17 @@
       <workItem from="1681852588558" duration="90000" />
       <workItem from="1681858658294" duration="1512000" />
       <workItem from="1681914111686" duration="2465000" />
+      <workItem from="1682608220139" duration="17000" />
+      <workItem from="1682608302709" duration="30000" />
+      <workItem from="1682624130467" duration="17000" />
+      <workItem from="1682624339726" duration="310000" />
+      <workItem from="1682624735286" duration="165000" />
+      <workItem from="1682715477961" duration="918000" />
+      <workItem from="1682747130275" duration="1244000" />
+      <workItem from="1682748748214" duration="423000" />
+      <workItem from="1682749238878" duration="622000" />
+      <workItem from="1682772839163" duration="9000" />
+      <workItem from="1683003016967" duration="7421000" />
     </task>
     <servers />
   </component>

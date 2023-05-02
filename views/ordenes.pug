@@ -20,7 +20,7 @@ html(lang="es")
                             .col-3
                 .row.my-2.mx-1
                     .col-6.p-0.m-0
-                        .card
+                        .card.border-0
                             .card-header.p-0.m-0.bg-dark
                                 .py-2.m-0
                                     h5.text-white.mx-2 Datos para nueva orden
@@ -55,9 +55,24 @@ html(lang="es")
                                                 label.fw-bold Salida:
 
                                                 input.date_salida.rounded-pill.border.border-dark.form-control( type="text" autocomplete="off")
+                                div.my-4.text-center
+                                    .row
+                                        .col-6
+                                            .form-check.fw-bold
+                                                input#regMor.form-check-input(type='checkbox' value='')
+                                                label.form-check-label(for='regMor')
+                                                    | Reg. Mor.
 
+
+                                        .col-6
+                                            .form-check.fw-bold
+                                                input#antagon.form-check-input(type='checkbox' value='')
+                                                label.form-check-label(for='antagon')
+                                                    | Antagon
                                 include template/products_selectionTooth
-                                .text-center
+
+
+                                div.text-center.my-3
                                     label.fw-bold Comentario:
                                     textarea.comntario_order.border.border-dark.form-control( name="", cols="5", rows="2" autocomplete="off")
 
