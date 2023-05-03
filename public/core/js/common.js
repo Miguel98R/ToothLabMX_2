@@ -199,6 +199,8 @@ let draw_modal_details = function (id) {
             + '</div>'
 
             + '<div class="col-4">'
+            + '<p class="fw-bold">  Registro Mordida: <span class="fw-normal">' + (data_order.regMor ? 'SI' : 'NO') + '</span></p>'
+            + '<p class="fw-bold">  Antagonista: <span class="fw-normal">' + ( data_order.antagon ? 'SI' : 'NO') + '</span></p>'
             + '<p class="fw-bold">  Comentarios: </p>'
 
             + '<textarea id_orden="' + data_order._id + '" class="fw-bold comentarios_details"> ' + data_order.comentario + '</textarea>'
@@ -323,6 +325,7 @@ let clean_input = function () {
     $(".paciente_name").val('');
     $(".date_salida").val('');
     $("#count_tooths").text(0);
+    $(".count_tooths").text(0);
     $(".producto_name").val('');
     $(".color_name").val('');
     $(".comntario_order").val('');

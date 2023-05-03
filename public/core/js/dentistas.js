@@ -188,6 +188,7 @@ $(document).ready(function () {
             function (data) {
                 notyf.success("Dentista creado !");
                 dt_draw();
+                $('#new_dentista_modal').modal('hide')
             },
             function (message) {
 

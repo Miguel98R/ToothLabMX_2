@@ -6,15 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="d734133c-cf01-40a3-82bf-51cd7156af9f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/orders.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/orders.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/db.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/detalle_orden.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/detalle_orden.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/orden.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/orden.model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/core/js/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/core/js/common.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/core/js/ordenes.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/core/js/ordenes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/ordenes.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/ordenes.pug" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/template/products_selectionTooth.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/template/products_selectionTooth.pug" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/template/viewLastOrder.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/template/viewLastOrder.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/core/js/productos.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/core/js/productos.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/core/js/status_core.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/core/js/status_core.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/template/headSRC.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/template/headSRC.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/template/scripts.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/template/scripts.pug" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +35,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/mike/Escritorio/Mike Rosas/ToothLabMX_2/public/cdn&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -46,6 +44,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/cdn" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="dev" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
@@ -91,11 +94,30 @@
       <workItem from="1682748748214" duration="423000" />
       <workItem from="1682749238878" duration="622000" />
       <workItem from="1682772839163" duration="9000" />
-      <workItem from="1683003016967" duration="7421000" />
+      <workItem from="1683003016967" duration="7642000" />
+      <workItem from="1683038100714" duration="2571000" />
+      <workItem from="1683051560928" duration="15000" />
+      <workItem from="1683051614813" duration="605000" />
+      <workItem from="1683052481776" duration="194000" />
+      <workItem from="1683053495644" duration="1475000" />
+      <workItem from="1683060579488" duration="596000" />
+      <workItem from="1683088512639" duration="3947000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/public/core/js/status_core.js</url>
+          <line>264</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

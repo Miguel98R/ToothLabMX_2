@@ -281,8 +281,8 @@ $(document).ready(function () {
 
                 + '<div class="col-7">'
 
-                + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold my-2 ">Entrada:  <span class="fw-bold text-dark">' + moment(data_order.fecha_entrante, 'DD-MM-YYYY').format('dddd DD-MMMM-YYYY') + '</span></h5>'
-                + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold ">Salida:  <span class="fw-bold text-dark">' + moment(data_order.fecha_saliente, 'DD-MM-YYYY').format('dddd DD-MMMM-YYYY') + '</span></h5>'
+                + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold my-2 ">Entrada: <br> <span class="fw-bold text-dark">' + moment(data_order.fecha_entrante, 'DD-MM-YYYY').format('dddd DD-MMMM-YYYY') + '</span></h5>'
+                + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold ">Salida: <br>  <span class="fw-bold text-dark">' + moment(data_order.fecha_saliente, 'DD-MM-YYYY').format('dddd DD-MMMM-YYYY') + '</span></h5>'
 
                 + '</div>'
 
@@ -296,7 +296,7 @@ $(document).ready(function () {
 
                 + '</div>'
 
-                + '<div class="row my-2">'
+                + '<div class="row">'
 
                 + '<div class="col-7">'
 
@@ -312,7 +312,7 @@ $(document).ready(function () {
 
                 + '</div>'
 
-                + '<div class="row my-2">'
+                + '<div class="row ">'
 
                 + '<div class="col-6">'
 
@@ -330,8 +330,23 @@ $(document).ready(function () {
 
 
                 + '</div>'
+                + '<div class="row my-4">'
 
-                + '<h3 class="text-center my-3 fw-bold"  >Detalle orden:</h3>'
+                + '<div class="col-6">'
+
+                + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold ">Registro Mordida:   <span class="fw-bold text-dark">' + (data_order.regMor ? 'SI' : 'NO') + '</span></h5>'
+                + '</div>'
+
+                + '<div class="col-6">'
+
+                + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold ">Antagonista:   <span class="fw-bold text-dark">' + (data_order.antagon ? 'SI' : 'NO')  + '</span></h5>'
+
+                + '</div>'
+
+
+                + '</div>'
+
+                + '<h3 class="text-center my-5 fw-bold"  >Detalle orden:</h3>'
 
 
             let productos = ''
@@ -420,9 +435,7 @@ $(document).ready(function () {
 
                 + '<div class="card-header">'
                 + '<div class="row text-center">'
-                + '<div class="col-12 ">'
-                + '<img class="img-fluid p-0 mx-3" style="max-height:80px;" src="' + logo + '"></img>'
-                + '</div>'
+
 
                 + '</div>'
                 + '</div>'
@@ -431,7 +444,14 @@ $(document).ready(function () {
                 + productos
                 + comentarios
 
+                + '<div class="col-12 text-end my-5 fixed-bottom">' +
+                '<br>'+
+                '<br>'+
+                '<br>'+
+                '<br>'
 
+                + '<img class="img-fluid p-0 mx-4" style="max-height:90px;filter: grayscale(80%) blur(1px);" src="' + logo + '"></img>'
+                + '</div>'
                 + '</div>'
 
 
@@ -440,7 +460,6 @@ $(document).ready(function () {
 
 
             ImprimirTicket(headerHTML, ticketHTML, footerHTML)
-
         })
 
 

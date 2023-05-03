@@ -383,7 +383,7 @@ $(document).ready(function () {
 
                 + '</div>'
 
-                + '<div class="row my-1">'
+                + '<div class="row">'
 
                 + '<div class="col-7">'
 
@@ -399,26 +399,41 @@ $(document).ready(function () {
 
                 + '</div>'
 
-                + '<div class="row my-1">'
+                + '<div class="row ">'
+
+                    + '<div class="col-6">'
+
+                    + '<br><h5 style="color:' + data_order.dentista_color + ';" class="text-start  fw-bold ">Regreso: </h5><input type="text"></input>'
+
+
+                    + '</div>'
+
+                    + '<div class="col-6">'
+
+                    + '<br><h5 style="color:' + data_order.dentista_color + ';" class="text-start fw-bold ">Entrega: </h5><input type="text"></input>'
+
+
+                    + '</div>'
+
+
+                + '</div>'
+                + '<div class="row my-4">'
 
                 + '<div class="col-6">'
 
-                + '<br><h5 style="color:' + data_order.dentista_color + ';" class="text-start  fw-bold ">Regreso: </h5><input type="text"></input>'
-
-
+                + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold ">Registro Mordida:   <span class="fw-bold text-dark">' + (data_order.regMor ? 'SI' : 'NO') + '</span></h5>'
                 + '</div>'
 
                 + '<div class="col-6">'
 
-                + '<br><h5 style="color:' + data_order.dentista_color + ';" class="text-start fw-bold ">Entrega: </h5><input type="text"></input>'
+                + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold ">Antagonista:   <span class="fw-bold text-dark">' + (data_order.antagon ? 'SI' : 'NO')  + '</span></h5>'
+
+                + '</div>'
 
 
                 + '</div>'
 
-
-                + '</div>'
-
-                + '<h3 class="text-center my-3 fw-bold"  >Detalle orden:</h3>'
+                + '<h3 class="text-center my-5 fw-bold"  >Detalle orden:</h3>'
 
 
             let productos = ''
@@ -522,7 +537,7 @@ $(document).ready(function () {
                 '<br>'+
                 '<br>'
 
-                + '<img class="img-fluid p-0 mx-4" style="max-height:90px;" src="' + logo + '"></img>'
+                + '<img class="img-fluid p-0 mx-4" style="max-height:90px;filter: grayscale(80%) blur(1px);" src="' + logo + '"></img>'
                 + '</div>'
                 + '</div>'
 

@@ -97,7 +97,10 @@ $(document).ready(function () {
   //DATA PARA PINTAR DATATABLES
 
   let dt_draw = function () {
+
     api_conection("GET", "api/products/data_dataTables", {}, function (data) {
+
+
       data_producto = data.data;
 
       dt.clear();
@@ -117,7 +120,7 @@ $(document).ready(function () {
 
 //CREACION DE NUEVO PRODUCTO
 
-let new_dentist;
+
 
 $('.new_product').click(function () {
   let nombre = $("#name_product").val();
@@ -146,6 +149,7 @@ $('.new_product').click(function () {
     function (data) {
       notyf.success("Producto creado !");
       dt_draw();
+      $('#new_product_modal').modal('hide')
     }
   );
 });
