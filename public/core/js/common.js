@@ -618,7 +618,6 @@ let add_product = function (id_orden,folio) {
 $(document).ready(function () {
 
     $(document.body).on('click', '.out_session', function () {
-
         location.href = '/'
         localStorage.removeItem('TOKEN');
 
