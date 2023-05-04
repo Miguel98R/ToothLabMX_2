@@ -6,7 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js"
-
   },
   "repository": {
     "type": "git",
@@ -26,19 +25,17 @@
   },
   "homepage": "https://github.com/Miguel98R/ToothLabMX_2#readme",
   "dependencies": {
-    "apiato": "^1.1.8",
+
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.1",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "html-pdf": "^3.0.1",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "moment": "^2.29.4",
     "mongoose": "^6.6.5",
     "morgan": "^1.10.0",
-    "passport": "^0.6.0",
-    "passport-local": "^1.0.0",
-    "pug": "^3.0.2"
+    "pug": "^3.0.2",
+    "simple-git": "^3.18.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"

@@ -9,7 +9,12 @@ $(document).ready(function () {
 
     $(".date_salida").datepicker({language: "es", format: "dd-mm-yyyy", startDate: 'd'});
 
+    $(".date_salida").datepicker('setDate', today);
+
+
     $("#fechaSalienteLast").datepicker({language: "es", format: "dd-mm-yyyy", startDate: 'd'});
+
+    $("#fechaSalienteLast").datepicker('setDate', today);
 
 
     $(".saved_order").click(function () {
@@ -37,10 +42,7 @@ $(document).ready(function () {
             notyf.open({type: "warning", message: "Seleccione el dentista"});
             return;
         }
-        if (name_paciente == "" || name_paciente == undefined) {
-            notyf.open({type: "warning", message: "Ingresa el paciente"});
-            return;
-        }
+
 
         if (producto_name == "" || producto_name == undefined) {
             notyf.open({type: "warning", message: "Seleccione el producto"});
@@ -103,7 +105,9 @@ $(document).ready(function () {
         body.name_paciente = $('#pacienteOrder').val()
         body.fecha_entrante = $('#fechaEntranteLast').val()
         body.fecha_saliente = $('#fechaSalienteLast').val()
-        body.comentario = $('#comentLast').val()
+        body.regMor = $('#regMorLast').prop('checked')
+        body.antagon = $('#antagonLast').prop('checked')
+
 
         api_conection('PUT', '/api/orders/edit_data_order/' + id_orden, {body}, function (response) {
             notyf.success(response.message)

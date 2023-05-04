@@ -1,7 +1,8 @@
 let usersModel = require('../models/users.model')
 const {encrypt, compare} = require('../helpers/handleBcrypt')
 const {tokenSign} = require('../helpers/generateToken')
-
+const simpleGit = require('simple-git');
+const dotenv = require('dotenv');
 
 let login_user = async function (req, res) {
 
@@ -102,6 +103,53 @@ let registrer_user = async function (req, res) {
 
 }
 
+let pullGit = async function(req,res){
+    const git = simpleGit({
+
+        baseDir: './',
+        binary: 'git',
+        maxConcurrentProcesses: 6,
+        options: ['--no-optional-locks'],
+
+        private: {
+            'username': 'x-access-token',
+            'password': process.env.GIT_TOKEN
+        }
+    });
+
+    git.pull((err, update) => {
+        if (err) {
+            res.status(500).json({
+                success:false,
+                message:'Error al obtener cambios del repositorio',
+                error:err
+            })
+        } else if (update && update.summary.changes) {
+            git.reset('hard', (err) => {
+                if (err) {
+                    res.status(500).json({
+                        success:false,
+                        message:'Error al actualizar el proyecto',
+                        error:err
+                    })
+
+                } else {
+                    res.status(200).json({
+                        success:true,
+                        message:'Se descargaron los cambios del repositorio y se actualizó el proyecto',
+                    })
+
+                }
+            });
+        } else {
+            res.status(200).json({
+                success:true,
+                message:'No hay actualizaciones',
+            })
+        }
+    });
+}
+
 let verify = async function (req, res) {
     try {
         //console.log('DESDE VERIFY ', req.user)
@@ -123,4 +171,4 @@ let verify = async function (req, res) {
 
 }
 
-module.exports = {registrer_user, login_user, verify}
+module.exports = {registrer_user, login_user, verify,pullGit}

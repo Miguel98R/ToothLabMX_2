@@ -52,6 +52,7 @@ const notyf = new Notyf({
 });
 
 
+
 let verificador = function () {
 
     if (localStorage.getItem('TOKEN')) {
@@ -621,6 +622,18 @@ $(document).ready(function () {
         location.href = '/'
         localStorage.removeItem('TOKEN');
 
+    })
+
+    $('#gitPull').click(function () {
+        api_conection(
+            "POST",
+            "api/auth/pullGit",
+            {},
+            function (response) {
+                notyf.success(response.message);
+               location.reload()
+            }
+        );
     })
 
 })
