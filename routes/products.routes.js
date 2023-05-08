@@ -5,12 +5,13 @@ const router = express.Router();
 let {
     new_product,
   data_table,
-  precios_product,
+  edit_product,
   change_Status,
   search_product,
   search_color,
   script_insertColors,
-  top_5_products
+  top_5_products,
+  productById
 
   
 } = require("../controllers/products.controller");
@@ -23,7 +24,10 @@ router.post("/new_product", new_product);
 router.get("/data_dataTables/", data_table);
 
 //ACTUALIZAR PRECIOS
-router.put("/precios_product/:_id", precios_product);
+router.put("/edit_product/:_id", edit_product);
+
+//DATOS DEL PRODUCTO POR ID
+router.post("/productById/:_id", productById);
 
 //BUSCADOR DE PRODUCTOS
 router.post("/search_product/", search_product);

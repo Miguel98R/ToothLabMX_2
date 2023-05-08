@@ -1,0 +1,32 @@
+#editProductModal.modal.fade(tabindex='-1')
+    .modal-dialog.modal-xl
+        .modal-content
+            .modal-header.bg-dark.text-white
+                h5.modal-title
+                    b Editar Producto
+                button.btn-close#close_modal(type='button'  data-bs-dismiss='modal' aria-label='Close')
+            .modal-body
+                .card
+
+                    .card-body
+
+                        .form-group
+                            label(for='priceProduct')
+                                i.fas.fa-file-signature.mx-1
+                                |  Nombre del producto:
+
+                            input#nameProduct.changeInProduct.form-control(type="text")
+
+
+                        .form-group
+
+                            label(for='nameProduct')
+                                i.fas.fa-dollar-sign.mx-1
+                                |  Precio:
+                            input#priceProduct.changeInProduct.form-control(type="text")
+
+
+            .modal-footer
+                button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Cerrar
+                button.btn.btn-success#saveEditProduct(type='button') Guardar
+
