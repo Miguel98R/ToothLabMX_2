@@ -369,39 +369,25 @@ $(document).ready(function () {
 
 
                 + '<div class="row ">'
-
-                + '<div class="col-7">'
-
-                + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold my-2 ">Entrada: <br> <span class="fw-bold text-dark">' + moment(data_order.fecha_entrante, 'DD-MM-YYYY').format('dddd DD-MMMM-YYYY') + '</span></h5>'
-                + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold ">Salida: <br>  <span class="fw-bold text-dark">' + moment(data_order.fecha_saliente, 'DD-MM-YYYY').format('dddd DD-MMMM-YYYY') + '</span></h5>'
-
-                + '</div>'
-
-                + '<div class="col-5 ">'
-
-                + '<h5 style="color:' + data_order.dentista_color + ';" class="text-start my-2  fw-bold ">Folio:  <mark class="fw-boldtext-dark">' + data_order.id_order + '</mark></h5>'
-                + '<h5 style="color:' + data_order.dentista_color + ';" class="text-start fw-bold ">Status:  <mark class="fw-bold text-dark">' + status + '</mark></h5>'
-
-                + '</div>'
-
-
-                + '</div>'
-
-                + '<div class="row">'
-
                 + '<div class="col-7">'
 
                 + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold ">Dentista:   <span class="fw-bold text-dark">' + data_order.name_dentista + '</span></h5>'
+                + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold ">Entrada: <br> <span class="fw-bold text-dark">' + moment(data_order.fecha_entrante, 'DD-MM-YYYY').format('dddd DD MMMM YYYY') + '</span></h5>'
+                + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold ">Salida: <br>  <span class="fw-bold text-dark">' + moment(data_order.fecha_saliente, 'DD-MM-YYYY').format('dddd DD MMMM YYYY') + '</span></h5>'
+
 
 
                 + '</div>'
+                + '<div class="col-5 my-3">'
 
-                + '<div class="col-5 ">'
+                + '<h5 style="color:' + data_order.dentista_color + ';" class="text-start  fw-bold ">Folio:  <mark class="fw-boldtext-dark">' + data_order.id_order + '</mark></h5>'
+                + '<h5 style="color:' + data_order.dentista_color + ';" class="text-start fw-bold ">Status:  <mark class="fw-bold text-dark">' + status + '</mark></h5>'
                 + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold ">Paciente:   <span class="fw-bold text-dark">' + data_order.name_paciente + '</span></h5>'
 
-                + '</div>'
 
                 + '</div>'
+                + '</div>'
+
 
                 + '<div class="row ">'
 
@@ -541,7 +527,7 @@ $(document).ready(function () {
                 '<br>'+
                 '<br>'
 
-                + '<img class="img-fluid p-0 mx-4" style="max-height:90px;filter: grayscale(80%) blur(1px);" src="' + logo + '"></img>'
+                + '<img class="img-fluid p-0 mx-4" style="max-height:90px;" src="' + logo + '"></img>'
                 + '</div>'
                 + '</div>'
 
