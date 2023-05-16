@@ -20,8 +20,6 @@ $(document).ready(function () {
     $(".saved_order").click(function () {
 
 
-
-
         let tooths = $(".btn-check");
         let dentist = $(".dentistas_name").val();
         let name_paciente = $(".paciente_name").val();
@@ -101,7 +99,7 @@ $(document).ready(function () {
         let body = {}
 
 
-        body.dentista =  $('#dentistaOrder').val()
+        body.dentista = $('#dentistaOrder').val()
         body.name_paciente = $('#pacienteOrder').val()
         body.fecha_entrante = $('#fechaEntranteLast').val()
         body.fecha_saliente = $('#fechaSalienteLast').val()
@@ -114,7 +112,6 @@ $(document).ready(function () {
             drawLastOrder(folio)
 
 
-
         }, function (response) {
             notyf.error(response.message)
             drawLastOrder(folio)
@@ -123,18 +120,17 @@ $(document).ready(function () {
     })
 
 
-
     $(document.body).on('click', '.edit_product', function () {
         clean_input()
         let dientes = $(this).attr('dientesEdit')
         let color = $(this).attr('colorEdit')
         let producto = $(this).attr('productoEdit')
         let id_detalle = $(this).attr('id_detalle')
+        let folio = $(this).attr('folio')
         let body = {}
 
 
         dientes = dientes.split(",");
-
 
 
         $('#producto_nameEdit').val(producto)
@@ -142,6 +138,7 @@ $(document).ready(function () {
         $('#countEdit').text(dientes.length)
 
         $('#saveEditProduct').attr('id_detalle', id_detalle)
+        $('#saveEditProduct').attr('folio', folio)
 
         for (let item of dientes) {
 
@@ -156,7 +153,7 @@ $(document).ready(function () {
     $(document.body).on('click', '#saveEditProduct', function () {
 
         let id_detalle = $(this).attr('id_detalle')
-        let id_orden = $(this).attr('id_orden')
+      
         let folio = $(this).attr('folio')
 
         let body = {}
@@ -168,7 +165,7 @@ $(document).ready(function () {
         body.cantidad = $('#countEdit').text()
         let tooths = $(".btn-check");
 
-        if (body.producto_name  == "" || body.producto_name == undefined) {
+        if (body.producto_name == "" || body.producto_name == undefined) {
             notyf.open({type: "warning", message: "Seleccione el producto"});
             return;
         }
@@ -240,7 +237,6 @@ $(document).ready(function () {
         let folio = $(this).attr('folio')
 
 
-
         if (status_actual == status) {
             notyf.open({type: "warning", message: "Esta orden ya se encuentra en el status seleccionado"});
 
@@ -279,7 +275,6 @@ $(document).ready(function () {
 
         });
     })
-
 
 
     let drawOptionsProductoEdit = function (search) {
@@ -326,26 +321,37 @@ $(document).ready(function () {
         );
     };
 
-    $('.add_products').click( function () {
+    $('.add_products').click(function () {
         let id_orden = $(this).attr('id_order')
+        let folio = $(this).attr('folio')
         clean_input()
         $('#agregar_productModal').modal('show')
 
         $('.save_newProduct').attr('id_orden', id_orden)
+        $('.save_newProduct').attr('folio', folio)
 
     })
 
     $('.save_newProduct').click(function () {
         let folio = $(this).attr('folio')
         let id_orden = $(this).attr('id_orden')
-        add_product(id_orden,folio)
-
+        add_product(id_orden, folio)
 
 
     })
 
-    $('#searchOrders').change(function(){
+    $('#searchOrders').change(function () {
         let value = $(this).val()
+
+
+        drawLastOrder(value)
+
+
+    })
+
+    $('#btnSearch').change(function () {
+        let value = $("#searchOrders").val()
+
 
         drawLastOrder(value)
 
@@ -376,7 +382,6 @@ $(document).ready(function () {
                 + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold ">Salida: <br>  <span class="fw-bold text-dark">' + moment(data_order.fecha_saliente, 'DD-MM-YYYY').format('dddd DD MMMM YYYY') + '</span></h5>'
 
 
-
                 + '</div>'
                 + '<div class="col-5 my-3">'
 
@@ -391,19 +396,19 @@ $(document).ready(function () {
 
                 + '<div class="row ">'
 
-                    + '<div class="col-6">'
+                + '<div class="col-6">'
 
-                    + '<br><h5 style="color:' + data_order.dentista_color + ';" class="text-start  fw-bold ">Regreso: </h5><input type="text"></input>'
-
-
-                    + '</div>'
-
-                    + '<div class="col-6">'
-
-                    + '<br><h5 style="color:' + data_order.dentista_color + ';" class="text-start fw-bold ">Entrega: </h5><input type="text"></input>'
+                + '<br><h5 style="color:' + data_order.dentista_color + ';" class="text-start  fw-bold ">Regreso: </h5><input type="text"></input>'
 
 
-                    + '</div>'
+                + '</div>'
+
+                + '<div class="col-6">'
+
+                + '<br><h5 style="color:' + data_order.dentista_color + ';" class="text-start fw-bold ">Entrega: </h5><input type="text"></input>'
+
+
+                + '</div>'
 
 
                 + '</div>'
@@ -416,7 +421,7 @@ $(document).ready(function () {
 
                 + '<div class="col-6">'
 
-                + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold ">Antagonista:   <span class="fw-bold text-dark">' + (data_order.antagon ? 'SI' : 'NO')  + '</span></h5>'
+                + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold ">Antagonista:   <span class="fw-bold text-dark">' + (data_order.antagon ? 'SI' : 'NO') + '</span></h5>'
 
                 + '</div>'
 
@@ -522,9 +527,9 @@ $(document).ready(function () {
                 + comentarios
 
                 + '<div class="col-12 text-end my-5 fixed-bottom">' +
-                '<br>'+
-                '<br>'+
-                '<br>'+
+                '<br>' +
+                '<br>' +
+                '<br>' +
                 '<br>'
 
                 + '<img class="img-fluid p-0 mx-4" style="max-height:90px;" src="' + logo + '"></img>'

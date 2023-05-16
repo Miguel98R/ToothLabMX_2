@@ -1,7 +1,7 @@
 let usersModel = require('../models/users.model')
 const {encrypt, compare} = require('../helpers/handleBcrypt')
 const {tokenSign} = require('../helpers/generateToken')
-const simpleGit = require('simple-git');
+
 const dotenv = require('dotenv');
 
 let login_user = async function (req, res) {
@@ -70,7 +70,6 @@ let registrer_user = async function (req, res) {
 
 
         let new_user = new usersModel({
-
             user: user,
             password: passwordHash,
             rol: rol

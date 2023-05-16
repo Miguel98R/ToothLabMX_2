@@ -12,12 +12,17 @@ html(lang="es")
             include template/menu
             .panel.two
                 div(style="width:100%;border-bottom: 1px solid #343A40 ")
-                        .row
-                            .col-3.text-start
-                                h3.m-3 Generar orden
-                            .col-6.my-3
-                                input#searchOrders.mx-2.rounded-pill.border.border-dark.form-control(type='text' style="max-width:100%;" placeholder='BUSCAR UNA ORDEN ')
-                            .col-3
+                    .row
+                        .col-6.text-start
+                            h3.m-3 Generar orden
+                        .col-6.my-3
+                            .row
+                                .col-10
+                                    input#searchOrders.mx-2.rounded-pill.border.border-dark.form-control(type='number' style="max-width:100%;" placeholder='BUSCAR UNA ORDEN ')
+
+                                //.col-4.text-start
+                                    button#btnSearch.btn.btn-outline-primary  🔎
+
                 .row.my-2.mx-1
                     .col-6.p-0.m-0
                         .card.border-0

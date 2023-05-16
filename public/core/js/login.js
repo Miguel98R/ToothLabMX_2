@@ -25,6 +25,7 @@ $(document).ready(function () {
             let token = response.tokenSession
 
 
+
             if (codigo == 200) {
 
                 localStorage.setItem('TOKEN', token)

@@ -444,9 +444,6 @@ let drawLastOrder = function (search) {
 
         let order_data = data.data
 
-        console.log(order_data,"<------data")
-        console.log(order_data.length,"<------data length")
-
 
         if (order_data.length < 1) {
             $('#dataLastOrder').hide()
@@ -456,7 +453,7 @@ let drawLastOrder = function (search) {
             $('#dataLastOrder').show()
             $('#NoDataLastOrder').hide()
             for (let item of order_data) {
-                console.log("itme 2---------z",item)
+
 
                 if(item.regMor){
                     $('#regMorLast').prop("checked",true)
@@ -513,7 +510,7 @@ let drawLastOrder = function (search) {
 
                     } else {
                         button_delete = '<button id_orden="' + item._id + '" id_detalle="' + jtem.detalle._id + '" class=" my-1 btn btn-block btn-danger  delete_product btn_delete_' + jtem.detalle._id + '"><i class="fas fa-trash-alt"></i></button>'
-                        button_edit = '<button colorEdit="' + jtem.detalle.color + '" productoEdit="' + jtem.detalle.producto.name_producto + '" dientesEdit="' + jtem.detalle.tooths + '" id_orden="' + item._id + '" id_detalle="' + jtem.detalle._id + '" class=" my-1 btn btn-warning  btn-block  edit_product btn_edit_' + jtem.detalle._id + '"><i class="fas fa-edit fa-rotate-270 fa-sm"></i></button>'
+                        button_edit = '<button colorEdit="' + jtem.detalle.color + '" folio="' + item.folio + '" productoEdit="' + jtem.detalle.producto.name_producto + '" dientesEdit="' + jtem.detalle.tooths + '" id_orden="' + item._id + '" id_detalle="' + jtem.detalle._id + '" class=" my-1 btn btn-warning  btn-block  edit_product btn_edit_' + jtem.detalle._id + '"><i class="fas fa-edit fa-rotate-270 fa-sm"></i></button>'
                     }
 
                     let tooths_10_20 = ''

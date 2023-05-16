@@ -5,19 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d734133c-cf01-40a3-82bf-51cd7156af9f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/cdn/HoldOn/HoldOn.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/cdn/HoldOn/HoldOn.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/modals/editItemsProduct.pug" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/products.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/products.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/core/js/productos.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/core/js/productos.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/products.routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/products.routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/modals/editProduct.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/modals/editProduct.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/auth.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/auth.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/orders.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/orders.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/core/js/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/core/js/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/core/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/core/js/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/core/js/ordenes.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/core/js/ordenes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/ordenes.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/ordenes.pug" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/productos.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/productos.pug" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/template/headSRC.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/template/headSRC.pug" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/template/menu.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/template/menu.pug" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/template/nav.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/template/nav.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/template/viewLastOrder.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/template/viewLastOrder.pug" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,21 +37,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/mike/Escritorio/Mike Rosas/ToothLabMX_2/public/cdn/HoldOn",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/mike/Escritorio/Mike Rosas/carnival&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/public/cdn/HoldOn" />
@@ -124,6 +119,23 @@
       <workItem from="1683345560529" duration="2314000" />
       <workItem from="1683378941960" duration="599000" />
       <workItem from="1683507410651" duration="7412000" />
+      <workItem from="1683555851184" duration="56000" />
+      <workItem from="1683555928354" duration="59000" />
+      <workItem from="1683577125058" duration="883000" />
+      <workItem from="1683583305159" duration="734000" />
+      <workItem from="1683832756007" duration="176000" />
+      <workItem from="1683833388238" duration="783000" />
+      <workItem from="1683834235127" duration="22000" />
+      <workItem from="1683933938637" duration="1072000" />
+      <workItem from="1683935158896" duration="864000" />
+      <workItem from="1683983414681" duration="616000" />
+      <workItem from="1683987733613" duration="119000" />
+      <workItem from="1683989725904" duration="413000" />
+      <workItem from="1683991102088" duration="684000" />
+      <workItem from="1683991899194" duration="15000" />
+      <workItem from="1683991925779" duration="3000" />
+      <workItem from="1684211796123" duration="2344000" />
+      <workItem from="1684246397309" duration="2241000" />
     </task>
     <servers />
   </component>
@@ -134,8 +146,14 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/public/core/js/status_core.js</url>
-          <line>264</line>
+          <url>file://$PROJECT_DIR$/viewEngine/routes.js</url>
+          <line>5</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/public/core/js/ordenes.js</url>
+          <line>19</line>
+          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>

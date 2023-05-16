@@ -679,7 +679,6 @@ let last_order = async function (req, res) {
                     }
                 },
 
-
             ]).limit(1)
         } else {
             order = await ordersModel.aggregate([
@@ -697,8 +696,12 @@ let last_order = async function (req, res) {
                     }
                 },
                 {
-                    $unwind: '$dentista'
+                    $unwind: {
+                        path: '$dentista',
+                        preserveNullAndEmptyArrays: true,
+                    },
                 },
+
                 {
                     $lookup: {
                         from: detailsOrderModel.collection.name,
@@ -708,8 +711,12 @@ let last_order = async function (req, res) {
                     }
                 },
                 {
-                    $unwind: '$detalle'
+                    $unwind: {
+                        path: "$detalle",
+                        preserveNullAndEmptyArrays: true,
+                    },
                 },
+
                 {
                     $lookup: {
                         from: productModel.collection.name,
@@ -719,8 +726,12 @@ let last_order = async function (req, res) {
                     }
                 },
                 {
-                    $unwind: '$detalle.producto'
+                    $unwind: {
+                        path: '$detalle.producto',
+                        preserveNullAndEmptyArrays: true,
+                    },
                 },
+
                 {
                     $group: {
                         _id: {
