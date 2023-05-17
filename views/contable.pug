@@ -1,0 +1,69 @@
+doctype html
+html(lang="es")
+    head
+    include template/headSRC
+    title #{title}
+    body
+
+
+        include template/nav
+        #panelContainer
+
+            include template/menu
+            .panel.two
+                div(style="width:100%;border-bottom: 1px solid #343A40 ")
+                    .row
+                        .col-6.text-start
+                            h3.m-3 Contabilidad
+                        .col-6.my-2.text-start
+                            .row
+                                .col-10
+                                    .form-group
+                                        label Selecciona un dentista:
+                                        input.dentistas_name.rounded-pill.border.border-dark.form-control( list='dentista_option' autocomplete="off")
+                                        datalist#dentista_option
+
+                                //.col-4.text-start
+                                    button#btnSearch.btn.btn-outline-primary  🔎
+                div.my-5.mx-2
+                    div.text-center
+                        h2.display-3.fw-bolder Saldo: $
+                            span#cantidadSaldo
+                                | 1000
+                    .row
+                        .col-6
+                            div.text-center
+                                h4 Ordenes Creadas:
+                                table#tblOrdenes.display.table.table-hover(width='100%')
+                                    thead.thead-dark
+                                        tr
+
+
+                                            th Folio
+                                            th No Productos
+                                            th Total
+                                            th A Cuenta
+
+
+                        .col-6
+
+                            div.text-center
+                                h4 Historial de pagos
+                                table#tblHistorial.display.table.table-hover(width='100%')
+                                    thead.thead-dark
+                                        tr
+                                            th Fecha
+                                            th Cantidad
+
+
+
+
+
+
+
+
+
+
+    include template/scripts
+    script( src='./public/core/js/common.js')
+    script( src='./public/core/js/contabilidad.js')
