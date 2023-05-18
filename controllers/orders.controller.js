@@ -11,7 +11,7 @@ let generate_id = function (lastid) {
 
     console.log(lastid)
     let newId = Number(lastid) + 1
-    console.log("newId------------>",newId)
+    console.log("newId------------>", newId)
 
 
     return newId;
@@ -58,7 +58,7 @@ let new_order = async function (req, res) {
         console.log("lastOrder---------------------->", lastOrder)
         let tamanolastOrder = lastOrder.length
         if (tamanolastOrder == 1) {
-            for(let item of lastOrder){
+            for (let item of lastOrder) {
                 lastid = Number(item.id_order)
             }
         } else {
@@ -227,7 +227,6 @@ let details_order = async function (req, res) {
             data_details.status = item.status
             data_details.regMor = item.regMor
             data_details.antagon = item.antagon
-
 
 
         }
@@ -591,7 +590,7 @@ let last_order = async function (req, res) {
 
     let {search} = req.body
 
-    console.log("search----->",search)
+    console.log("search----->", search)
 
 
     try {
@@ -785,7 +784,7 @@ let last_order = async function (req, res) {
 
         }
 
-        console.log("order------------------>",order)
+        console.log("order------------------>", order)
 
         if (order == null) {
             res.status(404).json({
@@ -811,6 +810,164 @@ let last_order = async function (req, res) {
     }
 }
 
+//OBTENER ORDEN POR DENTISTA
+let orderByDentist = async function (req, res) {
+
+    let {id_dentista} = req.params
+
+
+    try {
+        let order
+
+        order = await ordersModel.aggregate([
+            {
+                $match: {
+                    dentista: mongoose.Types.ObjectId(id_dentista)
+                }
+            },
+            {
+                $lookup: {
+                    from: dentistModel.collection.name,
+                    localField: 'dentista',
+                    foreignField: '_id',
+                    as: 'dentista'
+                }
+            },
+            {
+                $unwind: '$dentista'
+            },
+            {
+                $lookup: {
+                    from: detailsOrderModel.collection.name,
+                    localField: 'detalle',
+                    foreignField: '_id',
+                    as: 'detalle'
+                }
+            },
+            {
+                $unwind: '$detalle'
+            },
+            {
+                $lookup: {
+                    from: productModel.collection.name,
+                    localField: 'detalle.producto',
+                    foreignField: '_id',
+                    as: 'detalle.producto'
+                }
+            },
+            {
+                $unwind: '$detalle.producto'
+            },
+            {
+                $group: {
+                    _id: {
+                        paciente: '$name_paciente',
+                        total_order: '$total_order',
+                        fecha_entrante: '$fecha_entrante',
+                        folio: '$id_order',
+                        status: '$status',
+                        dentista_color: "$dentista.distintivo_color",
+                        id_dentista: "$dentista._id",
+                        _id: "$_id",
+
+                    },
+                    items: {
+                        $push: {
+                            detalle: '$detalle',
+                        }
+                    }
+                }
+            },
+            {
+                $replaceRoot: {
+                    newRoot: {
+                        paciente: '$_id.paciente',
+                        total_order: '$_id.total_order',
+                        fecha_entrante: '$_id.fecha_entrante',
+                        folio: '$_id.folio',
+                        status: '$_id.status',
+                        createdAt: '$_id.createdAt',
+                        detalle: '$items',
+                        dentista_color: '$_id.dentista_color',
+                        id_dentista: '$_id.id_dentista',
+                        _id: '$_id._id',
+                    }
+                }
+
+            },
+
+            {
+                $sort: {
+                    'createdAt': -1
+                }
+            },
+
+        ])
+
+
+        if (order == null) {
+            res.status(404).json({
+                success: false,
+                data: order,
+                message: 'No has registrado ordenes'
+            })
+            return
+        }
+
+        res.status(200).json({
+            success: true,
+            data: order
+        })
+
+    } catch (e) {
+        console.log(e)
+        res.status(500).json({
+            message: "Error al consultar ultima orden ",
+            success: false,
+            error: e
+        })
+    }
+}
+
+
+//EDITAR EL TOTAL DE LA ORDEN
+let editTotalOrder = async function (req, res) {
+
+    let body = req.body
+
+
+    try {
+        let order = await ordersModel.findById(body.id_order)
+
+        if (order == null) {
+            res.status(404).json({
+                success: false,
+                data: order,
+                message: 'No existe la orden'
+            })
+            return
+        }
+
+        order.total_order = Number(body.value)
+        await order.save()
+
+        res.status(200).json({
+            success: true,
+            message:'Total actualizado'
+        })
+
+    } catch (e) {
+        console.log(e)
+        res.status(500).json({
+            message: "Error al actualizar total de la orden ",
+            success: false,
+            error: e
+        })
+    }
+}
+
+
+
 module.exports = {
     new_order,
     details_order,
@@ -821,20 +978,8 @@ module.exports = {
     delete_detail,
     edit_data_order,
     last_order,
-    editProductDetail
+    editProductDetail,
+    orderByDentist,
+    editTotalOrder
 };
 
-
-/* let today = moment().format("DDMMMYY");
-
-    var letras = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-
-    let numeroAleatorio = Math.floor(Math.random() * 100);
-
-    let letraAleatoria = letras.charAt(Math.floor(Math.random() * letras.length));
-
-    let string_id = letraAleatoria + numeroAleatorio + "-"  + today; */
-
-
-//let newId = lastid + 1

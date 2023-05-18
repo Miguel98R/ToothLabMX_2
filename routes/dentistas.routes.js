@@ -10,6 +10,8 @@ let {
   update_dentista,
   search_dentist,
   top_5_dentist,
+  addPagos,
+  pagosByDentist
 } = require("../controllers/dentistas.controller");
 
 //NUEVO DENTISTA
@@ -33,6 +35,11 @@ router.post("/search_dentist/", search_dentist);
 //TOP 5 DENTISTAS
 router.get("/top_5_dentist/", top_5_dentist);
 
+//AGREGAR PAGOS
+router.post("/addPagos/", addPagos);
+
+//OBTENER PAGOS
+router.post("/pagosByDentist/:id_dentista", pagosByDentist);
 
 
 

@@ -375,17 +375,9 @@ let drawOptionsDentist = function (search) {
         {search},
         function (data) {
             let dentist_list = data.data;
-            for (let item of dentist_list) {
-                $("#dentista_option").append(
-                    '<option id_dentista="' +
-                    item._id +
-                    '" value="' +
-                    item.name_dentista +
-                    '">' +
-                    item.name_dentista +
-                    "</option>"
-                );
-            }
+            dentist_list.forEach(item => {
+                $("#dentista_option").append(`<option id_dentista="${item._id}" value="${item.name_dentista}">${item.name_dentista}</option>`);
+            });
         }
     );
 };

@@ -19,46 +19,55 @@ html(lang="es")
                             .row
                                 .col-10
                                     .form-group
-                                        label Selecciona un dentista:
-                                        input.dentistas_name.rounded-pill.border.border-dark.form-control( list='dentista_option' autocomplete="off")
+
+                                        input.dentistas_name.rounded-pill.border.border-dark.form-control( list='dentista_option' placeholder="SELECCIONE UN DENTISTA:" autocomplete="off")
                                         datalist#dentista_option
 
-                                //.col-4.text-start
-                                    button#btnSearch.btn.btn-outline-primary  🔎
-                div.my-5.mx-2
-                    div.text-center
-                        h2.display-3.fw-bolder Saldo: $
-                            span#cantidadSaldo
-                                | 1000
-                    .row
-                        .col-6
-                            div.text-center
-                                h4 Ordenes Creadas:
-                                table#tblOrdenes.display.table.table-hover(width='100%')
-                                    thead.thead-dark
-                                        tr
-
-
-                                            th Folio
-                                            th No Productos
-                                            th Total
-                                            th A Cuenta
-
-
-                        .col-6
-
-                            div.text-center
-                                h4 Historial de pagos
-                                table#tblHistorial.display.table.table-hover(width='100%')
-                                    thead.thead-dark
-                                        tr
-                                            th Fecha
-                                            th Cantidad
 
 
 
+                .row.mx-1
+                    .col-8
+                        .container
+                            h5.my-3 Ordenes Creadas:
+                            table#tblOrdenes.display.table.table-hover(width='100%')
+                                thead.thead-dark
+                                    tr
+                                        th Folio
+                                        th Fecha entrada
+                                        th No Trabajos
+                                        th Paciente
+                                        th Status
+                                        th Total
 
 
+                            hr.py-1
+                            h5.my-3 Historial de pagos
+                            table#tbl_Pagos.display.table.table-hover(width='100%')
+                                thead.thead-dark
+                                    tr
+                                        th Fecha
+                                        th Cantidad
+
+
+                    .col-4
+                        div.row.mx-3.my-2.text-center
+                            h3#nameDentista.fw-bold
+                            .col-12
+
+
+                                div.text-center.my-4
+                                    input#saldoPagos(type="number" style="display:none;")
+                                    input#saldoDeuda(type="number" style="display:none;")
+
+                                    h2.display-4.fw-bolder Saldo: $
+                                        span#cantidadSaldo
+                                            | 0
+
+                                div.text-center
+
+                                    label.fw-bold.mx-2 Dejar dinero a cuenta:
+                                    input.rounded-pill.border.border-dark.form-control#aCuenta(type="number" min=0 )
 
 
 

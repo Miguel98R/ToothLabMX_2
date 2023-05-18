@@ -12,7 +12,9 @@ let {
     delete_detail,
     edit_data_order,
     last_order,
-    editProductDetail
+    editProductDetail,
+    orderByDentist,
+    editTotalOrder
 } = require("../controllers/orders.controller.js")
 
 
@@ -45,5 +47,13 @@ router.put("/editProductDetail/:id_detalle", editProductDetail);
 
 //ULTIMA ORDER
 router.post("/last_order/", last_order);
+
+//ORDENES POR DENTISTA
+
+router.post("/orderByDentist/:id_dentista", orderByDentist);
+
+//EDITAR TOTAL DE LA ORDEN
+
+router.post("/editTotalOrder/", editTotalOrder);
 
 module.exports = router;
