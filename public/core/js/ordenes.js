@@ -383,11 +383,10 @@ $(document).ready(function () {
 
 
                 + '</div>'
-                + '<div class="col-5 my-3">'
+                + '<div class="col-5 ">'
 
                 + '<h5 style="color:' + data_order.dentista_color + ';" class="text-start  fw-bold ">Folio:  <mark class="fw-boldtext-dark">' + data_order.id_order + '</mark></h5>'
-                + '<h5 style="color:' + data_order.dentista_color + ';" class="text-start fw-bold ">Status:  <mark class="fw-bold text-dark">' + status + '</mark></h5>'
-                + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold ">Paciente:   <span class="fw-bold text-dark">' + data_order.name_paciente + '</span></h5>'
+                + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold ">Paciente:   <span class="fw-bold text-dark">' + data_order.name_paciente.toUpperCase() + '</span></h5>'
 
 
                 + '</div>'
@@ -412,7 +411,8 @@ $(document).ready(function () {
 
 
                 + '</div>'
-                + '<div class="row my-4">'
+                + '<h3 class="text-center my-5 fw-bold"  >Descripción:</h3>'
+                + '<div class="row my-4 text-center">'
 
                 + '<div class="col-6">'
 
@@ -428,7 +428,7 @@ $(document).ready(function () {
 
                 + '</div>'
 
-                + '<h3 class="text-center my-5 fw-bold"  >Detalle orden:</h3>'
+
 
 
             let productos = ''
@@ -448,20 +448,20 @@ $(document).ready(function () {
                     od = Number(od)
 
                     if (od >= 11 && od <= 18) {
-                        parrafo_od_10_20 = '<span class="text-primary fs-5">' + od + '&nbsp;  </span>'
+                        parrafo_od_10_20 = '<span class="text-primary fs-5 fw-bolder">' + od + '&nbsp;  </span>'
 
 
                     }
                     if (od >= 21 && od <= 28) {
-                        parrafo_od_10_20 = '<span class="text-danger fs-5">' + od + '&nbsp;    </span>'
+                        parrafo_od_10_20 = '<span class="text-danger fs-5 fw-bolder">' + od + '&nbsp;    </span>'
 
                     }
                     if (od >= 31 && od <= 38) {
-                        parrafo_od_30_40 = '<span class="text-warning fs-5">' + od + '&nbsp;   </span>'
+                        parrafo_od_30_40 = '<span class="text-warning fs-5 fw-bolder">' + od + '&nbsp;   </span>'
 
                     }
                     if (od >= 41 && od <= 48) {
-                        parrafo_od_30_40 = '<span class="text-success fs-5">' + od + '&nbsp;   </span>'
+                        parrafo_od_30_40 = '<span class="text-success fs-5 fw-bolder">' + od + '&nbsp;   </span>'
 
                     }
 
@@ -508,7 +508,7 @@ $(document).ready(function () {
 
             let comentarios = '<h3 class="text-center my-3 fw-bold" >Comentarios:</h3>'
                 + '<div style="border:solid;border-color:' + data_order.dentista_color + ';" class="text-center p-5">'
-                + '<h5 class="p-0 m-0"style="color:' + data_order.dentista_color + ';">' + data_order.comentario + '</h5>'
+                + '<h5 class="p-0 m-0" style="color:' + data_order.dentista_color + ';">' + data_order.comentario + '</h5>'
                 + '</div>'
                 + '</div>'
                 + '</div>'
