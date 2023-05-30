@@ -134,39 +134,96 @@ $(function () {
     //COLUMNAS DE LA DATATABLE ORDENES
     let columnsOrdenes = [
         {
-            width: "10%",
+            width: "5%",
             data: "folio",
 
         },
         {
             width: "15%",
-            data: "fecha_entrante",
-            render: function (data, v, row) {
-                return '<p class="fw-bolder">' + moment(data, 'DD-MM-YYYY').format('dddd DD MMMM YYYY') + '</p>'
-
-
+            data: "paciente",
+            render : function (data,v,row) {
+                return data.toUpperCase()
             }
-
         },
+
+
+
         {
             width: "5%",
             data: "detalle",
             render: function (data, v, row) {
 
-                let tamano = data.length
+                let tamano = data[0].detalle.tooths;
 
-                return tamano
+
+               return tamano.length
+
+            }
+
+        },
+        {
+            width: "20%",
+            data: "detalle",
+            render: function (data, v, row) {
+
+
+                return data[0].detalle.producto.name_producto;
+
+            }
+
+        },
+        {
+            width: "20%",
+            data: "detalle",
+            render: function (data, v, row) {
+
+                let tamano = data[0].detalle.tooths;
+                let tooths_10_20 = ''
+                let tooths_30_40 = ''
+
+
+                for (let od of tamano) {
+
+                    let parrafo_od_10_20 = ''
+                    let parrafo_od_30_40 = ''
+
+
+                    od = Number(od)
+
+                    if (od >= 11 && od <= 18) {
+                        parrafo_od_10_20 = '<span class="text-primary fs-5 fw-bolder">' + od + '&nbsp;  </span>'
+
+
+                    }
+                    if (od >= 21 && od <= 28) {
+                        parrafo_od_10_20 = '<span class="text-danger fs-5 fw-bolder">' + od + '&nbsp;    </span>'
+
+                    }
+                    if (od >= 31 && od <= 38) {
+                        parrafo_od_30_40 = '<span class="text-warning fs-5 fw-bolder">' + od + '&nbsp;   </span>'
+
+                    }
+                    if (od >= 41 && od <= 48) {
+                        parrafo_od_30_40 = '<span class="text-success fs-5 fw-bolder">' + od + '&nbsp;   </span>'
+
+                    }
+
+                    tooths_10_20 = tooths_10_20 + parrafo_od_10_20
+                    tooths_30_40 = tooths_30_40 + parrafo_od_30_40
+
+                }
+
+
+
+                return  '<center  >'+ tooths_10_20+ '<br>' + tooths_30_40 + '</center>'
 
             }
 
         },
 
+
         {
             width: "5%",
-            data: "paciente"
-        },
-        {
-            width: "10%",
             data: "status",
             render: function (data, v, row) {
                 let status_text = asignament_status(data)
@@ -174,7 +231,7 @@ $(function () {
             }
         },
         {
-            width: "15%",
+            width: "10%",
             data: "id_dentista",
             render: function (data, v, row) {
 

@@ -1,71 +1,73 @@
 .container
-  section.vh-100
-    .container-fluid.h-custom
-      .card
-        .card-header
-          
-          h3 
-            i.fa-solid.fa-door-open
-            |   Bienvenido de nuevo
+    section.vh-100
+        .container-fluid.h-custom
+            .card
+                .card-header
 
-        .card-body 
-          .row.d-flex.justify-content-center.align-items-center.h-100
-            .col-md-9.col-lg-6.col-xl-5.text-center
-              img.img-fluid.mx-2.my-2( style='width:65%;'  src='/public/img/logo.jpg' alt='Sample image')
-            .col-md-8.col-lg-6.col-xl-4
+                    h3
+                        i.fa-solid.fa-door-open
+                        |   Bienvenido de nuevo
 
-                .card
-                  .card-header.text-center
-                      
-                      h4 
-                        |   Inicio de sesión
-                  .card-body.text-secondary
-                    .form-outline.my-2
-                      label.form-label(for='user')
-                        i.fa-solid.fa-user-tie  
-                        b|  Usuario:
-                      input#user.form-control(type='text')
-                      
-                
-                    .form-outline.my-2
-                      label.form-label(for='password')
-                        i.fa-solid.fa-key 
-                        b|  Contraseña :
-                      input#password.form-control(type='password')
-                    
+                .card-body
+                    .row.d-flex.justify-content-center.align-items-center.h-100
+                        .col-md-9.col-lg-6.col-xl-5.text-center
+                            img.img-fluid.mx-2.my-2( style='width:65%;'  src='/public/img/logo.jpg' alt='Sample image')
+                        .col-md-8.col-lg-6.col-xl-4
 
-                  .card-footer.text-center
-                    
-                      #reset_password(style="display:none;")
-                          button.btn.btn-link.reset_constra|¿ Olvidaste tu contraseña ?
-                      #reset_user(style="display:none;")
-                          button.btn.btn-link.reset_user|Crear nuevo usuario
-                      br
-                      button.btn.btn-dark(style='padding-left: 2.5rem; padding-right: 2.5rem;')#entrar 
-                        i.fas.fa-sign-in-alt
-                        |  Entrar
+                            .card
+                                .card-header.text-center
+
+                                    h4
+                                        |   Inicio de sesión
+                                .card-body.text-secondary
+                                    .form-outline.my-2
+                                        label.form-label(for='user')
+                                            i.fa-solid.fa-user-tie
+                                            b|  Usuario:
+                                        input#user.form-control(type='text')
 
 
-        .card-footer
-           .d-flex.flex-column.flex-md-row.text-center.text-md-start.justify-content-center.py-4.px-4.px-xl-5.my-2
-            // Copyright
-            .text-dark.mb-3.mb-md-0.text-center
-              | Copyright &copy; 2023. - ToothLabMX v2.1.0  - Desarrollado por: Jose Miguel Rosas Jimenez
-          
+                                    .form-outline.my-2
+                                        label.form-label(for='password')
+                                            i.fa-solid.fa-key
+                                            b|  Contraseña :
+                                        input#password.form-control(type='password')
 
-      
-          
-      
-    br
-   
-      //- div
-      //-   a.text-white.me-4(href='#!')
-      //-     i.fab.fa-facebook-f
-      //-   a.text-white.me-4(href='#!')
-      //-     i.fab.fa-twitter
-      //-   a.text-white.me-4(href='#!')
-      //-     i.fab.fa-google
-      //-   a.text-white(href='#!')
-      //-     i.fab.fa-linkedin-in
-      //- // Right
+
+                                .card-footer.text-center
+
+                                    #reset_password(style="display:none;")
+                                        button.btn.btn-link.reset_constra|¿ Olvidaste tu contraseña ?
+                                    #reset_user(style="display:none;")
+                                        button.btn.btn-link.reset_user|Crear nuevo usuario
+                                    br
+                                    button.btn.btn-dark(style='padding-left: 2.5rem; padding-right: 2.5rem;')#entrar
+                                        i.fas.fa-sign-in-alt
+                                        |  Entrar
+
+
+                .card-footer
+                    .d-flex.flex-column.flex-md-row.text-center.text-md-start.justify-content-center.py-4.px-4.px-xl-5.my-2
+                        // Copyright
+                        .text-dark.mb-3.mb-md-0.text-center.mx-2
+                            | Mike Rosas Dev Copyright &copy; 2020-2023. - ToothLabMX v2.3.6  - Desarrollado por:
+                        a(href='https://mikerosasdev.com' target='_blank').text-dark
+                            | Jose Miguel Rosas Jimenez
+
+
+
+
+
+        br
+
+            //- div
+            //-   a.text-white.me-4(href='#!')
+            //-     i.fab.fa-facebook-f
+            //-   a.text-white.me-4(href='#!')
+            //-     i.fab.fa-twitter
+            //-   a.text-white.me-4(href='#!')
+            //-     i.fab.fa-google
+            //-   a.text-white(href='#!')
+            //-     i.fab.fa-linkedin-in
+            //- // Right
 

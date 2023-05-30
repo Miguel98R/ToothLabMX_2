@@ -230,7 +230,6 @@ let pagosByDentist = async function (req, res) {
 
     let {id_dentista} = req.params
 
-    console.log(id_dentista)
 
     try {
         let pagos = await pagosModel.aggregate([

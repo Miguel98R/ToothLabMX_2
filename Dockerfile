@@ -1,5 +1,5 @@
 FROM node:18-alpine
-WORKDIR /app
+WORKDIR /ToothLabMX_2
 COPY . .
 RUN npm install
 CMD ["node", "./index.js"]

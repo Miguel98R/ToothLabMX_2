@@ -11,7 +11,7 @@ let generate_id = function (lastid) {
 
     console.log(lastid)
     let newId = Number(lastid) + 1
-    console.log("newId------------>", newId)
+
 
 
     return newId;
@@ -55,7 +55,7 @@ let new_order = async function (req, res) {
         let lastOrder = await ordersModel.find().sort({_id: -1}).limit(1)
         let lastid
 
-        console.log("lastOrder---------------------->", lastOrder)
+
         let tamanolastOrder = lastOrder.length
         if (tamanolastOrder == 1) {
             for (let item of lastOrder) {
@@ -590,7 +590,6 @@ let last_order = async function (req, res) {
 
     let {search} = req.body
 
-    console.log("search----->", search)
 
 
     try {
@@ -784,7 +783,6 @@ let last_order = async function (req, res) {
 
         }
 
-        console.log("order------------------>", order)
 
         if (order == null) {
             res.status(404).json({

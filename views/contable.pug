@@ -22,21 +22,42 @@ html(lang="es")
 
                                         input.dentistas_name.rounded-pill.border.border-dark.form-control( list='dentista_option' placeholder="SELECCIONE UN DENTISTA:" autocomplete="off")
                                         datalist#dentista_option
+                center
+
+                    div.row.mx-3.my-2.text-center
+                            div.text-center.my-5.col-4
+                                h3.mx-2.fw-bold DENTISTA:
+                                    span.mx-2#nameDentista.fw-bold
+
+                            div.text-center.my-3.col-4
+                                input#saldoPagos(type="number" style="display:none;")
+                                input#saldoDeuda(type="number" style="display:none;")
+
+                                h2.display-4.fw-bolder Saldo: $
+                                    span#cantidadSaldo
+                                        | 0
+
+                            div.text-center.my-3.col-4
+
+                                label.fw-bold.mx-2 Dejar dinero a cuenta:
+                                input.rounded-pill.border.border-dark.form-control#aCuenta(type="number" min=0 )
+
 
 
 
 
                 .row.mx-1
-                    .col-8
-                        .container
+                    .col-12
+
                             h5.my-3 Ordenes Creadas:
                             table#tblOrdenes.display.table.table-hover(width='100%')
                                 thead.thead-dark
                                     tr
                                         th Folio
-                                        th Fecha entrada
-                                        th No Trabajos
                                         th Paciente
+                                        th Pzs
+                                        th Trabajo
+                                        th ODS
                                         th Status
                                         th Total
 
@@ -49,25 +70,6 @@ html(lang="es")
                                         th Fecha
                                         th Cantidad
 
-
-                    .col-4
-                        div.row.mx-3.my-2.text-center
-                            h3#nameDentista.fw-bold
-                            .col-12
-
-
-                                div.text-center.my-4
-                                    input#saldoPagos(type="number" style="display:none;")
-                                    input#saldoDeuda(type="number" style="display:none;")
-
-                                    h2.display-4.fw-bolder Saldo: $
-                                        span#cantidadSaldo
-                                            | 0
-
-                                div.text-center
-
-                                    label.fw-bold.mx-2 Dejar dinero a cuenta:
-                                    input.rounded-pill.border.border-dark.form-control#aCuenta(type="number" min=0 )
 
 
 
