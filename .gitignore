@@ -1,6 +1,6 @@
 # Ignora la carpeta node_modules
 node_modules
-idea
+.idea
 dbBackUP
 
 #Ignora variables de entorno

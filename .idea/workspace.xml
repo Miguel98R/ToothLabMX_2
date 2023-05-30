@@ -4,32 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d734133c-cf01-40a3-82bf-51cd7156af9f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/models/pagos.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/dentistas.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/dentistas.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/orders.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/orders.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/orden.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/orden.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/core/js/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/core/js/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/core/js/contabilidad.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/core/js/contabilidad.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/dentistas.routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/dentistas.routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/orders.routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/orders.routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/contable.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/contable.pug" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/ordenes.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/ordenes.pug" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/template/viewLastOrder.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/template/viewLastOrder.pug" afterDir="false" />
-    </list>
+    <list default="true" id="d4a63299-7730-4aeb-be2a-1c0a1b266884" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Pug File" />
-        <option value="JavaScript File" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -37,7 +16,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2NnWNQciDHB6Yygz2tlVh9G3PcJ" />
+  <component name="ProjectId" id="2QE9modaIiG4b6miGfK2hYnY8Xq" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -48,30 +27,24 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/mike/Escritorio/Mike Rosas/ToothLabMX_2/public/img/iconsMenu&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Mike/Desktop/Proyectos/carnival&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/public/img/iconsMenu" />
-      <recent name="$PROJECT_DIR$/public/cdn/HoldOn" />
-      <recent name="$PROJECT_DIR$/public/cdn" />
-    </key>
-  </component>
   <component name="RunManager">
-    <configuration name="dev" type="js.build_tools.npm" nameIsGenerated="true">
+    <configuration name="Tooth" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
         <script value="dev" />
       </scripts>
-      <node-interpreter value="$USER_HOME$/.nvm/versions/node/v16.19.0/bin/node" />
+      <node-interpreter value="project" />
       <envs />
       <method v="2">
         <option name="LaunchBrowser.Before.Run" url="http://localhost:3005" />
@@ -81,104 +54,24 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="d734133c-cf01-40a3-82bf-51cd7156af9f" name="Changes" comment="" />
-      <created>1680300285566</created>
+      <changelist id="d4a63299-7730-4aeb-be2a-1c0a1b266884" name="Changes" comment="" />
+      <created>1684908037661</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1680300285566</updated>
-      <workItem from="1680300287857" duration="8000" />
-      <workItem from="1680300313953" duration="1495000" />
-      <workItem from="1680531650097" duration="52000" />
-      <workItem from="1680657241905" duration="3277000" />
-      <workItem from="1681500549056" duration="1538000" />
-      <workItem from="1681606766130" duration="835000" />
-      <workItem from="1681752063371" duration="15000" />
-      <workItem from="1681752331091" duration="442000" />
-      <workItem from="1681754730996" duration="42000" />
-      <workItem from="1681843909565" duration="18000" />
-      <workItem from="1681852588558" duration="90000" />
-      <workItem from="1681858658294" duration="1512000" />
-      <workItem from="1681914111686" duration="2465000" />
-      <workItem from="1682608220139" duration="17000" />
-      <workItem from="1682608302709" duration="30000" />
-      <workItem from="1682624130467" duration="17000" />
-      <workItem from="1682624339726" duration="310000" />
-      <workItem from="1682624735286" duration="165000" />
-      <workItem from="1682715477961" duration="918000" />
-      <workItem from="1682747130275" duration="1244000" />
-      <workItem from="1682748748214" duration="423000" />
-      <workItem from="1682749238878" duration="622000" />
-      <workItem from="1682772839163" duration="9000" />
-      <workItem from="1683003016967" duration="7642000" />
-      <workItem from="1683038100714" duration="2571000" />
-      <workItem from="1683051560928" duration="15000" />
-      <workItem from="1683051614813" duration="605000" />
-      <workItem from="1683052481776" duration="194000" />
-      <workItem from="1683053495644" duration="1475000" />
-      <workItem from="1683060579488" duration="596000" />
-      <workItem from="1683088512639" duration="3947000" />
-      <workItem from="1683210125964" duration="244000" />
-      <workItem from="1683300035597" duration="10000" />
-      <workItem from="1683302069687" duration="1000" />
-      <workItem from="1683314932086" duration="610000" />
-      <workItem from="1683317178996" duration="499000" />
-      <workItem from="1683345560529" duration="2314000" />
-      <workItem from="1683378941960" duration="599000" />
-      <workItem from="1683507410651" duration="7412000" />
-      <workItem from="1683555851184" duration="56000" />
-      <workItem from="1683555928354" duration="59000" />
-      <workItem from="1683577125058" duration="883000" />
-      <workItem from="1683583305159" duration="734000" />
-      <workItem from="1683832756007" duration="176000" />
-      <workItem from="1683833388238" duration="783000" />
-      <workItem from="1683834235127" duration="22000" />
-      <workItem from="1683933938637" duration="1072000" />
-      <workItem from="1683935158896" duration="864000" />
-      <workItem from="1683983414681" duration="616000" />
-      <workItem from="1683987733613" duration="119000" />
-      <workItem from="1683989725904" duration="413000" />
-      <workItem from="1683991102088" duration="684000" />
-      <workItem from="1683991899194" duration="15000" />
-      <workItem from="1683991925779" duration="3000" />
-      <workItem from="1684211796123" duration="2344000" />
-      <workItem from="1684246397309" duration="2241000" />
-      <workItem from="1684333175996" duration="22192000" />
-      <workItem from="1684379735634" duration="6690000" />
+      <updated>1684908037661</updated>
+      <workItem from="1684908043868" duration="75000" />
+      <workItem from="1684908135403" duration="479000" />
+      <workItem from="1685139867472" duration="305000" />
+      <workItem from="1685139252615" duration="104000" />
+      <workItem from="1685139376162" duration="3547000" />
+      <workItem from="1685278743183" duration="2086000" />
+      <workItem from="1685281339305" duration="5000" />
+      <workItem from="1685419639577" duration="915000" />
+      <workItem from="1685422760574" duration="43000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/viewEngine/routes.js</url>
-          <line>5</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/public/core/js/ordenes.js</url>
-          <line>19</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/public/core/js/contabilidad.js</url>
-          <line>292</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/public/core/js/contabilidad.js</url>
-          <line>64</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/public/core/js/contabilidad.js</url>
-          <line>36</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
