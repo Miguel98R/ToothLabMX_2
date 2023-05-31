@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d4a63299-7730-4aeb-be2a-1c0a1b266884" name="Changes" comment="" />
+    <list default="true" id="d4a63299-7730-4aeb-be2a-1c0a1b266884" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/orders.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/orders.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/core/js/panel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/core/js/status_core.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/core/js/status_core.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/_api.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/_api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/ordenes.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/ordenes.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/panel.pug" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -67,7 +75,9 @@
       <workItem from="1685278743183" duration="2086000" />
       <workItem from="1685281339305" duration="5000" />
       <workItem from="1685419639577" duration="915000" />
-      <workItem from="1685422760574" duration="3645000" />
+      <workItem from="1685422760574" duration="4520000" />
+      <workItem from="1685518974326" duration="2910000" />
+      <workItem from="1685504695859" duration="4557000" />
     </task>
     <servers />
   </component>

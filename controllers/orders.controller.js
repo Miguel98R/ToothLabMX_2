@@ -28,6 +28,7 @@ let new_order = async function (req, res) {
             name_producto: new RegExp(new_order_details.producto_name, "i"),
         });
 
+
         //CREACION DEL DETALLE
         let details = new detailsOrderModel({
             cantidad: new_order_details.cantidad,

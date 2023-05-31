@@ -112,7 +112,7 @@ $(document).ready(function () {
             ["5", "10", "25", "50", "100", "1000"],
         ],
 
-        order: [[1, 'desc'], [2, 'asc']],
+        order: [[0, 'desc']],
 
         pageLength: 5,
 
