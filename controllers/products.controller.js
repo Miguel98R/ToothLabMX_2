@@ -1,5 +1,9 @@
 let productsModel = require("../models/productos.model");
 let colorModel = require("../models/colores.model");
+let detalleModel = require("../models/detalle_orden.model");
+let mongoose = require('mongoose')
+
+const {details_order} = require("./orders.controller");
 
 //CREAR NUEVO PRODUCTO
 let new_product = async function (req, res) {
@@ -210,19 +214,58 @@ let script_insertColors = async function (req, res) {
 
 
     try {
-        for (let item of colores) {
+        let eliminar = await detalleModel.aggregate([
+            {
+                $lookup: {
+                    from: productsModel.collection.name,
+                    localField: "producto",
+                    foreignField: "_id",
+                    as: "producto"
+
+                }
+            }
+            , {
+                $match: {
+                    'producto.name_producto': "INCRUSTACION ZR"
+                }
+            },
+
+        ])
 
 
-            let colores = new colorModel({
-                name_color: item.name_color
+        for (let item of eliminar) {
 
-            })
-            colores = colores.save()
+
+            let idactual = item.producto[0]._id
+
+            let id = await productsModel.findById("645aa19dd21fc184e7385c17")
+
+
+
+            let detalle = await detalleModel.findById(item._id)
+            detalle.producto =  id._id
+            await detalle.save()
+
+
+
+
+            if (idactual == "645aa19dd21fc184e7385c17") {
+                console.log("entroooooo")
+
+            } else {
+
+
+                await productsModel.findByIdAndDelete(idactual)
+            }
+
+
+
         }
+
 
         res.status(200).json({
             success: true,
-            data: []
+            data: eliminar
         });
     } catch (e) {
         console.error(e);
