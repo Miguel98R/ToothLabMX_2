@@ -13,7 +13,6 @@ let generate_id = function (lastid) {
     let newId = Number(lastid) + 1
 
 
-
     return newId;
 };
 //CREAR NUEVA ORDEN
@@ -53,19 +52,16 @@ let new_order = async function (req, res) {
         dentist.cont_ordenes = dentist.cont_ordenes + 1;
         dentist = await dentist.save();
 
-        let lastOrder = await ordersModel.find().sort({_id: -1}).limit(1)
+        let lastOrder = await ordersModel.find().sort({id_order: -1}).limit(1)
+
+
         let lastid
 
 
-        let tamanolastOrder = lastOrder.length
-        if (tamanolastOrder == 1) {
-            for (let item of lastOrder) {
-                lastid = Number(item.id_order)
-            }
-        } else {
-
-            lastid = 2000
+        for (let item of lastOrder) {
+            lastid = Number(item.id_order)
         }
+
 
         let id = generate_id(lastid);
 
@@ -82,6 +78,8 @@ let new_order = async function (req, res) {
             regMor: new_order.regMor,
             antagon: new_order.antagon,
         });
+
+        console.log(order)
 
         order = await order.save();
 
@@ -592,7 +590,6 @@ let last_order = async function (req, res) {
     let {search} = req.body
 
 
-
     try {
         let order
         if (search == undefined || search == '') {
@@ -952,7 +949,7 @@ let editTotalOrder = async function (req, res) {
 
         res.status(200).json({
             success: true,
-            message:'Total actualizado'
+            message: 'Total actualizado'
         })
 
     } catch (e) {
@@ -964,7 +961,6 @@ let editTotalOrder = async function (req, res) {
         })
     }
 }
-
 
 
 module.exports = {
