@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d4a63299-7730-4aeb-be2a-1c0a1b266884" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/orders.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/orders.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/products.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/products.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/template/login.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/template/login.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/template/scripts.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/template/scripts.pug" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,22 +25,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Mike/Desktop/Proyectos/carnival&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/xampp/htdocs/CRUD-CHECADO",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Tooth" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/package.json" />
@@ -74,6 +74,9 @@
       <workItem from="1685422760574" duration="4520000" />
       <workItem from="1685518974326" duration="2910000" />
       <workItem from="1685504695859" duration="4557000" />
+      <workItem from="1685767145704" duration="1974000" />
+      <workItem from="1685770370146" duration="599000" />
+      <workItem from="1685773413701" duration="43000" />
     </task>
     <servers />
   </component>
@@ -86,7 +89,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/controllers/products.controller.js</url>
           <line>266</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
