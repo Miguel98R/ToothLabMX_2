@@ -1,6 +1,9 @@
 let TOKEN_ = false
 let DATA_ = false
 
+
+
+
 moment.locale('es');
 /**
  * Spanish translation for bootstrap-datepicker
@@ -125,7 +128,7 @@ let api_conection = async function (method, url, data, f_, error_) {
 let dt_draw = function (data_table) {
 
     api_conection("GET", "api/orders/data_dataTables/" + STATUS_BUSQUEDA, {}, function (data) {
-        data_query = data.data;
+        let data_query = data.data;
 
 
         data_table.clear();
@@ -344,11 +347,10 @@ let count_tooth = function (typeBtn) {
     let contador_tooths = 0;
 
     tooths.each((i, element) => {
-        if ($(element).prop("checked") == true) {
+        if ($(element).prop("checked") && $(element).attr("typeBtn") === typeBtn) {
             contador_tooths++;
         }
     });
-
     if (typeBtn == "edit") {
         $("#countEdit").text(contador_tooths);
 
@@ -465,6 +467,7 @@ let drawLastOrder = function (search) {
 
                 $('#dentistaOrder').val(item.dentista)
                 $('#Folio').text(item.folio)
+                $('#searchOrders').val(item.folio)
                 $('#pacienteOrder').val(item.paciente)
                 $('#fechaEntranteLast').val(item.fecha_entrante)
 
@@ -604,6 +607,8 @@ let add_product = function (id_orden,folio) {
     );
 }
 
+
+
 $(document).ready(function () {
 
     $(document.body).on('click', '.out_session', function () {
@@ -612,16 +617,8 @@ $(document).ready(function () {
 
     })
 
-    $('#gitPull').click(function () {
-        api_conection(
-            "POST",
-            "api/auth/pullGit",
-            {},
-            function (response) {
-                notyf.success(response.message);
-               location.reload()
-            }
-        );
+    $('#reload').click(function () {
+       location.href="/orders"
     })
 
 })

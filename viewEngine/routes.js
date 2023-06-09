@@ -28,7 +28,12 @@ let menu = [
         ref: '/dentistas'
     },
 
-
+    {
+        icon: 'fas fa-arrow-right',
+        img: './public/img/iconsMenu/tiempo.png',
+        title: 'Historico',
+        ref: '/status_historico',
+    },
     {
         icon: 'fas fa-arrow-right',
         img: './public/img/iconsMenu/diente.png',
@@ -133,6 +138,18 @@ router.get("/contable", async (req, res) => {
 })
 
 //RUTAS DE LAS VISTAS PARA LA SECCION DE ORDENES
+
+
+
+router.get("/status_historico", async (req, res) => {
+
+    res.render('statusViews/status_historico', {
+        title: 'ToothLabMX | Historico',
+        menu,
+        logo,
+        status: 0
+    })
+})
 
 router.get("/status_entrante", async (req, res) => {
 

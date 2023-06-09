@@ -55,6 +55,11 @@ let ordenSchema = new Schema ({
         required:false,
         default: 0
     },
+    isPagado:{
+        type:Boolean,
+        required:false,
+        default: false
+    },
     status:{
         type:Number,
         required:true,

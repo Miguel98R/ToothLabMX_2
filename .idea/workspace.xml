@@ -5,14 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4a63299-7730-4aeb-be2a-1c0a1b266884" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/public/img/iconsMenu/tiempo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/statusViews/status_historico.pug" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/template/login.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/template/login.pug" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/template/scripts.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/template/scripts.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/orders.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/orders.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/orden.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/orden.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/core/js/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/core/js/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/core/js/contabilidad.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/core/js/contabilidad.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/core/js/ordenes.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/core/js/ordenes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/core/js/status_core.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/core/js/status_core.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewEngine/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/viewEngine/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/contable.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/contable.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/template/nav.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/template/nav.pug" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Pug File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -31,7 +48,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/xampp/htdocs/CRUD-CHECADO",
+    "last_opened_file_path": "/home/mike/Escritorio/MikeDev/ToothLabMX_2/public/img",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -41,6 +58,14 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/img" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/img/iconsMenu" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Tooth" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/package.json" />
@@ -48,7 +73,7 @@
       <scripts>
         <script value="dev" />
       </scripts>
-      <node-interpreter value="project" />
+      <node-interpreter value="$USER_HOME$/.nvm/versions/node/v18.16.0/bin/node" />
       <envs />
       <method v="2">
         <option name="LaunchBrowser.Before.Run" url="http://localhost:3005" />
@@ -77,6 +102,10 @@
       <workItem from="1685767145704" duration="1974000" />
       <workItem from="1685770370146" duration="599000" />
       <workItem from="1685773413701" duration="43000" />
+      <workItem from="1686269308039" duration="314000" />
+      <workItem from="1686270000096" duration="46000" />
+      <workItem from="1686270221617" duration="145000" />
+      <workItem from="1686289300977" duration="4139000" />
     </task>
     <servers />
   </component>

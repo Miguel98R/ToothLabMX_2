@@ -23,7 +23,6 @@ $(function () {
         let total_adeudo = 0
 
 
-
         total_adeudo = Number(total_pagos) - Number(total_orders)
 
         $('#cantidadSaldo').text('')
@@ -32,6 +31,7 @@ $(function () {
         drawColorSaldo(total_adeudo)
 
     }
+    ///////////////////---------------HISTORIAL DE PAGOS -----------------_///////
 
     //COLUMNAS DE LA DATATABLE PAGOS
     let columnsPagos = [
@@ -52,11 +52,10 @@ $(function () {
             render: function (data, v, row) {
 
 
-                let inputCantidad = '<div class="m-1"><input value="'+data+'" min=0 type="number" id_order="'+row._id+'" class="total_pagos form-control w-100" disabled></div>'
+                let inputCantidad = '<div class="m-1"><input value="' + data + '" min=0 type="number" id_order="' + row._id + '" class="total_pagos form-control w-100" disabled></div>'
                 return inputCantidad
             }
         },
-
 
 
     ];
@@ -76,8 +75,8 @@ $(function () {
         data: [],
 
         lengthMenu: [
-            [3,5, 10, 25, 50, 100, 1000],
-            ["3","5", "10", "25", "50", "100", "1000"],
+            [3, 5, 10, 25, 50, 100, 1000],
+            ["3", "5", "10", "25", "50", "100", "1000"],
         ],
 
         order: [[0, 'desc']],
@@ -94,8 +93,7 @@ $(function () {
     });
 
 
-
-    let drawPagos =  function (id_dentista) {
+    let drawPagos = function (id_dentista) {
 
         api_conection('POST', 'api/dentist/pagosByDentist/' + id_dentista, {}, function (data) {
             let dataPagos = data.data
@@ -106,7 +104,7 @@ $(function () {
 
             let suma_pagos = 0
 
-            for(let item of dataPagos){
+            for (let item of dataPagos) {
                 suma_pagos = suma_pagos + Number(item.cantidad)
             }
             $('#saldoPagos').val(suma_pagos)
@@ -120,7 +118,7 @@ $(function () {
         body.id_dentista = $(this).attr('id_dentista')
         body.value = $(this).val()
 
-        api_conection('POST','api/dentist/addPagos',body,function (response) {
+        api_conection('POST', 'api/dentist/addPagos', body, function (response) {
             notyf.success(response.message)
             $('#aCuenta').val(0)
             drawPagos(body.id_dentista)
@@ -128,8 +126,7 @@ $(function () {
         })
     })
 
-
-
+    ///////////////////---------------ORDENES--------------------_///////
 
     //COLUMNAS DE LA DATATABLE ORDENES
     let columnsOrdenes = [
@@ -141,11 +138,10 @@ $(function () {
         {
             width: "15%",
             data: "paciente",
-            render : function (data,v,row) {
+            render: function (data, v, row) {
                 return data.toUpperCase()
             }
         },
-
 
 
         {
@@ -156,7 +152,7 @@ $(function () {
                 let tamano = data[0].detalle.tooths;
 
 
-               return tamano.length
+                return tamano.length
 
             }
 
@@ -214,8 +210,7 @@ $(function () {
                 }
 
 
-
-                return  '<center  >'+ tooths_10_20+ '<br>' + tooths_30_40 + '</center>'
+                return '<center  >' + tooths_10_20 + '<br>' + tooths_30_40 + '</center>'
 
             }
 
@@ -235,15 +230,15 @@ $(function () {
             data: "id_dentista",
             render: function (data, v, row) {
 
-                $('#aCuenta').attr('id_dentista',data)
+                $('#aCuenta').attr('id_dentista', data)
 
                 let total_order = row.total_order
 
-                if(total_order == undefined){
+                if (total_order == undefined) {
                     total_order = 0
                 }
 
-                let inputAcuenta = '<div class="m-1"><input id_dentista="'+data+'" value="'+total_order+'" min=0 type="number" id_order="'+row._id+'" class="total_orders form-control w-100"></div>'
+                let inputAcuenta = '<div class="m-1"><input id_dentista="' + data + '" value="' + total_order + '" min=0 type="number" id_order="' + row._id + '" class="total_orders form-control w-100"></div>'
                 return inputAcuenta
             }
         },
@@ -283,12 +278,12 @@ $(function () {
     });
 
 
-    let drawOrders =  function (id_dentista) {
+    let drawOrders = function (id_dentista) {
 
-         api_conection('POST', 'api/orders/orderByDentist/' + id_dentista, {}, function (data) {
+        api_conection('POST', 'api/orders/orderByDentist/' + id_dentista, {}, function (data) {
             let dataOrders = data.data
 
-             console.log(dataOrders)
+            console.log(dataOrders)
             if (dataOrders.length < 1) {
                 notyf.open({type: "warning", message: "Este dentista no tiene ordenes"});
                 tblOrdenes.clear();
@@ -300,19 +295,19 @@ $(function () {
             tblOrdenes.clear();
             tblOrdenes.rows.add(dataOrders).draw();
 
-             let suma_deuda = 0
+            let suma_deuda = 0
 
-             for(let item of dataOrders){
-                 suma_deuda = suma_deuda + Number(item.total_order)
-             }
-             $('#saldoDeuda').val(suma_deuda)
+            for (let item of dataOrders) {
+                suma_deuda = suma_deuda + Number(item.total_order)
+            }
+            $('#saldoDeuda').val(suma_deuda)
 
 
-             sumTotales()
+            sumTotales()
         })
     }
 
-    $(document.body).on('change','.total_orders',function () {
+    $(document.body).on('change', '.total_orders', function () {
 
         let body = {}
 
@@ -321,7 +316,7 @@ $(function () {
         let id_dentista = $(this).attr('id_dentista')
 
 
-        api_conection('POST','api/orders/editTotalOrder',body,function (response) {
+        api_conection('POST', 'api/orders/editTotalOrder', body, function (response) {
             notyf.success(response.message)
             drawOrders(id_dentista)
             sumTotales()
@@ -331,10 +326,10 @@ $(function () {
 
 
     let drawColorSaldo = function (saldo) {
-        if(saldo < 0){
+        if (saldo < 0) {
             $('#cantidadSaldo').addClass('text-danger')
             $('#cantidadSaldo').removeClass('text-success')
-        }else{
+        } else {
             $('#cantidadSaldo').addClass('text-success')
             $('#cantidadSaldo').removeClass('text-danger')
 
@@ -349,7 +344,6 @@ $(function () {
         drawPagos(id_dentista)
         drawOrders(id_dentista)
         $('#nameDentista').text(nombre)
-
 
 
         $('#cantidadSaldo').val(0)

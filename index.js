@@ -9,7 +9,7 @@ const app = express()
 
 //configuraciones
 
-app.set('port',process.env.PORT || 3005 )
+app.set('port',process.env.PORT || 3010 )
 app.set('appName',process.env.APP_NAME)
 
 app.set('views', path.join(__dirname, 'views'))

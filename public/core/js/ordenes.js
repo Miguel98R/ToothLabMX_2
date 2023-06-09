@@ -412,7 +412,7 @@ $(document).ready(function () {
 
                 + '</div>'
 
-                + '<div class="row my-4 text-center">'
+                + '<div class="row my-4">'
 
                 + '<div class="col-6">'
 

@@ -9,7 +9,7 @@ let mongoose = require('mongoose')
 //GENEAR ID PARA ORDENES
 let generate_id = function (lastid) {
 
-    console.log(lastid)
+
     let newId = Number(lastid) + 1
 
 
@@ -79,7 +79,6 @@ let new_order = async function (req, res) {
             antagon: new_order.antagon,
         });
 
-        console.log(order)
 
         order = await order.save();
 
@@ -281,14 +280,27 @@ let pdf_generate = async function (req, res) {
 let data_table = async function (req, res) {
     let {status_buscar} = req.params
 
-    status_buscar = Number(status_buscar)
+
     try {
+
+
+        status_buscar = Number(status_buscar)
+
+        let match = {$match: {}}
+
+        console.log("status_buscar-------",status_buscar)
+
+
+        if (status_buscar == 0) {
+            match = {$match: {}}
+        } else {
+            match = {$match: {status: status_buscar }
+            }
+        }
+
+
         let data_ordenes = await ordersModel.aggregate([
-            {
-                $match: {
-                    status: status_buscar
-                }
-            },
+            match,
             {
                 $lookup: {
                     from: detailsOrderModel.collection.name,
@@ -352,6 +364,7 @@ let data_table = async function (req, res) {
                 }
             }
         ]);
+
 
 
         res.status(200).json({
@@ -526,7 +539,6 @@ let editProductDetail = async function (req, res) {
         })
     }
 }
-
 
 //EDITAR DATOS
 let edit_data_order = async function (req, res) {
@@ -961,8 +973,6 @@ let editTotalOrder = async function (req, res) {
         })
     }
 }
-
-
 
 
 module.exports = {

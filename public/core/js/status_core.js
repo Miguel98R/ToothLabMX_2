@@ -40,7 +40,10 @@ $(document).ready(function () {
         },
         {
             width: "5%",
-            data: "paciente"
+            data: "paciente",
+            render:function(data, v, row) {
+                return data.toUpperCase()
+            }
         },
         {
             width: "15%",
@@ -262,7 +265,8 @@ $(document).ready(function () {
 
 
     //IMPRIMIR ORDEN
-    $(document.body).on('click', '.imprimir_order', function (){
+
+    $(document.body).on('click', '.imprimir_order',function () {
         let id_orden = $(this).attr('id_order')
 
         let logo = '../public/img/logo.jpg'
@@ -280,18 +284,16 @@ $(document).ready(function () {
                 + '<div class="row ">'
                 + '<div class="col-7">'
 
-                + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold ">Dentista:   <span class="fw-bold text-dark">' + data_order.name_dentista + '</span></h5>'
-                + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold ">Entrada: <br> <span class="fw-bold text-dark">' + moment(data_order.fecha_entrante, 'DD-MM-YYYY').format('dddd DD MMMM YYYY') + '</span></h5>'
-                + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold ">Salida: <br>  <span class="fw-bold text-dark">' + moment(data_order.fecha_saliente, 'DD-MM-YYYY').format('dddd DD MMMM YYYY') + '</span></h5>'
-
+                + '<h5 class=" fw-bold ">Dentista:   <span  style="color:' + data_order.dentista_color + ';"  class="fw-bold ">' + data_order.name_dentista + '</span></h5>'
+                + '<h5 class=" fw-bold ">Entrada: <br> <span  style="color:' + data_order.dentista_color + ';"  class="fw-bold ">' + moment(data_order.fecha_entrante, 'DD-MM-YYYY').format('dddd DD MMMM YYYY') + '</span></h5>'
+                + '<h5 class=" fw-bold ">Salida: <br>  <span  style="color:' + data_order.dentista_color + ';"  class="fw-bold ">' + moment(data_order.fecha_saliente, 'DD-MM-YYYY').format('dddd DD MMMM YYYY') + '</span></h5>'
 
 
                 + '</div>'
-                + '<div class="col-5 my-3">'
+                + '<div class="col-5 ">'
 
-                + '<h5 style="color:' + data_order.dentista_color + ';" class="text-start  fw-bold ">Folio:  <mark class="fw-boldtext-dark">' + data_order.id_order + '</mark></h5>'
-                + '<h5 style="color:' + data_order.dentista_color + ';" class="text-start fw-bold ">Status:  <mark class="fw-bold text-dark">' + status + '</mark></h5>'
-                + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold ">Paciente:   <span class="fw-bold text-dark">' + data_order.name_paciente + '</span></h5>'
+                + '<h5 class="text-start  fw-bold ">Folio:  <mark style="color:' + data_order.dentista_color + ';"  class="fw-bold">' + data_order.id_order + '</mark></h5>'
+                + '<h5 class=" fw-bold ">Paciente:   <span style="color:' + data_order.dentista_color + ';"  class="fw-bold ">' + data_order.name_paciente.toUpperCase() + '</span></h5>'
 
 
                 + '</div>'
@@ -302,37 +304,38 @@ $(document).ready(function () {
 
                 + '<div class="col-6">'
 
-                + '<br><h5 style="color:' + data_order.dentista_color + ';" class="text-start  fw-bold ">Regreso: </h5><input type="text"></input>'
+                + '<br><h5 class="text-start  fw-bold ">Regreso: </h5><input type="text"></input>'
 
 
                 + '</div>'
 
                 + '<div class="col-6">'
 
-                + '<br><h5 style="color:' + data_order.dentista_color + ';" class="text-start fw-bold ">Entrega: </h5><input type="text"></input>'
+                + '<br><h5 class="text-start fw-bold ">Entrega: </h5><input type="text"></input>'
 
 
                 + '</div>'
 
 
                 + '</div>'
+
                 + '<div class="row my-4">'
 
                 + '<div class="col-6">'
 
-                + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold ">Registro Mordida:   <span class="fw-bold text-dark">' + (data_order.regMor ? 'SI' : 'NO') + '</span></h5>'
+                + '<h5 class=" fw-bold ">Registro Mordida:   <span style="color:' + data_order.dentista_color + ';"  class="fw-bold ">' + (data_order.regMor ? 'SI' : 'NO') + '</span></h5>'
                 + '</div>'
 
                 + '<div class="col-6">'
 
-                + '<h5 style="color:' + data_order.dentista_color + ';" class=" fw-bold ">Antagonista:   <span class="fw-bold text-dark">' + (data_order.antagon ? 'SI' : 'NO')  + '</span></h5>'
+                + '<h5 class=" fw-bold ">Antagonista:   <span style="color:' + data_order.dentista_color + ';"  class="fw-bold ">' + (data_order.antagon ? 'SI' : 'NO') + '</span></h5>'
 
                 + '</div>'
 
 
                 + '</div>'
 
-                + '<h3 class="text-center my-5 fw-bold"  >Detalle orden:</h3>'
+
 
 
             let productos = ''
@@ -352,20 +355,20 @@ $(document).ready(function () {
                     od = Number(od)
 
                     if (od >= 11 && od <= 18) {
-                        parrafo_od_10_20 = '<span class="text-primary fs-5">' + od + '&nbsp;  </span>'
+                        parrafo_od_10_20 = '<span class="text-primary fs-5 fw-bolder">' + od + '&nbsp;  </span>'
 
 
                     }
                     if (od >= 21 && od <= 28) {
-                        parrafo_od_10_20 = '<span class="text-danger fs-5">' + od + '&nbsp;    </span>'
+                        parrafo_od_10_20 = '<span class="text-danger fs-5 fw-bolder">' + od + '&nbsp;    </span>'
 
                     }
                     if (od >= 31 && od <= 38) {
-                        parrafo_od_30_40 = '<span class="text-warning fs-5">' + od + '&nbsp;   </span>'
+                        parrafo_od_30_40 = '<span class="text-warning fs-5 fw-bolder">' + od + '&nbsp;   </span>'
 
                     }
                     if (od >= 41 && od <= 48) {
-                        parrafo_od_30_40 = '<span class="text-success fs-5">' + od + '&nbsp;   </span>'
+                        parrafo_od_30_40 = '<span class="text-success fs-5 fw-bolder">' + od + '&nbsp;   </span>'
 
                     }
 
@@ -375,7 +378,7 @@ $(document).ready(function () {
                 }
 
 
-                productos = productos + '<div  class="text-center">'
+                productos = productos + '<hr class="py-2"><div  class="text-center">'
                     + '<div class="row">'
                     + '<div class="col-3">'
                     + '<h5 class="fw-bold">Cantidad</h5>'
@@ -398,8 +401,6 @@ $(document).ready(function () {
                     + '</div>'
                     + '</div>'
 
-                    + '<h5 class="text-center my-3 fw-bold"  >OD:</h5>'
-
                     + '<div  class="text-center">'
 
                     + tooths_10_20
@@ -410,9 +411,9 @@ $(document).ready(function () {
 
             }
 
-            let comentarios = '<h3 class="text-center my-3 fw-bold" >Comentarios:</h3>'
+            let comentarios = '<hr class="py-2"><h3 class="text-center my-2 fw-bold" >Comentarios:</h3>'
                 + '<div style="border:solid;border-color:' + data_order.dentista_color + ';" class="text-center p-5">'
-                + '<h5 class="p-0 m-0"style="color:' + data_order.dentista_color + ';">' + data_order.comentario + '</h5>'
+                + '<h5 class="p-0 m-0" style="color:' + data_order.dentista_color + ';">' + data_order.comentario + '</h5>'
                 + '</div>'
                 + '</div>'
                 + '</div>'
@@ -422,7 +423,6 @@ $(document).ready(function () {
                 + '<div class="card-header">'
                 + '<div class="row text-center">'
 
-
                 + '</div>'
                 + '</div>'
 
@@ -431,9 +431,9 @@ $(document).ready(function () {
                 + comentarios
 
                 + '<div class="col-12 text-end my-5 fixed-bottom">' +
-                '<br>'+
-                '<br>'+
-                '<br>'+
+                '<br>' +
+                '<br>' +
+                '<br>' +
                 '<br>'
 
                 + '<img class="img-fluid p-0 mx-4" style="max-height:90px;" src="' + logo + '"></img>'
@@ -451,9 +451,6 @@ $(document).ready(function () {
 
 
     })
-
-
-
 
     $(".btn-check").click(function () {
         count_tooth()
