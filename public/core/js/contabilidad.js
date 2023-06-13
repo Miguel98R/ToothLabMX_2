@@ -37,6 +37,7 @@ $(function () {
     let columnsPagos = [
         {
 
+
             data: "fecha_pago",
             render: function (data, v, row) {
                 return '<p class="fw-bolder">' + moment(data).format('dddd DD MMMM YYYY') + '</p>'

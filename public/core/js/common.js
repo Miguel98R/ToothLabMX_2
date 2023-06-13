@@ -618,7 +618,7 @@ $(document).ready(function () {
     })
 
     $('#reload').click(function () {
-       location.href="/orders"
+        location.reload();
     })
 
 })

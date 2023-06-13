@@ -282,7 +282,7 @@ $(document).ready(function () {
 
 
                 + '<div class="row ">'
-                + '<div class="col-7">'
+                + '<div class="col-7" style="border: 10px solid ' + data_order.dentista_color + ';" >'
 
                 + '<h5 class=" fw-bold ">Dentista:   <span  style="color:' + data_order.dentista_color + ';"  class="fw-bold ">' + data_order.name_dentista + '</span></h5>'
                 + '<h5 class=" fw-bold ">Entrada: <br> <span  style="color:' + data_order.dentista_color + ';"  class="fw-bold ">' + moment(data_order.fecha_entrante, 'DD-MM-YYYY').format('dddd DD MMMM YYYY') + '</span></h5>'
@@ -290,7 +290,7 @@ $(document).ready(function () {
 
 
                 + '</div>'
-                + '<div class="col-5 ">'
+                + '<div class="col-5 " style="border: 2px ' + data_order.dentista_color + ';" >'
 
                 + '<h5 class="text-start  fw-bold ">Folio:  <mark style="color:' + data_order.dentista_color + ';"  class="fw-bold">' + data_order.id_order + '</mark></h5>'
                 + '<h5 class=" fw-bold ">Paciente:   <span style="color:' + data_order.dentista_color + ';"  class="fw-bold ">' + data_order.name_paciente.toUpperCase() + '</span></h5>'
