@@ -241,6 +241,7 @@ let pagosByDentist = async function (req, res) {
             {
                 $replaceRoot:{
                     newRoot:{
+                        id_pago:'$_id',
                         fecha_pago:'$fecha_pago',
                         cantidad:'$cantidad',
                     }

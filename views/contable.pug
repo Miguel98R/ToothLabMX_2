@@ -24,58 +24,75 @@ html(lang="es")
                                         datalist#dentista_option
 
 
-                div.row.mx-3.my-2.text-center
-                    div.text-center.my-5.col-4
-                        h3.mx-2.fw-bold DENTISTA:
-                            span.mx-2#nameDentista.fw-bold
-                    div.text-center.my-3.col-4
 
-                        label.fw-bold.mx-2 Dejar dinero a cuenta:
-                        input.rounded-pill.border.border-dark.form-control#aCuenta(type="number" min=0 )
+                .row
 
-                    div.text-center.my-3.col-4
-                        input#saldoPagos(type="number" style="display:none;")
-                        input#saldoDeuda(type="number" style="display:none;")
+                    .col-3
+                        div.text-center.my-5.col-12
+                            h3.mx-2.fw-bold DENTISTA:
+                                span.mx-2#nameDentista.fw-bold
+                        div.text-center.my-3.col-12
+                            input#saldoPagos(type="number" style="display:none;")
+                            input#saldoDeuda(type="number" style="display:none;")
 
-                        h2.display-4.fw-bolder Saldo: $
-                            span#cantidadSaldo
-                                | 0
-                .container
-                    ul#myTab.nav.nav-tabs(role='tablist')
-                        li.nav-item(role='presentation')
-                            button#ordenes-tab.nav-link.active(data-bs-toggle='tab' data-bs-target='#ordenes_' type='button' role='tab' aria-controls='ordenes' aria-selected='true') Ordenes
-                        li.nav-item(role='presentation')
-                            button#historial-tab.nav-link(data-bs-toggle='tab' data-bs-target='#historial_' type='button' role='tab' aria-controls='historial' aria-selected='true') Historial pagos
-                        li.nav-item(role='presentation')
-                            button#ordenes-pagadas-tab.nav-link.disabled(data-bs-toggle='tab' data-bs-target='#ordenes_pagadas_' type='button' role='tab' aria-controls='ordenes_pagadas' aria-selected='false') Ordenes pagadas
+                            h2.display-4.fw-bolder Saldo: $
+                                span#cantidadSaldo
+                                    | 0
+                        div.text-center.my-3.col-12
 
-                    #myTabContent.tab-content
-                        #ordenes_.tab-pane.fade.show.active(role='tabpanel' aria-labelledby='ordenes-tab')
-                            div
-                                h5.my-3 Ordenes Creadas:
-                                table#tblOrdenes.responsive.no-wrap.display.table.table-hover(width='100%')
-                                    thead.thead-dark
-                                        tr
-                                            th Folio
-                                            th Paciente
-                                            th Pzs
-                                            th Trabajo
-                                            th ODS
-                                            th Status
-                                            th Total
-
-                        #historial_.tab-pane.fade(role='tabpanel' aria-labelledby='historial-tab')
-                            div
-                                h5.my-3 Historial de pagos
-                                table#tbl_Pagos.responsive.no-wrap.display.table.table-hover(width='100%')
-                                    thead.thead-dark
-                                        tr
-                                            th Fecha
-                                            th Cantidad
+                            label.fw-bold.mx-2 Dejar dinero a cuenta:
+                            input.rounded-pill.border.border-dark.form-control#aCuenta(type="number" min=0 )
 
 
+                    .col-9
+                        .card
 
-                        #ordenes_pagadas_.tab-pane.fade(role='tabpanel' aria-labelledby='ordenes-pagadas-tab')
+                            .card-body
+                                ul#myTab.nav.nav-tabs(role='tablist')
+                                    li.nav-item(role='presentation')
+                                        button#ordenes-tab.nav-link.active(data-bs-toggle='tab' data-bs-target='#ordenes_' type='button' role='tab' aria-controls='ordenes' aria-selected='true') Ordenes
+                                    li.nav-item(role='presentation')
+                                        button#historial-tab.nav-link(data-bs-toggle='tab' data-bs-target='#historial_' type='button' role='tab' aria-controls='historial' aria-selected='true') Historial pagos
+                                    li.nav-item(role='presentation')
+                                        button#ordenes-pagadas-tab.nav-link(data-bs-toggle='tab' data-bs-target='#ordenes_pagadas_' type='button' role='tab' aria-controls='ordenes_pagadas' aria-selected='false') Ordenes pagadas
+
+                            #myTabContent.tab-content
+                                #ordenes_.tab-pane.fade.show.active(role='tabpanel' aria-labelledby='ordenes-tab')
+
+                                    .card
+                                        .card-header
+                                            h5.my-3 Ordenes Creadas:
+                                        .card-body
+                                            div(style="overflow-y: auto;  height: 450px;")
+
+                                                table#tblOrdenes.table.table-hover(width='100px')
+                                                    thead.thead-dark
+                                                        tr
+                                                            th Folio
+                                                            th Paciente
+                                                            th Pzs
+                                                            th Trabajo
+                                                            th ODS
+                                                            th Status
+                                                            th Total
+
+                                #historial_.tab-pane.fade(role='tabpanel' aria-labelledby='historial-tab')
+                                  
+                                    .card
+                                        .card-header
+                                            h5.my-3 Historial de pagos
+
+                                        .card-body
+                                            div(style="overflow-y: auto;  height: 450px;")
+                                                table#tbl_Pagos.table.table-hover(width='100px')
+                                                    thead.thead-dark
+                                                        tr
+                                                            th Fecha
+                                                            th Cantidad
+                                                            th Acciones
+
+
+                                #ordenes_pagadas_.tab-pane.fade(role='tabpanel' aria-labelledby='ordenes-pagadas-tab')
 
 
 

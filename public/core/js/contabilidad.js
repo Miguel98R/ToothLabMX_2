@@ -57,6 +57,15 @@ $(function () {
                 return inputCantidad
             }
         },
+        {
+            data:"id_pago",
+            render: function (data, v, row) {
+
+
+                return `<button class="deletePago btn btn-danger" id_pago="${data}">Eliminar</button>`
+
+            }
+        }
 
 
     ];
@@ -86,11 +95,10 @@ $(function () {
 
         columns: columnsPagos,
 
-        scrollY: 470,
-        scrollX: true,
-        scrollCollapse: true,
+
         paging: true,
         fixedHeader: true,
+        bAutoWidth: false,
     });
 
 
@@ -271,11 +279,9 @@ $(function () {
 
         columns: columnsOrdenes,
 
-        scrollY: 470,
-        scrollX: true,
-        scrollCollapse: true,
         paging: true,
         fixedHeader: true,
+        bAutoWidth: false,
     });
 
 
