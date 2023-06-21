@@ -49,6 +49,7 @@ $(document).ready(function () {
 
 
         tooths.each((i, element) => {
+
             if ($(element).prop("checked") == true) {
                 let value = $(element).val();
                 tooths_array.push(value);
@@ -79,6 +80,7 @@ $(document).ready(function () {
             function (data) {
                 let data_order = data.data;
                 notyf.success("Orden  " + data_order.id_order + "  creada con exito");
+                $(".btn-check").prop("checked", false)
                 clean_input();
                 drawLastOrder(data_order.id_order)
             }
@@ -105,6 +107,7 @@ $(document).ready(function () {
         body.fecha_saliente = $('#fechaSalienteLast').val()
         body.regMor = $('#regMorLast').prop('checked')
         body.antagon = $('#antagonLast').prop('checked')
+        body.comentario = $('#comentLast').val()
 
 
         api_conection('PUT', '/api/orders/edit_data_order/' + id_orden, {body}, function (response) {
@@ -375,62 +378,62 @@ $(document).ready(function () {
 
 
                 + '<div class="row ">'
-                    + '<div class="col-12" >'
+                + '<div class="col-12" >'
 
-                        + '<div class="row ">'
-                            + '<div class="col-6" >'
-                            + '<h5  style="border-bottom: 2px solid ' + data_order.dentista_color + ';"   class=" fw-bold ">Dentista:   <span  style="color:' + data_order.dentista_color + ';"  class="fw-bold ">' + data_order.name_dentista + '</span></h5>'
+                + '<div class="row ">'
+                + '<div class="col-6" >'
+                + '<h5  style="border-bottom: 2px solid ' + data_order.dentista_color + ';"   class=" fw-bold ">Dentista:   <span  style="color:' + data_order.dentista_color + ';"  class="fw-bold ">' + data_order.name_dentista + '</span></h5>'
 
-                            + '</div>'
-                            + '<div class="col-6" >'
-                            + '<h5 style="border-bottom: 2px solid ' + data_order.dentista_color + ';" class="text-start  fw-bold ">Folio:  <cite style="color:' + data_order.dentista_color + ';"  class="fw-bold">' + data_order.id_order + '</cite></h5>'
-                            + '</div>'
-                        + '</div>'
-                    + '</div>'
-                    + '<div class="col-12" >'
-                        + '<div class="row ">'
-                            + '<div class="col-6" >'
-                            + '<h5 style="border-bottom: 2px solid ' + data_order.dentista_color + ';" class=" fw-bold ">Entrada: <br> <span  style="color:' + data_order.dentista_color + ';"  class="fw-bold ">' + moment(data_order.fecha_entrante, 'DD-MM-YYYY').format('dddd DD MMMM YYYY') + '</span></h5>'
-                            + '<h5 style="border-bottom: 2px solid ' + data_order.dentista_color + ';" class=" fw-bold ">Salida: <br>  <span  style="color:' + data_order.dentista_color + ';"  class="fw-bold ">' + moment(data_order.fecha_saliente, 'DD-MM-YYYY').format('dddd DD MMMM YYYY') + '</span></h5>'
+                + '</div>'
+                + '<div class="col-6" >'
+                + '<h5 style="border-bottom: 2px solid ' + data_order.dentista_color + ';" class="text-start  fw-bold ">Folio:  <cite style="color:' + data_order.dentista_color + ';"  class="fw-bold">' + data_order.id_order + '</cite></h5>'
+                + '</div>'
+                + '</div>'
+                + '</div>'
+                + '<div class="col-12" >'
+                + '<div class="row ">'
+                + '<div class="col-6" >'
+                + '<h5 style="border-bottom: 2px solid ' + data_order.dentista_color + ';" class=" fw-bold ">Entrada: <br> <span  style="color:' + data_order.dentista_color + ';"  class="fw-bold ">' + moment(data_order.fecha_entrante, 'DD-MM-YYYY').format('dddd DD MMMM YYYY') + '</span></h5>'
+                + '<h5 style="border-bottom: 2px solid ' + data_order.dentista_color + ';" class=" fw-bold ">Salida: <br>  <span  style="color:' + data_order.dentista_color + ';"  class="fw-bold ">' + moment(data_order.fecha_saliente, 'DD-MM-YYYY').format('dddd DD MMMM YYYY') + '</span></h5>'
 
-                            + '</div>'
-                            + '<div class="col-6" >'
-                            + '<h5 style="border-bottom: 2px solid ' + data_order.dentista_color + ';" class=" fw-bold ">Paciente:   <span style="color:' + data_order.dentista_color + ';"  class="fw-bold ">' + data_order.name_paciente.toUpperCase() + '</span></h5>'
+                + '</div>'
+                + '<div class="col-6" >'
+                + '<h5 style="border-bottom: 2px solid ' + data_order.dentista_color + ';" class=" fw-bold ">Paciente:   <span style="color:' + data_order.dentista_color + ';"  class="fw-bold ">' + data_order.name_paciente.toUpperCase() + '</span></h5>'
+                + '<h5 style="border-bottom: 2px solid ' + data_order.dentista_color + ';" class=" fw-bold ">Fecha Impr.:   <span style="color:' + data_order.dentista_color + ';"  class="fw-bold ">' + moment().format('dddd DD MMMM YYYY hh:mm') + '</span></h5>'
 
-                            + '</div>'
-                        + '</div>'
-                    + '</div>'
+                + '</div>'
+                + '</div>'
+                + '</div>'
                 + '</div>'
 
 
                 + '<div class="row ">'
 
-                + '<div class="col-6">'
+                + '<div class="col-6 " style="border-bottom: 2px solid ' + data_order.dentista_color + ';">'
 
-                + '<br><h5 class="text-start  fw-bold ">Regreso: </h5><input type="text"></input>'
-
-
-                + '</div>'
-
-                + '<div class="col-6">'
-
-                + '<br><h5 class="text-start fw-bold ">Entrega: </h5><input type="text"></input>'
+                + '<br><h5 class="text-start  fw-bold ">Regreso: </h5>'
 
 
                 + '</div>'
 
+                + '<div class="col-6 " style="border-bottom: 2px solid ' + data_order.dentista_color + ';">'
+
+                + '<br><h5 class="text-start fw-bold ">Entrega: </h5>'
+
 
                 + '</div>'
 
-                + '<div class="row my-4">'
 
-                + '<div class="col-6">'
+                + '</div>'
+
+                + '<div class="row my-3 py-2">'
+
+                + '<div class="col-6" style="border-bottom: 2px solid ' + data_order.dentista_color + ';">'
 
                 + '<h5 class=" fw-bold ">Registro Mordida:   <span style="color:' + data_order.dentista_color + ';"  class="fw-bold ">' + (data_order.regMor ? 'SI' : 'NO') + '</span></h5>'
                 + '</div>'
 
-                + '<div class="col-6">'
-
+                + '<div class="col-6" style="border-bottom: 2px solid ' + data_order.dentista_color + ';">'
                 + '<h5 class=" fw-bold ">Antagonista:   <span style="color:' + data_order.dentista_color + ';"  class="fw-bold ">' + (data_order.antagon ? 'SI' : 'NO') + '</span></h5>'
 
                 + '</div>'
@@ -479,7 +482,7 @@ $(document).ready(function () {
                 }
 
 
-                productos = productos + '<hr class="py-2"><div  class="text-center">'
+                productos = productos + '<div  class=" my-3 text-center" style="border-top: 2px solid ' + data_order.dentista_color + ';">'
                     + '<div class="row">'
                     + '<div class="col-3">'
                     + '<h5 class="fw-bold">Cantidad</h5>'
@@ -512,7 +515,7 @@ $(document).ready(function () {
 
             }
 
-            let comentarios = '<hr class="py-2"><h3 class="text-center my-2 fw-bold" >Comentarios:</h3>'
+            let comentarios = '<div  class="my-2" style="border-bottom: 2px solid ' + data_order.dentista_color + ';"></div><h3 class="text-center my-2 fw-bold" >Comentarios:</h3>'
                 + '<div style="border:solid;border-color:' + data_order.dentista_color + ';" class="text-center p-5">'
                 + '<h5 class="p-0 m-0" style="color:' + data_order.dentista_color + ';">' + data_order.comentario + '</h5>'
                 + '</div>'
@@ -528,7 +531,10 @@ $(document).ready(function () {
                 + '</div>'
 
                 + datos_generales
+                + '<div class="my-4 py-2 text-center">'
                 + productos
+                + '</div>'
+
                 + comentarios
 
                 + '<div class="col-12 text-end my-5 fixed-bottom">' +

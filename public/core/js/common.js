@@ -2,8 +2,6 @@ let TOKEN_ = false
 let DATA_ = false
 
 
-
-
 moment.locale('es');
 /**
  * Spanish translation for bootstrap-datepicker
@@ -53,7 +51,6 @@ const notyf = new Notyf({
         }
     ]
 });
-
 
 
 let verificador = function () {
@@ -204,7 +201,7 @@ let draw_modal_details = function (id) {
 
             + '<div class="col-4">'
             + '<p class="fw-bold">  Registro Mordida: <span class="fw-normal">' + (data_order.regMor ? 'SI' : 'NO') + '</span></p>'
-            + '<p class="fw-bold">  Antagonista: <span class="fw-normal">' + ( data_order.antagon ? 'SI' : 'NO') + '</span></p>'
+            + '<p class="fw-bold">  Antagonista: <span class="fw-normal">' + (data_order.antagon ? 'SI' : 'NO') + '</span></p>'
             + '<p class="fw-bold">  Comentarios: </p>'
 
             + '<textarea id_orden="' + data_order._id + '" class="fw-bold comentarios_details"> ' + data_order.comentario + '</textarea>'
@@ -327,7 +324,7 @@ let clean_input = function () {
     $(".btn-check").prop("checked", false);
     $(".dentistas_name").val('');
     $(".paciente_name").val('');
-    $(".date_salida").val('');
+    $(".date_salida").val(moment().format("DD-MM-YYYY")).datepicker({language: "es", format: "dd-mm-yyyy", startDate: 'd'});
     $("#count_tooths").text(0);
     $(".count_tooths").text(0);
     $(".producto_name").val('');
@@ -434,8 +431,6 @@ let drawLastOrder = function (search) {
     api_conection('POST', 'api/orders/last_order/', {search}, function (data) {
 
 
-
-
         let order_data = data.data
 
 
@@ -443,26 +438,25 @@ let drawLastOrder = function (search) {
             $('#dataLastOrder').hide()
             $('#NoDataLastOrder').show()
 
-        }else{
+        } else {
             $('#dataLastOrder').show()
             $('#NoDataLastOrder').hide()
             for (let item of order_data) {
 
 
-                if(item.regMor){
-                    $('#regMorLast').prop("checked",true)
-                }else{
-                    $('#regMorLast').prop("checked",false)
+                if (item.regMor) {
+                    $('#regMorLast').prop("checked", true)
+                } else {
+                    $('#regMorLast').prop("checked", false)
 
                 }
 
-                if(item.antagon){
-                    $('#antagonLast').prop("checked",true)
-                }else{
-                    $('#antagonLast').prop("checked",false)
+                if (item.antagon) {
+                    $('#antagonLast').prop("checked", true)
+                } else {
+                    $('#antagonLast').prop("checked", false)
 
                 }
-
 
 
                 $('#dentistaOrder').val(item.dentista)
@@ -544,12 +538,12 @@ let drawLastOrder = function (search) {
                     var row = '<table class="display text-center table table-hover"><tr>' +
                         '<td>' + jtem.detalle.producto.name_producto + '</td>' +
                         '<td>' + jtem.detalle.cantidad + '</td>' +
-                        '<td><p>'+ tooths_10_20 + '</p><p>'+ tooths_30_40+ '</p></td>' +
+                        '<td><p>' + tooths_10_20 + '</p><p>' + tooths_30_40 + '</p></td>' +
                         '<td>' + jtem.detalle.color + '</td>' +
                         '<td>' + button_delete + button_edit + '</td></tr></table>'
 
 
-                    $('#productos').append(row  +'<div class="bg-dark py-1"></div>')
+                    $('#productos').append(row + '<div class="bg-dark py-1"></div>')
 
 
                 }
@@ -559,13 +553,11 @@ let drawLastOrder = function (search) {
         }
 
 
-
-
-    }, )
+    },)
 
 }
 
-let add_product = function (id_orden,folio) {
+let add_product = function (id_orden, folio) {
 
     let tooths = $(".btn-check");
     let producto_name = $("#addProductModal").val();
@@ -606,7 +598,6 @@ let add_product = function (id_orden,folio) {
         }
     );
 }
-
 
 
 $(document).ready(function () {
