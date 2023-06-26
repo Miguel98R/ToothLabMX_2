@@ -5,12 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4a63299-7730-4aeb-be2a-1c0a1b266884" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/controllers/colores.controller.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/colores.routes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/dentistas.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/dentistas.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/core/js/contabilidad.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/core/js/contabilidad.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/products.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/products.controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/core/js/ordenes.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/core/js/ordenes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/contable.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/contable.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/core/js/status_core.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/core/js/status_core.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/api_connection.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/products.routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/products.routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/template/menu.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/template/menu.pug" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +69,7 @@
       <scripts>
         <script value="dev" />
       </scripts>
-      <node-interpreter value="$USER_HOME$/.nvm/versions/node/v18.16.0/bin/node" />
+      <node-interpreter value="node" />
       <envs />
       <method v="2">
         <option name="LaunchBrowser.Before.Run" url="http://localhost:3005" />
@@ -103,21 +106,14 @@
       <workItem from="1686693799507" duration="1850000" />
       <workItem from="1686752778690" duration="1235000" />
       <workItem from="1686839786144" duration="5958000" />
+      <workItem from="1687564423693" duration="10000" />
+      <workItem from="1687615513608" duration="5000" />
+      <workItem from="1687615528903" duration="369000" />
+      <workItem from="1687779601453" duration="2288000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/controllers/products.controller.js</url>
-          <line>266</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

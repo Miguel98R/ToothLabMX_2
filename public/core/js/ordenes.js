@@ -399,7 +399,7 @@ $(document).ready(function () {
                 + '</div>'
                 + '<div class="col-6" >'
                 + '<h5 style="border-bottom: 2px solid ' + data_order.dentista_color + ';" class=" fw-bold ">Paciente:   <span style="color:' + data_order.dentista_color + ';"  class="fw-bold ">' + data_order.name_paciente.toUpperCase() + '</span></h5>'
-                + '<h5 style="border-bottom: 2px solid ' + data_order.dentista_color + ';" class=" fw-bold ">Fecha Impr.:   <span style="color:' + data_order.dentista_color + ';"  class="fw-bold ">' + moment().format('dddd DD MMMM YYYY hh:mm') + '</span></h5>'
+                + '<h5 style="border-bottom: 2px solid ' + data_order.dentista_color + ';" class=" fw-bold ">Fecha Impr.:   <span style="color:' + data_order.dentista_color + ';"  class="fw-bold ">' + moment().format('dddd DD MMMM YYYY hh:mm A') + '</span></h5>'
 
                 + '</div>'
                 + '</div>'

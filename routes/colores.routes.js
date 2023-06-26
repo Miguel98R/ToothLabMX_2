@@ -8,9 +8,10 @@ let {
     edit_product,
     change_Status,
     search_product,
-    top_5_products,
-    productById,
     search_color,
+    script_insertColors,
+    top_5_products,
+    productById
 
 
 } = require("../controllers/products.controller");
@@ -31,6 +32,8 @@ router.post("/productById/:_id", productById);
 //BUSCADOR DE PRODUCTOS
 router.post("/search_product/", search_product);
 
+//BUSCADOR DE COLORES
+router.post("/search_color/", search_color);
 
 //INABILITAR PRODUCTO
 router.put("/change_Status/:_id", change_Status);
@@ -39,8 +42,8 @@ router.put("/change_Status/:_id", change_Status);
 router.get("/top_5_products/", top_5_products);
 
 
-//BUSCADOR DE COLORES
-router.post("/search_color/", search_color);
+
+
 
 
 module.exports = router;

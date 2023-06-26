@@ -1,9 +1,7 @@
 let productsModel = require("../models/productos.model");
 let colorModel = require("../models/colores.model");
 let detalleModel = require("../models/detalle_orden.model");
-let mongoose = require('mongoose')
 
-const {details_order} = require("./orders.controller");
 
 //CREAR NUEVO PRODUCTO
 let new_product = async function (req, res) {
@@ -241,12 +239,9 @@ let script_insertColors = async function (req, res) {
             let id = await productsModel.findById("645aa19dd21fc184e7385c17")
 
 
-
             let detalle = await detalleModel.findById(item._id)
-            detalle.producto =  id._id
+            detalle.producto = id._id
             await detalle.save()
-
-
 
 
             if (idactual == "645aa19dd21fc184e7385c17") {
@@ -257,7 +252,6 @@ let script_insertColors = async function (req, res) {
 
                 await productsModel.findByIdAndDelete(idactual)
             }
-
 
 
         }
