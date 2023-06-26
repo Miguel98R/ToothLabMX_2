@@ -9,7 +9,7 @@ $(function () {
                 width: "50%",
                 data: "name_color",
                 render: function (data, v, row) {
-                    let input = `<input id_color="${row._id}" value="${data}" class="delete_colore  w-100 ">`
+                    let input = `<input id_color="${row._id}" value="${data}" class="edit_color  w-100 ">`
 
                     return input
                 },
@@ -19,7 +19,7 @@ $(function () {
                 width: "50%",
                 data: "_id",
                 render: function (data, v, row) {
-                    let btn_eliminar = `<button id_color="${data}" class="delete_colore btn btn-danger w-100 ">Eliminar</button><br>`
+                    let btn_eliminar = `<button id_color="${data}" class="delete_color btn btn-danger w-100 ">Eliminar</button><br>`
 
                     return btn_eliminar
                 },
@@ -94,7 +94,6 @@ $(function () {
 
     //creacion de nuevo color
 
-
     $('#btnNew_color').click(function () {
 
 
@@ -117,7 +116,70 @@ $(function () {
         );
     });
 
+    //ELIMINAR COLOR
+
+    $(document.body).on('click', '.delete_color', function () {
+
+        let id_color = $(this).attr('id_color');
+
+        Swal.fire({
+            title: "¿ Seguro que quiere eliminar este color ?  ",
+            text: "Esta acción no tiene retorno",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#006f2c",
+            cancelButtonColor: "#e80303",
+            confirmButtonText: "Si Adelante!",
+            cancelButtonText: "Cancelar",
+        }).then((confirmacionTrue) => {
+
+            if (confirmacionTrue.value) {
+                api_conection("DELETE", apiUrl + "/delete_color/" + id_color, {}, function (response) {
+                        notyf.success(response.message);
+                        dt_draw();
+
+                    },
+                    function (message) {
+                        notyf.error(message);
+                    }
+                );
+            }
+        })
 
 
+    });
+
+    //EDITAR COLOR
+
+    $(document.body).on('change', '.edit_color', function () {
+
+        let id_color = $(this).attr('id_color');
+        let name_color = $(this).val()
+        Swal.fire({
+            title: "¿ Seguro que quiere editar este  color ?  ",
+
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#006f2c",
+            cancelButtonColor: "#e80303",
+            confirmButtonText: "Si Adelante!",
+            cancelButtonText: "Cancelar",
+        }).then((confirmacionTrue) => {
+
+            if (confirmacionTrue.value) {
+                api_conection("PUT", apiUrl + "/edit_color/" + id_color, {name_color}, function (response) {
+                        notyf.success(response.message);
+                        dt_draw();
+
+                    },
+                    function (message) {
+                        notyf.error(message);
+                    }
+                );
+            }
+        })
+
+
+    });
 
 });

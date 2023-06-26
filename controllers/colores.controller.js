@@ -29,7 +29,8 @@ let new_color = async function (req, res) {
 //EDITAR COLOR
 let edit_color = async function (req, res) {
     let {id} = req.params;
-    let name_color = req.body
+    let {name_color} = req.body
+
 
     try {
         let color = await colorModel.findById(id)
@@ -58,7 +59,7 @@ let delete_color = async function (req, res) {
     let {id} = req.params;
 
     try {
-        let color = await colorModel.findByIdAndDelete(id)
+        await colorModel.findByIdAndDelete(id)
 
 
         res.status(200).json({

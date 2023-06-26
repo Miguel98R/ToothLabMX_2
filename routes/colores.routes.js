@@ -14,10 +14,10 @@ let {
 router.post("/new_color", new_color);
 
 //EDITAR COLOR
-router.post("/edit_color", edit_color);
+router.put("/edit_color/:id", edit_color);
 
 //ELIMINAR COLOR
-router.post("/delete_color", delete_color);
+router.delete("/delete_color/:id", delete_color);
 
 //DT COLOR
 router.post("/dt_colores", dt_colores);
