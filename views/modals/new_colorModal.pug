@@ -1,0 +1,23 @@
+#new_color.modal.fade(tabindex='-1')
+    .modal-dialog.modal-md
+        .modal-content
+            .modal-header.bg-dark.text-white
+                h5.modal-title
+                    b Registrar nuevo color
+                button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+            .modal-body
+                .card
+                    .card-body
+                        div
+                            .row
+                                .col-12
+                                    .form-group
+                                        label(for='name_color')  Nombre  :
+                                        input.form-control#name_color(type="text")
+
+
+
+                    .card-footer
+            .modal-footer
+                button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Cerrar
+                button.btn.btn-success#btnNew_color Guardar

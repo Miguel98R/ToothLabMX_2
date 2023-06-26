@@ -2,11 +2,11 @@ let colorModel = require("../models/colores.model");
 
 //CREAR NUEVO COLOR
 let new_color = async function (req, res) {
-    let newcolor = req.body;
-
+    let {new_colors} = req.body;
+    console.log(new_colors)
     try {
         let color = new colorModel({
-            name_producto: newcolor.name_producto,
+            name_color: new_colors,
 
         });
 
@@ -76,15 +76,14 @@ let delete_color = async function (req, res) {
 
 //DT COLOR
 let dt_colores = async function (req, res) {
-    let {id} = req.params;
 
     try {
-        let color = await colorModel.findByIdAndDelete(id)
+        let colores = await colorModel.find()
 
 
         res.status(200).json({
             success: true,
-            message: "Color eliminado"
+            data: colores,
         });
     } catch (e) {
         console.error(e);

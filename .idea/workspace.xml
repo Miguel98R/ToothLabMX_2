@@ -5,12 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4a63299-7730-4aeb-be2a-1c0a1b266884" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/img/iconsMenu/colores.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/colores.pug" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/core/js/colores.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/modals/new_colorModal.pug" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/colores.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/colores.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/colores.routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/colores.routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/viewEngine/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/viewEngine/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/_api.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/_api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/colores.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/colores.pug" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +21,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Pug File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -108,7 +109,7 @@
       <workItem from="1687615513608" duration="5000" />
       <workItem from="1687615528903" duration="369000" />
       <workItem from="1687779601453" duration="2288000" />
-      <workItem from="1687790178757" duration="799000" />
+      <workItem from="1687790178757" duration="4820000" />
     </task>
     <servers />
   </component>

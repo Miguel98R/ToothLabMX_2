@@ -1,0 +1,46 @@
+doctype html
+html(lang="es")
+    head
+    include template/headSRC
+
+    title #{title}
+
+    body
+
+
+        include template/nav
+        #panelContainer
+
+            include template/menu
+            .panel.two
+                .content.p-0(style="max-height:800px; overflow-y:auto;")
+                    div(style="width:100%;border-bottom: 1px solid #343A40 ")
+                        h3.m-3 Colores
+
+                    .card
+                        .card-header
+                            button.btn.btn-dark#open_newColor
+                                i.fas.fa-tooth
+                                |  Nuevo color
+                        .card-body
+
+                            table#tbl_colores.display.table.table-hover(width='100%')
+                                thead.thead-dark
+                                    tr
+
+
+                                        th Nombre
+                                        th Acciones
+
+
+                        .card-footer
+
+
+
+
+    include modals/new_colorModal
+
+
+    include template/scripts
+    script( src='./public/core/js/common.js')
+    script( src='./public/core/js/colores.js')
