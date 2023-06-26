@@ -14,7 +14,7 @@ let new_color = async function (req, res) {
 
         res.status(200).json({
             success: true,
-            data: color,
+            message: "color creado"
         });
     } catch (e) {
         console.error(e);
@@ -26,6 +26,78 @@ let new_color = async function (req, res) {
 };
 
 
+//EDITAR COLOR
+let edit_color = async function (req, res) {
+    let {id} = req.params;
+    let name_color = req.body
+
+    try {
+        let color = await colorModel.findById(id)
+
+        color.name_color = name_color
+
+
+        await color.save();
+
+        res.status(200).json({
+            success: true,
+            message: "Color actualizado"
+        });
+    } catch (e) {
+        console.error(e);
+        res.status(500).json({
+            succes: false,
+            error: e,
+        });
+    }
+};
+
+
+//ELIMINAR COLOR
+let delete_color = async function (req, res) {
+    let {id} = req.params;
+
+    try {
+        let color = await colorModel.findByIdAndDelete(id)
+
+
+        res.status(200).json({
+            success: true,
+            message: "Color eliminado"
+        });
+    } catch (e) {
+        console.error(e);
+        res.status(500).json({
+            succes: false,
+            error: e,
+        });
+    }
+};
+
+//DT COLOR
+let dt_colores = async function (req, res) {
+    let {id} = req.params;
+
+    try {
+        let color = await colorModel.findByIdAndDelete(id)
+
+
+        res.status(200).json({
+            success: true,
+            message: "Color eliminado"
+        });
+    } catch (e) {
+        console.error(e);
+        res.status(500).json({
+            succes: false,
+            error: e,
+        });
+    }
+};
+
 module.exports = {
-    new_color
+    new_color,
+    edit_color,
+    delete_color,
+    dt_colores
 }

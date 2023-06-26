@@ -6,3 +6,5 @@ dbBackUP
 #Ignora variables de entorno
 .env
 .idea/workspace.xml
+.idea/workspace.xml
+*.xml

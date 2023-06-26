@@ -21,13 +21,19 @@ let menu = [
         img: './public/img/iconsMenu/products.png',
         title: 'Productos',
         ref: '/products'
-    }, {
+    },
+    {
         icon: 'fas fa-tooth',
         img: './public/img/iconsMenu/dentista.png',
         title: 'Dentistas',
         ref: '/dentistas'
     },
-
+    {
+        icon: 'fas fa-ban',
+        img: './public/img/iconsMenu/colores.png',
+        title: 'Colores',
+        ref: '/colors',
+    },
     {
         icon: 'fas fa-arrow-right',
         img: './public/img/iconsMenu/tiempo.png',
@@ -119,6 +125,15 @@ router.get("/products", async (req, res) => {
     })
 })
 
+router.get("/colors", async (req, res) => {
+
+    res.render('colores', {
+        title: 'ToothLabMX | Colores',
+        menu,
+        logo
+    })
+})
+
 router.get("/dentistas", async (req, res) => {
 
     res.render('dentistas', {
@@ -137,10 +152,7 @@ router.get("/contable", async (req, res) => {
     })
 })
 
-//RUTAS DE LAS VISTAS PARA LA SECCION DE ORDENES
-
-
-
+////////////////----RUTAS DE LAS VISTAS PARA LA SECCION DE ORDENES--///////////////////////
 router.get("/status_historico", async (req, res) => {
 
     res.render('statusViews/status_historico', {

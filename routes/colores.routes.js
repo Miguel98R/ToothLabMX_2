@@ -3,47 +3,24 @@ const express = require("express");
 const router = express.Router();
 
 let {
-    new_product,
-    data_table,
-    edit_product,
-    change_Status,
-    search_product,
-    search_color,
-    script_insertColors,
-    top_5_products,
-    productById
+    new_color,
+    edit_color,
+    delete_color,
+    dt_colores
 
+} = require("../controllers/colores.controller");
 
-} = require("../controllers/products.controller");
+//NUEVO COLOR
+router.post("/new_color", new_color);
 
-//NUEVO PRODUCTO
-router.post("/new_product", new_product);
+//EDITAR COLOR
+router.post("/edit_color", edit_color);
 
+//ELIMINAR COLOR
+router.post("/delete_color", delete_color);
 
-//DATA PARA PINTAR EN DATATABLES
-router.get("/data_dataTables/", data_table);
-
-//ACTUALIZAR PRECIOS
-router.put("/edit_product/:_id", edit_product);
-
-//DATOS DEL PRODUCTO POR ID
-router.post("/productById/:_id", productById);
-
-//BUSCADOR DE PRODUCTOS
-router.post("/search_product/", search_product);
-
-//BUSCADOR DE COLORES
-router.post("/search_color/", search_color);
-
-//INABILITAR PRODUCTO
-router.put("/change_Status/:_id", change_Status);
-
-//TOP 5 MAS USADOS 
-router.get("/top_5_products/", top_5_products);
-
-
-
-
+//DT COLOR
+router.post("/dt_colores", dt_colores);
 
 
 module.exports = router;
