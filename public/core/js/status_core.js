@@ -420,7 +420,7 @@ $(function () {
 
             let comentarios = '<div  class="my-2" style="border-bottom: 2px solid ' + data_order.dentista_color + ';"></div><h3 class="text-center my-2 fw-bold" >Comentarios:</h3>'
                 + '<div style="border:solid;border-color:' + data_order.dentista_color + ';" class="text-center p-5">'
-                + '<h5 class="p-0 m-0" style="color:' + data_order.dentista_color + ';">' + data_order.comentario + '</h5>'
+                + '<h5 class="p-0 m-0" style="color:' + data_order.dentista_color + ';">' + data_order.comentario.toUpperCase() + '</h5>'
                 + '</div>'
                 + '</div>'
                 + '</div>'

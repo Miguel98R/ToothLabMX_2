@@ -60,18 +60,18 @@ $(document).ready(function () {
         let regMor = $('#regMor').prop('checked');
         let antagon = $('#antagon').prop('checked');
 
-        new_order.name_paciente = name_paciente;
-        new_order.dentista = dentist;
+        new_order.name_paciente = name_paciente.toUpperCase();
+        new_order.dentista = dentist.toUpperCase();
         new_order.fecha_entrante = fecha_entrada;
         new_order.fecha_saliente = fecha_salida;
-        new_order.comentario = comentario;
+        new_order.comentario = comentario.toUpperCase();
         new_order.regMor = regMor;
         new_order.antagon = antagon;
 
         new_order_details.cantidad = cantidad;
-        new_order_details.color = color_name;
+        new_order_details.color = color_name.toUpperCase();
         new_order_details.tooths = tooths_array;
-        new_order_details.producto_name = producto_name;
+        new_order_details.producto_name = producto_name.toUpperCase();
 
         api_conection(
             "POST",
@@ -517,7 +517,7 @@ $(document).ready(function () {
 
             let comentarios = '<div  class="my-2" style="border-bottom: 2px solid ' + data_order.dentista_color + ';"></div><h3 class="text-center my-2 fw-bold" >Comentarios:</h3>'
                 + '<div style="border:solid;border-color:' + data_order.dentista_color + ';" class="text-center p-5">'
-                + '<h5 class="p-0 m-0" style="color:' + data_order.dentista_color + ';">' + data_order.comentario + '</h5>'
+                + '<h5 class="p-0 m-0" style="color:' + data_order.dentista_color + ';">' + data_order.comentario.toUpperCase()  + '</h5>'
                 + '</div>'
                 + '</div>'
                 + '</div>'
