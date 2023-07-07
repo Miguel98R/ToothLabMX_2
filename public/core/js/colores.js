@@ -75,8 +75,11 @@ $(function () {
     //DATA PARA PINTAR DATATABLES
 
     let dt_draw = function () {
+        HoldOn.open(HoldOptions)
         api_conection("POST", apiUrl + "/dt_colores", {}, function (data) {
+            HoldOn.close()
             let data_colores = data.data;
+            console.log(data_colores)
             dt.clear();
             dt.rows.add(data_colores).draw();
         });

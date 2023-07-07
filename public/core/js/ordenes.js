@@ -3,16 +3,16 @@ verificador();
 $(document).ready(function () {
     let today = moment().format("DD-MM-YYYY");
 
-    $(".date_entrada").datepicker({language: "es", format: "dd-mm-yyyy", startDate: 'd'}).val(today);
+    $(".date_entrada").datepicker({language: "es", format: "dd-mm-yyyy"}).val(today);
 
     $(".date_entrada").datepicker('setDate', today);
 
-    $(".date_salida").datepicker({language: "es", format: "dd-mm-yyyy", startDate: 'd'});
+    $(".date_salida").datepicker({language: "es", format: "dd-mm-yyyy"});
 
     $(".date_salida").datepicker('setDate', today);
 
 
-    $("#fechaSalienteLast").datepicker({language: "es", format: "dd-mm-yyyy", startDate: 'd'});
+    $("#fechaSalienteLast").datepicker({language: "es", format: "dd-mm-yyyy"});
 
     $("#fechaSalienteLast").datepicker('setDate', today);
 

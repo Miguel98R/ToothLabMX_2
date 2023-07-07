@@ -975,6 +975,113 @@ let editTotalOrder = async function (req, res) {
 }
 
 
+//OBTENER HISTORICO DE ORDENES
+let dt_historic = async function (req, res) {
+
+    try {
+        let orders = await ordersModel.aggregate([
+            {
+                $lookup: {
+                    from: dentistModel.collection.name,
+                    localField: 'dentista',
+                    foreignField: '_id',
+                    as: 'dentista',
+                },
+            },
+            {
+                $unwind: {
+                    path: '$dentista',
+                    preserveNullAndEmptyArrays: true,
+                },
+            },
+            {
+                $lookup: {
+                    from: detailsOrderModel.collection.name,
+                    localField: 'detalle',
+                    foreignField: '_id',
+                    as: 'detalle'
+                }
+            },
+            {
+                $unwind: '$detalle'
+            },
+            {
+                $lookup: {
+                    from: productModel.collection.name,
+                    localField: 'detalle.producto',
+                    foreignField: '_id',
+                    as: 'detalle.producto'
+                }
+            },
+            {
+                $unwind: '$detalle.producto'
+            },
+            {
+                $group: {
+                    _id: {
+                        paciente: '$name_paciente',
+                        dentista: '$dentista.name_dentista',
+                        distintivo_color: '$dentista.distintivo_color',
+                        fecha_entrante: '$fecha_entrante',
+                        fecha_actualizacion: '$fecha_actualizacion',
+                        folio: '$id_order',
+                        comentario: '$comentario',
+                        _id: '$_id',
+                        status: '$status',
+                        regMor: '$regMor',
+                        antagon: '$antagon',
+                        createdAt: '$createdAt'
+                    },
+                    items: {
+                        $push: {
+                            detalle: '$detalle',
+                        }
+                    }
+                }
+            },
+
+            {
+                $replaceRoot: {
+                    newRoot: {
+                        paciente: '$_id.paciente',
+                        distintivo_color: '$_id.distintivo_color',
+                        dentista: '$_id.dentista',
+                        fecha_entrante: '$_id.fecha_entrante',
+                        fecha_actualizacion: '$_id.fecha_actualizacion',
+                        folio: '$_id.folio',
+                        comentario: '$_id.comentario',
+                        _id: '$_id._id',
+                        status: '$_id.status',
+                        detalle: '$items'
+                    }
+                }
+
+            },
+
+            {
+                $sort: {
+                    folio: -1,
+                },
+            },
+        ]);
+
+
+        res.status(200).json({
+            success: true,
+            data:orders
+        })
+
+    } catch (e) {
+        console.log(e)
+        res.status(500).json({
+            message: "Error al actualizar total de la orden ",
+            success: false,
+            error: e
+        })
+    }
+}
+
+
 module.exports = {
     new_order,
     details_order,
@@ -987,6 +1094,7 @@ module.exports = {
     last_order,
     editProductDetail,
     orderByDentist,
-    editTotalOrder
+    editTotalOrder,
+    dt_historic
 };
 

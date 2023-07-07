@@ -22,6 +22,12 @@ moment.locale('es');
     };
 }(jQuery));
 
+HoldOptions = {
+    theme: "sk-circle",
+    message: 'Espere... ',
+    textColor: "#000000",
+    backgroundColor: "#FFFFFF",
+}
 
 const notyf = new Notyf({
     duration: 1000,
@@ -123,8 +129,9 @@ let api_conection = async function (method, url, data, f_, error_) {
 }
 
 let dt_draw = function (data_table) {
-
+    HoldOn.open(HoldOptions)
     api_conection("GET", "api/orders/data_dataTables/" + STATUS_BUSQUEDA, {}, function (data) {
+        HoldOn.close()
         let data_query = data.data;
 
 
