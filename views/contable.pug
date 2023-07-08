@@ -27,7 +27,7 @@ html(lang="es")
 
                 .row
 
-                    .col-3
+                    .col-2
                         div.text-center.my-5.col-12
                             h3.mx-2.fw-bold DENTISTA:
                                 span.mx-2#nameDentista.fw-bold
@@ -44,7 +44,7 @@ html(lang="es")
                             input.rounded-pill.border.border-dark.form-control#aCuenta(type="number" min=0 )
 
 
-                    .col-9
+                    .col-10
                         .card
 
                             .card-body
@@ -63,7 +63,7 @@ html(lang="es")
                                         .card-header
                                             h5.my-3 Ordenes Creadas:
                                         .card-body
-                                            div(style="overflow-y: auto;  height: 450px;")
+                                            div(style="overflow-y: auto;  height: 470px;")
 
                                                 table#tblOrdenes.table.table-hover(width='100px')
                                                     thead.thead-dark
@@ -75,6 +75,7 @@ html(lang="es")
                                                             th ODS
                                                             th Status
                                                             th Total
+                                                            th Acciones
 
                                 #historial_.tab-pane.fade(role='tabpanel' aria-labelledby='historial-tab')
 
@@ -83,7 +84,7 @@ html(lang="es")
                                             h5.my-3 Historial de pagos
 
                                         .card-body
-                                            div(style="overflow-y: auto;  height: 450px;")
+                                            div(style="overflow-y: auto;  height: 470px;")
                                                 table#tbl_Pagos.table.table-hover(width='100px')
                                                     thead.thead-dark
                                                         tr
@@ -106,5 +107,5 @@ html(lang="es")
 
 
     include template/scripts
-    script( src='./public/core/js/common.js')
-    script( src='./public/core/js/contabilidad.js')
+    script( src='./public/core/js/common.js?v=' + Math.random())
+    script( src='./public/core/js/contabilidad.js?v=' + Math.random())

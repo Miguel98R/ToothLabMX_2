@@ -59,6 +59,6 @@ router.post("/editTotalOrder/", editTotalOrder);
 
 //OBTENER HISTORICO DE ORDENES
 
-router.get("/dt_historic/", dt_historic);
+router.post("/dt_historic/", dt_historic);
 
 module.exports = router;

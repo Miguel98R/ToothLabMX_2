@@ -288,13 +288,14 @@ let data_table = async function (req, res) {
 
         let match = {$match: {}}
 
-        console.log("status_buscar-------",status_buscar)
+        console.log("status_buscar-------", status_buscar)
 
 
         if (status_buscar == 0) {
             match = {$match: {}}
         } else {
-            match = {$match: {status: status_buscar }
+            match = {
+                $match: {status: status_buscar}
             }
         }
 
@@ -364,7 +365,6 @@ let data_table = async function (req, res) {
                 }
             }
         ]);
-
 
 
         res.status(200).json({
@@ -978,7 +978,38 @@ let editTotalOrder = async function (req, res) {
 //OBTENER HISTORICO DE ORDENES
 let dt_historic = async function (req, res) {
 
+    let {search} = req.body
+
+    console.log("search", typeof  search)
+
+
+
     try {
+        let name_dentista
+
+        if(typeof  search == 'string'){
+            if (search != undefined) {
+                name_dentista = {$match: {dentista:  new RegExp(search, 'i')}}
+            } else {
+                name_dentista = {$match: {}}
+            }
+        }
+
+        if(typeof  search == 'object'){
+            if(search.paciente){
+                name_dentista = {$match: {dentista:  new RegExp(search.dentista, 'i'),paciente:  new RegExp(search.paciente, 'i')}}
+
+            }else{
+                if(search.dentista){
+                    name_dentista = {$match: {dentista:  new RegExp(search.dentista, 'i')}}
+                }else{
+                    name_dentista = {$match: {}}
+                }
+            }
+        }
+
+
+
         let orders = await ordersModel.aggregate([
             {
                 $lookup: {
@@ -1058,6 +1089,8 @@ let dt_historic = async function (req, res) {
 
             },
 
+            name_dentista,
+
             {
                 $sort: {
                     folio: -1,
@@ -1068,7 +1101,7 @@ let dt_historic = async function (req, res) {
 
         res.status(200).json({
             success: true,
-            data:orders
+            data: orders
         })
 
     } catch (e) {

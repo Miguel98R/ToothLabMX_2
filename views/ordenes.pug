@@ -20,9 +20,6 @@ html(lang="es")
                                 .col-10
                                     input#searchOrders.mx-2.rounded-pill.border.border-dark.form-control(type='number' min=1 style="max-width:100%;" placeholder='BUSCAR UNA ORDEN ')
 
-                                //.col-4.text-start
-                                    button#btnSearch.btn.btn-outline-primary  🔎
-
                 .row.my-2.mx-1
                     .col-6.p-0.m-0
                         .card.border-0
@@ -95,5 +92,5 @@ html(lang="es")
     include modals/editProduct
     include modals/agregar_producto_Modal
     include template/scripts
-    script( src='./public/core/js/common.js')
-    script( src='./public/core/js/ordenes.js')
+    script( src='./public/core/js/common.js?v=' + Math.random())
+    script( src='./public/core/js/ordenes.js?v=' + Math.random())

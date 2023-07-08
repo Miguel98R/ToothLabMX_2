@@ -31,7 +31,7 @@ $(function () {
         drawColorSaldo(total_adeudo)
 
     }
-    ///////////////////---------------HISTORIAL DE PAGOS -----------------_///////
+    //////////////----------------------------------------------------------------------- TABLA HISTORIAL DE PAGOS ----------------------------------------------------------------------_///////
 
     //COLUMNAS DE LA DATATABLE PAGOS
     let columnsPagos = [
@@ -135,7 +135,22 @@ $(function () {
         })
     })
 
-    ///////////////////---------------ORDENES--------------------_///////
+
+    $('#deletePago').change(function () {
+        let body = {}
+        body.id_dentista = $(this).attr('id_dentista')
+        body.value = $(this).val()
+
+            api_conection('DELTE', 'api/dentist/deletePago', body, function (response) {
+            notyf.success(response.message)
+            $('#aCuenta').val(0)
+            drawPagos(body.id_dentista)
+
+        })
+    })
+
+
+    //////////////------------------------------------------------------- TABLA ORDENES --------------------------------------------------------------------_///////
 
     //COLUMNAS DE LA DATATABLE ORDENES
     let columnsOrdenes = [
@@ -249,6 +264,15 @@ $(function () {
 
                 let inputAcuenta = '<div class="m-1"><input id_dentista="' + data + '" value="' + total_order + '" min=0 type="number" id_order="' + row._id + '" class="total_orders form-control w-100"></div>'
                 return inputAcuenta
+            }
+        },
+        {
+            width: "10%",
+            data: "id_dentista",
+            render: function (data, v, row) {
+
+                let btnPagado = '<div class="m-1"><button id_order="' + row._id + '" class="changeStatus btn btn-success w-100">Orden pagada</button></div>'
+                return btnPagado
             }
         },
 

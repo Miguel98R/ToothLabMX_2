@@ -181,9 +181,9 @@ $(function () {
 
 
     //FUNCION PARA PINTAR DATATABLES
-    let dt_draw = function () {
+    let dt_draw = function (search) {
         HoldOn.open(HoldOptions)
-        api_conection("GET", apiUrl + "/dt_historic", {}, function (data) {
+        api_conection("POST", apiUrl + "/dt_historic", {search}, function (data) {
             HoldOn.close()
             let data_historic = data.data;
 
@@ -192,7 +192,7 @@ $(function () {
         });
     };
 
-    dt_draw();
+    dt_draw('');
 
 
     //IMPRIMIR ORDEN
@@ -398,7 +398,37 @@ $(function () {
         count_tooth()
     });
 
-    let search = "";
+
+    $("#searchBtn").click(function () {
+        let search = $("#searchinput").val()
+        dt_draw(search);
+    });
+
+    $("#reiniciar").click(function () {
+        $("#searchinput").val('')
+        $("#searchPaciente").val('')
+        $("#checkPaciente").prop('checked',false)
+        $("#inputPacientes").css('display', 'none')
+        dt_draw('');
+    });
+
+    $("#checkPaciente").change(function () {
+        let check = $(this).prop('checked')
+        if (check) {
+            $("#inputPacientes").css('display', 'block')
+        } else {
+            $("#inputPacientes").css('display', 'none')
+        }
+
+    });
+
+    $("#searchBtnPaciente").click(function () {
+        let search = {}
+            search.dentista = $("#searchinput").val()
+            search.paciente = $("#searchPaciente").val()
+
+        dt_draw(search);
+    });
 
 
 })

@@ -17,7 +17,31 @@ html(lang="es")
                     h3.m-3 Historico
 
                 .card.mx-2
+
                     .card-header
+                        .row
+                            .col-8
+                                .form-group.d-flex.align-items-center
+                                    label.mx-2.d-inline(for='searchinput') Buscar por dentista:
+                                    input.d-inline.w-50#searchinput.form-control(type="text" placeholder='Ingrese nombre')
+                                    button.d-inline.btn.btn-light#searchBtn 🔎 Buscar
+                            .col-4
+                                .form-group.d-flex.align-items-center
+
+                                    button.d-inline.btn.btn-light#reiniciar 🔎 Limpiar busqueda
+                        .row
+                            .form-group.d-flex.align-items-center
+                                label.mx-2.d-inline(for='searchinput') Agregar Paciente a la busqueda:
+                                input.d-inline#checkPaciente(type="checkbox")
+                            div#inputPacientes(style="display:none;")
+                                .form-group.d-flex.align-items-center
+                                    label.mx-2.d-inline(for='searchPaciente') Nombre paciente:
+                                    input.d-inline.w-50#searchPaciente.form-control(type="text" placeholder='Ingrese nombre')
+                                    button.d-inline.btn.btn-light#searchBtnPaciente 🔎 Agregar
+
+
+
+
                     .card-body
                         table#tbl-historico.display.table.table-hover(width='100%')
                             thead.thead-dark
@@ -45,7 +69,7 @@ html(lang="es")
     include modals/edit_order_modal
     include modals/agregar_producto_Modal
 
-    script( src='./public/core/js/common.js')
+    script( src='./public/core/js/common.js?v=' + Math.random())
 
 
     script( src='./public/core/js/historico.js?v=' + Math.random())
