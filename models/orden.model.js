@@ -38,6 +38,10 @@ let ordenSchema = new Schema ({
         type:String,
         required: false,
     },
+    fecha_pagada:{
+        type:String,
+        required: false,
+    },
     comentario:{
         type:String,
         required:false,

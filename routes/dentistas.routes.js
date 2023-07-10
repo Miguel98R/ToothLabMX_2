@@ -11,7 +11,9 @@ let {
   search_dentist,
   top_5_dentist,
   addPagos,
-  pagosByDentist
+  pagosByDentist,
+  deletePago,
+  editPago
 } = require("../controllers/dentistas.controller");
 
 //NUEVO DENTISTA
@@ -41,6 +43,11 @@ router.post("/addPagos/", addPagos);
 //OBTENER PAGOS
 router.post("/pagosByDentist/:id_dentista", pagosByDentist);
 
+//ELIMINAR PAGOS
+router.delete("/deletePago/:id_pago", deletePago);
+
+//EDITAR PAGOS
+router.put("/editPago/", editPago);
 
 
 module.exports = router;

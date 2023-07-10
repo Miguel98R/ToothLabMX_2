@@ -15,7 +15,9 @@ let {
     editProductDetail,
     orderByDentist,
     editTotalOrder,
-    dt_historic
+    dt_historic,
+    orderisPagada,
+    orderPagadasByDentist
 } = require("../controllers/orders.controller.js")
 
 
@@ -49,9 +51,14 @@ router.put("/editProductDetail/:id_detalle", editProductDetail);
 //ULTIMA ORDER
 router.post("/last_order/", last_order);
 
-//ORDENES POR DENTISTA
+//ORDENES NO PAGADAS POR DENTISTA
 
 router.post("/orderByDentist/:id_dentista", orderByDentist);
+
+
+//ORDENES PAGADAS POR DENTISTA
+
+router.post("/orderPagadasByDentist/:id_dentista", orderPagadasByDentist);
 
 //EDITAR TOTAL DE LA ORDEN
 
@@ -60,5 +67,9 @@ router.post("/editTotalOrder/", editTotalOrder);
 //OBTENER HISTORICO DE ORDENES
 
 router.post("/dt_historic/", dt_historic);
+
+//CAMBIAR STATUS DE ORDEN A PAGADA
+
+router.put("/orderisPagada/:id_order", orderisPagada);
 
 module.exports = router;

@@ -228,6 +228,60 @@ let addPagos = async function (req, res) {
     }
 }
 
+//ELIMINAR PAGOS
+let deletePago = async function (req, res) {
+
+    let {id_pago} = req.params
+
+
+    try {
+        await pagosModel.findByIdAndDelete(id_pago)
+
+
+        res.status(200).json({
+            success: true,
+            message: 'Pago eliminado'
+        })
+
+    } catch (e) {
+        console.log(e)
+        res.status(500).json({
+            message: "Error al eliminar pago ",
+            success: false,
+            error: e
+        })
+    }
+}
+
+
+//EDITAR PAGOS
+let editPago = async function (req, res) {
+
+    let {body} = req.body
+
+
+    try {
+        let dataPago = await pagosModel.findById(body.id_pago)
+        dataPago.cantidad = body.val
+        dataPago.fecha_pago = moment().format()
+
+        await dataPago.save()
+
+        res.status(200).json({
+            success: true,
+            message: 'Pago actualizado'
+        })
+
+    } catch (e) {
+        console.log(e)
+        res.status(500).json({
+            message: "Error al actualizar pago ",
+            success: false,
+            error: e
+        })
+    }
+}
+
 //OBTENER PAGOS POR DENTISTA
 let pagosByDentist = async function (req, res) {
 
@@ -242,68 +296,35 @@ let pagosByDentist = async function (req, res) {
                 }
             },
             {
-                $replaceRoot:{
-                    newRoot:{
-                        id_pago:'$_id',
-                        fecha_pago:'$fecha_pago',
-                        cantidad:'$cantidad',
+                $replaceRoot: {
+                    newRoot: {
+                        id_pago: '$_id',
+                        fecha_pago: '$fecha_pago',
+                        cantidad: '$cantidad',
+                        id_dentista: '$dentista',
+
                     }
                 }
             }
-            ])
+        ])
 
 
-    res.status(200).json({
-        success: true,
-        data: pagos
-    })
+        res.status(200).json({
+            success: true,
+            data: pagos
+        })
 
-}
-catch
-(e)
-{
-    console.log(e)
-    res.status(500).json({
-        message: "Error al agregar pago ",
-        success: false,
-        error: e
-    })
-}
-}
-
-/*let script_insertDentistas = async function (req, res) {
-
-  try {
-    for(let item of dentistas){
-      console.log(item)
-
-      let dentista = new dentistaModel({
-        name_dentista:item.name_dentista,
-        distintivo_color:item.distintivo_color,
-        status:item.status,
-        domicilio_dentista:"S/R",
-        email_dentista:"S/R",
-        tel_dentista:"S/R",
-        tel_consultorio:"S/R",
-
-
-
-      })
-      dentista = dentista.save()
+    } catch
+        (e) {
+        console.log(e)
+        res.status(500).json({
+            message: "Error al agregar pago ",
+            success: false,
+            error: e
+        })
     }
+}
 
-    res.status(200).json({
-      success: true,
-      data: []
-    });
-  } catch (e) {
-    console.error(e);
-    res.status(500).json({
-      succes: false,
-      error: e,
-    });
-  }
-};*/
 
 module.exports = {
     new_dentist,
@@ -314,6 +335,8 @@ module.exports = {
     search_dentist,
     top_5_dentist,
     addPagos,
-    pagosByDentist
+    pagosByDentist,
+    deletePago,
+    editPago,
 
 };

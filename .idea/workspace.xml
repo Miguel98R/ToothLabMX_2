@@ -8,16 +8,12 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/dentistas.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/dentistas.controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/orders.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/orders.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/orden.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/orden.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/core/js/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/core/js/common.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/core/js/contabilidad.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/core/js/contabilidad.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/core/js/historico.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/core/js/historico.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/dentistas.routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/dentistas.routes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/orders.routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/orders.routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/colores.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/colores.pug" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/contable.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/contable.pug" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/dentistas.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/dentistas.pug" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/historico.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/historico.pug" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/index.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/index.pug" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/ordenes.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/ordenes.pug" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/productos.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/productos.pug" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,6 +125,7 @@
       <workItem from="1688584418549" duration="26000" />
       <workItem from="1688748209723" duration="8391000" />
       <workItem from="1688837741358" duration="7026000" />
+      <workItem from="1688952341034" duration="8837000" />
     </task>
     <servers />
   </component>
@@ -145,8 +142,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/controllers/orders.controller.js</url>
-          <line>986</line>
+          <line>1150</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/public/core/js/contabilidad.js</url>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

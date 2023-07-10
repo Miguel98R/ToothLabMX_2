@@ -63,16 +63,14 @@ html(lang="es")
                                         .card-header
                                             h5.my-3 Ordenes Creadas:
                                         .card-body
-                                            div(style="overflow-y: auto;  height: 470px;")
+                                            div(style="overflow-y: auto;  height: 500px;")
 
                                                 table#tblOrdenes.table.table-hover(width='100px')
                                                     thead.thead-dark
                                                         tr
                                                             th Folio
                                                             th Paciente
-                                                            th Pzs
                                                             th Trabajo
-                                                            th ODS
                                                             th Status
                                                             th Total
                                                             th Acciones
@@ -84,7 +82,7 @@ html(lang="es")
                                             h5.my-3 Historial de pagos
 
                                         .card-body
-                                            div(style="overflow-y: auto;  height: 470px;")
+                                            div(style="overflow-y: auto;  height: 500px;")
                                                 table#tbl_Pagos.table.table-hover(width='100px')
                                                     thead.thead-dark
                                                         tr
@@ -95,9 +93,24 @@ html(lang="es")
 
                                 #ordenes_pagadas_.tab-pane.fade(role='tabpanel' aria-labelledby='ordenes-pagadas-tab')
 
+                                    .card
+                                        .card-header
+                                            h5.my-3 Ordenes Pagadas:
+                                        .card-body
+                                            div(style="overflow-y: auto;  height: 500px;")
 
+                                                table#tblOrdenesPagadas.table.table-hover(width='100px')
+                                                    thead.thead-dark
+                                                        tr
+                                                            th Folio
+                                                            th Fecha pagada
+                                                            th Paciente
 
+                                                            th Trabajo
 
+                                                            th Status
+                                                            th Total Pagado
+                                                            th Acciones
 
 
 

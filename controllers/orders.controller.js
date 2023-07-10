@@ -818,7 +818,7 @@ let last_order = async function (req, res) {
     }
 }
 
-//OBTENER ORDEN POR DENTISTA
+//OBTENER ORDEN NO PAGADAS POR DENTISTA
 let orderByDentist = async function (req, res) {
 
     let {id_dentista} = req.params
@@ -830,7 +830,9 @@ let orderByDentist = async function (req, res) {
         order = await ordersModel.aggregate([
             {
                 $match: {
-                    dentista: mongoose.Types.ObjectId(id_dentista)
+                    dentista: mongoose.Types.ObjectId(id_dentista),
+                    isPagado: false
+
                 }
             },
             {
@@ -937,6 +939,47 @@ let orderByDentist = async function (req, res) {
     }
 }
 
+//CAMBIAR STATUS A ORDEN PAGADA
+let orderisPagada = async function (req, res) {
+
+    let {id_order} = req.params
+    let {pagado} = req.body
+
+    console.log(id_order)
+    console.log(pagado)
+
+    try {
+        let dataOrder = await ordersModel.findById(id_order)
+
+        if(pagado == 'true'){
+            dataOrder.isPagado = true
+        }
+
+        if(pagado == 'false'){
+            dataOrder.isPagado = false
+
+        }
+
+        dataOrder.fecha_pagada = moment().format('YYYY-MM-DD')
+
+        await dataOrder.save()
+
+
+        res.status(200).json({
+            success: true,
+            message: 'Pago regresado'
+        })
+
+    } catch (e) {
+        console.log(e)
+        res.status(500).json({
+            message: "Error al consultar ultima orden ",
+            success: false,
+            error: e
+        })
+    }
+}
+
 
 //EDITAR EL TOTAL DE LA ORDEN
 let editTotalOrder = async function (req, res) {
@@ -975,39 +1018,164 @@ let editTotalOrder = async function (req, res) {
 }
 
 
+//OBTENER ORDENES PAGADAS
+let orderPagadasByDentist = async function (req, res) {
+
+    let {id_dentista} = req.params
+
+
+    try {
+        let order
+
+        order = await ordersModel.aggregate([
+            {
+                $match: {
+                    dentista: mongoose.Types.ObjectId(id_dentista),
+                    isPagado: true
+
+                }
+            },
+            {
+                $lookup: {
+                    from: dentistModel.collection.name,
+                    localField: 'dentista',
+                    foreignField: '_id',
+                    as: 'dentista'
+                }
+            },
+            {
+                $unwind: '$dentista'
+            },
+            {
+                $lookup: {
+                    from: detailsOrderModel.collection.name,
+                    localField: 'detalle',
+                    foreignField: '_id',
+                    as: 'detalle'
+                }
+            },
+            {
+                $unwind: '$detalle'
+            },
+            {
+                $lookup: {
+                    from: productModel.collection.name,
+                    localField: 'detalle.producto',
+                    foreignField: '_id',
+                    as: 'detalle.producto'
+                }
+            },
+            {
+                $unwind: '$detalle.producto'
+            },
+            {
+                $group: {
+                    _id: {
+                        paciente: '$name_paciente',
+                        total_order: '$total_order',
+                        fecha_pagada: '$fecha_pagada',
+                        folio: '$id_order',
+                        status: '$status',
+                        dentista_color: "$dentista.distintivo_color",
+                        id_dentista: "$dentista._id",
+                        _id: "$_id",
+
+                    },
+                    items: {
+                        $push: {
+                            detalle: '$detalle',
+                        }
+                    }
+                }
+            },
+            {
+                $replaceRoot: {
+                    newRoot: {
+                        paciente: '$_id.paciente',
+                        total_order: '$_id.total_order',
+                        fecha_pagada: '$_id.fecha_pagada',
+                        folio: '$_id.folio',
+                        status: '$_id.status',
+                        createdAt: '$_id.createdAt',
+                        detalle: '$items',
+                        dentista_color: '$_id.dentista_color',
+                        id_dentista: '$_id.id_dentista',
+                        _id: '$_id._id',
+                    }
+                }
+
+            },
+
+            {
+                $sort: {
+                    'createdAt': -1
+                }
+            },
+
+        ])
+
+
+        if (order == null) {
+            res.status(404).json({
+                success: false,
+                data: order,
+                message: 'No has registrado ordenes'
+            })
+            return
+        }
+
+        res.status(200).json({
+            success: true,
+            data: order
+        })
+
+    } catch (e) {
+        console.log(e)
+        res.status(500).json({
+            message: "Error al consultar ultima orden ",
+            success: false,
+            error: e
+        })
+    }
+}
+
+
 //OBTENER HISTORICO DE ORDENES
 let dt_historic = async function (req, res) {
 
     let {search} = req.body
 
-    console.log("search", typeof  search)
-
+    console.log("search", typeof search)
 
 
     try {
         let name_dentista
 
-        if(typeof  search == 'string'){
+        if (typeof search == 'string') {
             if (search != undefined) {
-                name_dentista = {$match: {dentista:  new RegExp(search, 'i')}}
+                name_dentista = {$match: {dentista: new RegExp(search, 'i')}}
             } else {
                 name_dentista = {$match: {}}
             }
         }
 
-        if(typeof  search == 'object'){
-            if(search.paciente){
-                name_dentista = {$match: {dentista:  new RegExp(search.dentista, 'i'),paciente:  new RegExp(search.paciente, 'i')}}
+        if (typeof search == 'object') {
+            if (search.paciente) {
+                name_dentista = {
+                    $match: {
+                        dentista: new RegExp(search.dentista, 'i'),
+                        paciente: new RegExp(search.paciente, 'i')
+                    }
+                }
 
-            }else{
-                if(search.dentista){
-                    name_dentista = {$match: {dentista:  new RegExp(search.dentista, 'i')}}
-                }else{
+            } else {
+                if (search.dentista) {
+                    name_dentista = {$match: {dentista: new RegExp(search.dentista, 'i')}}
+                } else {
                     name_dentista = {$match: {}}
                 }
             }
         }
-
 
 
         let orders = await ordersModel.aggregate([
@@ -1128,6 +1296,8 @@ module.exports = {
     editProductDetail,
     orderByDentist,
     editTotalOrder,
-    dt_historic
+    dt_historic,
+    orderisPagada,
+    orderPagadasByDentist
 };
 

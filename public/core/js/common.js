@@ -435,8 +435,9 @@ let drawOptionsColor = function (search) {
 let drawLastOrder = function (search) {
     $('#productos').html('')
 
+    HoldOn.open(HoldOptions)
     api_conection('POST', 'api/orders/last_order/', {search}, function (data) {
-
+        HoldOn.close()
 
         let order_data = data.data
 
