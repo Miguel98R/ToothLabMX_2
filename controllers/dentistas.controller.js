@@ -44,7 +44,7 @@ let new_dentist = async function (req, res) {
 
     try {
         let dentista = new dentistaModel({
-            name_dentista: nuevo_dentista.name_dentista ? nuevo_dentista.name_dentista : 'S/R',
+            name_dentista: nuevo_dentista.name_dentista ? nuevo_dentista.name_dentista.toUpperCase() : 'S/R',
             domicilio_dentista: nuevo_dentista.domicilio_dentista ? nuevo_dentista.domicilio_dentista : 'S/R',
             email_dentista: nuevo_dentista.email_dentista ? nuevo_dentista.email_dentista : 'S/R',
             tel_dentista: nuevo_dentista.tel_dentista ? nuevo_dentista.tel_dentista : 'S/R',

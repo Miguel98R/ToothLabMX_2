@@ -91,7 +91,7 @@ $(function () {
 
         order: [[0, 'asc']],
 
-        pageLength: 3,
+        pageLength: 10,
 
         columns: columnsPagos,
 
@@ -130,10 +130,12 @@ $(function () {
         body.id_dentista = $(this).attr('id_dentista')
         body.value = $(this).val()
 
-        api_conection('POST', 'api/dentist/addPagos', body, function (response) {
+        api_conection('POST', 'api/dentist/addPagos', body, async function (response) {
             notyf.success(response.message)
             $('#aCuenta').val(0)
-            drawPagos(body.id_dentista)
+            await drawPagos(body.id_dentista )
+
+            await sumTotales()
 
         })
     })
@@ -145,10 +147,13 @@ $(function () {
         let id_dentista = $(this).attr('id_dentista')
 
 
-        api_conection('DELETE', 'api/dentist/deletePago/' + id_pago, {}, function (response) {
+        api_conection('DELETE', 'api/dentist/deletePago/' + id_pago, {}, async function (response) {
             notyf.success(response.message)
 
-            drawPagos(id_dentista)
+            await drawPagos(id_dentista)
+            await drawOrders(id_dentista)
+            await drawOrdersPagadas(id_dentista)
+            await sumTotales()
 
         })
     })
@@ -165,10 +170,13 @@ $(function () {
         body.val = $(this).val()
 
 
-        api_conection('PUT', 'api/dentist/editPago/', {body}, function (response) {
+        api_conection('PUT', 'api/dentist/editPago/', {body}, async function (response) {
             notyf.success(response.message)
 
-            drawPagos(id_dentista)
+            await drawPagos(id_dentista)
+            await drawOrders(id_dentista)
+            await drawOrdersPagadas(id_dentista)
+            await sumTotales()
 
         })
     })
@@ -321,11 +329,13 @@ $(function () {
 
             let dataOrders = data.data
 
-            console.log(dataOrders)
+
             if (dataOrders.length < 1) {
-                notyf.open({type: "warning", message: "Este dentista no tiene ordenes"});
+                $('#saldoDeuda').val(0)
                 tblOrdenes.clear();
                 tblOrdenes.rows.add(dataOrders).draw();
+                sumTotales()
+                notyf.open({type: "warning", message: "Este dentista no tiene ordenes"});
                 return
             }
 
@@ -354,10 +364,12 @@ $(function () {
         let id_dentista = $(this).attr('id_dentista')
 
 
-        api_conection('POST', 'api/orders/editTotalOrder', body, function (response) {
+        api_conection('POST', 'api/orders/editTotalOrder', body, async function (response) {
             notyf.success(response.message)
-            drawOrders(id_dentista)
-            sumTotales()
+            await drawPagos(id_dentista)
+            await drawOrders(id_dentista)
+            await drawOrdersPagadas(id_dentista)
+            await sumTotales()
 
         })
     })
@@ -527,7 +539,8 @@ $(function () {
             if (dataOrders.length < 1) {
                 notyf.open({type: "warning", message: "Este dentista no tiene ordenes pagadas"});
                 tblOrdenesPagadas.clear();
-                tblOrdenesPagadas.rows.add(dataOrders).draw();
+                tblOrdenesPagadas.rows.add(dataOrders).draw()
+                sumTotales()
                 return
             }
 
@@ -535,7 +548,7 @@ $(function () {
             tblOrdenesPagadas.clear();
             tblOrdenesPagadas.rows.add(dataOrders).draw();
 
-
+            sumTotales()
         })
     }
 
@@ -550,9 +563,15 @@ $(function () {
 
         api_conection('PUT', 'api/orders/orderisPagada/' + id_order, {pagado}, async function (response) {
             notyf.success(response.message)
+
             await drawOrders(id_dentista)
+
+            await drawPagos(id_dentista)
+
+
+
             await drawOrdersPagadas(id_dentista)
-            await sumTotales()
+
 
         })
     })
