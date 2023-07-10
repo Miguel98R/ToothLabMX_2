@@ -127,7 +127,9 @@ $(document).ready(function () {
     //DATA PARA PINTAR DATATABLES
 
     let dt_draw = function () {
+        HoldOn.open(HoldOptions)
         api_conection("GET", "api/dentist/data_dataTables", {}, function (data) {
+            HoldOn.close()
             data_dentista = data.data;
 
             dt.clear();
