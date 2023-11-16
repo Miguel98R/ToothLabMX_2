@@ -1300,4 +1300,3 @@ module.exports = {
     orderisPagada,
     orderPagadasByDentist
 };
-

@@ -5,21 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d4a63299-7730-4aeb-be2a-1c0a1b266884" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/cdn/jquery/core.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/cdn/jquery/jquery.doubleScroll.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/cdn/jquery/jquery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/cdn/jquery/jquery.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/cdn/jquery/jquery.min.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/cdn/jquery/jquery.slim.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/cdn/jquery/jquery.slim.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/cdn/jquery/jquery.slim.min.map" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/helpers/dt_aggregate.helper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/auth.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/auth.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/colores.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/colores.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/orders.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/orders.controller.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/db.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/core/js/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/core/js/common.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/core/js/historico.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/core/js/historico.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/core/js/ordenes.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/core/js/ordenes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/core/js/status_core.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/core/js/status_core.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/loading.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/template/scripts.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/template/scripts.pug" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

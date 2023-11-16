@@ -1,5 +1,6 @@
 let colorModel = require("../models/colores.model");
 
+
 //CREAR NUEVO COLOR
 let new_color = async function (req, res) {
     let {new_colors} = req.body;

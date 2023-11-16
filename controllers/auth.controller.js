@@ -2,8 +2,6 @@ let usersModel = require('../models/users.model')
 const {encrypt, compare} = require('../helpers/handleBcrypt')
 const {tokenSign} = require('../helpers/generateToken')
 
-const dotenv = require('dotenv');
-
 let login_user = async function (req, res) {
 
     let {user, password} = req.body
@@ -11,7 +9,9 @@ let login_user = async function (req, res) {
 
     try {
 
-        let user_data = await usersModel.findOne({user}).lean()
+        let user_data = await usersModel.findOne({user:user}).lean()
+
+
 
         if (!user_data) {
             res.status(404).json({

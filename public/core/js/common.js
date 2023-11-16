@@ -311,21 +311,31 @@ let draw_modal_details = function (id) {
 }
 
 let ImprimirTicket = function (headerHTML, htmlCreado, footerHTML) {
+    let content_finished = headerHTML + htmlCreado + footerHTML;
 
-
-    let content_finished = headerHTML + htmlCreado + footerHTML
-
+    // Abre una nueva ventana
     var WinPrint = window.open('', '', 'width=630,height=560,scrollbars=1,menuBar=1');
-    WinPrint.document.write(content_finished);
-    WinPrint.document.close();
-    WinPrint.focus();
-    setTimeout(() => {
-        WinPrint.print();
-        WinPrint.close();
-    }, "580")
 
+    // Verifica si la ventana se abrió correctamente
+    if (WinPrint) {
+        // Escribe el contenido en la nueva ventana
+        WinPrint.document.write(content_finished);
+        WinPrint.document.close();
 
-}
+        // Espera a que la ventana se cargue completamente antes de imprimir
+        WinPrint.onload = function () {
+            // Espera un breve periodo antes de imprimir (ajusta según sea necesario)
+            setTimeout(() => {
+                // Imprime y cierra la ventana
+                WinPrint.print();
+                WinPrint.close();
+            }, 100);
+        };
+    } else {
+        console.error('No se pudo abrir la ventana de impresión.');
+    }
+};
+
 
 let createTicket = function(id_orden){
 
