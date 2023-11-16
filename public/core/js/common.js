@@ -324,17 +324,20 @@ let ImprimirTicket = function (headerHTML, htmlCreado, footerHTML) {
 
         // Espera a que la ventana se cargue completamente antes de imprimir
         WinPrint.onload = function () {
-            // Espera un breve periodo antes de imprimir (ajusta según sea necesario)
+            // Imprime el contenido de la ventana
+            WinPrint.print();
+
+            // Cierra la ventana después de imprimir (ajusta según sea necesario)
             setTimeout(() => {
-                // Imprime y cierra la ventana
-                WinPrint.print();
                 WinPrint.close();
-            }, 100);
+            }, 200);
         };
     } else {
         console.error('No se pudo abrir la ventana de impresión.');
     }
 };
+
+
 
 
 let createTicket = function(id_orden){
