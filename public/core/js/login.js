@@ -29,8 +29,8 @@ $(document).ready(function () {
             if (codigo == 200) {
 
                 localStorage.setItem('TOKEN', token)
-                
-                    location.href = '/orders'
+
+                location.href = '/orders'
             }
 
         }, function (response) {
@@ -89,4 +89,3 @@ $(document).ready(function () {
 
 
 })
-

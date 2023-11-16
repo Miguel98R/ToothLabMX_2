@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.URL_SERVER).then(() => {
+mongoose.connect(process.env.URL_SERVER + '/' + process.env.DB_NAME).then(() => {
 
     if (process.env.URL_SERVER.includes('admin')) {
 
