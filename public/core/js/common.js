@@ -313,27 +313,36 @@ let draw_modal_details = function (id) {
 let ImprimirTicket = function (headerHTML, htmlCreado, footerHTML) {
     let content_finished = headerHTML + htmlCreado + footerHTML;
 
-    // Abre una nueva ventana
     var WinPrint = window.open('', '', 'width=630,height=560,scrollbars=1,menuBar=1');
+    WinPrint.document.write(content_finished);
+    WinPrint.document.close();
 
-    // Verifica si la ventana se abrió correctamente
-    if (WinPrint) {
-        // Escribe el contenido en la nueva ventana
-        WinPrint.document.write(content_finished);
-        WinPrint.document.close();
+    // Agrega un listener para el evento beforeprint
+    WinPrint.addEventListener('beforeprint', () => {
+        // Acciones antes de imprimir
+        console.log('Before Print');
+    });
 
-        // Espera a que la ventana se cargue completamente antes de imprimir
-        WinPrint.onload = function () {
-            // Imprime el contenido de la ventana
-            WinPrint.print();
+    // Agrega un listener para el evento afterprint
+    WinPrint.addEventListener('afterprint', () => {
+        // Acciones después de imprimir
+        console.log('After Print');
 
-            // Cierra la ventana después de imprimir (ajusta según sea necesario)
-            setTimeout(() => {
-                WinPrint.close();
-            }, 200);
-        };
-    } else {
-        console.error('No se pudo abrir la ventana de impresión.');
+        // Cierra la ventana después de imprimir
+        WinPrint.close();
+    });
+
+    // Agrega un listener para el evento onunload
+    WinPrint.onunload = WinPrint.onbeforeunload = function () {
+        // Acciones antes de cerrar la ventana
+        console.log('Window Unload or BeforeUnload');
+    };
+
+    try {
+        // Inicia la impresión
+        WinPrint.print();
+    } catch (error) {
+        console.error('Error during printing:', error);
     }
 };
 
