@@ -1,13 +1,12 @@
-.panel.one(style="width:80px;height: 100vh;").bg-dark
-    .card.bg-dark
-        .card-header.bg-dark.text-start
-            small.text-white.fw-bold Menu
-        .card-body(style="max-height:750px; overflow-y:auto;")
-                if menu
-                            each val2 in menu
-                                div.p-0.menu_img(style="width:100%;border-bottom: 3px solid #999")
-                                    a(href=val2.ref style="width:100%;")
-                                        img.my-3(src=val2.img style="max-height:40px;" title=val2.title)
-
-
-
+.panel.one.bg-dark.d-flex.flex-column.shadow(style="width: 220px; height: 100vh; flex-shrink: 0; z-index: 1000;")
+    .px-3.py-4.text-center.border-bottom(style="border-color: rgba(255,255,255,0.05) !important;")
+        h5.text-white.m-0.fw-bold.mb-2 ToothLabMX
+        div.text-secondary(style="font-size: 9px; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.8;") Licencia para:
+        div.text-light.mt-1(style="font-size: 11px; line-height: 1.2;") Laboratorio Dental Seven
+    .w-100.hide-scrollbar.flex-grow-1.py-3(style="overflow-y: auto;")
+        if menu
+            each val2 in menu
+                div.menu_item.mb-1.mx-3(style="border-radius: 6px; transition: background-color 0.2s;")
+                    a.text-decoration-none.d-flex.align-items-center.px-3.py-2(href=val2.ref style="color: #cbd5e1;")
+                        i(class=val2.icon style="width: 20px; font-size: 1.1rem; text-align: center; margin-right: 12px;")
+                        span(style="font-size: 14.5px; font-weight: 500;") #{val2.title}

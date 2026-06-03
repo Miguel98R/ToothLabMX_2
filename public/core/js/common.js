@@ -115,9 +115,12 @@ let api_conection = async function (method, url, data, f_, error_) {
                 f_(response);
             }
         } else {
-            if (error_) {
+            if (response.message) {
                 notyf.error(response.message)
-
+            } else if (response.error) {
+                notyf.error("Ocurrió un error en el servidor.")
+            }
+            if (error_) {
                 error_(response)
             }
         }

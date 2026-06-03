@@ -21,11 +21,20 @@ let new_order = async function (req, res) {
 
     try {
 
+        let escapeRegex = (string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
         let productsArray = []
         //BUSCAR PRODUCTO PARA OBTENER ID Y ACTUALIZAR SU USO
         let product = await productModel.findOne({
-            name_producto: new RegExp(new_order_details.producto_name, "i"),
+            name_producto: new RegExp(escapeRegex(new_order_details.producto_name.trim()), "i"),
         });
+
+        if (!product) {
+            return res.status(404).json({
+                success: false,
+                message: `El producto '${new_order_details.producto_name}' no fue encontrado en la base de datos.`
+            });
+        }
 
 
         //CREACION DEL DETALLE
@@ -45,8 +54,16 @@ let new_order = async function (req, res) {
 
         //SE INCREMENTA EL NUMERO DE ORDENES QUE SE A REALIZADO PARA EL DENTISTA
         let dentist = await dentistModel.findOne({
-            name_dentista: new RegExp(new_order.dentista, "i"),
+            name_dentista: new RegExp(escapeRegex(new_order.dentista.trim()), "i"),
         });
+
+        if (!dentist) {
+            return res.status(404).json({
+                success: false,
+                message: `El dentista '${new_order.dentista}' no fue encontrado en la base de datos.`
+            });
+        }
+
         let id_dentista = dentist._id;
 
         dentist.cont_ordenes = dentist.cont_ordenes + 1;
@@ -413,12 +430,20 @@ let add_product = async function (req, res) {
 
     try {
 
+        let escapeRegex = (string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         let id_detalle;
 
         //BUSCAR PRODUCTO PARA OBTENER ID Y ACTUALIZAR SU USO
         let product = await productModel.findOne({
-            name_producto: new RegExp(new_product.producto_name, "i"),
+            name_producto: new RegExp(escapeRegex(new_product.producto_name.trim()), "i"),
         });
+
+        if (!product) {
+            return res.status(404).json({
+                success: false,
+                message: `El producto '${new_product.producto_name}' no fue encontrado en la base de datos.`
+            });
+        }
 
         //CREACION DEL DETALLE
         let details = new detailsOrderModel({
@@ -506,9 +531,17 @@ let editProductDetail = async function (req, res) {
 
     try {
 
+        let escapeRegex = (string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         let product = await productModel.findOne({
-            name_producto: new RegExp(body.producto_name, "i"),
+            name_producto: new RegExp(escapeRegex(body.producto_name.trim()), "i"),
         });
+
+        if (!product) {
+            return res.status(404).json({
+                success: false,
+                message: `El producto '${body.producto_name}' no fue encontrado en la base de datos.`
+            });
+        }
 
         product.cuenta_uso = product.cuenta_uso + 1;
         product = await product.save();
@@ -557,9 +590,17 @@ let edit_data_order = async function (req, res) {
             order.dentista = order.dentista
 
         } else {
+            let escapeRegex = (string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
             let dentist = await dentistModel.findOne({
-                name_dentista: new RegExp(body.dentista, "i"),
+                name_dentista: new RegExp(escapeRegex(body.dentista.trim()), "i"),
             });
+
+            if (!dentist) {
+                return res.status(404).json({
+                    success: false,
+                    message: `El dentista '${body.dentista}' no fue encontrado en la base de datos.`
+                });
+            }
 
             dentist.cont_ordenes = dentist.cont_ordenes + 1;
             dentist = await dentist.save();

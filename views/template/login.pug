@@ -45,13 +45,19 @@
                                         |  Entrar
 
 
-                .card-footer
-                    .d-flex.flex-column.flex-md-row.text-center.text-md-start.justify-content-center.py-4.px-4.px-xl-5.my-2
-                        // Copyright
-                        .text-dark.mb-3.mb-md-0.text-center.mx-2
-                            | Mike Rosas Dev Copyright &copy; 2020-2023. - ToothLabMX v2.3.6  - Desarrollado por:
-                        a(href='https://mikerosasdev.com' target='_blank').text-dark
-                            | Jose Miguel Rosas Jimenez
+                .card-footer.bg-transparent.border-0.py-4
+                    .d-flex.flex-column.align-items-center.justify-content-center
+                        .text-secondary.mb-2(style="font-size: 0.9rem; letter-spacing: 0.5px;")
+                            i.fa-regular.fa-copyright.me-1
+                            | 2020-2026 
+                            strong.text-dark Mike Rosas Dev
+                            span.mx-2 |
+                            | ToothLabMX v2.3.6
+                        .text-secondary(style="font-size: 0.85rem;")
+                            span Desarrollado por: 
+                            a.ms-1(href='https://mikerosasdev.com/' target='_blank' style="text-decoration: none; font-weight: 600; color: #0284c7; transition: color 0.3s;")
+                                i.fa-solid.fa-globe.me-1
+                                | mikerosasdev.com
 
 
 

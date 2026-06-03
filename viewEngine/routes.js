@@ -5,13 +5,13 @@ let logo = "./public/img/logo2.png"
 
 let menu = [
     {
-        icon: 'far fa-plus-square',
+        icon: 'fas fa-clipboard-list',
         img: './public/img/iconsMenu/ordenes.png',
         title: 'Generar orden',
         ref: '/orders',
     },
     {
-        icon: 'far fa-plus-square',
+        icon: 'fas fa-file-invoice-dollar',
         img: './public/img/iconsMenu/contabilidad.png',
         title: 'Sección contable',
         ref: '/contable',
@@ -23,25 +23,25 @@ let menu = [
         ref: '/products'
     },
     {
-        icon: 'fas fa-tooth',
+        icon: 'fas fa-user-md',
         img: './public/img/iconsMenu/dentista.png',
         title: 'Dentistas',
         ref: '/dentistas'
     },
     {
-        icon: 'fas fa-ban',
+        icon: 'fas fa-palette',
         img: './public/img/iconsMenu/colores.png',
         title: 'Colores',
         ref: '/colors',
     },
     {
-        icon: 'fas fa-arrow-right',
+        icon: 'fas fa-history',
         img: './public/img/iconsMenu/tiempo.png',
         title: 'Historico',
         ref: '/historico',
     },
     {
-        icon: 'fas fa-arrow-right',
+        icon: 'fas fa-inbox',
         img: './public/img/iconsMenu/diente.png',
         title: 'Entrantes',
         ref: '/status_entrante',
@@ -65,13 +65,13 @@ let menu = [
         ref: '/status_terminadas',
     },
     {
-        icon: 'fas fa-exchange-alt',
+        icon: 'fas fa-sync-alt',
         img: './public/img/iconsMenu/cambios.png',
         title: 'Con Cambios',
         ref: '/status_cambios',
     },
     {
-        icon: 'fas fa-ban',
+        icon: 'fas fa-hand-holding-usd',
         title: 'Canceladas con costos',
         img: './public/img/iconsMenu/cancelarConCostos.png',
         ref: '/status_CancelConCostos',
