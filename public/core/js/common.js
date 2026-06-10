@@ -358,111 +358,87 @@ let createTicket = function(id_orden){
 
     api_conection("POST", "api/orders/details_order/" + id_orden, {}, function (data) {
 
-
         let data_order = data.data
-
         let status = asignament_status(data_order.status)
 
-        let datos_generales = '<div class=" card-body text-start ">'
+        let datos_generales = '<div class="card-body text-start" style="padding: 10px; font-size: 14px; font-family: Arial, sans-serif;">'
+            + '<table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">'
+            + '<tr>'
+            + '<td style="width: 50%; padding: 5px 0; border-bottom: 1px solid ' + data_order.dentista_color + ';">'
+            + '<span class="fw-bold">Dentista:</span> <span style="color:' + data_order.dentista_color + ';" class="fw-bold">' + data_order.name_dentista + '</span>'
+            + '</td>'
+            + '<td style="width: 50%; padding: 5px 0; border-bottom: 1px solid ' + data_order.dentista_color + ';">'
+            + '<span class="fw-bold">Folio:</span> <span style="color:' + data_order.dentista_color + ';" class="fw-bold">' + data_order.id_order + '</span>'
+            + '</td>'
+            + '</tr>'
+            + '<tr>'
+            + '<td style="padding: 5px 0; border-bottom: 1px solid ' + data_order.dentista_color + ';">'
+            + '<span class="fw-bold">Entrada:</span><br><span style="color:' + data_order.dentista_color + ';" class="fw-bold">' + moment(data_order.fecha_entrante, 'DD-MM-YYYY').format('dddd DD MMMM YYYY') + '</span>'
+            + '</td>'
+            + '<td style="padding: 5px 0; border-bottom: 1px solid ' + data_order.dentista_color + ';">'
+            + '<span class="fw-bold">Paciente:</span> <span style="color:' + data_order.dentista_color + ';" class="fw-bold">' + data_order.name_paciente.toUpperCase() + '</span>'
+            + '</td>'
+            + '</tr>'
+            + '<tr>'
+            + '<td style="padding: 5px 0; border-bottom: 1px solid ' + data_order.dentista_color + ';">'
+            + '<span class="fw-bold">Salida:</span><br><span style="color:' + data_order.dentista_color + ';" class="fw-bold">' + moment(data_order.fecha_saliente, 'DD-MM-YYYY').format('dddd DD MMMM YYYY') + '</span>'
+            + '</td>'
+            + '<td style="padding: 5px 0; border-bottom: 1px solid ' + data_order.dentista_color + ';">'
+            + '<span class="fw-bold">Fecha Impr.:</span> <span style="color:' + data_order.dentista_color + ';" class="fw-bold">' + moment().format('dddd DD MMMM YYYY hh:mm A') + '</span>'
+            + '</td>'
+            + '</tr>'
+            + '</table>'
 
+            + '<table style="width: 100%; border-collapse: collapse; margin-bottom: 10px;">'
+            + '<tr>'
+            + '<td style="width: 50%; padding: 5px 0; border-bottom: 1px solid ' + data_order.dentista_color + ';">'
+            + '<span class="fw-bold">Regreso:</span>'
+            + '</td>'
+            + '<td style="width: 50%; padding: 5px 0; border-bottom: 1px solid ' + data_order.dentista_color + ';">'
+            + '<span class="fw-bold">Entrega:</span>'
+            + '</td>'
+            + '</tr>'
+            + '<tr>'
+            + '<td style="width: 50%; padding: 5px 0; border-bottom: 1px solid ' + data_order.dentista_color + ';">'
+            + '<span class="fw-bold">Registro Mordida:</span> <span style="color:' + data_order.dentista_color + ';" class="fw-bold">' + (data_order.regMor ? 'SI' : 'NO') + '</span>'
+            + '</td>'
+            + '<td style="width: 50%; padding: 5px 0; border-bottom: 1px solid ' + data_order.dentista_color + ';">'
+            + '<span class="fw-bold">Antagonista:</span> <span style="color:' + data_order.dentista_color + ';" class="fw-bold">' + (data_order.antagon ? 'SI' : 'NO') + '</span>'
+            + '</td>'
+            + '</tr>'
+            + '</table></div>';
 
-            + '<div class="row ">'
-            + '<div class="col-12" >'
-
-            + '<div class="row my-2">'
-            + '<div class="col-6" >'
-            + '<h4  style="border-bottom: 2px solid ' + data_order.dentista_color + ';"   class=" fw-bold ">Dentista:   <span  style="color:' + data_order.dentista_color + ';"  class="fw-bold ">' + data_order.name_dentista + '</span></h4>'
-
-            + '</div>'
-            + '<div class="col-6" >'
-            + '<h4 style="border-bottom: 2px solid ' + data_order.dentista_color + ';" class="text-start  fw-bold ">Folio:  <cite style="color:' + data_order.dentista_color + ';"  class="fw-bold">' + data_order.id_order + '</cite></h4>'
-            + '</div>'
-            + '</div>'
-            + '</div>'
-            + '<div class="col-12" >'
-            + '<div class="row ">'
-            + '<div class="col-6" >'
-            + '<h5 style="border-bottom: 2px solid ' + data_order.dentista_color + ';" class=" fw-bold ">Entrada: <br> <span  style="color:' + data_order.dentista_color + ';"  class="fw-bold ">' + moment(data_order.fecha_entrante, 'DD-MM-YYYY').format('dddd DD MMMM YYYY') + '</span></h5>'
-            + '<h5 style="border-bottom: 2px solid ' + data_order.dentista_color + ';" class=" fw-bold ">Salida: <br>  <span  style="color:' + data_order.dentista_color + ';"  class="fw-bold ">' + moment(data_order.fecha_saliente, 'DD-MM-YYYY').format('dddd DD MMMM YYYY') + '</span></h5>'
-
-            + '</div>'
-            + '<div class="col-6" >'
-            + '<h5 style="border-bottom: 2px solid ' + data_order.dentista_color + ';" class=" fw-bold ">Paciente:   <span style="color:' + data_order.dentista_color + ';"  class="fw-bold ">' + data_order.name_paciente.toUpperCase() + '</span></h5>'
-            + '<h5 style="border-bottom: 2px solid ' + data_order.dentista_color + ';" class=" fw-bold ">Fecha Impr.:   <span style="color:' + data_order.dentista_color + ';"  class="fw-bold ">' + moment().format('dddd DD MMMM YYYY hh:mm A') + '</span></h5>'
-
-            + '</div>'
-            + '</div>'
-            + '</div>'
-            + '</div>'
-
-
-            + '<div class="row ">'
-
-            + '<div class="col-6 " style="border-bottom: 2px solid ' + data_order.dentista_color + ';">'
-
-            + '<br><h5 class="text-start  fw-bold ">Regreso: </h5>'
-
-
-            + '</div>'
-
-            + '<div class="col-6 " style="border-bottom: 2px solid ' + data_order.dentista_color + ';">'
-
-            + '<br><h5 class="text-start fw-bold ">Entrega: </h5>'
-
-
-            + '</div>'
-
-
-            + '</div>'
-
-            + '<div class="row my-3 py-2">'
-
-            + '<div class="col-6" style="border-bottom: 2px solid ' + data_order.dentista_color + ';">'
-
-            + '<h5 class=" fw-bold ">Registro Mordida:   <span style="color:' + data_order.dentista_color + ';"  class="fw-bold ">' + (data_order.regMor ? 'SI' : 'NO') + '</span></h5>'
-            + '</div>'
-
-            + '<div class="col-6" style="border-bottom: 2px solid ' + data_order.dentista_color + ';">'
-            + '<h5 class=" fw-bold ">Antagonista:   <span style="color:' + data_order.dentista_color + ';"  class="fw-bold ">' + (data_order.antagon ? 'SI' : 'NO') + '</span></h5>'
-
-            + '</div>'
-
-
-            + '</div>'
-
-
-        let productos = ''
+        let productos = '<div class="text-center" style="font-family: Arial, sans-serif; font-size: 14px; margin-top: 10px; padding: 0 10px;">'
+            + '<table style="width: 100%; border-collapse: collapse; text-align: center;">'
+            + '<tr style="border-bottom: 1px solid ' + data_order.dentista_color + ';">'
+            + '<th style="padding: 5px 0;">Cantidad</th>'
+            + '<th style="padding: 5px 0;">Color</th>'
+            + '<th style="padding: 5px 0;">Producto</th>'
+            + '</tr>';
 
         for (let item of data_order.products) {
 
             let tooths_10_20 = ''
             let tooths_30_40 = ''
 
-
             for (let od of item.tooths) {
 
                 let parrafo_od_10_20 = ''
                 let parrafo_od_30_40 = ''
 
-
                 od = Number(od)
 
                 if (od >= 11 && od <= 18) {
-                    parrafo_od_10_20 = '<span class="text-primary fs-5 fw-bolder">' + od + '&nbsp;  </span>'
-
-
+                    parrafo_od_10_20 = '<span style="color: #0d6efd !important;" class="fs-6 fw-bolder">' + od + '&nbsp; </span>'
                 }
                 if (od >= 21 && od <= 28) {
-                    parrafo_od_10_20 = '<span class="text-danger fs-5 fw-bolder">' + od + '&nbsp;    </span>'
-
+                    parrafo_od_10_20 = '<span style="color: #dc3545 !important;" class="fs-6 fw-bolder">' + od + '&nbsp; </span>'
                 }
                 if (od >= 31 && od <= 38) {
-                    parrafo_od_30_40 = '<span class="text-warning fs-5 fw-bolder">' + od + '&nbsp;   </span>'
-
+                    parrafo_od_30_40 = '<span style="color: #ffc107 !important;" class="fs-6 fw-bolder">' + od + '&nbsp; </span>'
                 }
                 if (od >= 41 && od <= 48) {
-                    parrafo_od_30_40 = '<span class="text-success fs-5 fw-bolder">' + od + '&nbsp;   </span>'
-
+                    parrafo_od_30_40 = '<span style="color: #198754 !important;" class="fs-6 fw-bolder">' + od + '&nbsp; </span>'
                 }
 
                 tooths_10_20 = tooths_10_20 + parrafo_od_10_20
@@ -470,76 +446,35 @@ let createTicket = function(id_orden){
 
             }
 
-
-            productos = productos + '<div  class=" my-3 text-center" style="border-top: 2px solid ' + data_order.dentista_color + ';">'
-                + '<div class="row">'
-                + '<div class="col-3">'
-                + '<h5 class="fw-bold">Cantidad</h5>'
-                + '<h5>' + item.cantidad + '</h5>'
-
-                + '</div>'
-                + '<div class="col-2">'
-                + '<h5 class="fw-bold" >Color</h5>'
-                + '<h5>' + item.color + '</h5>'
-
-
-                + '</div>'
-                + '<div class="col-7">'
-                + '<h5 class="fw-bold" >Producto</h5>'
-                + '<h5 style="color:' + item.dentista_color + ';">' + item.name_producto + '</h5>'
-
-
-                + '</div>'
-
-                + '</div>'
-                + '</div>'
-
-                + '<div  class="text-center">'
-
-                + tooths_10_20
-                + '<br>'
-                + tooths_30_40
-                + '</div>'
-
-
+            productos += '<tr>'
+                + '<td style="padding: 5px 0;">' + item.cantidad + '</td>'
+                + '<td style="padding: 5px 0;">' + item.color + '</td>'
+                + '<td style="padding: 5px 0; color:' + data_order.dentista_color + ';" class="fw-bold text-uppercase">' + item.name_producto + '</td>'
+                + '</tr>'
+                + '<tr>'
+                + '<td colspan="3" style="padding-bottom: 10px;">'
+                + tooths_10_20 + '<br>' + tooths_30_40
+                + '</td>'
+                + '</tr>';
         }
 
-        let comentarios = '<div  class="my-2" style="border-bottom: 2px solid ' + data_order.dentista_color + ';"></div><h3 class="text-center my-2 fw-bold" >Comentarios:</h3>'
-            + '<div style="border:solid;border-color:' + data_order.dentista_color + ';" class="text-center p-5">'
-            + '<h5 class="p-0 m-0" style="color:' + data_order.dentista_color + ';">' + data_order.comentario.toUpperCase()  + '</h5>'
-            + '</div>'
-            + '</div>'
-            + '</div>'
+        productos += '</table></div>';
 
-        var ticketHTML = '<div class="card">'
-
-            + '<div class="card-header">'
-            + '<div class="row text-center">'
-
+        let comentarios = '<div class="my-2" style="font-family: Arial, sans-serif; font-size: 14px; padding: 0 10px;">'
+            + '<h5 class="fw-bold text-center mb-1">Comentarios:</h5>'
+            + '<div style="border: 1px solid ' + data_order.dentista_color + '; padding: 10px; color: ' + data_order.dentista_color + '; min-height: 50px; text-align: center;">'
+            + data_order.comentario.toUpperCase()
             + '</div>'
-            + '</div>'
+            + '</div>';
 
+        var ticketHTML = '<div class="card" style="border: none;">'
             + datos_generales
-            + '<div class="my-4 py-2 text-center">'
             + productos
-            + '</div>'
-
             + comentarios
+            + '</div>';
 
-            + '<div class="col-12 text-end my-5 fixed-bottom">' +
-            '<br>' +
-            '<br>' +
-            '<br>' +
-            '<br>'
-
-            + '<img class="img-fluid p-0 mx-4" style="max-height:90px;" src="' + logo + '"></img>'
-            + '</div>'
-            + '</div>'
-
-
-        let headerHTML = '<!doctype html><html lang="es"><head><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous"></head><body>'
+        let headerHTML = '<!doctype html><html lang="es"><head><style>@media print { * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; } }</style><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous"></head><body>'
         let footerHTML = "<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js' integrity='sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz' crossorigin='anonymous'></script></body></html>"
-
 
         ImprimirTicket(headerHTML, ticketHTML, footerHTML)
 

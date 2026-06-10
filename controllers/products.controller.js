@@ -14,7 +14,7 @@ let new_product = async function (req, res) {
 
         });
 
-        producto.save();
+        await producto.save();
 
         res.status(200).json({
             success: true,
@@ -118,10 +118,10 @@ let change_Status = async function (req, res) {
 
         if (status == "true") {
             product.status = false;
-            product = product.save();
+            product = await product.save();
         } else {
             product.status = true;
-            product = product.save();
+            product = await product.save();
         }
 
         res.status(200).json({

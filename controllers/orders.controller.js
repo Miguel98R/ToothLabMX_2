@@ -406,7 +406,7 @@ let change_status = async function (req, res) {
         order_data.status = status
         order_data.fecha_actualizacion = moment().format('DD-MM-YYYY')
 
-        order_data = order_data.save()
+        order_data = await order_data.save()
 
         res.status(200).json({
             success: true,
@@ -470,7 +470,7 @@ let add_product = async function (req, res) {
 
         order_data.fecha_actualizacion = moment().format('DD-MM-YYYY')
 
-        order_data = order_data.save()
+        order_data = await order_data.save()
 
         res.status(200).json({
             success: true,

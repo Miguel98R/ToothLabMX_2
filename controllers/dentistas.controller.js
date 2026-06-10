@@ -52,7 +52,7 @@ let new_dentist = async function (req, res) {
             distintivo_color: nuevo_dentista.distintivo_color ? nuevo_dentista.distintivo_color : 'S/R',
         });
 
-        dentista.save();
+        await dentista.save();
 
         res.status(200).json({
             success: true,
@@ -78,10 +78,10 @@ let change_Status = async function (req, res) {
 
         if (status == "true") {
             dentista.status = false;
-            dentista = dentista.save();
+            dentista = await dentista.save();
         } else {
             dentista.status = true;
-            dentista = dentista.save();
+            dentista = await dentista.save();
         }
 
         res.status(200).json({
@@ -114,7 +114,7 @@ let update_dentista = async function (req, res) {
         dentista.distintivo_color = data_user.distintivo_color ? data_user.distintivo_color : 'S/R'
 
 
-        dentista = dentista.save()
+        dentista = await dentista.save()
 
 
         res.status(200).json({
