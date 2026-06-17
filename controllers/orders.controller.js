@@ -403,7 +403,7 @@ let change_status = async function (req, res) {
     try {
 
         let order_data = await ordersModel.findById(id)
-        order_data.status = status
+        order_data.status = Number(status)
         order_data.fecha_actualizacion = moment().format('DD-MM-YYYY')
 
         order_data = await order_data.save()

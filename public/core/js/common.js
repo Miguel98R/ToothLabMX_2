@@ -91,6 +91,7 @@ let api_conection = async function (method, url, data, f_, error_) {
                         'authorization': 'Bearer ' + localStorage.getItem('TOKEN') || false
 
                     },
+                    cache: 'no-store',
                     method: method,
                 })
         } else {
@@ -102,6 +103,7 @@ let api_conection = async function (method, url, data, f_, error_) {
                         'authorization': 'Bearer ' + localStorage.getItem('TOKEN') || false
 
                     },
+                    cache: 'no-store',
                     method: method,
                     body: data ? JSON.stringify(data) : ""
                 })
