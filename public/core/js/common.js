@@ -7,7 +7,7 @@ moment.locale('es');
  * Spanish translation for bootstrap-datepicker
  * Bruno Bonamin <bruno.bonamin@gmail.com>
  */
-;(function ($) {
+; (function ($) {
     $.fn.datepicker.dates['es'] = {
         days: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
         daysShort: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
@@ -343,18 +343,21 @@ let ImprimirTicket = function (headerHTML, htmlCreado, footerHTML) {
         console.log('Window Unload or BeforeUnload');
     };
 
-    try {
-        // Inicia la impresión
-        WinPrint.print();
-    } catch (error) {
-        console.error('Error during printing:', error);
-    }
+    setTimeout(() => {
+        try {
+            // Inicia la impresión
+            WinPrint.focus();
+            WinPrint.print();
+        } catch (error) {
+            console.error('Error during printing:', error);
+        }
+    }, 1000); // 1 segundo de espera para que carguen los estilos de Bootstrap
 };
 
 
 
 
-let createTicket = function(id_orden){
+let createTicket = function (id_orden) {
 
     let logo = '../public/img/logo.jpg'
 
@@ -491,7 +494,7 @@ let clean_input = function () {
     $(".btn-check").prop("checked", false);
     $(".dentistas_name").val('');
     $(".paciente_name").val('');
-    $(".date_salida").val(moment().format("DD-MM-YYYY")).datepicker({language: "es", format: "dd-mm-yyyy", startDate: 'd'});
+    $(".date_salida").val(moment().format("DD-MM-YYYY")).datepicker({ language: "es", format: "dd-mm-yyyy", startDate: 'd' });
     $("#count_tooths").text(0);
     $(".count_tooths").text(0);
     $(".producto_name").val('');
@@ -538,7 +541,7 @@ let drawOptionsDentist = function (search) {
     api_conection(
         "POST",
         "api/dentist/search_dentist",
-        {search},
+        { search },
         function (data) {
             let dentist_list = data.data;
             dentist_list.forEach(item => {
@@ -552,7 +555,7 @@ let drawOptionsProducto = function (search) {
     api_conection(
         "POST",
         "api/products/search_product",
-        {search},
+        { search },
         function (data) {
             let products_list = data.data;
             for (let item of products_list) {
@@ -574,7 +577,7 @@ let drawOptionsColor = function (search) {
     api_conection(
         "POST",
         "api/products/search_color",
-        {search},
+        { search },
         function (data) {
             let colors_list = data.data;
             for (let item of colors_list) {
@@ -596,7 +599,7 @@ let drawLastOrder = function (search) {
     $('#productos').html('')
 
     HoldOn.open(HoldOptions)
-    api_conection('POST', 'api/orders/last_order/', {search}, function (data) {
+    api_conection('POST', 'api/orders/last_order/', { search }, function (data) {
         HoldOn.close()
 
         let order_data = data.data
@@ -735,7 +738,7 @@ let add_product = function (id_orden, folio) {
     let new_product = {};
 
     if (producto_name == "" || producto_name == undefined) {
-        notyf.open({type: "warning", message: "Seleccione el producto"});
+        notyf.open({ type: "warning", message: "Seleccione el producto" });
         return;
     }
 
@@ -757,7 +760,7 @@ let add_product = function (id_orden, folio) {
     api_conection(
         "POST",
         "api/orders/add_product/" + id_orden,
-        {new_product},
+        { new_product },
         function (response) {
             notyf.success(response.message);
             clean_input();

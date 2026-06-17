@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: toothlabmx_2
+    ports:
+      - "${PORT:-3400}:${PORT:-3400}"
+    env_file:
+      - .env
+    restart: always
